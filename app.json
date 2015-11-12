@@ -1,0 +1,8 @@
+{
+  "name": "scratch",
+  "script": "server/app.js",
+  "ignore_watch": [
+    "client/",
+    "node_modules/"
+  ]
+}

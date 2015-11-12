@@ -1,0 +1,32 @@
+{
+  "name": "scratch-track",
+  "version": "1.0.0",
+  "main": "server/app.js",
+  "description": "Scratch-Track",
+  "engines": {
+    "node": ">=4.1.0"
+  },
+  "author": "req.body",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "./node_modules/.bin/pm2-dev start app.json",
+    "test": "./test/run.sh"
+  },
+  "bugs": {
+    "url": "https://github.com/req-dot-body/scratch-track/issues"
+  },
+  "homepage": "https://github.com/req-dot-body/scratch-track",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "browserify-middleware": "^7.0.0",
+    "express": "^4.13.3",
+    "pm2": "^0.15.10"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.3",
+    "supertest": "^1.1.0",
+    "supertest-as-promised": "^2.0.2"
+  }
+}
