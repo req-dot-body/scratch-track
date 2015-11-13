@@ -3,16 +3,15 @@ var express = require('express');
 
 var router = express.Router();
 var apiRouter = express.Router();
-var userRouter = require('./usersRouter');
-
-var browserify  = require('browserify-middleware');
-var ngAnnotate  = require('browserify-ngannotate');
 
 var usersRouter = require('./usersRouter');
 var projectsRouter = require('./projectsRouter');
 var recordingsRouter = require('./recordingsRouter');
 var lyricsRouter = require('./lyricsRouter');
 var stablatureRouter = require('./stablatureRouter');
+
+var browserify  = require('browserify-middleware');
+var ngAnnotate  = require('browserify-ngannotate');
 
 var assetFolder = Path.resolve(__dirname, '../../client/');
 router.use(express.static(assetFolder));
@@ -30,15 +29,23 @@ var sharedAngular = [
   './node_modules/angular-materialize/src/angular-materialize',
 ];
 
+// Set up routing for our api
 router.use('/api', apiRouter);
+
+// Set up our different api endpoints
 apiRouter.use('/users', usersRouter);
 apiRouter.use('/projects', projectsRouter);
 apiRouter.use('/recordings', recordingsRouter);
 apiRouter.use('/lyrics', lyricsRouter);
 apiRouter.use('/stablature', stablatureRouter);
+
+// Serve application js files
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
+// Serve Angular and Angular modules
 router.get('/js/angular.js', browserify(sharedAngular));
+
 // Catch-all router, this must be the last route
+// Basically, if we get to this point, serve our Angular app and let Angular deal with routing
 router.get('/*', function (req, res) {
   res.sendFile(assetFolder + '/index.html');
 });
