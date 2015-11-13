@@ -1,5 +1,10 @@
+var angular = require('angular');
+var ngCookies = require('angular-cookies');
+var ui = require('angular-ui-router');
+
 window.app = angular.module('myApp', [
-  'ui.router'
+  'ngCookies',
+  'ui.router',
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
