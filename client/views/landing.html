@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      ScratchTrack
+    </title>
+  </head>
+  <body>
+      <h1>ScratchTrack</h1>
+      <div class="center-align" ng-controller="LandingCtrl as landing">
+        <p>
+          {{ landing.message }}
+        </p>
+        <button class="btn" ui-sref="projects">
+          Get Started
+        </button>
+        <!-- TODO: remove breaks when we have styling --> 
+        <br>
+        <a href="" ui-sref="signup">
+          Sign Up
+        </a>       
+        <br>
+        <a href="" ui-sref="signin">
+          Sign In
+        </a>
+      </div>
+  </body>
+</html>
