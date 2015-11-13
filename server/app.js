@@ -23,5 +23,5 @@ if(process.env.NODE_ENV !== 'test') {
   console.log('Listening on port', port);
 } else {
   // We're in test mode; make this file importable instead.
-  module.exports = routes;
+  module.exports = router;
 }
