@@ -12,38 +12,45 @@ router.post('/', function (req, res) {
 });
 
 // Get a project by id
-router.get('/:id', function (req, res) {
-  res.json({'success':true});
+router.get('/:projectId', function (req, res) {
+  var projectId = req.params.projectId;
+  res.json({'success':true,projectId:projectId});
 });
 
 // Update a project using its id
-router.put('/:id', function (req, res) {
-  res.json({'success':true});
+router.put('/:projectId', function (req, res) {
+  var projectId = req.params.projectId;
+  res.json({'success':true,projectId:projectId});
 });
 
 // Delete a project using its id
-router.delete('/:id', function (req, res) {
-  res.json({'success':true});
+router.delete('/:projectId', function (req, res) {
+  var projectId = req.params.projectId;
+  res.json({'success':true,projectId:projectId});
 });
 
 // Get all recordings associated with a specific project
-router.get('/:id/recordings', function (req, res) {
-
+router.get('/:projectId/recordings', function (req, res) {
+  var projectId = req.params.projectId;
+  res.json({'success':true,projectId:projectId});
 });
 
 // Get all lyrics associated with a specific project
-router.get('/:id/lyrics', function (req, res) {
-
+router.get('/:projectId/lyrics', function (req, res) {
+  var projectId = req.params.projectId;
+  res.json({'success':true,projectId:projectId});
 });
 
 // Get all stablatures associated with a specific project
-router.get('/:id/stablature', function (req, res) {
-
+router.get('/:projectId/stablature', function (req, res) {
+  var projectId = req.params.projectId;
+  res.json({'success':true,projectId:projectId});
 });
 
 // Get all notes associated with a specific project
-router.get('/:id/notes', function (req, res) {
-
+router.get('/:projectId/notes', function (req, res) {
+  var projectId = req.params.projectId;
+  res.json({'success':true,projectId:projectId});
 });
 
 module.exports = router;
