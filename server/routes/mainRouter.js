@@ -8,6 +8,10 @@ var userRouter = require('./usersRouter');
 var browserify  = require('browserify-middleware');
 var ngAnnotate  = require('browserify-ngannotate');
 
+var usersRouter = require('./usersRouter');
+var projectsRouter = require('./projectsRouter');
+var recordingsRouter = require('./recordingsRouter');
+var lyricsRouter = require('./lyricsRouter');
 
 var assetFolder = Path.resolve(__dirname, '../../client/');
 router.use(express.static(assetFolder));
@@ -26,9 +30,10 @@ var sharedAngular = [
 ];
 
 router.use('/api', apiRouter);
-apiRouter.use('/users', userRouter);
-// router.get('/js/jquery.js',browserify('./node_modules/jquery/dist/jquery.js'));
-// router.get('/js/materialize.js',browserify('./node_modules/materialize-css/dist/js/materialize.js'));
+apiRouter.use('/users', usersRouter);
+apiRouter.use('/projects', projectsRouter);
+apiRouter.use('/recordings', recordingsRouter);
+apiRouter.use('/lyrics', lyricsRouter);
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
 router.get('/js/angular.js', browserify(sharedAngular));
 // Catch-all router, this must be the last route
