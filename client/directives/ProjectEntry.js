@@ -1,4 +1,4 @@
-app.directive('projectentry', function() {
+app.directive('projectEntry', function() {
   return  {
     restrict: 'E',
     templateUrl: '../views/projectEntry.html',

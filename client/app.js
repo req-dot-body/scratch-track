@@ -48,6 +48,12 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: 'views/signinForm.html',
       controller: ''
     })
+
+    .state('test', {
+      url: '/test',
+      templateUrl: 'views/testView.html',
+      controller: 'ProjectEntryCtrl'
+    })
 });
 
 require('./factories');
