@@ -1,46 +1,9 @@
 var express = require('express');
 var Path = require('path');
-var routes = express.Router();
 
-var browserify  = require('browserify-middleware');
-var ngAnnotate  = require('browserify-ngannotate');
-
-//
-//route to your index.html
-//
-var assetFolder = Path.resolve(__dirname, '../client/');
-routes.use(express.static(assetFolder));
-
-var sharedAngular = [
-  'angular',
-  'angular-animate',
-  'angular-cookies',
-  'angular-mocks',
-  'angular-messages',
-  'angular-resource',
-  'angular-sanitize',
-  'angular-touch',
-  'angular-ui-router',
-];
-
-routes.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
-routes.get('/js/angular.js', browserify(sharedAngular));
-//
-// Example endpoint (also tested in test/server/index_test.js)
-//
-routes.get('/api/tags-example', function(req, res) {
-  res.send(['node', 'express', 'angular']);
-});
+var router = require('./routes/mainRouter');
 
 if(process.env.NODE_ENV !== 'test') {
-  //
-  // The Catch-all Route
-  // This is for supporting browser history pushstate.
-  // NOTE: Make sure this route is always LAST.
-  //
-  routes.get('/*', function(req, res){
-    res.sendFile(assetFolder + '/index.html');
-  });
 
   //
   // We're in development or production mode;
@@ -49,10 +12,10 @@ if(process.env.NODE_ENV !== 'test') {
   var app = express();
 
   // Parse incoming request bodies as JSON
-  app.use( require('body-parser').json() );
+  app.use(require('body-parser').json());
 
   // Mount our main router
-  app.use('/', routes);
+  app.use('/', router);
 
   // Start the server!
   var port = process.env.PORT || 4000;
