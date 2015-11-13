@@ -7,18 +7,21 @@ router.post('/', function (req, res) {
 });
 
 // Get a note by id
-router.get('/:id', function (req, res) {
-  res.json({'success':true});
+router.get('/:noteId', function (req, res) {
+  var noteId = req.params.noteId;
+  res.json({'success':true,noteId:noteId});
 });
 
 // Update a note by id
-router.put('/:id', function (req, res) {
-  res.json({'success':true});
+router.put('/:noteId', function (req, res) {
+  var noteId = req.params.noteId;
+  res.json({'success':true,noteId:noteId});
 });
 
 // Delete a note by id
-router.delete('/:id', function (req, res) {
-  res.json({'success':true});
+router.delete('/:noteId', function (req, res) {
+  var noteId = req.params.noteId;
+  res.json({'success':true,noteId:noteId});
 });
 
 module.exports = router;
