@@ -18,8 +18,18 @@
   },
   "homepage": "https://github.com/req-dot-body/scratch-track",
   "dependencies": {
+    "angular": "^1.4.7",
+    "angular-animate": "^1.4.7",
+    "angular-cookies": "^1.4.7",
+    "angular-messages": "^1.4.7",
+    "angular-mocks": "^1.4.7",
+    "angular-resource": "^1.4.7",
+    "angular-sanitize": "^1.4.7",
+    "angular-touch": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
     "body-parser": "^1.14.1",
     "browserify-middleware": "^7.0.0",
+    "browserify-ngannotate": "^1.0.1",
     "express": "^4.13.3",
     "pm2": "^0.15.10"
   },

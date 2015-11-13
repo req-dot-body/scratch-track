@@ -2,12 +2,29 @@ var express = require('express');
 var Path = require('path');
 var routes = express.Router();
 
+var browserify  = require('browserify-middleware');
+var ngAnnotate  = require('browserify-ngannotate');
+
 //
 //route to your index.html
 //
 var assetFolder = Path.resolve(__dirname, '../client/');
 routes.use(express.static(assetFolder));
 
+var sharedAngular = [
+  'angular',
+  'angular-animate',
+  'angular-cookies',
+  'angular-mocks',
+  'angular-messages',
+  'angular-resource',
+  'angular-sanitize',
+  'angular-touch',
+  'angular-ui-router',
+];
+
+routes.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
+routes.get('/js/angular.js', browserify(sharedAngular));
 //
 // Example endpoint (also tested in test/server/index_test.js)
 //
