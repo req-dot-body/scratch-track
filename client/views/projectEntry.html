@@ -1,0 +1,20 @@
+<div ng-controller="ProjectEntryCtrl" class="project-container">
+  <ul class="collapsible" data-collapsible="accordion">
+    <li ng-repeat="project in projects">
+      <div class="collapsible-header"><i class="material-icons">work</i>{{project.name}} - Created on: {{project.created_at}}</div>
+      <div class="collapsible-body">
+        <div>Last updated on {{project.updated_at}}</div>
+        <div>{{project.description}}</div>
+        <div>
+          Project Resources: <br>
+          <a href="">View Recordings</a>
+          <a href="">View Lyrics</a>
+          <a href="">View Tabs</a>
+          <a href="">View Notes</a>
+        </div>
+      </div>
+    </li>
+    
+  </ul>
+</div>
+
