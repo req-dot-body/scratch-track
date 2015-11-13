@@ -9,7 +9,7 @@
   "author": "req.body",
   "license": "MIT",
   "scripts": {
-    "start": "npm run dev",
+    "start": "./node_modules/.bin/nodemon server/app.js --ignore client/ --ignore node_modules/",
     "dev": "./node_modules/.bin/pm2-dev start app.json",
     "test": "./test/run.sh"
   },
@@ -18,9 +18,20 @@
   },
   "homepage": "https://github.com/req-dot-body/scratch-track",
   "dependencies": {
+    "angular": "^1.4.7",
+    "angular-animate": "^1.4.7",
+    "angular-cookies": "^1.4.7",
+    "angular-messages": "^1.4.7",
+    "angular-mocks": "^1.4.7",
+    "angular-resource": "^1.4.7",
+    "angular-sanitize": "^1.4.7",
+    "angular-touch": "^1.4.7",
+    "angular-ui-router": "^0.2.15",
     "body-parser": "^1.14.1",
     "browserify-middleware": "^7.0.0",
+    "browserify-ngannotate": "^1.0.1",
     "express": "^4.13.3",
+    "nodemon": "^1.8.1",
     "pm2": "^0.15.10"
   },
   "devDependencies": {
