@@ -5,8 +5,8 @@ exports.up = function(knex) {
     	.references('id').inTable('users');
     project.integer('created_at').notNullable();
     project.integer('updated_at').notNullable();
-    project.string('name', 50)
-    project.string('description')
+    project.string('name', 50);
+    project.string('description');
   });
 };
 
