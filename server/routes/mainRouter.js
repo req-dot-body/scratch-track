@@ -12,6 +12,7 @@ var usersRouter = require('./usersRouter');
 var projectsRouter = require('./projectsRouter');
 var recordingsRouter = require('./recordingsRouter');
 var lyricsRouter = require('./lyricsRouter');
+var stablatureRouter = require('./stablatureRouter');
 
 var assetFolder = Path.resolve(__dirname, '../../client/');
 router.use(express.static(assetFolder));
@@ -34,6 +35,7 @@ apiRouter.use('/users', usersRouter);
 apiRouter.use('/projects', projectsRouter);
 apiRouter.use('/recordings', recordingsRouter);
 apiRouter.use('/lyrics', lyricsRouter);
+apiRouter.use('/stablature', stablatureRouter);
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
 router.get('/js/angular.js', browserify(sharedAngular));
 // Catch-all router, this must be the last route
