@@ -10,7 +10,7 @@ var ngAnnotate  = require('browserify-ngannotate');
 
 
 var assetFolder = Path.resolve(__dirname, '../../client/');
-//router.use(express.static(assetFolder));
+router.use(express.static(assetFolder));
 
 var sharedAngular = [
   'angular',
