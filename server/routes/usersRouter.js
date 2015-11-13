@@ -25,21 +25,25 @@ router.post('/signin', function (req, res) {
 
 // Get user info by id
 router.get('/:userId', function (req, res) {
+  var userId = req.params.userId;
   res.json({'success':true,userId:userId});
 });
 
 // Update user info by id
 router.put('/:userId', function (req, res) {
+  var userId = req.params.userId;
   res.json({'success':true,userId:userId});
 });
 
 // Get all projects for a user
 router.get('/:userId/projects', function (req, res) {
+  var userId = req.params.userId;
   res.json({'success':true,userId:userId});
 });
 
 // Get all collaborations for a user
 router.get('/:userId/collaborations', function (req, res) {
+  var userId = req.params.userId;
   res.json({'success':true,userId:userId});
 });
 
