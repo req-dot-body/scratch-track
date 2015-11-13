@@ -21,7 +21,31 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/about',
       templateUrl: 'views/about.html',
       controller: 'AboutCtrl'
-    });
+    })
+
+    .state('landing', {
+      url: '/landing',
+      templateUrl: 'views/landing.html',
+      controller: 'LandingCtrl'
+    })
+
+    .state('projects', {
+      url: '/projects',
+      templateUrl: 'views/projects.html',
+      controller: ''
+    })
+
+    .state('signup', {
+      url: '/signup',
+      templateUrl: 'views/signupForm.html',
+      controller: ''
+    })
+
+    .state('signin', {
+      url: '/signin',
+      templateUrl: 'views/signinForm.html',
+      controller: ''
+    })
 });
 
 require('./factories');
