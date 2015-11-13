@@ -4,7 +4,8 @@ var router = express.Router();
 // This wont be here eventually
 // Get all users (for testing)
 router.get('/', function (req, res) {
-  if (process.env.NODE_ENV === 'production') { // Just in case we accidentally forget to remove this handler
+  if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'test') { // Just in case we accidentally forget to remove this handler
+    res.status(404).end();
     return;
   }
   res.json({'success':true});
@@ -39,16 +40,6 @@ router.get('/:id/projects', function (req, res) {
 
 // Get all collaborations for a user
 router.get('/:id/collaborations', function (req, res) {
-  res.json({'success':true});
-});
-
-// Get all recordings for a user
-router.get('/:id/recordings', function (req, res) {
-  res.json({'success':true});
-});
-
-// Get all lyrics for a user
-router.get('/:id/lyrics', function (req, res) {
   res.json({'success':true});
 });
 
