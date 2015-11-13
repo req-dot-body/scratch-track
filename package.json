@@ -9,7 +9,7 @@
   "author": "req.body",
   "license": "MIT",
   "scripts": {
-    "start": "npm run dev",
+    "start": "./node_modules/.bin/nodemon server/app.js --ignore client/ --ignore node_modules/",
     "dev": "./node_modules/.bin/pm2-dev start app.json",
     "test": "./test/run.sh"
   },
@@ -31,6 +31,7 @@
     "browserify-middleware": "^7.0.0",
     "browserify-ngannotate": "^1.0.1",
     "express": "^4.13.3",
+    "nodemon": "^1.8.1",
     "pm2": "^0.15.10"
   },
   "devDependencies": {
