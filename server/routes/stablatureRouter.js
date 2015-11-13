@@ -7,18 +7,18 @@ router.post('/', function (req, res) {
 });
 
 // Get a stablature by id
-router.get('/:id', function (req, res) {
-  res.json({'success':true});
+router.get('/:stablatureId', function (req, res) {
+  res.json({'success':true,stablatureId:stablatureId});
 });
 
 // Update a stablature by id
-router.put('/:id', function (req, res) {
-  res.json({'success':true});
+router.put('/:stablatureId', function (req, res) {
+  res.json({'success':true,stablatureId:stablatureId});
 });
 
 // Delete a stablature by id
-router.delete('/:id', function (req, res) {
-  res.json({'success':true});
+router.delete('/:stablatureId', function (req, res) {
+  res.json({'success':true,stablatureId:stablatureId});
 });
 
 module.exports = router;
