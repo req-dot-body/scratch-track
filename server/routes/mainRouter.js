@@ -38,7 +38,7 @@ apiRouter.use('/users', usersRouter);
 apiRouter.use('/projects', projectsRouter);
 apiRouter.use('/recordings', recordingsRouter);
 apiRouter.use('/lyrics', lyricsRouter);
-apiRouter.use('/stablatures', stablatureRouter);
+apiRouter.use('/stablatures', stablaturesRouter);
 apiRouter.use('/notes', notesRouter);
 
 // Serve application js files
