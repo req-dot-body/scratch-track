@@ -24,23 +24,23 @@ router.post('/signin', function (req, res) {
 });
 
 // Get user info by id
-router.get('/:id', function (req, res) {
-  res.json({'success':true});
+router.get('/:userId', function (req, res) {
+  res.json({'success':true,userId:userId});
 });
 
 // Update user info by id
-router.put('/:id', function (req, res) {
-  res.json({'success':true});
+router.put('/:userId', function (req, res) {
+  res.json({'success':true,userId:userId});
 });
 
 // Get all projects for a user
-router.get('/:id/projects', function (req, res) {
-  res.json({'success':true});
+router.get('/:userId/projects', function (req, res) {
+  res.json({'success':true,userId:userId});
 });
 
 // Get all collaborations for a user
-router.get('/:id/collaborations', function (req, res) {
-  res.json({'success':true});
+router.get('/:userId/collaborations', function (req, res) {
+  res.json({'success':true,userId:userId});
 });
 
 module.exports = router;
