@@ -1,4 +1,4 @@
-var randomID = require('helpers').random;
+var randomID = require('./helpers').random;
 
 exports.projects = function(userIDs){
   return [

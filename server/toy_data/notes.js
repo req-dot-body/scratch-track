@@ -1,6 +1,6 @@
-var randomID = require('helpers').random;
+var randomID = require('./helpers').random;
 
-exports.lyrics = function(projectIDs){
+exports.notes = function(projectIDs){
   return [
     {
       project_id: randomID(projectIDs),

@@ -1,4 +1,4 @@
-var randomID = require('helpers').random;
+var randomID = require('./helpers').random;
 
 exports.stablature = function(projectIDs){
   return [
@@ -7,7 +7,7 @@ exports.stablature = function(projectIDs){
       code: 'lets pretend this is code',
       created_at: 2121324,
       name: 'some chords',
-      desciption: 'there a C chord in there as well as some others'
+      description: 'there a C chord in there as well as some others'
     },
     {
       project_id: randomID(projectIDs),
