@@ -23,6 +23,11 @@ router.post('/signin', function (req, res) {
   res.json({'success':true});
 });
 
+// Signs a user out, have it as a post so that people cant be tricked into going to the link
+router.post('/signout', function (req, res) {
+  res.json({'success':true});
+});
+
 // Get user info by id
 router.get('/:userId', function (req, res) {
   var userId = req.params.userId;
