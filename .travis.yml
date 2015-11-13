@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- 4.2.0
+env:
+- NODE_ENV=test PG_TEST=postgres://postgres@localhost:5432/scratch_track_test
+cache:
+  directories:
+  - node_modules
+before_install:
+- psql -c 'create database scratch_track_test;' -U postgres
+before_script:
+- ./node_modules/.bin/knex seed:run
