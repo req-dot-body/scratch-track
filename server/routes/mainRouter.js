@@ -8,7 +8,8 @@ var usersRouter = require('./usersRouter');
 var projectsRouter = require('./projectsRouter');
 var recordingsRouter = require('./recordingsRouter');
 var lyricsRouter = require('./lyricsRouter');
-var stablatureRouter = require('./stablatureRouter');
+var stablaturesRouter = require('./stablatureRouter');
+var notesRouter = require('./notesRouter');
 
 var browserify  = require('browserify-middleware');
 var ngAnnotate  = require('browserify-ngannotate');
@@ -37,7 +38,8 @@ apiRouter.use('/users', usersRouter);
 apiRouter.use('/projects', projectsRouter);
 apiRouter.use('/recordings', recordingsRouter);
 apiRouter.use('/lyrics', lyricsRouter);
-apiRouter.use('/stablature', stablatureRouter);
+apiRouter.use('/stablatures', stablatureRouter);
+apiRouter.use('/notes', notesRouter);
 
 // Serve application js files
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
