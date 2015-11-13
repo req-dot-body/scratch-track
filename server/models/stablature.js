@@ -1,4 +1,4 @@
-var db = require('path'); 
+var db = require('./lib/db');
 
 var Stablature = {};
 
