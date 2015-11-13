@@ -1,4 +1,4 @@
-var db     = require('where ever the db lives');
+var db = require('./lib/db');
 var bPromise = require('bluebird');
 var bcrypt = bPromise.promisifyAll(require('bcrypt-nodejs'));
 

@@ -1,5 +1,4 @@
-var db = require('path'); 
-
+var db = require('./lib/db');
 var Note = {};
 
 //finds a note and executes a callback

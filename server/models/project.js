@@ -1,4 +1,4 @@
-var db = require('where ever the db lives');
+var db = require('./lib/db');
 
 var Project = {};
 
