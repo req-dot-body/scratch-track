@@ -1,10 +1,9 @@
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('collaborations', function(collab){
   	collab.increments('id').primary();
-  	collab.number('user_id').notNullable()
+  	collab.integer('user_id').notNullable()
   		.references('id').inTable('users');
-  	collab.number('project_id').noteNullable()
+  	collab.integer('project_id').notNullable()
   		.references('id').inTable('projects');
   })
 };

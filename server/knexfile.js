@@ -3,16 +3,29 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'postgresql',
     connection: {
-      filename: './dev.sqlite3'
+      database: 'scratch_track',
+      user:     'postgres',
+      password: 'root'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
     }
+    // client: 'sqlite3',
+    // connection: {
+    //   filename: './dev.sqlite3'
+    // }
   },
 
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
+      database: 'scratch_track',
       user:     'username',
       password: 'password'
     },
@@ -28,7 +41,7 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
+      database: 'scratch_track',
       user:     'username',
       password: 'password'
     },

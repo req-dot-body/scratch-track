@@ -1,11 +1,10 @@
-
 exports.up = function(knex) {
   return knex.schema.createTable('notes', function(note){
-  	note.increment('id').primary();
-  	note.number('project_id').notNullable()
+  	note.increments('id').primary();
+  	note.integer('project_id').notNullable()
   		.references('id').inTable('projects');
   	note.string('text').notNullable();
-  	note.number('created_at').notNullable();
+  	note.integer('created_at').notNullable();
   	note.string('name', 50);
   })
 };

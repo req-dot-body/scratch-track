@@ -1,11 +1,10 @@
-
 exports.up = function(knex) {
   return knex.schema.createTable('stablature', function(stab){
-  	stab.increment('id').primary();
-  	stab.number('project_id').notNullable()
-  		.reference('id').inTable('projects');
+  	stab.increments('id').primary();
+  	stab.integer('project_id').notNullable()
+  		.references('id').inTable('projects');
   	stab.string('code').notNullable();
-  	stab.number('create_at').notNullable();
+  	stab.integer('created_at').notNullable();
   	stab.string('name', 50);
   	stab.string('description');
   })
