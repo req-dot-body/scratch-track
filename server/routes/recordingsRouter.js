@@ -7,18 +7,21 @@ router.post('/', function (req, res) {
 });
 
 // Get recording by id
-router.get('/:id', function (req, res) {
-  res.json({'success':true});
+router.get('/:recordingId', function (req, res) {
+  var recordingId = req.params.recordingId;
+  res.json({'success':true,recordingId:recordingId});
 });
 
 // Edit recording by id
-router.put('/:id', function (req, res) {
-  res.json({'success':true});
+router.put('/:recordingId', function (req, res) {
+  var recordingId = req.params.recordingId;
+  res.json({'success':true,recordingId:recordingId});
 });
 
 // Delete recording by id
-router.delete('/:id', function (req, res) {
-  res.json({'success':true});
+router.delete('/:recordingId', function (req, res) {
+  var recordingId = req.params.recordingId;
+  res.json({'success':true,recordingId:recordingId});
 });
 
 module.exports = router;
