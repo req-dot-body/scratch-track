@@ -15,20 +15,33 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('home', {
       url: '/',
+      templateUrl: 'views/index.html',
+      controller: 'HomeCtrl'      
+    })
+
+    .state('home.public', {
+      // url: '/public',
+      templateUrl: 'views/landing.html',
+      template: 'Public',
+      controller: 'LandingCtrl'
+    })
+
+    .state('home.loggedin', {
+      // url: '/loggedin',
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
+    })
+
+    .state('home.signedup', {
+      // url:'/signedup',
+      templateUrl: 'views/tour.html',
+      controller: 'TourCtrl' 
     })
 
     .state('about', {
       url: '/about',
       templateUrl: 'views/about.html',
       controller: 'AboutCtrl'
-    })
-
-    .state('landing', {
-      url: '/landing',
-      templateUrl: 'views/landing.html',
-      controller: 'LandingCtrl'
     })
 
     .state('projects', {
