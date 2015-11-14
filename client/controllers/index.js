@@ -1,3 +1,4 @@
+require('./HomeCtrl');
 require('./MainCtrl');
 require('./UserCtrl');
 require('./LyricCtrl');
@@ -9,3 +10,5 @@ require('./NavBarCtrl');
 require('./ProjectNavCtrl');
 require('./ProjectEntryCtrl');
 require('./LandingCtrl');
+require('./TourCtrl');
+

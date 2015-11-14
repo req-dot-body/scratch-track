@@ -1,4 +1,5 @@
 app.controller('LandingCtrl', ['$scope', function($scope) {
+  console.log('Lading Controller hitted')
   var self = this;
 
   self.message = "But, at last, when turning to the eastward," + 
