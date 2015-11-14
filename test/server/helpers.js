@@ -1,4 +1,4 @@
-var request = require('supertest-as-promised');
+var request = require('superagent');
 var db = require(__server + '/lib/db.js');
 
 exports.clearDB = function(){
@@ -40,3 +40,19 @@ exports.users = [
     last: 'Johnson'
   }
 ]
+
+exports.authedUser = function(userIndex){
+	var userInfo = users[userIndex];
+	var user = request.agent();
+	return user
+		.post('/api/users/signup')
+		.send(userInfo)
+		.end(function(){
+			return user
+				.post('api/users/signin')
+				.send(userInfo)
+				.end(function(){
+					return user
+				})
+		})
+}

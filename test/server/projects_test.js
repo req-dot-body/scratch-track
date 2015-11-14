@@ -1,4 +1,3 @@
-var request = require('supertest-as-promised');
 var routes = require(__server + '/app.js');
 var helpers = require('./helpers.js');
 
