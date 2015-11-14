@@ -22,7 +22,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('home.public', {
       // url: '/public',
       templateUrl: 'views/landing.html',
-      template: 'Public',
       controller: 'LandingCtrl'
     })
 
