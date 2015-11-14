@@ -49,10 +49,28 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: ''
     })
 
-    .state('test', {
-      url: '/test',
-      templateUrl: 'views/testView.html',
-      controller: 'ProjectEntryCtrl'
+    .state('recordings', {
+      url: '/recordings',
+      templateUrl: 'views/recording.html',
+      controller: 'RecordingCtrl'
+    })
+
+    .state('lyrics', {
+      url: '/lyrics',
+      templateUrl: 'views/lyric.html',
+      controller: 'LyricCtrl'
+    })
+
+    .state('stablature', {
+      url: '/stablature',
+      templateUrl: 'views/stablature.html',
+      controller: 'StablatureCtrl'
+    })
+
+    .state('notes', {
+      url: '/notes',
+      templateUrl: 'views/note.html',
+      controller: 'noteCtrl'
     })
 });
 
