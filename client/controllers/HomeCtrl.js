@@ -4,15 +4,15 @@ app.controller('HomeCtrl', ['$scope','$state', function($scope,$state) {
 //----CODE FOR TESTING THE CLIENT WHILE WE DON'T HAVE FUNCTIONALITY IMPLEMENTED-----
 
   $scope.gotoPublic = function() {
-    console.log('gotopublic');
-    $state.go('home.public');
+    console.log('gotopublic')
+    $state.go('home.public')
   }
   $scope.gotoSignedup = function() {
-    console.log('gotoSignedUp');
-    $state.go('home.signedup');
+    console.log('gotoSignedUp')
+    $state.go('home.signedup')
   }
   $scope.gotoLoggedin = function() {
-    console.log('gotologgedin');
-    $state.go('home.loggedin');
+    console.log('gotologgedin')
+    $state.go('home.loggedin')
   }
 }]);

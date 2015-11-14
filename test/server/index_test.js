@@ -1,5 +1,6 @@
-var request = require('supertest');
+var request = require('supertest-as-promised');
 var routes = require(__server + '/app.js');
+var db = require(__server + '/lib/db.js');
 
 describe('The Server', function() {
 
@@ -7,14 +8,10 @@ describe('The Server', function() {
   app.use('/', routes);
   app.testReady();
 
-  xit('serves an example endpoint', function() {
-
-    // Mocha will wait for returned promises to complete
-    return request(app)
-      .get('/api/tags-example')
-      .expect(200)
-      .expect(function(response) {
-        expect(response.body).to.include('node');
+  xit('can access the database', function() {
+    return db.select('*').from('users')
+      .then(function(users) {
+        expect(users.length).to.equal(3);
       });
   });
 });

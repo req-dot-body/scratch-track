@@ -1,3 +1,4 @@
+
 app.controller('MainCtrl', ['$scope','$state', function($scope,$state) {
   console.log('Main Controller hitted')
 
@@ -12,6 +13,6 @@ app.controller('MainCtrl', ['$scope','$state', function($scope,$state) {
     // function to erase cookie here 
     $state.go('home.public');
   }
+}])
 
 
-}]);
