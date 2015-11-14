@@ -23,7 +23,7 @@ module.exports = {
     connection: {
       database: 'scratch_track_test',
       user:     'postgres',
-      password: ''
+      password: 'root'
     },
     pool: {
       min: 1,

@@ -1,4 +1,4 @@
-var db = require('./lib/db');
+var db = require('../lib/db');
 var bPromise = require('bluebird');
 var bcrypt = bPromise.promisifyAll(require('bcrypt-nodejs'));
 
@@ -10,8 +10,8 @@ User.all = function () {
 };
 
 // finds a user by username 
-User.findByUsername = function(username) {
-  return db('users').select('*').where({name: username}).limit(1)
+User.findByEmail = function(email) {
+  return db('users').select('*').where({}).limit(1)
     .then(function(rows) {
       if (!rows.length) return;
       return rows[0];

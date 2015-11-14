@@ -6,7 +6,7 @@ var Project = require('../models/project.js')
 // Get all projects that can be accessed
 router.get('/', function (req, res) {
   //grabs username from session and finds user in db
-   User.findByUsername(req.session.passport.user)
+   User.findByEmail(req.session.passport.user)
    .then(function(user){
 
     //this needs to change once public projects and

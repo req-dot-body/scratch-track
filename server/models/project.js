@@ -1,4 +1,4 @@
-var db = require('./lib/db');
+var db = require('../lib/db');
 var User = require('./user.js');
 
 var Project = {};
@@ -36,10 +36,9 @@ Project.findById = function(projectId, username) {
 Project.findByUser = function (owner_id) {
   return db('projects').select('*').where({owner_id: owner_id})
     .then(function(rows){
-      if (!rows.length) return;
       return rows;
     })
-    .catch(function(err)){
+    .catch(function(err){
       throw err;
     })
 };
