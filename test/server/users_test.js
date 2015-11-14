@@ -12,10 +12,30 @@ describe('The User', function() {
   	return helpers.clearDB();
   })
 
-  it('can signup and sign in', function() {
-    return db.select('*').from('users')
-      .then(function(users) {
-        expect(users.length).to.equal(0);
-      });
+  it('can sign up, sign in, and sign out', function() {
+    return request(app)
+    .post('/api/users/signup')
+    .send(helpers.users[0])
+    .expect(201)
+    .then(function(){
+    	return request(app)
+    	.post('api/users/signin')
+    	.send(helpers.users[0])
+    	.expect(200)
+    })
+    .then(function(){
+    	return request(app)
+    	.post('api/users/signout')
+    	.expect(200)
+    })
   });
+
+  it('cannot sign in if they do not exist', function(){
+  	return request(app)
+  	.post('api/users/signin')
+  	.send(helpers.users[0])
+  	.expect(404)
+  })
+
 });
+
