@@ -1,24 +1,24 @@
 var request = require('superagent');
 var db = require(__server + '/lib/db.js');
 
-exports.clearDB = function(){
-	return db('lyrics').truncate()
-		.then(function(){
-			return db('recordings').truncate()
-		})
-		.then(function(){
-			return db('stablature').truncate()
-		})
-		.then(function(){
-			return db('notes').truncate()
-		})
-		.then(function(){
-			return db('projects').truncate()
-		})
-		.then(function(){
-			return db('users').truncate()
-		})
-}
+// exports.clearDB = function(){
+// 	return db('lyrics').del()
+// 		.then(function(){
+// 			return db('recordings').del()
+// 		})
+// 		.then(function(){
+// 			return db('stablature').del()
+// 		})
+// 		.then(function(){
+// 			return db('notes').del()
+// 		})
+// 		.then(function(){
+// 			return db('projects').del()
+// 		})
+// 		.then(function(){
+// 			return db('users').truncate()
+// 		})
+// }
 
 exports.users = [
   {

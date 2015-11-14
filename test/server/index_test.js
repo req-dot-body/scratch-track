@@ -11,7 +11,7 @@ describe('The Server', function() {
   it('can access the database', function() {
     return db.select('*').from('users')
       .then(function(users) {
-        expect(users.length).to.equal(0);
+        expect(users.length).to.equal(3);
       });
   });
 });

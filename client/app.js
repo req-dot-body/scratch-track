@@ -22,7 +22,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('home.public', {
       // url: '/public',
       templateUrl: 'views/landing.html',
-      template: 'Public',
       controller: 'LandingCtrl'
     })
 
@@ -83,7 +82,13 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('notes', {
       url: '/notes',
       templateUrl: 'views/note.html',
-      controller: 'noteCtrl'
+      controller: 'NoteCtrl'
+    })
+
+    .state('edit', {
+      url: '/edit',
+      templateUrl: 'views/projectEdit.html',
+      controller: 'ProjectEditCtrl'
     })
 });
 

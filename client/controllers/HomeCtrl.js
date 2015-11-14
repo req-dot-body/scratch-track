@@ -14,6 +14,5 @@ app.controller('HomeCtrl', ['$scope','$state', function($scope,$state) {
   $scope.gotoLoggedin = function() {
     console.log('gotologgedin')
     $state.go('home.loggedin')
-
   }
 }]);
