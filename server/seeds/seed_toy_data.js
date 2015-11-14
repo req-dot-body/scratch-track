@@ -18,7 +18,7 @@ exports.seed = function(knex, Promise) {
     knex('projects').del(),
     knex('users').del(),
 
-    knex('users').insert(users()),
+    knex('users').insert(users())
    )
   .then(function(){
   	return knex.select('id').from('users');
