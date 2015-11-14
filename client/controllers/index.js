@@ -7,7 +7,7 @@ require('./RecordingCtrl');
 require('./StablatureCtrl');
 require('./NoteCtrl');
 require('./NavBarCtrl');
-require('./ProjectNavCtrl');
+require('./ProjectEditCtrl');
 require('./ProjectEntryCtrl');
 require('./LandingCtrl');
 require('./TourCtrl');

@@ -1,7 +1,7 @@
 app.directive('landing', function() {
   return  {
     restrict: 'E',
-    templateUrl: '../views/lading.html',
+    templateUrl: '../views/landing.html',
     controller: 'LandingCtrl'
   };
 });
