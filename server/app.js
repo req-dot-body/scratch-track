@@ -1,14 +1,18 @@
+require('dotenv');
+
 var express = require('express');
 var session = require('express-session');
+var KnexStore = require('connect-session-knex')(session);
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
-var uuid = require('node-uuid');
-
 var passport = require('passport');
 
+var uuid = require('node-uuid');
 var Path = require('path');
+
+var db = require('./lib/db');
 
 var router = require('./routes/mainRouter');
 
@@ -32,7 +36,9 @@ if(process.env.NODE_ENV !== 'test') {
     secret: 'Beyond being proficient at relatively simple learning tasks, horses are recognised as having the capacity to solve advanced cognitive challenges involving categorisation learning and a degree of concept formation.',
     resave: false, // Whether or not to save the session back to the store if no modification happened
     rolling: true, // Resets expiry date after each request
-    genid: function(req) {
+    saveUninitialized: false, // Save new sessions that havent been modified
+    store: new KnexStore({ knex: db }),
+    genid: function() {
       return uuid.v4();
     }
   }));

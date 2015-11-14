@@ -5,9 +5,10 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database: 'scratch_track',
-      user:     'postgres',
-      password: 'root'
+      host:     process.env.DEV_HOST,
+      database: process.env.DEV_DB,
+      user:     process.env.DEV_USER,
+      password: process.env.DEV_PASS
     },
     pool: {
       min: 2,
@@ -21,9 +22,10 @@ module.exports = {
   test: {
     client: 'postgresql',
     connection: {
-      database: 'scratch_track_test',
-      user:     'postgres',
-      password: 'root'
+      host:     process.env.TEST_HOST,
+      database: process.env.TEST_DB,
+      user:     process.env.TEST_USER,
+      password: process.env.TEST_PASS
     },
     pool: {
       min: 1,
@@ -37,9 +39,10 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'scratch_track',
-      user:     'username',
-      password: 'password'
+      host:     process.env.PROD_HOST,
+      database: process.env.PROD_DB,
+      user:     process.env.PROD_USER,
+      password: process.env.PROD_PASS
     },
     pool: {
       min: 2,
