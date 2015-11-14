@@ -9,4 +9,4 @@ cache:
 before_install:
 - psql -c 'create database scratch_track_test;' -U postgres
 before_script:
-- ./node_modules/.bin/knex seed:run
+- ./node_modules/.bin/knex --knexfile "server/knexfile.js" seed:run
