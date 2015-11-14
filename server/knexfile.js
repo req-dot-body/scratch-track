@@ -16,16 +16,12 @@ module.exports = {
     migrations: {
       tableName: 'knex_migrations'
     }
-    // client: 'sqlite3',
-    // connection: {
-    //   filename: './dev.sqlite3'
-    // }
   },
 
-  staging: {
+  test: {
     client: 'postgresql',
     connection: {
-      database: 'scratch_track',
+      database: 'scratch_track_test',
       user:     'username',
       password: 'password'
     },
