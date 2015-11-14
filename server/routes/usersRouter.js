@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
 // This wont be here eventually
 // Get all users (for testing)
@@ -18,13 +19,35 @@ router.post('/signup', function (req, res) {
 });
 
 // Authenticates a user
-router.post('/signin', function (req, res) {
+router.post('/signin', function (req, res, next) {
   // TODO : Authenticate user and create a session
-  var email = req.body.email; // TODO : Change to whatever is 
-  var password = req.body.password;
-  console.log('here');
-  console.log('Req:', req);
-  res.json({'success':true,'body':req.body});
+  console.log('Signin');
+  passport.authenticate('local-login', function (err, user, info) {
+    if (err) {
+      // TODO : change status code to something meaningful
+      res.status(200).json({ loggedIn: false, error: true, info: info });
+      return;
+    }
+    if (!user) {
+      // TODO : change status code to something meaningful
+      res.status(200).json({ loggedIn: false, error: true, info: info });
+      return;
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        // TODO : change status code to something meaningful
+        return res.status(200).json({ loggedIn: false, error: true, info: info });
+      }
+      res.cookie('isLoggedIn', true);
+      res.json({ loggedIn: true });
+    });
+  })(req, res, next);
+
+  // var email = req.body.email; // TODO : Change to whatever is 
+  // var password = req.body.password;
+  // console.log('here');
+  // console.log('Req:', req);
+  // res.json({'success':true,'body':req.body});
 });
 
 // Signs a user out, have it as a post so that people cant be tricked into going to the link

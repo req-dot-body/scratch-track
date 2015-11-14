@@ -9,16 +9,35 @@ User.all = function () {
   return db('users').select('*');
 };
 
-// finds a user by id
-User.findById = function(id) {
-  return db('users').select('*').where({id: id}).limit(1)
+// finds a user by username and then calls the callback
+User.findByEmail = function(username, cb) {
+  cb = cb || function() {};
+  return db('users').select('*').where({email: username}).limit(1)
     .then(function(rows) {
-      if (!rows.length) return;
-      return rows[0];
+      if (!rows.length) {
+        return cb(true, null);
+      } 
+      // if (!cb) return rows[0];
+      return cb(null, rows[0]);
     })
     .catch(function(err) {
-      throw err;
+      // throw err;
+      return cb(err, null);
     });
+};
+
+// finds a user by id
+User.findById = function (id) {
+  return db('users').select('*').where({id: id}).limit(1)
+  .then(function (rows) {
+    if (!rows.length) {
+      return;
+    }
+    return rows[0];
+  })
+  .catch(function (err) {
+    throw err;
+  });
 };
 
 // creates a new user with name, and hashed password

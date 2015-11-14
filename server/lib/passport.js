@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+<<<<<<< ea4e5038c1051ffcc55588dc0094d4b04af21057
 <<<<<<< 8c7c73557c625e3f27408a1534c57fa54ee784b2
 var User = require('../models/user');
 
@@ -15,6 +16,9 @@ passport.deserializeUser(function (user, done) {
   console.log('passport deserializeUser:', user);
 =======
 var User = require(__server + 'lib/user');
+=======
+var User = require('../models/user');
+>>>>>>> Implement local sign in strategy. Fix a few bugs with user model
 
 // Serialize a user
 passport.serializeUser(function (user, done) {

@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
 var passport = require('passport');
+require('./lib/passport');
 
 var uuid = require('node-uuid');
 var Path = require('path');
