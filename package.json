@@ -11,7 +11,10 @@
   "scripts": {
     "start": "./node_modules/.bin/nodemon server/app.js --ignore client/ --ignore node_modules/",
     "dev": "./node_modules/.bin/pm2-dev start app.json",
-    "test": "./test/run.sh"
+    "test": "./test/run.sh",
+    "postinstall": "npm run migrate:latest",
+    "migrate:latest": "./node_modules/.bin/knex --knexfile \"server/knexfile.js\" migrate:latest",
+    "seed:run": "./node_modules/.bin/knex --knexfile \"server/knexfile.js\" seed:run"
   },
   "bugs": {
     "url": "https://github.com/req-dot-body/scratch-track/issues"

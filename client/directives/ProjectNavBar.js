@@ -1,7 +1,7 @@
 app.directive('projectnavbar', function() {
   return  {
     restrict: 'E',
-    templateUrl: '../views/projectNavBar.html',
+    templateUrl: '../views/projectNavbar.html',
     controller: 'ProjectNavCtrl'
   };
 });

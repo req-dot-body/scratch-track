@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <section>
-      <h1 class="center-align">ScratchTrack</h1>
   <head>
     <title>
       ScratchTrack
@@ -9,8 +7,9 @@
   </head>
       
   <body>
-    <container class= "valign-wrapper">
-      <section class="center-align" ng-controller="LandingCtrl as landing">
+    <container>
+      <section class="center-align" style="margin: 0 20%" ng-controller="LandingCtrl as landing">
+        <h1 class="center-align">ScratchTrack</h1>
         <p>
           {{ landing.message }}
         </p>
@@ -25,7 +24,7 @@
             <i class="large material-icons">mode_edit</i>
           </a>
           <ul>
-            <li class="blue-text"><span style="padding: 10px;">Sign In</span><a class="btn-floating green" ui-sref="signin"><i class="material-icons">assignment_ind</i>Sign In</a></li>
+            <li class="blue-text"><span style="padding: 10px;">Sign In</span><a class="btn-floating green" ui-sref="signin"><i class="material-icons">assignment_ind</i></a></li>
             <li class="blue-text"><span style="padding: 10px;">Sign Up</span><a class="btn-floating blue" ui-sref="signup"><i class="material-icons">note_add</i></a></li>
           </ul>
         </div>
