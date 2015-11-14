@@ -37,17 +37,23 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'TourCtrl' 
     })
 
-    .state('about', {
-      url: '/about',
-      templateUrl: 'views/about.html',
-      controller: 'AboutCtrl'
+     .state('project_edit', {
+      // url:'/signedup',
+      templateUrl: 'views/projectEdit.html',
+      controller: 'ProjectEditCtrl' 
     })
 
-    .state('projects', {
-      url: '/projects',
-      templateUrl: 'views/projects.html',
-      controller: ''
-    })
+    // .state('about', {
+    //   url: '/about',
+    //   templateUrl: 'views/about.html',
+    //   controller: 'AboutCtrl'
+    // })
+
+    // .state('projects', {
+    //   url: '/projects',
+    //   templateUrl: 'views/projects.html',
+    //   controller: ''
+    // })
 
     .state('signup', {
       url: '/signup',

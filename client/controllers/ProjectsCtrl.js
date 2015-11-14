@@ -30,10 +30,12 @@ this.getProject = function(id) {
   //Ajax call to get indiidual project
   //.then
   //this.displayProject(res.body)
+  this.displayProject();
 };
 
 this.displayProject = function(project){
   console.log('displaying project')
+  $state.go('project_edit')
 
 };
 
