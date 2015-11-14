@@ -8,3 +8,4 @@ require('./Landing');
 require('./Note');
 require('./Stablature');
 require('./Tour');
+require('./ResourceTemplate');
