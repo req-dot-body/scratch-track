@@ -6,14 +6,14 @@ var Project = {};
 // finds a project by id
 // NOTES: this needs to be expanded once collabs and 
 //        public projects become a thing
-Project.findById = function(projectId, username) {
+Project.findById = function(projectId, email) {
   return db('projects').select('*').where({id: projectId}).limit(1)
     .then(function(rows) {
       var project = rows[0]
       if (!project) throw 404;
 
       //checks that user owns that project
-      return User.findByUsername(username)
+      return User.findByEmail(email)
       .then(function(user){
         if (!user) throw 404;
         if (project.owner_id !== user.id) throw 401;
@@ -36,7 +36,7 @@ Project.findById = function(projectId, username) {
 Project.findByUser = function (owner_id) {
   return db('projects').select('*').where({owner_id: owner_id})
     .then(function(rows){
-      return rows;
+      return rows[0];
     })
     .catch(function(err){
       throw err;
@@ -61,6 +61,12 @@ Project.create = function (attrs, username) {
 
 Project.update = function (projectId, attrs) {
   return db('projects').where('id', '=', projectId).update(attrs)
+  .then(function(){
+    return db('projects').select('*').where({id: projectId})
+    .then(function(rows){
+      return rows[0];
+    })
+  })
   .catch(function(err){
     throw err;
   })

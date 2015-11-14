@@ -5,7 +5,7 @@ var Project = require('../models/project.js')
 
 // Get all projects that can be accessed
 router.get('/', function (req, res) {
-  //grabs username from session and finds user in db
+  //grabs email from session and finds user in db
    User.findByEmail(req.session.passport.user)
    .then(function(user){
 
@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
       Project.findByUser(user.id)
       .then(function(projects){
         //sends all projects
-        res.status(200).send(projects);
+        res.status(200).send({projects: projects});
       })
       .catch(function(err){
         console.log("Could not find projects for this user");
@@ -29,16 +29,14 @@ router.get('/', function (req, res) {
 
 // Create new project
 router.post('/', function (req, res) {
-  //grabs username from session and finds user in db
-  User.findByUsername(req.session.passport.user)
+  //grabs email from session and finds user in db
+  User.findByEmail(req.session.passport.email)
   .then(function(user){
-    //the owner id does not match the session id
-    if (user.id !== req.body.owner_id){
-      console.log('unauthorized to post project');
-      res.status(401).send();
-    }
+    var projectInfo = req.body;
+    projectInfo.owner_id = user.id;
+
     //creates a new project
-    Project.create(req.body)
+    Project.create(projectInfo)
     .then(function(project){
       res.status(201).send(project);
     })
@@ -64,7 +62,7 @@ router.get('/:projectId', function (req, res) {
   })
   .catch(function(err){
     console.log('could not find project');
-    res.status(404).send(err);
+    res.sendStatus(404);
   })
 
 });
@@ -73,12 +71,17 @@ router.get('/:projectId', function (req, res) {
 router.put('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
   //checks that project is authorized by user
-  Project.findById(projectId, req.session.passport.user)
+  Project.findById(projectId, req.session.passport.email)
   .then(function(){
+    //does not allow 'created_at' to be edited
+    if (req.body.created_at){
+      delete req.body.created_at;
+    }
+
     Project.update(projectId, req.body)
-    .then(function(){
+    .then(function(project){
       //succesfully updated
-      res.status(200).send()
+      res.status(200).send(project)
     })
     .catch(function(err){
       console.log('could not update project');
