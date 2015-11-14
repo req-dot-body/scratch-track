@@ -14,13 +14,17 @@ router.get('/', function (req, res) {
 // Creates new user
 router.post('/signup', function (req, res) {
   // TODO : create a new user and sign them in
-  res.json({'success':true});
+  res.json({'success':true,'body':req.body});
 });
 
 // Authenticates a user
 router.post('/signin', function (req, res) {
   // TODO : Authenticate user and create a session
-  res.json({'success':true});
+  var email = req.body.email; // TODO : Change to whatever is 
+  var password = req.body.password;
+  console.log('here');
+  console.log('Req:', req);
+  res.json({'success':true,'body':req.body});
 });
 
 // Signs a user out, have it as a post so that people cant be tricked into going to the link
