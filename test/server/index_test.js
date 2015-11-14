@@ -8,7 +8,7 @@ describe('The Server', function() {
   app.use('/', routes);
   app.testReady();
 
-  it('can access the database', function() {
+  xit('can access the database', function() {
     return db.select('*').from('users')
       .then(function(users) {
         expect(users.length).to.equal(3);
