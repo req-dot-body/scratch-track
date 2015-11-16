@@ -66,7 +66,7 @@ passport.use('local-login', new LocalStrategy(
   // TODO : change these to the actual names in the json object being sent
   { usernameField: 'username', passwordField: 'password'},
   function (username, enteredPassword, done) {
-    User.findByUsername(username, function (err, user) {
+    User.findByEmail(username, function (err, user) {
       console.log('local login 2');
       if (err) {
         console.log('local login 3 error:', err);
