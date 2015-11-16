@@ -34,7 +34,7 @@ describe('The User', function() {
         })
   })
 
-  it('can create a new project', function(){
+  xit('can create a new project', function(){
     return request(app)
     .post('/projects')
     .expect(201)
@@ -44,7 +44,7 @@ describe('The User', function() {
     })
   })
 
-  it('can get all projects', function(){
+  xit('can get all projects', function(){
     return helpers.createProject()
     .then(function(){
       return request(app)
@@ -58,7 +58,7 @@ describe('The User', function() {
     })
   })
 
-  it('can get a particular project', function(){
+  xit('can get a particular project', function(){
     return helpers.createProject()
     .then(function(project){
       var id = project.id;
@@ -71,7 +71,7 @@ describe('The User', function() {
     })
   })
 
-  it('can edit a particular project', function(){
+  xit('can edit a particular project', function(){
     return helpers.createProject()
     .then(function(project){
       var id = project.id;
@@ -85,7 +85,7 @@ describe('The User', function() {
     })
   })
 
-  it('can delete a particular project', function(){
+  xit('can delete a particular project', function(){
     return helpers.createProject()
     .then(function(project){
       var id = project.id;

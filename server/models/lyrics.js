@@ -4,57 +4,62 @@ var Lyrics = {};
 
 //finds one lyrics entry 
 //checks that it belongs to a user
-Lyrics.findById = function(id, email){
-	return db('lyrics').select('*').where({id: id}).limit(1)
-		.then(function(rows){
-			var lyricsEntry = rows[0]
-			if (!lyricsEntry) return 404;
+Lyrics.findById = function(id, userId){
+	return db.table('projects')
+	.innerJoin('lyrics', 'projects.id', '=', 'lyrics.project_id')
+	.then(function(rows){
+		var lyrics = rows[0]
+		if (lyrics.owner_id !== userId) throw 401;
+		console.log('huh?', lyrics)
+		return lyrics;
+	})
+	.catch(function(err){
+		throw err;
+	})
+}
 
-			return db('projects').select('*').where({email: email})
-			.then(function(rows){
-				var project = rows[0]
-
-				return db('users').select('*').where({id: project.owner_id})
-				.then(function(rows){
-					var user = rows[0]
-					if (user.email !== email) return 401
-					return lyrics 
-				})  
+//finds all lyrics for a project
+Lyrics.findByProject = function(projectId, userId){
+	return Lyrics.authByProject(projectId, userId)
+	.then(function(){
+		return db('lyrics').select('*').where({project_id: projectId})
+			.then(function(lyrics){
+				return lyrics;
 			})
 			.catch(function(err){
 				throw err;
 			})
-			
-		})
-		.catch(function(err){
-			throw err;
-		})
-}
-
-//finds all lyrics for a project
-Lyrics.findByProject = function(project_id){
-	return db('lyrics').select('*').where({project_id: project_id})
-		.then(function(lyrics){
-			return lyrics;
-		})
-		.catch(function(err){
-			throw err;
-		})
+	})
+	.catch(function(err){
+		throw err; 
+	})
 }
 
 //creates a new lyrics entry
-Lyrics.create = function(attrs){
-	return db('lyrics').insert(attrs).returning('id')
-		.then(function(rows){
-			var newLyrics = {
-				id: rows[0],
-				project_id: attrs.project_id,
-				text: attrs.text,
-				created_at: attrs.created_at,
-				name: attrs.name
-			};
-			return newLyrics; 
-		})
+Lyrics.create = function(attrs, userId){
+	return Lyrics.authByProject(attrs.project_id, userId)
+	.then(function(){
+		return db('lyrics').insert(attrs).returning('id')
+			.then(function(rows){
+				var newLyrics = attrs;
+				newLyrics.id = rows[0];
+				return newLyrics; 
+			})
+			.catch(function(err){
+				throw err;
+			})
+	})
+	.catch(function(err){
+		throw err;
+	})
+}
+
+Lyrics.authByProject = function(projectId, userId){
+	return db('projects').select('*').where({id: projectId})
+	.then(function(rows){
+		var project = rows[0]
+		if (project.owner_id !== userId) throw 401;
+	})
 }
 
 module.exports = Lyrics; 

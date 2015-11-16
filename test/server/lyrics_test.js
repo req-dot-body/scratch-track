@@ -1,6 +1,6 @@
 var request = require('supertest-as-promised');
 var helpers = require('./helpers.js');
-var projectsAPI = require(__server+'/routes/projectsRouter.js');
+var lyricsAPI = require(__server+'/routes/lyricsRouter.js');
 var app = helpers.app;
 
 describe('A project', function() {
@@ -18,7 +18,7 @@ describe('A project', function() {
       });
       
       // end
-      app.use('/projects', TestHelper.isLoggedIn, projectsAPI);
+      app.use('/lyrics', TestHelper.isLoggedIn, lyricsAPI);
       app.testReady();
     });
 
@@ -34,13 +34,24 @@ describe('A project', function() {
         })
   })
 
-  xit('can have lyrics', function(){
-    return request(app)
-    .post('/projects')
-    .expect(201)
-    .expect(function(res){
-      expect(res.body.id);
-      expect(res.body.created_at);
+  it('can add lyrics', function(){
+    return helpers.addLyrics(session.passport.id)
+    .then(function(lyrics){
+      expect(lyrics.id);
+      expect(lyrics.name).to.equal('sweet rhymes');
+    })
+  })
+
+  it('can retrieve old lyrics', function(){
+    return helpers.addLyrics(session.passport.id)
+    .then(function(lyrics){
+      var id = lyrics.id;
+      return request(app)
+      .get('/lyrics/'+id)
+      .expect(200)
+      .expect(function(res){
+        expect(res.body.name).to.equal('sweet rhymes');
+      })
     })
   })
 

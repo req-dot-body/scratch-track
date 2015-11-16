@@ -25,6 +25,16 @@ var users = [
   }
 ]
 
+var lyrics = [ 
+  {
+    text: 'gonna write some code, s\'gonna be real cool, gonna make y\'all look like total fools',
+    name: 'sweet rhymes'      
+  },
+  {  
+    text: 'la la lalal la la lalaaaaaa'
+  }
+]
+
 //clears projects and project resources from DB
 exports.clearProjects = function(){
   return db('lyrics').del()
@@ -68,14 +78,26 @@ exports.createProject = function(){
     })
 }
 
-exports.addLyrics = function(){
-  exports.createProject()
-  .then(function(project){
+exports.addLyrics = function(userId){
+  var now = Math.round(Date.now()/1000);
+  var project = {
+    owner_id: userId,
+    created_at: now,
+    updated_at: now
+  } 
+
+  return db('projects').insert(project).returning('id')
+  .then(function(rows){
+    var projectId = rows[0]; 
+    var newLyrics = lyrics[0];
+    newLyrics.project_id = projectId;
+
     return request(app)
     .post('/lyrics')
+    .send(newLyrics)
     .expect(201)
-    .then(function(res){
-      return res.body; 
-    })
   })
+  .then(function(res){
+    return res.body; 
+  }) 
 }

@@ -25,30 +25,22 @@ router.get('/', function (req, res) {
 
 // Create new project
 router.post('/', function (req, res) {
-  //grabs email from session and finds user in db
-  User.findById(req.session.passport.id)
-  .then(function(user){
-    var now = Math.round(Date.now()/1000);
-    var projectInfo = {
-      owner_id: user.id,
-      created_at: now,
-      updated_at: now
-    };
+  console.log('what is even happening?', req.session.passport.id);
+  var now = Math.round(Date.now()/1000);
+  var projectInfo = {
+    owner_id: req.session.passport.id,
+    created_at: now,
+    updated_at: now
+  };
 
-    //creates a new project
-    Project.create(projectInfo)
-    .then(function(project){
-      res.status(201).send(project);
-    })
-    .catch(function(err){
-      console.log('Could not create project', err);
-      res.sendStatus(400);
-    })
-
+  //creates a new project
+  Project.create(projectInfo)
+  .then(function(project){
+    res.status(201).send(project);
   })
   .catch(function(err){
-    console.log("Could not find user");
-    res.sendStatus(404);
+    console.log('Could not create project', err);
+    res.sendStatus(400);
   })
 });
 
