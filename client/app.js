@@ -59,7 +59,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controllerAs: 'user'
     })
 
-    .state('public.signup', {
+    .state('public.signup', {  
       url: '/signup',
       templateUrl: 'views/signupForm.html',
       controller: 'UserCtrl',
