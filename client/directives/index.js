@@ -3,6 +3,7 @@ require('./Signin');
 require('./ProjectEntry');
 require('./Landing');
 require('./Tour');
+require('./passwordCompare')
 require('./ResourceTemplate');
 require('./Projects');
 
@@ -19,3 +20,4 @@ require('./resourceDirectives/PertinentLyricInfo.js');
 require('./resourceDirectives/PertinentNoteInfo.js');
 require('./resourceDirectives/PertinentRecordingInfo.js');
 require('./resourceDirectives/PertinentStablatureInfo.js');
+
