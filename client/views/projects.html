@@ -1,0 +1,10 @@
+<div>
+  <h1>THIS ARE MOCK PROJECTS</h1>
+  <ul ng-repeat = 'project in projects.products' class = 'projects'>
+    <li> <a ui-sref = "main.project_edit({id:project.id})">Name: {{project.name}}</a></li>
+    <li>Project ID: {{project.id}}</li>
+    <li>Description: {{project.description}}</li>
+    <li>Created At: {{project.created_at}}</li>
+    <li>Updated At: {{project.updated_at}}</li>
+  </ul>
+</div>

@@ -1,26 +1,24 @@
-var db = require('./lib/db');
+var db = require('../lib/db');
 var Note = {};
 
-//finds a note and executes a callback
-Note.findById = function(id, cb){
+//finds a note 
+Note.findById = function(id){
 	return db('notes').select('*').where({id: id}).limit(1)
 		.then(function(rows){
-			if (!rows.length) return;
-			if (!cb) return rows[0];
-			return cb(null, rows[0]);
+			var note = rows[0];
+			if (!note) return 404;
+			return note;
 		})
 		.catch(function(err){
 			throw err;
 		})
 }
 
-//finds all notes for a project and executes a callback
-Note.findByProject = function(project_id, cb){
+//finds all notes for a project
+Note.findByProject = function(project_id){
 	return db('notes').select('*').where({project_id: project_id})
-		.then(function(rows){
-			if (!rows.length) return;
-			if (!cb) return rows;
-			return cb(null, rows);
+		.then(function(notes){
+			return notes; 
 		})
 		.catch(function(err){
 			throw err;
@@ -42,4 +40,4 @@ Note.create = function(attrs){
 		})
 }
 
-module.exports = Notes; 
+module.exports = Note; 

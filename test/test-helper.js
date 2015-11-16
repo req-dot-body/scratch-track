@@ -30,6 +30,14 @@ global.TestHelper = {};
 //
 var express = require('express');
 
+TestHelper.isLoggedIn = function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.header('isAuthenticated', 'true');
+    return next();
+  }
+  res.status(401).json({isAuthenticated: false, error: true});
+};
+
 TestHelper.createApp = function (loader) {
   var app = express();
   app.use(require('body-parser').json());

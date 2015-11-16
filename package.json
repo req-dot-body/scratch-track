@@ -13,8 +13,8 @@
     "dev": "./node_modules/.bin/pm2-dev start app.json",
     "test": "./test/run.sh",
     "postinstall": "npm run migrate:latest",
-    "migrate:latest": "./node_modules/.bin/knex --knexfile \"server/knexfile.js\" migrate:latest",
-    "seed:run": "./node_modules/.bin/knex --knexfile \"server/knexfile.js\" seed:run"
+    "migrate:latest": "./node_modules/.bin/knex migrate:latest",
+    "seed:run": "./node_modules/.bin/knex seed:run"
   },
   "bugs": {
     "url": "https://github.com/req-dot-body/scratch-track/issues"
@@ -31,18 +31,29 @@
     "angular-sanitize": "^1.4.7",
     "angular-touch": "^1.4.7",
     "angular-ui-router": "^0.2.15",
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.0.5",
     "body-parser": "^1.14.1",
     "browserify-middleware": "^7.0.0",
     "browserify-ngannotate": "^1.0.1",
+    "connect-session-knex": "^1.0.17",
+    "cookie-parser": "^1.4.0",
+    "dotenv": "^1.2.0",
     "express": "^4.13.3",
+    "express-session": "^1.12.1",
     "jquery": "^2.1.4",
     "knex": "^0.9.0",
     "materialize-css": "^0.97.2",
+    "morgan": "^1.6.1",
+    "node-uuid": "^1.4.7",
     "nodemon": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pg": "^4.4.3",
     "pm2": "^0.15.10",
-    "sqlite3": "^3.1.1"
+    "sqlite3": "^3.1.1",
+    "superagent": "^1.4.0",
+    "supertest-as-promised": "^2.0.2"
   },
   "devDependencies": {
     "chai": "^3.4.1",
