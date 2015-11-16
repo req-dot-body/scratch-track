@@ -35,7 +35,7 @@ this.getProject = function(id) {
 
 this.displayProject = function(project){
   console.log('displaying project')
-  $state.go('project_edit')
+  $state.go('main.project_edit')
 
 };
 

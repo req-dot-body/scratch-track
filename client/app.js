@@ -15,56 +15,61 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'views/index.html',
+      templateUrl: 'views/landing.html',
       controller: 'HomeCtrl'      
     })
 
-    .state('home.public', {
-      // url: '/public',
+    .state('public', {
       templateUrl: 'views/landing.html',
       controller: 'LandingCtrl'
     })
 
-    .state('home.loggedin', {
-      // url: '/loggedin',
+    .state('main', {
+      url: '/main',
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
 
-    .state('home.signedup', {
-      // url:'/signedup',
-      templateUrl: 'views/tour.html',
-      controller: 'TourCtrl' 
+  
+     .state('main.projects', {
+      url:'/projects',
+      templateUrl: 'views/projects.html',
+      controller: 'ProjectsCtrl',
+      controllerAs:'projects' 
     })
 
-     .state('project_edit', {
-      // url:'/signedup',
+    .state('main.project_edit', {
+      url:'/{id:int}/edit',
       templateUrl: 'views/projectEdit.html',
       controller: 'ProjectEditCtrl' 
     })
 
-    // .state('about', {
-    //   url: '/about',
-    //   templateUrl: 'views/about.html',
-    //   controller: 'AboutCtrl'
-    // })
-
-    // .state('projects', {
-    //   url: '/projects',
-    //   templateUrl: 'views/projects.html',
-    //   controller: ''
-    // })
-
-    .state('signup', {
-      url: '/signup',
-      templateUrl: 'views/signupForm.html',
-      controller: ''
+    .state('main.project_entry', {
+      url:'/entry',
+      templateUrl: 'views/projectEntry.html',
+      controller: 'ProjectEntryCtrl' 
     })
 
-    .state('signin', {
+    .state('logout', {
+      url: '',
+      templateUrl: 'views/landing.html',
+      controller: 'UserCtrl',
+      controllerAs: 'user'
+    })
+
+    .state('public.signup', {
+      url: '/signup',
+      templateUrl: 'views/signupForm.html',
+      controller: 'UserCtrl',
+      controllerAs: 'user'
+    })
+
+    .state('public.signin', {
       url: '/signin',
       templateUrl: 'views/signinForm.html',
-      controller: ''
+      controller: 'UserCtrl',
+      controllerAs: 'user'
+
     })
 
     .state('edit', {

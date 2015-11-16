@@ -3,7 +3,6 @@ require('./Signin');
 require('./ProjectEntry');
 require('./Landing');
 require('./Tour');
-
 require('./ResourceTemplate');
 require('./Projects');
 
