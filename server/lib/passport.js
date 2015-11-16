@@ -1,8 +1,6 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-<<<<<<< ea4e5038c1051ffcc55588dc0094d4b04af21057
-<<<<<<< 8c7c73557c625e3f27408a1534c57fa54ee784b2
 var User = require('../models/user');
 
 // Serialize a user
@@ -14,26 +12,9 @@ passport.serializeUser(function (user, done) {
 // Deserialize a user
 passport.deserializeUser(function (user, done) {
   console.log('passport deserializeUser:', user);
-=======
-var User = require(__server + 'lib/user');
-=======
-var User = require('../models/user');
->>>>>>> Implement local sign in strategy. Fix a few bugs with user model
-
-// Serialize a user
-passport.serializeUser(function (user, done) {
-  done(null, user.id); // TOOD see what we should pass
+  done(err, user);
 });
 
-// Deserialize a user
-passport.deserializeUser(function (id, done) {
->>>>>>> Start on local sign in
-  User.findByUsername(user, function (err, user) {
-    done(err, user);
-  });
-});
-
-<<<<<<< 8c7c73557c625e3f27408a1534c57fa54ee784b2
 passport.use('local-signup', new LocalStrategy(
   // passReqToCallback passes req.body to the callback function below
   // We want to pass req.body so that we can get the additional fields at sign up, such as first name, last name
@@ -41,24 +22,17 @@ passport.use('local-signup', new LocalStrategy(
   function (req, username, password, done) {
     var firstName = req.body.first; // TODO : figure out the actual key name
     var lastName = req.body.last; // TODO : figure out the actual key name
-    console.log('local1 req:', req.body);
     process.nextTick(function () {
-      console.log('local2');
       // Try to find the user first to check if they already have signed up
-      User.findByUsername(username, function (err, user) {
-        console.log('local3');
-        // Error looking up user
+      User.findByEmail(username, function (err, user) {
+        // Error looking up the user
         if (err) {
-          console.log('local4');
           return done(err);
         }
-        console.log('local5');
         // User already exists, we dont want to sign up
         if (user) {
-          console.log('local6');
           return done(null, false, { message: 'User already exists' });
         }
-        console.log('local7');
         // User doesnt exist, lets create a new one
         // Hash the users supplied password
         User.generateHash(password)

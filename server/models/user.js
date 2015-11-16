@@ -15,7 +15,7 @@ User.findByEmail = function(username, cb) {
   return db('users').select('*').where({email: username}).limit(1)
     .then(function(rows) {
       if (!rows.length) {
-        return cb(true, null);
+        //return cb(true, null);
       } 
       // if (!cb) return rows[0];
       return cb(null, rows[0]);
@@ -42,6 +42,7 @@ User.findById = function (id) {
 
 // creates a new user with name, and hashed password
 User.signUp = function (attrs) {
+  console.log('User.signUp attrs:', attrs);
   return db('users').insert(attrs).returning('id')
     .then(function(rows) {
       var newUser = {
