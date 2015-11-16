@@ -12,7 +12,9 @@ passport.serializeUser(function (user, done) {
 // Deserialize a user
 passport.deserializeUser(function (user, done) {
   console.log('passport deserializeUser:', user);
-  done(err, user);
+  User.findByUsername(user, function (err, user) {
+    done(err, user);
+  });
 });
 
 passport.use('local-signup', new LocalStrategy(
@@ -65,17 +67,23 @@ passport.use('local-login', new LocalStrategy(
   { usernameField: 'username', passwordField: 'password'},
   function (username, enteredPassword, done) {
     User.findByUsername(username, function (err, user) {
+      console.log('local login 2');
       if (err) {
+        console.log('local login 3 error:', err);
         return done(err);
       }
       if (!user) {
+        console.log('local login 4 error:', err);
         return done(null, false, { message: 'Incorrect user details' }); // Incorrect username
       }
       User.validPassword(enteredPassword, user.password)
       .then(function(isValid) {
+        console.log('local login 6');
         if (!isValid) {
+          console.log('local login 7 error:', isValid);
           return done(null, false, { message: 'Incorrect user details' }); // Incorrect password
         }
+        console.log('local login 8');
         return done(null, user, { message: 'Successfully signed in' });
       });
     });

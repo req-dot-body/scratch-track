@@ -60,12 +60,6 @@ router.post('/signin', function (req, res, next) {
       res.json({ loggedIn: true });
     });
   })(req, res, next);
-
-  // var email = req.body.email; // TODO : Change to whatever is 
-  // var password = req.body.password;
-  // console.log('here');
-  // console.log('Req:', req);
-  // res.json({'success':true,'body':req.body});
 });
 
 // Signs a user out, have it as a post so that people cant be tricked into going to the link

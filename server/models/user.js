@@ -43,14 +43,22 @@ User.findById = function (id) {
 // creates a new user with name, and hashed password
 User.signUp = function (attrs) {
   console.log('User.signUp attrs:', attrs);
-  return db('users').insert(attrs).returning('id')
+
+  // Create this object incase attrs contains any extra data we dont want/need
+  var userAttrs = {
+    email: attrs.email,
+    password: attrs.password,
+    first: attrs.first,
+    last: attrs.last
+  };
+  return db('users').insert(userAttrs).returning('id')
     .then(function(rows) {
       var newUser = {
         id: rows[0],
-        email: attrs.email,
-        password: attrs.password,
-        first: attrs.first,
-        last: attrs.last
+        email: userAttrs.email,
+        password: userAttrs.password,
+        first: userAttrs.first,
+        last: userAttrs.last
       };
       return newUser;
     });
@@ -58,15 +66,20 @@ User.signUp = function (attrs) {
 
 // generates hash async
 User.generateHash = function(password) {
-  return bcrypt.genSaltAsync(8)
+  // Use a work factor of 12 for hashing
+  return bcrypt.genSaltAsync(12)
     .then(function(salt) {
-      return bcrypt.hashAsync(password, salt, null);
+      return bcrypt.hashAsync(password, salt, null)
+      .then(function (passHash) {
+        console.log('Salt:', salt, 'Passhash:', passHash);
+        return passHash;
+      });
     });
 };
 
 // checks password async with stored password
-User.validPassword = function(password) {
-  return bcrypt.compareAsync(password, this.passHash);
+User.validPassword = function(enteredPassword, passwordHash) {
+  return bcrypt.compareAsync(enteredPassword, passwordHash);
 };
 
 module.exports = User;
