@@ -44,6 +44,30 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'ProjectEditCtrl' 
     })
 
+    .state('main.project_edit.lyrics', {
+      url: '/{id:int}/edit/lyrics',
+      templateUrl: 'views/lyricsView.html',
+      controller: 'LyricCtrl'
+    })
+
+    .state('main.project_edit.notes', {
+      url: '/{id:int}/edit/notes',
+      templateUrl: 'views/notesView.html',
+      controller: 'NoteCtrl'
+    })
+
+    .state('main.project_edit.recordings', {
+      url: '/{id:int}/edit/recordings',
+      templateUrl: 'views/recordingsView.html',
+      controller: 'RecordingCtrl'
+    })
+
+    .state('main.project_edit.stablature', {
+      url: '/{id:int}/edit/stablature',
+      templateUrl: 'views/stablatureView.html',
+      controller: 'StablatureCtrl'
+    })
+
     .state('main.project_entry', {
       url:'/entry',
       templateUrl: 'views/projectEntry.html',
