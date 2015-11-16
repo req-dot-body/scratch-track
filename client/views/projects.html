@@ -1,9 +1,10 @@
-<div ng-controller = 'ProjectsCtrl as projects'>
+<div>
   <h1>THIS ARE MOCK PROJECTS</h1>
-  <ul ng-repeat = 'product in projects.products' class = 'projects'>
-    <li>Name: {{product.name}}</li>
-    <li>Description: {{product.description}}</li>
-    <li>Created At: {{product.created_at}}</li>
-    <li>Updated At: {{product.updated_at}}</li>
+  <ul ng-repeat = 'project in projects.products' class = 'projects'>
+    <li> <a ui-sref = "main.project_edit({id:project.id})">Name: {{project.name}}</a></li>
+    <li>Project ID: {{project.id}}</li>
+    <li>Description: {{project.description}}</li>
+    <li>Created At: {{project.created_at}}</li>
+    <li>Updated At: {{project.updated_at}}</li>
   </ul>
 </div>

@@ -1,0 +1,27 @@
+<div class="row" ng-controller="UserCtrl">
+  <div class="col s6">
+    <form name="signinForm" novalidate>
+
+      <div class="form-header">E-Mail:</div>
+      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field"/><br>
+      <label class="validation-error"> 
+        <div ng-messages="signinForm.emailField.$error" ng-if="signinForm.emailField.$touched">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="minlength">Not a valid e-mail</div>
+        </div>
+      </label>     
+
+      <div class="form-header">Password:</div>
+      <input type="password" required ng-model="password" name="passwordField" ng-minlength="6" ng-minlength="12"/><br>
+      <label class="validation-error"> 
+        <div ng-messages="signinForm.passwordField.$error" ng-if="signinForm.passwordField.$touched">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="minlength">Password must be at least 6 characters</div>
+          <div ng-message="minlength">Password must less than 12 characters</div>
+        </div>
+      </label>     
+      <br>
+      <button ng-click="signinUser()" class="waves-effect waves-light btn" ng-disabled='email.length===0 || password.length===0'>Submit:</button>
+    </form>
+  </div>
+</div>
