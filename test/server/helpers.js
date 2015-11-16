@@ -67,3 +67,15 @@ exports.createProject = function(){
       return res.body;
     })
 }
+
+exports.addLyrics = function(){
+  exports.createProject()
+  .then(function(project){
+    return request(app)
+    .post('/lyrics')
+    .expect(201)
+    .then(function(res){
+      return res.body; 
+    })
+  })
+}

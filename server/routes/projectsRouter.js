@@ -113,14 +113,11 @@ router.delete('/:projectId', function (req, res) {
   })
 });
 
-//TONS of code reuse in the following four handlers
-//they are almost identical and refactoring should probably happen
-
 // Get all recordings associated with a specific project
 router.get('/:projectId/recordings', function (req, res) {
   var projectId = req.params.projectId;
   //checks that project is authed
-  Project.findById(projectId, req.session.passport.user)
+  Project.findById(projectId, req.session.passport.id)
   .then(function(){
     Recording.findByProject(projectId)
     .then(function(projects){
@@ -137,6 +134,9 @@ router.get('/:projectId/recordings', function (req, res) {
   })
   
 });
+
+//THE FOLLOWING ARE GOING TO BE MAD REFACTORED
+//But later, because I need to write the other handlers before I can test them
 
 // Get all lyrics associated with a specific project
 router.get('/:projectId/lyrics', function (req, res) {

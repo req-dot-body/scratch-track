@@ -99,5 +99,9 @@ describe('The User', function() {
       })
     })
   })
+
+  xit('can retrieve lyrics for a particular project', function(){
+
+  })
 });
 
