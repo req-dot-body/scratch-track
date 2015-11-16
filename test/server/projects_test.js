@@ -5,49 +5,33 @@ var app = helpers.app;
 
 describe('The User', function() {
 
-  var userId;
+  var session = {passport: {}};
 
   before(function() {
       // mocks a logged in user
       app.use(function(req, res, next) {
-        req.session = {};
-        req.session.passport = {};
-        
-        //karl should be in there if seeding worked out       
-        return helpers.clearDB()
-        .then(function(){
-          return helpers.authedUser(0)
-          .then(function(id){
-            req.session.passport.id = id;
-            userId = id;
-            console.log('id!', id);
-            req.isAuthenticated = function() {
-              return true;
-            };
-            next();
-          })
-          
-        })
-
-
+        req.session = session;
+        req.isAuthenticated = function() {
+          return true;
+        };
+        next();
       });
+      
       // end
       app.use('/projects', TestHelper.isLoggedIn, projectsAPI);
       app.testReady();
     });
 
+  //clears the database, creates a user,
+  //and creates mock session
   beforeEach(function(){
-
-  })
-
-  xit('can get all projects', function(){
-    return request(app)
-    .get('/projects')
-    .expect(200)
-    .expect(function(res){
-      var projects = res.body.projects;
-      expect(projects.length);
-    })
+    return helpers.clearDB()
+        .then(function(){
+          return helpers.authedUser(0)
+          .then(function(id){
+            session.passport.id = id;
+          })
+        })
   })
 
   it('can create a new project', function(){
@@ -60,33 +44,59 @@ describe('The User', function() {
     })
   })
 
-  xit('can get a particular project', function(){
-    return request(app)
-    .get('/projects/9')
-    .expect(200)
-    .expect(function(res){
-      expect(res.body.id).to.equal(9)
-    })
-  })
-
-  xit('can edit a particular project', function(){
-    return request(app)
-    .put('/projects/9')
-    .send({updated_at: 1234})
-    .expect(200)
-    .expect(function(res){
-      expect(res.body.updated_at).to.equal(1234);
-    })
-  })
-
-  xit('can delete a particular project', function(){
-    return request(app)
-    .del('/projects/9')
-    .expect(200)
+  it('can get all projects', function(){
+    return helpers.createProject()
     .then(function(){
       return request(app)
-      .get('/projects/9')
-      .expect(404);
+      .get('/projects')
+      .expect(200)
+      .expect(function(res){
+        var projects = res.body.projects;
+        expect(projects.length).to.equal(1);
+      })
+      
+    })
+  })
+
+  it('can get a particular project', function(){
+    return helpers.createProject()
+    .then(function(project){
+      var id = project.id;
+      return request(app)
+      .get('/projects/'+id)
+      .expect(200)
+      .expect(function(res){
+        expect(res.body.id).to.equal(id)
+      })
+    })
+  })
+
+  it('can edit a particular project', function(){
+    return helpers.createProject()
+    .then(function(project){
+      var id = project.id;
+      return request(app)
+      .put('/projects/'+id)
+      .send({name: 'awesome song idea'})
+      .expect(200)
+      .expect(function(res){
+        expect(res.body.name).to.equal('awesome song idea')
+      })
+    })
+  })
+
+  it('can delete a particular project', function(){
+    return helpers.createProject()
+    .then(function(project){
+      var id = project.id;
+      return request(app)
+      .del('/projects/'+id)
+      .expect(200)
+      .then(function(){
+        return request(app)
+        .get('/projects/'+id)
+        .expect(404);
+      })
     })
   })
 });

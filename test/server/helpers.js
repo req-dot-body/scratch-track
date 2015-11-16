@@ -25,7 +25,8 @@ var users = [
   }
 ]
 
-exports.clearDB = function(){
+//clears projects and project resources from DB
+exports.clearProjects = function(){
   return db('lyrics').del()
     .then(function(){
       return db('recordings').del()
@@ -39,11 +40,15 @@ exports.clearDB = function(){
     .then(function(){
       return db('projects').del()
     })
+}
+
+//fully clear DB
+exports.clearDB = function(){
+  return exports.clearProjects()
     .then(function(){
       return db('users').del()
     })
 }
-
 
 //creates a new user and returns then id
 exports.authedUser = function(userIndex){
@@ -51,4 +56,14 @@ exports.authedUser = function(userIndex){
   .then(function(rows){
     return rows[0];
   })
+}
+
+//creates a new project
+exports.createProject = function(){
+  return request(app)
+    .post('/projects')
+    .expect(201)
+    .then(function(res){
+      return res.body;
+    })
 }

@@ -9,26 +9,18 @@ var Note = require('../models/note.js');
 
 // Get all projects that can be accessed
 router.get('/', function (req, res) {
-  //grabs email from session and finds user in db
-   User.findByEmail(req.session.passport.user)
-   .then(function(user){
-
+  console.log('getting for user', req.session.passport.id)
     //this needs to change once public projects and
     //collabs become a thing 
-      Project.findByUser(user.id)
-      .then(function(projects){
-        //sends all projects
-        res.status(200).send({projects: projects});
-      })
-      .catch(function(err){
-        console.log("Could not find projects for this user");
-        res.sendStatus(404);
-      })
-   })
-   .catch(function(err){
-      console.log("Could not find user");
+    Project.findByUser(req.session.passport.id)
+    .then(function(projects){
+      //sends all projects
+      res.status(200).send({projects: projects});
+    })
+    .catch(function(err){
+      console.log("Could not find projects for this user");
       res.sendStatus(404);
-   })
+    })
 });
 
 // Create new project
@@ -64,7 +56,7 @@ router.post('/', function (req, res) {
 router.get('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
   //grab the project from db
-  Project.findById(projectId, req.session.passport.user)
+  Project.findById(projectId, req.session.passport.id)
   .then(function(project){
     res.status(200).send(project);
   })
@@ -79,12 +71,9 @@ router.get('/:projectId', function (req, res) {
 router.put('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
   //checks that project is authorized by user
-  Project.findById(projectId, req.session.passport.email)
+  Project.findById(projectId, req.session.passport.id)
   .then(function(){
-    //does not allow 'created_at' to be edited
-    if (req.body.created_at){
-      delete req.body.created_at;
-    }
+    req.body.updated_at = Math.round(Date.now()/1000);
 
     Project.update(projectId, req.body)
     .then(function(project){
@@ -106,7 +95,7 @@ router.put('/:projectId', function (req, res) {
 router.delete('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
   //checks that project is authorized by user
-  Project.findById(projectId, req.session.passport.user)
+  Project.findById(projectId, req.session.passport.id)
   .then(function(){
     Project.del(projectId)
     .then(function(){
