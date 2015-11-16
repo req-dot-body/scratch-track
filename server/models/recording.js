@@ -2,13 +2,13 @@ var db = require('../lib/db');
 
 var Recording = {};
 
-//finds one recording and executes a callback
-Recording.findById = function(id, cb){
+//finds one recording
+Recording.findById = function(id){
 	return db('recordings').select('*').where({id: id}).limit(1)
 		.then(function(rows){
-			if (!rows.length) return;
-			if (!cb) return rows[0];
-			return cb(null, rows[0]);
+			var recording = rows[0] 
+			if (!recording) return 404;
+			return recording;
 		})
 		.catch(function(err){
 			throw err;
@@ -16,12 +16,10 @@ Recording.findById = function(id, cb){
 }
 
 //finds all recordings for a project and executes a callback
-Recording.findByProject = function(project_id, cb){
+Recording.findByProject = function(project_id){
 	return db('recordings').select('*').where({project_id: project_id})
-		.then(function(rows){
-			if (!rows.length) return;
-			if (!cb) return rows;
-			return cb(null, rows);
+		.then(function(recordings){
+			return recordings;
 		})
 		.catch(function(err){
 			throw err;

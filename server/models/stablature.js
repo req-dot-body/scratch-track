@@ -2,13 +2,13 @@ var db = require('../lib/db');
 
 var Stablature = {};
 
-//finds one stab and executes a callback
-Stablature.findById = function(id, cb){
+//finds one stab 
+Stablature.findById = function(id){
 	return db('stablature').select('*').where({id: id}).limit(1)
 		.then(function(rows){
-			if (!rows.length) return;
-			if (!cb) return rows[0];
-			return cb(null, rows[0]);
+			var stab = rows[0];
+			if (!stab) return 404;
+			return stab; 
 		})
 		.catch(function(err){
 			throw err;
@@ -16,12 +16,10 @@ Stablature.findById = function(id, cb){
 }
 
 //finds all stabs for a project and executes a callback
-Stablature.findByProject = function(project_id, cb){
+Stablature.findByProject = function(project_id){
 	return db('stablature').select('*').where({project_id: project_id})
-		.then(function(rows){
-			if (!rows.length) return;
-			if (!cb) return rows;
-			return cb(null, rows);
+		.then(function(stabs){
+			return stabs; 
 		})
 		.catch(function(err){
 			throw err;

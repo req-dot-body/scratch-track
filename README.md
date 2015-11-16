@@ -93,14 +93,7 @@ note: 'id' always refers to whatever directly follows 'api' in the url
   GET - :/ - Retrieves all project files that can be accessed.  If user is lacking authentication, will retrieve only public projects.  
   { projects: [{project object}, etc.]}
 
-  POST - :/:id - Sends a JSON object containing information for a new project, name and description are not required
-    {
-      owner_id:
-      created_at:
-      updated_at:
-      name:
-      description:
-    }
+  POST - :/:id - Creates a new project 
 
   GET - :/:id - Retrives info for a specific project.
     {
@@ -112,9 +105,8 @@ note: 'id' always refers to whatever directly follows 'api' in the url
       description:
     }
 
-  PUT - :/:id - Updates project info for a specific project.
+  PUT - :/:id - Updates project info for a specific project. You may send just a name or just a description is the other is unchanged 
     {
-      updated_at:
       name:
       description: 
     }
@@ -205,7 +197,6 @@ note: 'id' always refers to whatever directly follows 'api' in the url
       {
         project_id: 
         url: 
-        created_at: 
         name: 
         description: 
       }
@@ -218,24 +209,20 @@ note: 'id' always refers to whatever directly follows 'api' in the url
     GET - :/:id - Retrieves a specific lyrics instance.
      {
         project_id: 
-        text: 
-        created_at: 
+        text:  
         name: 
       }
 
     PUT - :/:id - Updates a specific lyrics instance.
       {
-        project_id: 
-        text: 
-        created_at: 
+        text:  
         name: 
       }
 
     POST - :/ - Sends JSON object containing lyrics for a specific project.  Will later be retrievable by using assigned :id.
       {
         project_id: 
-        text: 
-        created_at: 
+        text:  
         name: 
       }
 
@@ -248,16 +235,14 @@ note: 'id' always refers to whatever directly follows 'api' in the url
       {
         project_id: 
         code: 
-        created_at: 
+        created_at:
         name: 
         description: 
       }
 
     PUT - :/:id - Updates a specific stab instance.
-      {
-        project_id: 
-        code: 
-        created_at: 
+      { 
+        code:  
         name: 
         description: 
       }
@@ -265,8 +250,7 @@ note: 'id' always refers to whatever directly follows 'api' in the url
     POST - :/ - Sends JSON object containing stabs for a specific project.  Will later be retrievable by using assigned :id.
       {
         project_id: 
-        code: 
-        created_at: 
+        code:  
         name: 
         description: 
       }
@@ -285,18 +269,15 @@ note: 'id' always refers to whatever directly follows 'api' in the url
       }
 
     PUT - :/:id - Updates a specific note instance.
-      {
-        project_id: 
+      { 
         text: 
-        created_at: 
         name: 
       }
 
     POST - :/ - Sends JSON object containing note for a specific project.  Will later be retrievable by using assigned :id.
       {
         project_id: 
-        text: 
-        created_at: 
+        text:  
         name: 
       }
 
