@@ -6,14 +6,18 @@ var User = require('../models/user');
 // Serialize a user
 passport.serializeUser(function (user, done) {
   console.log('passport serializeUser:', user);
-  done(null, { id: user.id, email: user.email }); // TOOD see what we should pass
+  done(null, { id: user.id, email: user.email, first: user.first, last: user.last });
 });
 
 // Deserialize a user
 passport.deserializeUser(function (user, done) {
   console.log('passport deserializeUser:', user);
-  User.findByUsername(user, function (err, user) {
-    done(err, user);
+  User.findById(user.id)
+  .then(function (user) {
+    done(null, user);
+  })
+  .catch(function (err) {
+    done(err, null);
   });
 });
 
@@ -26,6 +30,7 @@ passport.use('local-signup', new LocalStrategy(
     var lastName = req.body.last; // TODO : figure out the actual key name
     process.nextTick(function () {
       // Try to find the user first to check if they already have signed up
+      // TODO : get rid of callback, use Promise
       User.findByEmail(username, function (err, user) {
         // Error looking up the user
         if (err) {
@@ -67,23 +72,17 @@ passport.use('local-login', new LocalStrategy(
   { usernameField: 'username', passwordField: 'password'},
   function (username, enteredPassword, done) {
     User.findByEmail(username, function (err, user) {
-      console.log('local login 2');
       if (err) {
-        console.log('local login 3 error:', err);
-        return done(err);
+        return done(err, false, { message: 'Incorrect user details' });
       }
       if (!user) {
-        console.log('local login 4 error:', err);
         return done(null, false, { message: 'Incorrect user details' }); // Incorrect username
       }
       User.validPassword(enteredPassword, user.password)
       .then(function(isValid) {
-        console.log('local login 6');
         if (!isValid) {
-          console.log('local login 7 error:', isValid);
           return done(null, false, { message: 'Incorrect user details' }); // Incorrect password
         }
-        console.log('local login 8');
         return done(null, user, { message: 'Successfully signed in' });
       });
     });
