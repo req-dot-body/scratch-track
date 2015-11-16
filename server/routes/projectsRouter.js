@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
-var Project = require('../models/project.js') 
+var Project = require('../models/project.js'); 
+var Recording = require('../models/recording.js');
+var Lyrics = require('../models/lyrics.js');
+var Stablature = require('../models/stablature.js');
+var Note = require('../models/note.js');
 
 // Get all projects that can be accessed
 router.get('/', function (req, res) {
@@ -18,22 +22,26 @@ router.get('/', function (req, res) {
       })
       .catch(function(err){
         console.log("Could not find projects for this user");
-        res.status(404).send(err);
+        res.sendStatus(404);
       })
    })
    .catch(function(err){
       console.log("Could not find user");
-      res.status(404).send(err);
+      res.sendStatus(404);
    })
 });
 
 // Create new project
 router.post('/', function (req, res) {
   //grabs email from session and finds user in db
-  User.findByEmail(req.session.passport.email)
+  User.findById(req.session.passport.id)
   .then(function(user){
-    var projectInfo = req.body;
-    projectInfo.owner_id = user.id;
+    var now = Math.round(Date.now()/1000);
+    var projectInfo = {
+      owner_id: user.id,
+      created_at: now,
+      updated_at: now
+    };
 
     //creates a new project
     Project.create(projectInfo)
@@ -41,14 +49,14 @@ router.post('/', function (req, res) {
       res.status(201).send(project);
     })
     .catch(function(err){
-      console.log('Could not create project');
-      res.status(400).send(err);
+      console.log('Could not create project', err);
+      res.sendStatus(400);
     })
 
   })
   .catch(function(err){
     console.log("Could not find user");
-    res.status(404).send(err);
+    res.sendStatus(404);
   })
 });
 
@@ -85,12 +93,12 @@ router.put('/:projectId', function (req, res) {
     })
     .catch(function(err){
       console.log('could not update project');
-      res.status(400).send(err);
+      res.sendStatus(400);
     })
   })
   .catch(function(err){
     console.log('could not find project');
-    res.status(404).send(err)
+    res.sendStatus(404);
   })
 });
 
@@ -107,37 +115,101 @@ router.delete('/:projectId', function (req, res) {
     })
     .catch(function(err){
       console.log('could not delete project')
-      res.status(400).send(err);
+      res.sendStatus(400);
     })
   })
   .catch(function(err){
     console.log('could not find project')
-    res.status(404).send(err);
+    res.sendStatus(404);
   })
 });
+
+//TONS of code reuse in the following four handlers
+//they are almost identical and refactoring should probably happen
 
 // Get all recordings associated with a specific project
 router.get('/:projectId/recordings', function (req, res) {
   var projectId = req.params.projectId;
-  res.json({'success':true,projectId:projectId});
+  //checks that project is authed
+  Project.findById(projectId, req.session.passport.user)
+  .then(function(){
+    Recording.findByProject(projectId)
+    .then(function(projects){
+      res.status(200).send({projects: projects})
+    })
+    .catch(function(err){
+      console.log('could not find recordings')
+      res.sendStatus(404);
+    })
+  })
+  .catch(function(err){
+    console.log('could not find project')
+    res.sendStatus(404);
+  })
+  
 });
 
 // Get all lyrics associated with a specific project
 router.get('/:projectId/lyrics', function (req, res) {
   var projectId = req.params.projectId;
-  res.json({'success':true,projectId:projectId});
+  //checks that project is authed
+  Project.findById(projectId, req.session.passport.user)
+  .then(function(){
+    Lyrics.findByProject(projectId)
+    .then(function(projects){
+      res.status(200).send({projects: projects})
+    })
+    .catch(function(err){
+      console.log('could not find lyrics')
+      res.sendStatus(404);
+    })
+  })
+  .catch(function(err){
+    console.log('could not find project')
+    res.sendStatus(404);
+  })
 });
 
 // Get all stablatures associated with a specific project
 router.get('/:projectId/stablature', function (req, res) {
   var projectId = req.params.projectId;
-  res.json({'success':true,projectId:projectId});
+  //checks that project is authed
+  Project.findById(projectId, req.session.passport.user)
+  .then(function(){
+    Stablature.findByProject(projectId)
+    .then(function(projects){
+      res.status(200).send({projects: projects})
+    })
+    .catch(function(err){
+      console.log('could not find stablature')
+      res.sendStatus(404);
+    })
+  })
+  .catch(function(err){
+    console.log('could not find project')
+    res.sendStatus(404);
+  })
 });
 
 // Get all notes associated with a specific project
 router.get('/:projectId/notes', function (req, res) {
   var projectId = req.params.projectId;
-  res.json({'success':true,projectId:projectId});
+  //checks that project is authed
+  Project.findById(projectId, req.session.passport.user)
+  .then(function(){
+    Note.findByProject(projectId)
+    .then(function(projects){
+      res.status(200).send({projects: projects})
+    })
+    .catch(function(err){
+      console.log('could not find notes')
+      res.sendStatus(404);
+    })
+  })
+  .catch(function(err){
+    console.log('could not find project')
+    res.sendStatus(404);
+  })
 });
 
 module.exports = router;

@@ -9,9 +9,9 @@ User.all = function () {
   return db('users').select('*');
 };
 
-// finds a user by username 
-User.findByEmail = function(email) {
-  return db('users').select('*').where({}).limit(1)
+// finds a user by id
+User.findById = function(id) {
+  return db('users').select('*').where({id: id}).limit(1)
     .then(function(rows) {
       if (!rows.length) return;
       return rows[0];

@@ -1,39 +1,44 @@
 var request = require('supertest-as-promised');
 var helpers = require('./helpers.js');
-var app = TestHelper.createApp();
 var projectsAPI = require(__server+'/routes/projectsRouter.js');
+var app = helpers.app;
 
 describe('The User', function() {
+
+  var userId;
 
   before(function() {
       // mocks a logged in user
       app.use(function(req, res, next) {
         req.session = {};
+        req.session.passport = {};
         
         //karl should be in there if seeding worked out       
-        req.session.passport = {
-          email: 'karl_skid_marx@gmail.com'
-        };
+        return helpers.clearDB()
+        .then(function(){
+          return helpers.authedUser(0)
+          .then(function(id){
+            req.session.passport.id = id;
+            userId = id;
+            console.log('id!', id);
+            req.isAuthenticated = function() {
+              return true;
+            };
+            next();
+          })
+          
+        })
 
 
-        req.isAuthenticated = function() {
-          return true;
-        };
-        next();
       });
       // end
       app.use('/projects', TestHelper.isLoggedIn, projectsAPI);
       app.testReady();
     });
 
-    var project = {
-      created_at: 1234143,
-      updated_at: 12341234
-    }
+  beforeEach(function(){
 
-  // beforeEach(function(){
-  // 	return helpers.clearDB();
-  // })
+  })
 
   xit('can get all projects', function(){
     return request(app)
@@ -45,14 +50,13 @@ describe('The User', function() {
     })
   })
 
-  xit('can create a new project', function(){
+  it('can create a new project', function(){
     return request(app)
     .post('/projects')
-    .send(project)
     .expect(201)
     .expect(function(res){
       expect(res.body.id);
-      expect(res.body.created_at).to.equal(project.created_at);
+      expect(res.body.created_at);
     })
   })
 

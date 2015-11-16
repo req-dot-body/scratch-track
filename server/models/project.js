@@ -51,9 +51,7 @@ Project.create = function (attrs, username) {
         id: rows[0],
         owner_id: attrs.owner_id,
         created_at: attrs.created_at,
-        updated_at: attrs.updated_at,
-        name: attrs.name,
-        description: attrs.description
+        updated_at: attrs.updated_at
       };
       return newProject;
     });
