@@ -15,22 +15,17 @@ router.get('/', function (req, res) {
 // Creates new user
 router.post('/signup', function (req, res, next) {
   // TODO : create a new user and sign them in
-  console.log('Signup');
   passport.authenticate('local-signup', function (err, user, info) {
-    console.log('here1')
     if (err) {
-      console.log('here2')
       // TODO : Authenticate user and create a session
       res.status(200).json({ signedUp: false, error: err, info: info });
       return;
     }
     if (!user) {
-      console.log('here3')
       // TODO : Authenticate user and create a session
       res.status(200).json({ signedUp: false, info: info });
       return;
     }
-    console.log('here4')
     res.status(200).json({ signedUp: true });
   })(req, res, next);
   // res.json({'success':true,'body':req.body});
@@ -38,7 +33,6 @@ router.post('/signup', function (req, res, next) {
 
 // Authenticates a user
 router.post('/signin', function (req, res, next) {
-  // TODO : Authenticate user and create a session
   console.log('Signin');
   passport.authenticate('local-login', function (err, user, info) {
     if (err) {

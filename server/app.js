@@ -39,6 +39,7 @@ if(process.env.NODE_ENV !== 'test') {
 
   // Set up sessions for use within our appliation
   app.use(session({
+    name: 'reqdotbody',
     secret: 'Beyond being proficient at relatively simple learning tasks, horses are recognised as having the capacity to solve advanced cognitive challenges involving categorisation learning and a degree of concept formation.',
     resave: false, // Whether or not to save the session back to the store if no modification happened
     rolling: true, // Resets expiry date after each request
