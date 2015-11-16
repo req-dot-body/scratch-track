@@ -1,10 +1,12 @@
 var angular = require('angular');
 var ngCookies = require('angular-cookies');
 var ui = require('angular-ui-router');
+var ngMessages = require('angular-messages');
 
 window.app = angular.module('myApp', [
   'ngCookies',
   'ui.router',
+  'ngMessages'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -84,6 +86,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/notes',
       templateUrl: 'views/note.html',
       controller: 'noteCtrl'
+    })
+
+    .state('test', {
+      url: '/test',
+      templateUrl: 'views/testView.html',
     })
 });
 
