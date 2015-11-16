@@ -1,17 +1,15 @@
 
-<div class = 'navbar-fixed' ng-controller = 'MainCtrl'>
+<div class = 'navbar-fixed'>
   <nav class ='light-blue darken-4'>
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo">Logo</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li ng-click ='gotoProjects()'><a>Projects</a></li>
-        <li ng-click ='logOut()'><a>Logout</a></li>
+        <li><a ui-sref = 'main.projects'>Projects</a></li>
+        <li><a ui-sref = 'logout'>Logout</a></li>
       </ul>
     </div>
   </nav>
 </div>
-
 <div class="container" ui-view>
-  <projects></projects>
 </div>
