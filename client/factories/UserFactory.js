@@ -18,14 +18,14 @@ app.factory('User', ['$http','$state', function($http,$state) {
 
     return $http.post('/api/users/signup', newUser)
     .then(function(response){
-      if (response.status === 200) {
-        $state.go('home');
-        return true;
-      } else {
-        $state.go('public.signup');
-        return false;
-      }
-    });
+      //the idea is to make a tour in this case
+        $state.go('public.signin');
+    })
+    .catch(function(err){
+      $state.go('public.signup');
+      $scope.signinError = 'Auth Error Please Re-Enter Info';
+      console.log('signUp err: ', err);
+    })
   };
 
   return {
