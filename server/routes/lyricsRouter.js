@@ -14,14 +14,12 @@ router.get('/:resourceId', function (req, res) {
 
 // Update a lyric by id
 router.put('/:resourceId', function (req, res) {
-  var resourceId = req.params.resourceId;
-  res.json({'success':true,resourceId:resourceId});
+  handler.put(req, res, 'lyrics');
 });
 
 // Delete a lyric by id
 router.delete('/:resourceId', function (req, res) {
-  var resourceId = req.params.resourceId;
-  res.json({'success':true,resourceId:resourceId});
+	handler.del(req, res, 'lyrics');
 });
 
 module.exports = router;

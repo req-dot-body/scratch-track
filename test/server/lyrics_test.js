@@ -34,7 +34,7 @@ describe('A project', function() {
         })
   })
 
-  it('can add lyrics', function(){
+  it('can have lyrics added', function(){
     return helpers.addLyrics(session.passport.id)
     .then(function(lyrics){
       expect(lyrics.id);
@@ -42,7 +42,7 @@ describe('A project', function() {
     })
   })
 
-  it('can retrieve old lyrics', function(){
+  it('can have lyrics retrieved', function(){
     return helpers.addLyrics(session.passport.id)
     .then(function(lyrics){
       var id = lyrics.id;
@@ -51,6 +51,20 @@ describe('A project', function() {
       .expect(200)
       .expect(function(res){
         expect(res.body.name).to.equal('sweet rhymes');
+      })
+    })
+  })
+
+  it('can have old lyrics edited', function(){
+    return helpers.addLyrics(session.passport.id)
+    .then(function(lyrics){
+      var id = lyrics.id;
+      return request(app)
+      .put('/lyrics/'+id)
+      .send({name: 'really freakin sweet rhymes'})
+      .expect(200)
+      .expect(function(res){
+        expect(res.body.name).to.equal('really freakin sweet rhymes')
       })
     })
   })
