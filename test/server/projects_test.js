@@ -120,5 +120,65 @@ describe('The User', function() {
     }) 
   })
 
+  it('can retrieve stabs for a particular project', function(){
+    var projectId;
+
+    return helpers.addResource('stablature', session.passport.id)
+    .then(function(stablature){
+      projectId = stablature.project_id;
+    })
+    .then(function(){
+      return helpers.addResource('stablature', session.passport.id, projectId)
+     })
+    .then(function(){
+      return request(app)
+      .get('/projects/'+projectId+'/stablature')
+      .expect(200)
+      .expect(function(res){
+        expect(res.body.length).to.equal(2);
+      })
+    })
+  })
+
+  it('can retrieve recordings for a particular project', function(){
+    var projectId;
+
+    return helpers.addResource('recordings', session.passport.id)
+    .then(function(recordings){
+      projectId = recordings.project_id;
+    })
+    .then(function(){
+      return helpers.addResource('recordings', session.passport.id, projectId)
+     })
+    .then(function(){
+      return request(app)
+      .get('/projects/'+projectId+'/recordings')
+      .expect(200)
+      .expect(function(res){
+        expect(res.body.length).to.equal(2);
+      })
+    })
+  })
+
+  it('can retrieve notes for a particular project', function(){
+    var projectId;
+
+    return helpers.addResource('notes', session.passport.id)
+    .then(function(notes){
+      projectId = notes.project_id;
+    })
+    .then(function(){
+      return helpers.addResource('notes', session.passport.id, projectId)
+     })
+    .then(function(){
+      return request(app)
+      .get('/projects/'+projectId+'/notes')
+      .expect(200)
+      .expect(function(res){
+        expect(res.body.length).to.equal(2);
+      })
+    })
+  })
+
 });
 

@@ -32,6 +32,19 @@ resources.lyrics = {
   name: 'sweet rhymes'      
 };
 
+resources.stablature = {
+  code: 'this is some stab code yes indeed'
+}
+
+resources.notes = {
+  text: 'this song is going to rock so hard'
+}
+
+resources.recordings = {
+  name: 'shredding guitar solo',
+  url: 'awesomesong.com/stuff.mp3'
+}
+
 
 //clears projects and project resources from DB
 exports.clearProjects = function(){
