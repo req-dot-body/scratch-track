@@ -25,15 +25,13 @@ var users = [
   }
 ]
 
-var lyrics = [ 
-  {
-    text: 'gonna write some code, s\'gonna be real cool, gonna make y\'all look like total fools',
-    name: 'sweet rhymes'      
-  },
-  {  
-    text: 'la la lalal la la lalaaaaaa'
-  }
-]
+var resources = {};
+
+resources.lyrics = {
+  text: 'gonna write some code, s\'gonna be real cool, gonna make y\'all look like total fools',
+  name: 'sweet rhymes'      
+};
+
 
 //clears projects and project resources from DB
 exports.clearProjects = function(){
@@ -69,33 +67,30 @@ exports.authedUser = function(userIndex){
 }
 
 //creates a new project
-exports.createProject = function(){
-  return request(app)
-    .post('/projects')
-    .expect(201)
-    .then(function(res){
-      return res.body;
-    })
-}
-
-exports.addLyrics = function(userId){
+exports.createProject = function(userId){
   var now = Math.round(Date.now()/1000);
   var project = {
     owner_id: userId,
     created_at: now,
     updated_at: now
-  } 
+  }
 
-  return db('projects').insert(project).returning('id')
+  return db('projects').insert(project).returning('*')
   .then(function(rows){
-    var projectId = rows[0]; 
-    var newLyrics = lyrics[0];
-    newLyrics.project_id = projectId;
-    newLyrics.created_at = now;
+    return rows[0];
+  })
+}
 
-    return db('lyrics').insert(newLyrics).returning('*')
+exports.addResource = function(tableName, userId, projectId){
+  return exports.createProject(userId)
+  .then(function(project){
+    var newResource = resources[tableName];    
+    newResource.project_id = projectId || project.id;
+    newResource.created_at = Math.round(Date.now()/1000);
+
+    return db(tableName).insert(newResource).returning('*')
     .then(function(rows){
       return rows[0]; 
     });
-  }); 
+  }) 
 }

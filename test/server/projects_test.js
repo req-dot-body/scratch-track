@@ -34,7 +34,7 @@ describe('The User', function() {
         })
   })
 
-  xit('can create a new project', function(){
+  it('can create a new project', function(){
     return request(app)
     .post('/projects')
     .expect(201)
@@ -44,8 +44,8 @@ describe('The User', function() {
     })
   })
 
-  xit('can get all projects', function(){
-    return helpers.createProject()
+  it('can get all projects', function(){
+    return helpers.createProject(session.passport.id)
     .then(function(){
       return request(app)
       .get('/projects')
@@ -58,8 +58,8 @@ describe('The User', function() {
     })
   })
 
-  xit('can get a particular project', function(){
-    return helpers.createProject()
+  it('can get a particular project', function(){
+    return helpers.createProject(session.passport.id)
     .then(function(project){
       var id = project.id;
       return request(app)
@@ -71,8 +71,8 @@ describe('The User', function() {
     })
   })
 
-  xit('can edit a particular project', function(){
-    return helpers.createProject()
+  it('can edit a particular project', function(){
+    return helpers.createProject(session.passport.id)
     .then(function(project){
       var id = project.id;
       return request(app)
@@ -85,8 +85,8 @@ describe('The User', function() {
     })
   })
 
-  xit('can delete a particular project', function(){
-    return helpers.createProject()
+  it('can delete a particular project', function(){
+    return helpers.createProject(session.passport.id)
     .then(function(project){
       var id = project.id;
       return request(app)
@@ -101,16 +101,24 @@ describe('The User', function() {
   })
 
   it('can retrieve lyrics for a particular project', function(){
-    return helpers.addLyrics(session.passport.id)
+    var projectId;
+
+    return helpers.addResource('lyrics', session.passport.id)
     .then(function(lyrics){
-      var id = lyrics.project_id;
+      projectId = lyrics.project_id;
+    })
+    .then(function(){
+      return helpers.addResource('lyrics', session.passport.id, projectId)
+     })
+    .then(function(){
       return request(app)
-      .get('/projects/'+id+'/lyrics')
+      .get('/projects/'+projectId+'/lyrics')
       .expect(200)
       .expect(function(res){
-        expect(res.body[0])
+        expect(res.body.length).to.equal(2);
       })
-    })
+    }) 
   })
+
 });
 

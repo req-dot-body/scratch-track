@@ -6,7 +6,6 @@ var resourceHandler = require('./resourceHandler.js');
 
 // Get all projects that can be accessed
 router.get('/', function (req, res) {
-  console.log('getting for user', req.session.passport.id)
     //this needs to change once public projects and
     //collabs become a thing 
     Project.findByUser(req.session.passport.id)
@@ -22,7 +21,6 @@ router.get('/', function (req, res) {
 
 // Create new project
 router.post('/', function (req, res) {
-  console.log('what is even happening?', req.session.passport.id);
   var now = Math.round(Date.now()/1000);
   var projectInfo = {
     owner_id: req.session.passport.id,
@@ -102,36 +100,13 @@ router.delete('/:projectId', function (req, res) {
   })
 });
 
-// Get all recordings associated with a specific project
-router.get('/:projectId/recordings', function (req, res) {
-  var projectId = req.params.projectId;
-  //checks that project is authed
-  Project.findById(projectId, req.session.passport.id)
-  .then(function(){
-    Recording.findByProject(projectId)
-    .then(function(projects){
-      res.status(200).send({projects: projects})
-    })
-    .catch(function(err){
-      console.log('could not find recordings')
-      res.sendStatus(404);
-    })
-  })
-  .catch(function(err){
-    console.log('could not find project')
-    res.sendStatus(404);
-  })
-  
-});
-
-//THE FOLLOWING ARE GOING TO BE MAD REFACTORED
-//But later, because I need to write the other handlers before I can test them
 
 // Get all lyrics associated with a specific project
 router.get('/:projectId/lyrics', function (req, res) {
   resourceHandler.getByProject(req, res, 'lyrics');
 });
 
+// Get all recordings associated with a specific project
 router.get('/:projectId/recordings', function (req, res) {
   resourceHandler.getByProject(req, res, 'recordings');
 });

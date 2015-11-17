@@ -35,7 +35,7 @@ describe('A project', function() {
   })
 
   it('can have lyrics added', function(){
-    return helpers.addLyrics(session.passport.id)
+    return helpers.addResource('lyrics', session.passport.id)
     .then(function(lyrics){
       expect(lyrics.id);
       expect(lyrics.name).to.equal('sweet rhymes');
@@ -43,7 +43,7 @@ describe('A project', function() {
   })
 
   it('can have lyrics retrieved', function(){
-    return helpers.addLyrics(session.passport.id)
+    return helpers.addResource('lyrics', session.passport.id)
     .then(function(lyrics){
       var id = lyrics.id;
       return request(app)
@@ -56,7 +56,7 @@ describe('A project', function() {
   })
 
   it('can have old lyrics edited', function(){
-    return helpers.addLyrics(session.passport.id)
+    return helpers.addResource('lyrics', session.passport.id)
     .then(function(lyrics){
       var id = lyrics.id;
       return request(app)
@@ -72,7 +72,7 @@ describe('A project', function() {
   it('can have old lyrics deleted', function(){
     var lyricsId;
 
-    return helpers.addLyrics(session.passport.id)
+    return helpers.addResource('lyrics', session.passport.id)
     .then(function(lyrics){
       lyricsId = lyrics.id;
       return request(app)
