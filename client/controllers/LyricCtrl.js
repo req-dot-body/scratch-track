@@ -1,18 +1,5 @@
 app.controller('LyricCtrl', ['$scope', function($scope) {
   
-  $scope.toggleEditable = function(id) {
-    var el = document.getElementById(id);
-
-    if (el.hasAttribute('readOnly')) {
-      el.removeAttribute('readOnly');
-      document.getElementById('edit-lyrics-btn').innerHTML="Save";
-    }
-    else {
-      el.setAttribute('readOnly', 'readOnly');
-      document.getElementById('edit-lyrics-btn').innerHTML="Edit";
-    }
-  };
-
   $scope.mockLyrics = [ 
 
    {
@@ -26,5 +13,27 @@ app.controller('LyricCtrl', ['$scope', function($scope) {
        name: 'draft2'
      }
   ]; 
+
+
+  $scope.toggleEditable = function(id) {
+    var el = document.getElementById(id);
+
+    if (el.hasAttribute('readOnly')) {
+      el.removeAttribute('readOnly');
+      document.getElementById('edit-lyrics-btn').innerHTML="Save";
+    }
+    else {
+      el.setAttribute('readOnly', 'readOnly');
+      document.getElementById('edit-lyrics-btn').innerHTML="Edit";
+    }
+  };
+
+
+  $(document).ready(function() {
+    $('.modal-trigger').leanModal();
+    $('.collapsible').collapsible({
+          accordion : true
+    });
+  });
 
 }]);

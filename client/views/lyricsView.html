@@ -1,9 +1,9 @@
 <container id="lyrics-container">
-  
+
+<div ng-repeat="lyricsheet in mockLyrics">{{ lyricsheet }}</div>
+
   <!-- Create New Lyric Sheet -->
   <section>
-
-      {{ mockLyrics }}
 
     <h5>Create New Lyric Sheet</h5>
 
@@ -30,11 +30,11 @@
     <h5>Your Lyrics for This Project</h5>
 
     <!-- Accordion for Lyric Sheets -->
-    <ul class="collapsible" data-collapsible="accordion">
+    <ul class="collapsible" data-collapsible="accordion" watch>
 
-      <li>
+      <li ng-repeat="lyricsheet in mockLyrics">
         <!-- Accordion Element Header -->
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+        <div class="collapsible-header">{{ lyricsheet.name }}</div>
         
         <!-- Accordion Element Body -->
         <div class="collapsible-body">
@@ -46,10 +46,10 @@
 
           <!-- Revision Button -->
           <!-- Modal Trigger for Lyric Revision -->
-          <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Create Revision</a>
+          <a class="waves-effect waves-light btn modal-trigger" href="#lyric-revision-modal">Create Revision</a>
 
           <!-- Modal Structure for Lyric Revision -->
-          <div id="modal2" class="modal">
+          <div id="lyric-revision-modal" class="modal">
             <div class="modal-content">
               <h4>Lyric Name</h4>
               <input type="text">
@@ -65,10 +65,10 @@
 
           <!-- Delete Button -->
           <!-- Modal Trigger for Lyric Delete Confirmation -->
-          <a class="waves-effect waves-light btn modal-trigger" href="#modal3">Delete</a>
+          <a class="waves-effect waves-light btn modal-trigger" href="#lyric-deletion-modal">Delete</a>
 
           <!-- Modal Structure for Lyric Delete Confirmation -->
-          <div id="modal3" class="modal">
+          <div id="lyric-deletion-modal" class="modal">
             <div class="modal-content">
               <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
             </div>
@@ -87,12 +87,4 @@
 
 </container>
 
-
-<script>
-  $(document).ready(function() {
-    $('.modal-trigger').leanModal();
-    $('.collapsible').collapsible({
-          accordion : true
-        });
-  });
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
