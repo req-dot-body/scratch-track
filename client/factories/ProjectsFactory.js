@@ -5,11 +5,11 @@ app.factory('Project', ['$http','$state', function($http,$state) {
     
     return $http.get('/api/projects')
     .then(function(response){
-      if (response.status === 200) { 
+        console.log(response.body);
         return response.body;
-      } else {
-        return false;
-      }
+    })
+    .catch(function(err){
+      return err;
     });
   
   };
@@ -19,15 +19,11 @@ app.factory('Project', ['$http','$state', function($http,$state) {
     
     return $http.post('/api/projects')
     .then(function(response){
-      console.log('Creating Project', response);
-      if (response.status === 200) {
-        console.log('Project Created')
         return response;
-      } else {
-        return false;
-      }
+    })
+    .catch(function(err){
+        return err;
     });
-  
   };
 
   return {

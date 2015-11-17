@@ -9,8 +9,8 @@ app.factory('User', ['$http','$state', function($http,$state) {
     })
     .catch(function(err) {
       //display error message
-      $scope.signinError = 'Auth Error Please Re-Enter Info';
       $state.go('public.signin');
+      return'Auth Error Please Re-Enter Info'
     });
   };
 
@@ -23,13 +23,13 @@ app.factory('User', ['$http','$state', function($http,$state) {
     })
     .catch(function(err){
       $state.go('public.signup');
-      $scope.signinError = 'Auth Error Please Re-Enter Info';
       console.log('signUp err: ', err);
+      return 'Auth Error Please Re-Enter Info';
     })
   };
 
   var logOut = function(){
-    return $http.post('/api/users/logout')
+    return $http.post('/api/users/signout')
     .then(function(response){
       //the idea is to make a tour in this case
         $state.go('home');

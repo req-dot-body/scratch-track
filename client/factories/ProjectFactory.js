@@ -30,7 +30,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
     
     return $http.get('/api/projects')
     .then(function(response){
-        return response.body;
+        return response.data.projects;
     })
     .catch(function(err){
       console.log('getAllProjects err: ', err);
