@@ -36,6 +36,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   
     .state('public.signup', {  
       url: '/signup',
+      authenticate: false,
       templateUrl: 'views/signupForm.html',
       controller: 'UserCtrl',
       controllerAs: 'user'
@@ -43,6 +44,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     .state('public.signin', {
       url: '/signin',
+      authenticate: false,
       templateUrl: 'views/signinForm.html',
       controller: 'UserCtrl',
       controllerAs: 'user'
@@ -105,22 +107,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '',
       authenticate: true,
       templateUrl: 'views/landing.html',
-      controller: 'UserCtrl',
-      controllerAs: 'user'
-    })
-
-    .state('public.signup', {
-      url: '/signup',
-      authenticate: false,
-      templateUrl: 'views/signupForm.html',
-      controller: 'UserCtrl',
-      controllerAs: 'user'
-    })
-
-    .state('public.signin', {
-      url: '/signin',
-      authenticate: false,
-      templateUrl: 'views/signinForm.html',
       controller: 'UserCtrl',
       controllerAs: 'user'
     })
