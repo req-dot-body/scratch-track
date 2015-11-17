@@ -1,5 +1,6 @@
 app.factory('User', ['$http','$state', function($http,$state) {
   
+
   var logIn = function (userData){
 
     return $http.post('/api/users/signin', userData)
@@ -26,6 +27,7 @@ app.factory('User', ['$http','$state', function($http,$state) {
         return true;
       } else {
         $state.go('public.signup');
+        console.log(response);
         return false;
       }
     });
