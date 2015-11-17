@@ -1,5 +1,6 @@
-app.controller('ProjectsCtrl', ['$scope','$state', function($scope,$state) {
+app.controller('ProjectsCtrl', ['$scope','$state','Projects', function($scope,$state,Projects) {
 
+//Data Structure of Projets to display
   this.mockProjects = [ 
     { owner_id: 1, 
       id: 1,
@@ -18,13 +19,35 @@ app.controller('ProjectsCtrl', ['$scope','$state', function($scope,$state) {
   ]; 
 
   this.products = this.mockProjects;
-
+//Get projects from Projects factory
   this.getProjects = function () {
-    //Ajax Call to get all the Projects
-    //.then we get the response and set this.products
-      // this.products = res.body;
+    console.log('getting all projects')
+    Projects.getAllProjects()
+    .then(function(data){
+      console.log('Projects Data:', data)
+      this.products = data;
+    }).catch(function(error){
+        //case of server error getting projects 
+    })
   };
 
+//Create a project from user factory, then displaying project view  
+  this.createProject = function () {
+    console.log('creating project')
+    Projects.createProject()
+    .then(function(data){
+      console.log('project created')
+      console.log(data);
+      //get user id
+      //go to main.project_edit state with id 
+    }).catch(function(error){
+      //display a message error 
+      //stay on same state
+      $state.go('main.projects');
+    })
+  }
 
+// Get projects on controller loading....
+  this.getProjects();
 
 }]);
