@@ -23,5 +23,6 @@ app.controller('UserCtrl', ['$scope','User', function($scope,User) {
     newUser.last = $scope.last;
     //send JSON object to server via factory call
     User.signUp(newUser);
-  }
+  } 
+
 }]);

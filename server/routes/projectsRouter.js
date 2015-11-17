@@ -8,6 +8,7 @@ var resourceHandler = require('./resourceHandler.js');
 router.get('/', function (req, res) {
     //this needs to change once public projects and
     //collabs become a thing 
+    console.log('session stuff:', req.session);
     Project.findByUser(req.session.passport.user.id)
     .then(function(projects){
       //sends all projects
@@ -22,6 +23,7 @@ router.get('/', function (req, res) {
 // Create new project
 router.post('/', function (req, res) {
   var now = Math.round(Date.now()/1000);
+  console.log('session stuff:', req.session);
   var projectInfo = {
     owner_id: req.session.passport.user.id,
     created_at: now,
