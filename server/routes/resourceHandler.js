@@ -54,9 +54,33 @@ exports.put = function(req, res, tableName){
 }
 
 //deletes a resource by id
-exports.del = function(req, res, tableName){
+exports.delete = function(req, res, tableName){
 	var ids = {
 		user: req.session.passport.id,
 		resource: req.params.resourceId
-	}; 
+	};
+
+	Resource.delete(tableName, ids)
+	.then(function(){
+		res.sendStatus(200);
+	}) 
+	.catch(function(err){
+		console.log('failed to delete resource')
+		res.sendStatus(400);
+	})
+}
+
+exports.getByProject = function(req, res, tableName){
+	var ids = {
+		project: req.params.projectId,
+		user: req.session.passport.id
+	}
+	Resource.findByProject(tableName, ids)
+	.then(function(resources){
+		res.status(200).send(resources)
+	})
+	.catch(function(err){
+		res.sendStatus(400)
+	})
+
 }

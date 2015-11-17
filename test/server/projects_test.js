@@ -100,8 +100,17 @@ describe('The User', function() {
     })
   })
 
-  xit('can retrieve lyrics for a particular project', function(){
-
+  it('can retrieve lyrics for a particular project', function(){
+    return helpers.addLyrics(session.passport.id)
+    .then(function(lyrics){
+      var id = lyrics.project_id;
+      return request(app)
+      .get('/projects/'+id+'/lyrics')
+      .expect(200)
+      .expect(function(res){
+        expect(res.body[0])
+      })
+    })
   })
 });
 

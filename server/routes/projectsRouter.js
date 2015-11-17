@@ -2,10 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Project = require('../models/project.js'); 
-var Recording = require('../models/recording.js');
-var Lyrics = require('../models/lyrics.js');
-var Stablature = require('../models/stablature.js');
-var Note = require('../models/note.js');
+var resourceHandler = require('./resourceHandler.js');
 
 // Get all projects that can be accessed
 router.get('/', function (req, res) {
@@ -132,65 +129,21 @@ router.get('/:projectId/recordings', function (req, res) {
 
 // Get all lyrics associated with a specific project
 router.get('/:projectId/lyrics', function (req, res) {
-  var projectId = req.params.projectId;
-  //checks that project is authed
-  Project.findById(projectId, req.session.passport.user)
-  .then(function(){
-    Lyrics.findByProject(projectId)
-    .then(function(projects){
-      res.status(200).send({projects: projects})
-    })
-    .catch(function(err){
-      console.log('could not find lyrics')
-      res.sendStatus(404);
-    })
-  })
-  .catch(function(err){
-    console.log('could not find project')
-    res.sendStatus(404);
-  })
+  resourceHandler.getByProject(req, res, 'lyrics');
+});
+
+router.get('/:projectId/recordings', function (req, res) {
+  resourceHandler.getByProject(req, res, 'recordings');
 });
 
 // Get all stablatures associated with a specific project
 router.get('/:projectId/stablature', function (req, res) {
-  var projectId = req.params.projectId;
-  //checks that project is authed
-  Project.findById(projectId, req.session.passport.user)
-  .then(function(){
-    Stablature.findByProject(projectId)
-    .then(function(projects){
-      res.status(200).send({projects: projects})
-    })
-    .catch(function(err){
-      console.log('could not find stablature')
-      res.sendStatus(404);
-    })
-  })
-  .catch(function(err){
-    console.log('could not find project')
-    res.sendStatus(404);
-  })
+  resourceHandler.getByProject(req, res, 'stablature');
 });
 
 // Get all notes associated with a specific project
 router.get('/:projectId/notes', function (req, res) {
-  var projectId = req.params.projectId;
-  //checks that project is authed
-  Project.findById(projectId, req.session.passport.user)
-  .then(function(){
-    Note.findByProject(projectId)
-    .then(function(projects){
-      res.status(200).send({projects: projects})
-    })
-    .catch(function(err){
-      console.log('could not find notes')
-      res.sendStatus(404);
-    })
-  })
-  .catch(function(err){
-    console.log('could not find project')
-    res.sendStatus(404);
-  })
+  resourceHandler.getByProject(req, res, 'notes');
 });
 
 module.exports = router;

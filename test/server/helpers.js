@@ -91,13 +91,11 @@ exports.addLyrics = function(userId){
     var projectId = rows[0]; 
     var newLyrics = lyrics[0];
     newLyrics.project_id = projectId;
+    newLyrics.created_at = now;
 
-    return request(app)
-    .post('/lyrics')
-    .send(newLyrics)
-    .expect(201)
-  })
-  .then(function(res){
-    return res.body; 
-  }) 
+    return db('lyrics').insert(newLyrics).returning('*')
+    .then(function(rows){
+      return rows[0]; 
+    });
+  }); 
 }

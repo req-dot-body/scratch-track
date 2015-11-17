@@ -4,15 +4,16 @@ var Resource = {};
 
 //resource model represents Lyrics, Recordings, Stablature, and Notes
 
-//finds one resource 
-//checks that it belongs to a user
+//finds one resource by id
 Resource.findById = function(tableName, ids){
+	//checks that it belongs to authed user
 	return db.table('projects')
 	.innerJoin(tableName, 'projects.id', '=', tableName+'.project_id')
 	.where('projects.owner_id', '=', ids.user)
 	.andWhere(tableName + '.id', '=', ids.resource)
 	.then(function(rows){
 		var resourceInfo = rows[0]
+		if (!resourceInfo) throw 404;
 		return resourceInfo;
 	})
 	.catch(function(err){
@@ -25,8 +26,9 @@ Resource.findByProject = function(tableName, ids){
 	//finds the project in question
 	return db('projects').select('*').where({id: ids.project})
 	.then(function(rows){
-		//checks that project belongs to authed user
+		//checks that project exists and belongs to authed user
 		var project = rows[0]
+		if (!project) throw 404;
 		if (project.owner_id !== ids.user) throw 401;
 
 		return db(tableName).select('*').where({project_id: ids.project})
@@ -86,6 +88,24 @@ Resource.update = function(tableName, ids, attrs){
 		.catch(function(err){
 			throw err;
 		})
+	})
+	.catch(function(err){
+		throw err;
+	})
+}
+
+//deletes a resource entry by id 
+Resource.delete = function(tableName, ids){
+	//checks that the resource belongs to the authed user
+	return db.table('projects')
+	.innerJoin(tableName, 'projects.id', '=', tableName+'.project_id')
+	.where('projects.owner_id', '=', ids.user)
+	.andWhere(tableName + '.id', '=', ids.resource)
+	.then(function(rows){
+		//could not find resource belonging to authed user
+		if (!rows[0]) throw 404;
+		//deletes resource entry
+		return db(tableName).where('id', '=', ids.resource).del()
 	})
 	.catch(function(err){
 		throw err;

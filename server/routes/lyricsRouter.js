@@ -19,7 +19,7 @@ router.put('/:resourceId', function (req, res) {
 
 // Delete a lyric by id
 router.delete('/:resourceId', function (req, res) {
-	handler.del(req, res, 'lyrics');
+	handler.delete(req, res, 'lyrics');
 });
 
 module.exports = router;

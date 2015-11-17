@@ -69,5 +69,22 @@ describe('A project', function() {
     })
   })
 
+  it('can have old lyrics deleted', function(){
+    var lyricsId;
+
+    return helpers.addLyrics(session.passport.id)
+    .then(function(lyrics){
+      lyricsId = lyrics.id;
+      return request(app)
+      .delete('/lyrics/'+lyricsId)
+      .expect(200)
+    })
+    .then(function(){
+      return request(app)
+      .get('/lyrics/'+lyricsId)
+      .expect(404) 
+    })
+  })
+
 });
 
