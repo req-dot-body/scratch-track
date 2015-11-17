@@ -28,9 +28,21 @@ app.factory('User', ['$http','$state', function($http,$state) {
     })
   };
 
+  var logOut = function(){
+    return $http.post('/api/users/logout')
+    .then(function(response){
+      //the idea is to make a tour in this case
+        $state.go('home');
+    })
+    .catch(function(err){  
+      console.log('logOut err ', err);
+    })
+  };
+
   return {
     logIn:logIn,
-    signUp:signUp
+    signUp:signUp,
+    logOut:logOut
   }
 
 }]);
