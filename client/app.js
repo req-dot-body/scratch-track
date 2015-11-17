@@ -87,7 +87,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('main.project_edit.recordings', {
       url: '/recordings',
       templateUrl: 'views/recordingsView.html',
-      controller: 'RecordingCtrl'
+      controller: 'RecordingCtrl',
     })
 
     .state('main.project_edit.stablature', {
