@@ -61,10 +61,10 @@ passport.use('local-signup', new LocalStrategy(
 
 passport.use('local-login', new LocalStrategy(
   // TODO : change these to the actual names in the json object being sent
-  { usernameField: 'username', passwordField: 'password'},
-  function (username, enteredPassword, done) {
+  { usernameField: 'email', passwordField: 'password'},
+  function (email, enteredPassword, done) {
     var user = null;
-    User.findByEmail(username)
+    User.findByEmail(email)
     .then(function (signedInUser) {
       if (!signedInUser) {
         throw Error('User not found');

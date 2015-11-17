@@ -1,4 +1,4 @@
-app.factory('Projects', ['$http','$state', function($http,$state) {
+app.factory('Project', ['$http','$state', function($http,$state) {
   
 //sends request to the server to get all projects
   var getAllProjects = function (){

@@ -5,4 +5,3 @@ require('./LyricFactory');
 require('./RecordingFactory');
 require('./NoteFactory');
 require('./StablatureFactory');
-require('./ProjectsFactory');
