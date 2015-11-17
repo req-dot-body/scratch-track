@@ -2,13 +2,15 @@ var db = require('../lib/db');
 
 var Resource = {};
 
+//resource model represents Lyrics, Recordings, Stablature, and Notes
+
 //finds one resource 
 //checks that it belongs to a user
-Resource.findById = function(resource, resourceId, userId){
+Resource.findById = function(tableName, ids){
 	return db.table('projects')
-	.innerJoin(resource, 'projects.id', '=', resource+'.project_id')
-	.where('projects.owner_id', '=', userId)
-	.andWhere(resource + '.id', '=', resourceId)
+	.innerJoin(tableName, 'projects.id', '=', tableName+'.project_id')
+	.where('projects.owner_id', '=', ids.user)
+	.andWhere(tableName + '.id', '=', ids.resource)
 	.then(function(rows){
 		var resourceInfo = rows[0]
 		return resourceInfo;
@@ -19,12 +21,17 @@ Resource.findById = function(resource, resourceId, userId){
 }
 
 //finds all resources for a project
-Resource.findByProject = function(resource, projectId, userId){
-	return Resource.authByProject(projectId, userId)
-	.then(function(){
-		return db(resource).select('*').where({project_id: projectId})
-			.then(function(resource){
-				return resource;
+Resource.findByProject = function(tableName, ids){
+	//finds the project in question
+	return db('projects').select('*').where({id: ids.project})
+	.then(function(rows){
+		//checks that project belongs to authed user
+		var project = rows[0]
+		if (project.owner_id !== ids.user) throw 401;
+
+		return db(tableName).select('*').where({project_id: ids.project})
+			.then(function(resources){
+				return resources;
 			})
 			.catch(function(err){
 				throw err;
@@ -35,15 +42,20 @@ Resource.findByProject = function(resource, projectId, userId){
 	})
 }
 
+
 //creates a new resource entry
-Resource.create = function(resource, attrs, userId){
-	return Resource.authByProject(resource, attrs.project_id, userId)
-	.then(function(){
-		return db(resource).insert(attrs).returning('id')
+Resource.create = function(tableName, ids, attrs){
+	//finds the project from the project_id attributes
+	return db('projects').select('*').where({id: attrs.project_id})
+	.then(function(rows){
+		//checks that the project is owned by authed usr
+		var project = rows[0];
+		if (project.owner_id !== ids.user) throw 401;
+
+		//creates new project
+		return db(tableName).insert(attrs).returning('*')
 			.then(function(rows){
-				var newResource = attrs;
-				newResource.id = rows[0];
-				return newResource; 
+				return rows[0]; 
 			})
 			.catch(function(err){
 				throw err;
@@ -55,15 +67,18 @@ Resource.create = function(resource, attrs, userId){
 }
 
 //updates a resource entry 
-Resource.update = function(resource, attrs, resourceId, userId){
+Resource.update = function(tableName, ids, attrs){
 	//checks that the resource belongs to the authed user
 	return db.table('projects')
-	.innerJoin(resource, 'projects.id', '=', resource+'.project_id')
-	.where('projects.owner_id', '=', userId)
-	.andWhere(resource + '.id', '=', resourceId)
-	.then(function(){
+	.innerJoin(tableName, 'projects.id', '=', tableName+'.project_id')
+	.where('projects.owner_id', '=', ids.user)
+	.andWhere(tableName + '.id', '=', ids.resource)
+	.then(function(rows){
+		//could not find resource belonging to authed user
+		if (!rows[0]) throw 404;
+
 		//updates information
-		return db(resource).where('id', '=', resourceId)
+		return db(tableName).where('id', '=', ids.resource)
 		.update(attrs).returning('*')
 		.then(function(rows){
 			return rows[0];
@@ -74,15 +89,6 @@ Resource.update = function(resource, attrs, resourceId, userId){
 	})
 	.catch(function(err){
 		throw err;
-	})
-}
-
-//checks that a project id matches a user id
-Resource.authByProject = function(resource, projectId, userId){
-	return db('projects').select('*').where({id: projectId})
-	.then(function(rows){
-		var project = rows[0];
-		if (project.owner_id !== userId) throw 401;
 	})
 }
 
