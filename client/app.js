@@ -75,7 +75,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('main.project_edit.lyrics', {
       url: '/{id:int}/edit/lyrics',
       templateUrl: 'views/lyricsView.html',
-      controller: 'LyricCtrl'
+      controller: ''
     })
 
     .state('main.project_edit.notes', {

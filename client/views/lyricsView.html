@@ -1,17 +1,52 @@
 <container>
   <section>
-    <h5>Create New Thingy</h5>
-    <p>lyrics</p>
+    <h5>Create New Lyric Sheet</h5>
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Create New Lyric</a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Lyric Name</h4>
+        <input type="text">
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+      </div>
+    </div>
   </section>
 
   <section>
-    <h5>Pertinent Stuff</h5>
-    <p>lyrics</p>
-  </section>
-
-  <section>
-    <h5>Listing</h5>
-    <p>lyrics</p>
+    <h5>Your Lyrics for This Project</h5>
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+        <div class="collapsible-body">
+          <p>sdfjsdkfjsdlkfjsdklfjslfjskf</p>
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Create Revision</a>
+          <div id="modal2" class="modal">
+            <div class="modal-content">
+              <h4>Lyric Name</h4>
+              <input type="text">
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+            </div>
+          </div>
+          <a class="waves-effect waves-light btn modal-trigger" href="#">Edit</a>
+          <a class="waves-effect waves-light btn modal-trigger" href="#">Delete</a>
+        </div>
+      </li>
+    </ul>
   </section>
 
 </container>
+
+<script>
+  $(document).ready(function() {
+    $('.modal-trigger').leanModal();
+    $('.collapsible').collapsible({
+          accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        });
+  });
+</script>
