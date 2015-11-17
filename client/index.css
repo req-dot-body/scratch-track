@@ -1,8 +1,21 @@
+.validation-error {
+  height: 20px;
+  color: red;
+  font-size: 12px;
+}
+
+body form .form-group {
+  height: 20px;
+}
+
+body form .form-header {
+  font-weight: bold;
+}
 
 /*PROJECT VIEW*/
 .projects-box {
-    border-radius: 10px;
-    border: 1px solid #37474f;
+  border-radius: 10px;
+  border: 1px solid #37474f;
 }
 
 .projects-title  {
@@ -10,4 +23,5 @@
   color: white;
   text-decoration: italic;
   padding: 2%;
+
 }
