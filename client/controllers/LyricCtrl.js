@@ -13,4 +13,18 @@ app.controller('LyricCtrl', ['$scope', function($scope) {
     }
   };
 
+  $scope.mockLyrics = [ 
+
+   {
+      project_id: 97,
+      text:  'this is lyrics',
+      name: 'draft1'
+    },
+    {
+       project_id: 98,
+       text:  'this is also lyrics',
+       name: 'draft2'
+     }
+  ]; 
+
 }]);
