@@ -3,13 +3,12 @@ require('./MainCtrl');
 require('./ProjectsCtrl');
 require('./UserCtrl');
 require('./LyricCtrl');
-require('./ResourceCtrl');
+// require('./ResourceCtrl');
 require('./RecordingCtrl');
 require('./StablatureCtrl');
 require('./NoteCtrl');
 require('./ProjectEditCtrl');
 require('./PublicCtrl');
-require('./ProjectEntryCtrl');
 require('./LandingCtrl');
 require('./TourCtrl');
 
