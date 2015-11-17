@@ -1,0 +1,13 @@
+.validation-error {
+  height: 20px;
+  color: red;
+  font-size: 12px;
+}
+
+body form .form-group {
+  height: 20px;
+}
+
+body form .form-header {
+  font-weight: bold;
+}
