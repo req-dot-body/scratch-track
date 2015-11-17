@@ -3,7 +3,6 @@ require('./MainCtrl');
 require('./ProjectsCtrl');
 require('./UserCtrl');
 require('./LyricCtrl');
-// require('./ResourceCtrl');
 require('./RecordingCtrl');
 require('./StablatureCtrl');
 require('./NoteCtrl');
