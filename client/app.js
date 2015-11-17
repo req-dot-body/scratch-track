@@ -73,25 +73,25 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     })
 
     .state('main.project_edit.lyrics', {
-      url: '/{id:int}/edit/lyrics',
+      url: '/lyrics',
       templateUrl: 'views/lyricsView.html',
       controller: 'LyricCtrl'
     })
 
     .state('main.project_edit.notes', {
-      url: '/{id:int}/edit/notes',
+      url: '/notes',
       templateUrl: 'views/notesView.html',
       controller: 'NoteCtrl'
     })
 
     .state('main.project_edit.recordings', {
-      url: '/{id:int}/edit/recordings',
+      url: '/recordings',
       templateUrl: 'views/recordingsView.html',
       controller: 'RecordingCtrl'
     })
 
     .state('main.project_edit.stablature', {
-      url: '/{id:int}/edit/stablature',
+      url: '/stablature',
       templateUrl: 'views/stablatureView.html',
       controller: 'StablatureCtrl'
     })

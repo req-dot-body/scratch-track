@@ -1,6 +1,19 @@
-<h3>Projects</h3>
+<div>
+  <div class = 'row'>
+    <div class = 'col s6'>
+      <h3>Projects</h3>
+    </div>
+    <div class='col s1 offset-s5'>
+      
+      <div class = 'btn-action-btn add-project'>
+        <a ng-click='createProject()'class="btn-floating btn-medium blue-grey">
+          <i class="large material-icons">add</i>
+        </a>
+      </div>
+    </div>
+  </div>
   <ul class="collection projects-box" ng-repeat = 'project in products' class = 'projects'>
-      <div class="blue-grey darken-2">
+     <div class="blue-grey darken-2">
         <a ui-sref = "main.project_edit({id:project.id})" class="projects-title">
           {{project.name}}
         </a>
@@ -11,18 +24,7 @@
         Created At: {{project.created_at}}<br>
         Updated At: {{project.updated_at}}  
         </p>
-        <a ui-sref = "main.project_edit({id:project.id})" class="secondary-content"><i class="small material-icons blue-grey-text darken-2-text">input</i></a>
+        <a ui-sref = "main.project_edit({id:project.id})" class="secondary-content"><i class="small material-icons blue-grey-text darken-3-text">input</i></a>
       </li>
   </ul>
-
-   <section>
-    <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
-      <a ng-click='createProject()'class="btn-floating btn-large blue-grey darken-2">
-        <i class="large material-icons">add</i>
-      </a>
-      <ul>
-        <li class="black-text"><span>Add Project</span></li>
-      </ul>
-    </div>
-  </section>
 <div>
