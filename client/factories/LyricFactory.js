@@ -1,3 +1,3 @@
-app.factory('Lyric', ['$http', function($http) {
+// app.factory('Lyric', ['$http', function($http) {
   
-}]);
+// }]);
