@@ -9,7 +9,27 @@
           <div ng-message="required">This field is required</div>
           <div ng-message="minlength">Not a valid e-mail</div>
         </div>
-      </label>     
+      </label>
+
+      <div class="form-header">Name:</div>
+      <input type="text" required ng-model="first" name="usernameField" class="input-field"/><br>
+ <!--      <label class="validation-error"> 
+        <div ng-messages="signupForm.emailField.$error" ng-if="signupForm.emailField.$touched">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="minlength">Not a valid e-mail</div>
+        </div>
+      </label> -->
+
+      <div class="form-header">Last Name:</div>
+      <input type="text" required ng-model="last" name="userLasnameField" class="input-field"/><br>
+ <!--      <label class="validation-error"> 
+        <div ng-messages="signupForm.emailField.$error" ng-if="signupForm.emailField.$touched">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="minlength">Not a valid e-mail</div>
+        </div>
+      </label> -->
+
+
 
       <div class="form-header">Password:</div>
       <input type="password" id="password" name="password" ng-model="password" ng-required="" ng-minlength="6" ng-maxlength="12" />
