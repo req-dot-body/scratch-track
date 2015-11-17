@@ -23,7 +23,7 @@ passport.deserializeUser(function (user, done) {
 
 passport.use('local-signup', new LocalStrategy(
   // We want to pass req.body so that we can get the additional fields at sign up, such as first name, last name
-  { usernameField: 'username', passwordField: 'password', passReqToCallback: true },
+  { usernameField: 'email', passwordField: 'password', passReqToCallback: true },
   function (req, username, password, done) {
     var firstName = req.body.first; // TODO : figure out the actual key name
     var lastName = req.body.last; // TODO : figure out the actual key name
