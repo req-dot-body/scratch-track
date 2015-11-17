@@ -1,4 +1,4 @@
-app.controller('ProjectsCtrl', ['$scope','$state','Projects', function($scope,$state,Projects) {
+app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$state,Project) {
 
 //Data Structure of Projets to display
   this.mockProjects = [ 
@@ -22,7 +22,7 @@ app.controller('ProjectsCtrl', ['$scope','$state','Projects', function($scope,$s
 //Get projects from Projects factory
   this.getProjects = function () {
     console.log('getting all projects')
-    Projects.getAllProjects()
+    Project.getAllProjects()
     .then(function(data){
       console.log('Projects Data:', data)
       this.products = data;
@@ -34,7 +34,7 @@ app.controller('ProjectsCtrl', ['$scope','$state','Projects', function($scope,$s
 //Create a project from user factory, then displaying project view  
   this.createProject = function () {
     console.log('creating project')
-    Projects.createProject()
+    Project.createProject()
     .then(function(data){
       console.log('project created')
       console.log(data);
