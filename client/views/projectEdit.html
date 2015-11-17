@@ -4,26 +4,25 @@
     <a href="#!" class="brand-logo">Project Name Here</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="/recordings">Recordings</a></li>
-      <li><a href="/lyrics">Lyrics</a></li>
-      <li><a href='/stablature'>Stablature</a></li>
-      <li><a href='/notes'>Notes</a></li>
-      <li><a href="/projects">Exit This Project</a></li>
+      <li><a ui-sref=".recordings">Recordings</a></li>
+      <li><a ui-sref=".lyrics">Lyrics</a></li>
+      <li><a ui-sref=".stablature">Stablature</a></li>
+      <li><a ui-sref=".notes">Notes</a></li>
+      <li><a ui-sref="main.projects">Exit This Project</a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
-      <li><a href="/recordings">Recordings</a></li>
-      <li><a href="/lyrics">Lyrics</a></li>
-      <li><a href='/stablature'>Stablature</a></li>
-      <li><a href='/notes'>Notes</a></li>
-      <li><a href="/projects">Exit This Project</a></li>
+      <li><a ui-sref="/recordings">Recordings</a></li>
+      <li><a ui-sref=".lyrics">Lyrics</a></li>
+      <li><a ui-sref=".stablature">Stablature</a></li>
+      <li><a ui-sref=".notes">Notes</a></li>
+      <li><a ui-sref="main.projects">Exit This Project</a></li>
     </ul>
   </div>
 </nav>
 
 
 <!-- Resources -->
-<section>
-  <resources></resources>
+<section ui-view>
 </section>
 
 
