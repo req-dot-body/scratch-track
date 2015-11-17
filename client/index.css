@@ -11,3 +11,17 @@ body form .form-group {
 body form .form-header {
   font-weight: bold;
 }
+
+/*PROJECT VIEW*/
+.projects-box {
+  border-radius: 10px;
+  border: 1px solid #37474f;
+}
+
+.projects-title  {
+  font-size: 1.3em;
+  color: white;
+  text-decoration: italic;
+  padding: 2%;
+
+}

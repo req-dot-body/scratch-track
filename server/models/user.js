@@ -9,34 +9,26 @@ User.all = function () {
   return db('users').select('*');
 };
 
-// finds a user by username and then calls the callback
-User.findByEmail = function(username, cb) {
-  cb = cb || function() {};
-  return db('users').select('*').where({email: username}).limit(1)
-    .then(function(rows) {
-      if (!rows.length) {
-        //return cb(true, null);
-      } 
-      // if (!cb) return rows[0];
-      return cb(null, rows[0]);
-    })
-    .catch(function(err) {
-      // throw err;
-      return cb(err, null);
-    });
+// finds a user by email
+User.findByEmail = function(email) {
+  return User.findUser({ email: email });
 };
 
 // finds a user by id
 User.findById = function (id) {
-  return db('users').select('*').where({id: id}).limit(1)
+  return User.findUser({ id: id });
+};
+
+User.findUser = function (userAttrs) {
+  return db('users').select('*').where(userAttrs).limit(1)
   .then(function (rows) {
     if (!rows.length) {
-      return;
+      return null;
     }
     return rows[0];
   })
   .catch(function (err) {
-    throw err;
+    console.log('Error trying to get user from database:', err);
   });
 };
 

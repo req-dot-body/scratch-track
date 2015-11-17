@@ -1,10 +1,28 @@
-<div>
-  <h1>THIS ARE MOCK PROJECTS</h1>
-  <ul ng-repeat = 'project in projects.products' class = 'projects'>
-    <li> <a ui-sref = "main.project_edit({id:project.id})">Name: {{project.name}}</a></li>
-    <li>Project ID: {{project.id}}</li>
-    <li>Description: {{project.description}}</li>
-    <li>Created At: {{project.created_at}}</li>
-    <li>Updated At: {{project.updated_at}}</li>
+<h3>Projects</h3>
+  <ul class="collection projects-box" ng-repeat = 'project in projects.products' class = 'projects'>
+      <div class="blue-grey darken-2">
+        <a ui-sref = "main.project_edit({id:project.id})" class="projects-title">
+          {{project.name}}
+        </a>
+      </div>
+      <li class="collection-item avatar">
+        <i class="material-icons circle black">queue_music</i>
+        Description: {{project.description}}<br>
+        Created At: {{project.created_at}}<br>
+        Updated At: {{project.updated_at}}  
+        </p>
+        <a ui-sref = "main.project_edit({id:project.id})" class="secondary-content"><i class="small material-icons">input</i></a>
+      </li>
   </ul>
-</div>
+
+   <section>
+    <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
+      <a ui-sref='main.project_entry' class="btn-floating btn-large blue-grey darken-2">
+        <i class="large material-icons">add</i>
+      </a>
+      <ul>
+        <li class="black-text"><span>Add Project</span></li>
+      </ul>
+    </div>
+  </section>
+<div>

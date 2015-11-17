@@ -14,21 +14,17 @@ router.get('/', function (req, res) {
 
 // Creates new user
 router.post('/signup', function (req, res, next) {
-  // TODO : create a new user and sign them in
   passport.authenticate('local-signup', function (err, user, info) {
     if (err) {
-      // TODO : Authenticate user and create a session
-      res.status(200).json({ signedUp: false, error: err, info: info });
+      res.status(401).json({ signedUp: false, error: err, info: info });
       return;
     }
     if (!user) {
-      // TODO : Authenticate user and create a session
-      res.status(200).json({ signedUp: false, info: info });
+      res.status(401).json({ signedUp: false, info: info });
       return;
     }
     res.status(200).json({ signedUp: true });
   })(req, res, next);
-  // res.json({'success':true,'body':req.body});
 });
 
 // Authenticates a user
@@ -36,19 +32,16 @@ router.post('/signin', function (req, res, next) {
   console.log('Signin');
   passport.authenticate('local-login', function (err, user, info) {
     if (err) {
-      // TODO : change status code to something meaningful
-      res.status(200).json({ loggedIn: false, error: true, info: info });
+      res.status(401).json({ loggedIn: false, error: true, info: info });
       return;
     }
     if (!user) {
-      // TODO : change status code to something meaningful
-      res.status(200).json({ loggedIn: false, error: true, info: info });
+      res.status(401).json({ loggedIn: false, error: true, info: info });
       return;
     }
     req.logIn(user, function (err) {
       if (err) {
-        // TODO : change status code to something meaningful
-        return res.status(200).json({ loggedIn: false, error: true, info: info });
+        return res.status(401).json({ loggedIn: false, error: true, info: info });
       }
       res.cookie('isLoggedIn', true);
       res.json({ loggedIn: true });
@@ -58,7 +51,9 @@ router.post('/signin', function (req, res, next) {
 
 // Signs a user out, have it as a post so that people cant be tricked into going to the link
 router.post('/signout', function (req, res) {
-  res.json({'success':true});
+  req.logout();
+  res.clearCookie('isLoggedIn');
+  res.status(200).json({'success':true});
 });
 
 // Get user info by id

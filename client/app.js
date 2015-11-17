@@ -22,8 +22,27 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     })
 
     .state('public', {
+      templateUrl: 'views/public.html',
+      controller: 'PublicCtrl'
+    })
+
+    .state('public.landing', {
       templateUrl: 'views/landing.html',
       controller: 'LandingCtrl'
+    })
+  
+    .state('public.signup', {  
+      url: '/signup',
+      templateUrl: 'views/signupForm.html',
+      controller: 'UserCtrl',
+      controllerAs: 'user'
+    })
+
+    .state('public.signin', {
+      url: '/signin',
+      templateUrl: 'views/signinForm.html',
+      controller: 'UserCtrl',
+      controllerAs: 'user'
     })
 
     .state('main', {
@@ -46,6 +65,30 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'ProjectEditCtrl' 
     })
 
+    .state('main.project_edit.lyrics', {
+      url: '/{id:int}/edit/lyrics',
+      templateUrl: 'views/lyricsView.html',
+      controller: 'LyricCtrl'
+    })
+
+    .state('main.project_edit.notes', {
+      url: '/{id:int}/edit/notes',
+      templateUrl: 'views/notesView.html',
+      controller: 'NoteCtrl'
+    })
+
+    .state('main.project_edit.recordings', {
+      url: '/{id:int}/edit/recordings',
+      templateUrl: 'views/recordingsView.html',
+      controller: 'RecordingCtrl'
+    })
+
+    .state('main.project_edit.stablature', {
+      url: '/{id:int}/edit/stablature',
+      templateUrl: 'views/stablatureView.html',
+      controller: 'StablatureCtrl'
+    })
+
     .state('main.project_entry', {
       url:'/entry',
       templateUrl: 'views/projectEntry.html',
@@ -59,20 +102,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controllerAs: 'user'
     })
 
-    .state('public.signup', {
-      url: '/signup',
-      templateUrl: 'views/signupForm.html',
-      controller: 'UserCtrl',
-      controllerAs: 'user'
-    })
-
-    .state('public.signin', {
-      url: '/signin',
-      templateUrl: 'views/signinForm.html',
-      controller: 'UserCtrl',
-      controllerAs: 'user'
-
-    })
 
     .state('edit', {
       url: '/edit',
