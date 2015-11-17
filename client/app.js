@@ -17,16 +17,19 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('home', {
       url: '/',
+      authenticate: false,
       templateUrl: 'views/landing.html',
-      controller: 'HomeCtrl'      
+      controller: 'HomeCtrl'
     })
 
     .state('public', {
+      authenticate: false,
       templateUrl: 'views/public.html',
       controller: 'PublicCtrl'
     })
 
     .state('public.landing', {
+      authenticate: false,
       templateUrl: 'views/landing.html',
       controller: 'LandingCtrl'
     })
@@ -47,13 +50,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     .state('main', {
       url: '/main',
+      authenticate: true,
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
 
-  
      .state('main.projects', {
       url:'/projects',
+      authenticate: true,
       templateUrl: 'views/projects.html',
       controller: 'ProjectsCtrl',
       controllerAs:'projects' 
@@ -61,6 +65,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     .state('main.project_edit', {
       url:'/{id:int}/edit',
+      authenticate: true,
       templateUrl: 'views/projectEdit.html',
       controller: 'ProjectEditCtrl' 
     })
@@ -91,20 +96,38 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     .state('main.project_entry', {
       url:'/entry',
+      authenticate: true,
       templateUrl: 'views/projectEntry.html',
       controller: 'ProjectEntryCtrl' 
     })
 
     .state('logout', {
       url: '',
+      authenticate: true,
       templateUrl: 'views/landing.html',
       controller: 'UserCtrl',
       controllerAs: 'user'
     })
 
+    .state('public.signup', {
+      url: '/signup',
+      authenticate: false,
+      templateUrl: 'views/signupForm.html',
+      controller: 'UserCtrl',
+      controllerAs: 'user'
+    })
+
+    .state('public.signin', {
+      url: '/signin',
+      authenticate: false,
+      templateUrl: 'views/signinForm.html',
+      controller: 'UserCtrl',
+      controllerAs: 'user'
+    })
 
     .state('edit', {
       url: '/edit',
+      authenticate: true,
       templateUrl: 'views/projectEdit.html',
       controller: 'ProjectEditCtrl'
     })
@@ -113,6 +136,16 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/test',
       templateUrl: 'views/testView.html',
     })
+})
+.run(function ($timeout, $rootScope, $location, $state, Auth) {
+  $rootScope.$on('$stateChangeStart', function (evt, next, current) {
+    if (next.authenticate && Auth.isLoggedIn() === false) {
+      // Stop state from trying to change to the next one
+      // Instead send it to the home state
+      evt.preventDefault();
+      $state.go('home');
+    }
+  });
 });
 
 require('./factories');
