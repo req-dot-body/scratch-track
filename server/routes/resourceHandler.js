@@ -5,7 +5,7 @@ var Resource = require('../models/resource.js');
 
 //creates a new resource
 exports.post = function(req, res, tableName){
-	var ids = {user: req.session.passport.id};
+	var ids = {user: req.session.passport.user.id};
 	var projectInfo = req.body;
 	projectInfo.created_at = Math.round(Date.now()/1000);
 
@@ -22,7 +22,7 @@ exports.post = function(req, res, tableName){
 //retrieves a resource by id 
 exports.get = function(req, res, tableName){
 	var ids = {
-		user: req.session.passport.id,
+		user: req.session.passport.user.id,
 		resource: req.params.resourceId
 	};
 
@@ -39,7 +39,7 @@ exports.get = function(req, res, tableName){
 //updates a resource by id
 exports.put = function(req, res, tableName){
 	var ids = {
-		user: req.session.passport.id,
+		user: req.session.passport.user.id,
 		resource: req.params.resourceId
 	};
 
@@ -56,7 +56,7 @@ exports.put = function(req, res, tableName){
 //deletes a resource by id
 exports.delete = function(req, res, tableName){
 	var ids = {
-		user: req.session.passport.id,
+		user: req.session.passport.user.id,
 		resource: req.params.resourceId
 	};
 
@@ -73,7 +73,7 @@ exports.delete = function(req, res, tableName){
 exports.getByProject = function(req, res, tableName){
 	var ids = {
 		project: req.params.projectId,
-		user: req.session.passport.id
+		user: req.session.passport.user.id
 	}
 	Resource.findByProject(tableName, ids)
 	.then(function(resources){

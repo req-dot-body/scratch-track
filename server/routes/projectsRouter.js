@@ -8,7 +8,7 @@ var resourceHandler = require('./resourceHandler.js');
 router.get('/', function (req, res) {
     //this needs to change once public projects and
     //collabs become a thing 
-    Project.findByUser(req.session.passport.id)
+    Project.findByUser(req.session.passport.user.id)
     .then(function(projects){
       //sends all projects
       res.status(200).send({projects: projects});
@@ -23,7 +23,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
   var now = Math.round(Date.now()/1000);
   var projectInfo = {
-    owner_id: req.session.passport.id,
+    owner_id: req.session.passport.user.id,
     created_at: now,
     updated_at: now
   };
@@ -43,7 +43,7 @@ router.post('/', function (req, res) {
 router.get('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
   //grab the project from db
-  Project.findById(projectId, req.session.passport.id)
+  Project.findById(projectId, req.session.passport.user.id)
   .then(function(project){
     res.status(200).send(project);
   })
@@ -58,7 +58,7 @@ router.get('/:projectId', function (req, res) {
 router.put('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
   //checks that project is authorized by user
-  Project.findById(projectId, req.session.passport.id)
+  Project.findById(projectId, req.session.passport.user.id)
   .then(function(){
     req.body.updated_at = Math.round(Date.now()/1000);
 
@@ -82,7 +82,7 @@ router.put('/:projectId', function (req, res) {
 router.delete('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
   //checks that project is authorized by user
-  Project.findById(projectId, req.session.passport.id)
+  Project.findById(projectId, req.session.passport.user.id)
   .then(function(){
     Project.del(projectId)
     .then(function(){

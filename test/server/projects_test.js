@@ -5,7 +5,7 @@ var app = helpers.app;
 
 describe('The User', function() {
 
-  var session = {passport: {}};
+  var session = {passport: {user: {}}};
 
   before(function() {
       // mocks a logged in user
@@ -29,7 +29,7 @@ describe('The User', function() {
         .then(function(){
           return helpers.authedUser(0)
           .then(function(id){
-            session.passport.id = id;
+            session.passport.user.id = id;
           })
         })
   })
@@ -45,7 +45,7 @@ describe('The User', function() {
   })
 
   it('can get all projects', function(){
-    return helpers.createProject(session.passport.id)
+    return helpers.createProject(session.passport.user.id)
     .then(function(){
       return request(app)
       .get('/projects')
@@ -59,7 +59,7 @@ describe('The User', function() {
   })
 
   it('can get a particular project', function(){
-    return helpers.createProject(session.passport.id)
+    return helpers.createProject(session.passport.user.id)
     .then(function(project){
       var id = project.id;
       return request(app)
@@ -72,7 +72,7 @@ describe('The User', function() {
   })
 
   it('can edit a particular project', function(){
-    return helpers.createProject(session.passport.id)
+    return helpers.createProject(session.passport.user.id)
     .then(function(project){
       var id = project.id;
       return request(app)
@@ -86,7 +86,7 @@ describe('The User', function() {
   })
 
   it('can delete a particular project', function(){
-    return helpers.createProject(session.passport.id)
+    return helpers.createProject(session.passport.user.id)
     .then(function(project){
       var id = project.id;
       return request(app)
@@ -103,12 +103,12 @@ describe('The User', function() {
   it('can retrieve lyrics for a particular project', function(){
     var projectId;
 
-    return helpers.addResource('lyrics', session.passport.id)
+    return helpers.addResource('lyrics', session.passport.user.id)
     .then(function(lyrics){
       projectId = lyrics.project_id;
     })
     .then(function(){
-      return helpers.addResource('lyrics', session.passport.id, projectId)
+      return helpers.addResource('lyrics', session.passport.user.id, projectId)
      })
     .then(function(){
       return request(app)
@@ -123,12 +123,12 @@ describe('The User', function() {
   it('can retrieve stabs for a particular project', function(){
     var projectId;
 
-    return helpers.addResource('stablature', session.passport.id)
+    return helpers.addResource('stablature', session.passport.user.id)
     .then(function(stablature){
       projectId = stablature.project_id;
     })
     .then(function(){
-      return helpers.addResource('stablature', session.passport.id, projectId)
+      return helpers.addResource('stablature', session.passport.user.id, projectId)
      })
     .then(function(){
       return request(app)
@@ -143,12 +143,12 @@ describe('The User', function() {
   it('can retrieve recordings for a particular project', function(){
     var projectId;
 
-    return helpers.addResource('recordings', session.passport.id)
+    return helpers.addResource('recordings', session.passport.user.id)
     .then(function(recordings){
       projectId = recordings.project_id;
     })
     .then(function(){
-      return helpers.addResource('recordings', session.passport.id, projectId)
+      return helpers.addResource('recordings', session.passport.user.id, projectId)
      })
     .then(function(){
       return request(app)
@@ -163,12 +163,12 @@ describe('The User', function() {
   it('can retrieve notes for a particular project', function(){
     var projectId;
 
-    return helpers.addResource('notes', session.passport.id)
+    return helpers.addResource('notes', session.passport.user.id)
     .then(function(notes){
       projectId = notes.project_id;
     })
     .then(function(){
-      return helpers.addResource('notes', session.passport.id, projectId)
+      return helpers.addResource('notes', session.passport.user.id, projectId)
      })
     .then(function(){
       return request(app)
