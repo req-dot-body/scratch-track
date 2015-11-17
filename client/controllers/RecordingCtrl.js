@@ -7,6 +7,9 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
      });
   });
 
+
+	console.log('param', $state.params)
+
 	$scope.mockData = [
 	  {
 	  	id: 8,
@@ -32,9 +35,11 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
 	  }
 	]
 
+	$scope.recordings = [] || $scope.getAll();
+
 	$scope.getAll = function(){
-		//$state.params should get me my id
-		//something from Project factory
+		var projectId = $state.params.id;
+		return Project.getProjectRecordings(projectId);
 	}
 
 	$scope.add = function(){
