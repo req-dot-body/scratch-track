@@ -20,10 +20,18 @@ app.controller('ProjectsCtrl', ['$scope','$state', function($scope,$state) {
   this.products = this.mockProjects;
 
   this.getProjects = function () {
+    console.log('getting all projects')
+
     //Ajax Call to get all the Projects
     //.then we get the response and set this.products
       // this.products = res.body;
   };
+
+  this.createProject = function () {
+    console.log('creating project')
+    //Ajax Call to post a project with no data at all
+    //.then we get the response(send to state project.edit with project id)
+  }
 
 
 
