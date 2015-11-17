@@ -1,7 +1,7 @@
 app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$state,Project) {
 
 //Data Structure of Projets to display
-  this.mockProjects = [ 
+  $scope.mockProjects = [ 
     { owner_id: 1, 
       id: 1,
       created_at: '13-NOV-2015',
@@ -18,28 +18,26 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
     } 
   ]; 
 
-  this.products = this.mockProjects;
+  $scope.products = $scope.mockProjects;
 //Get projects from Projects factory
-  this.getProjects = function () {
+  $scope.getProjects = function () {
     console.log('getting all projects')
     Project.getAllProjects()
     .then(function(data){
       console.log('Projects Data:', data)
-      this.products = data;
+      $scope.products = data;
     }).catch(function(error){
         //case of server error getting projects 
     })
   };
 
 //Create a project from user factory, then displaying project view  
-  this.createProject = function () {
-    console.log('creating project')
+  $scope.createProject = function () {
     Project.createProject()
-    .then(function(data){
-      console.log('project created')
-      console.log(data);
-      //get user id
-      //go to main.project_edit state with id 
+    .then(function(response){
+      console.log('project created response: ',response);
+      var id = response.data.id;
+      $state.go('main.project_edit', { id: id });
     }).catch(function(error){
       //display a message error 
       //stay on same state
@@ -48,6 +46,6 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
   }
 
 // Get projects on controller loading....
-  this.getProjects();
+  $scope.getProjects();
 
 }]);

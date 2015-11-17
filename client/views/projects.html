@@ -1,5 +1,5 @@
 <h3>Projects</h3>
-  <ul class="collection projects-box" ng-repeat = 'project in projects.products' class = 'projects'>
+  <ul class="collection projects-box" ng-repeat = 'project in products' class = 'projects'>
       <div class="blue-grey darken-2">
         <a ui-sref = "main.project_edit({id:project.id})" class="projects-title">
           {{project.name}}
@@ -17,7 +17,7 @@
 
    <section>
     <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
-      <a ng-click='projects.createProject()'class="btn-floating btn-large blue-grey darken-2">
+      <a ng-click='createProject()'class="btn-floating btn-large blue-grey darken-2">
         <i class="large material-icons">add</i>
       </a>
       <ul>
