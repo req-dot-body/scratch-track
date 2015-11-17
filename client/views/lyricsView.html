@@ -1,7 +1,5 @@
 <container id="lyrics-container">
 
-<div ng-repeat="lyricsheet in mockLyrics">{{ lyricsheet }}</div>
-
   <!-- Create New Lyric Sheet -->
   <section>
 
@@ -41,7 +39,7 @@
 
           <!-- Editable Lyric Area -->
           <textarea id="lyrictext" class="materialize-textarea" readonly="readonly">
-            Lalalala These are lyriiiiiiiiics!
+            {{ lyricsheet.text }}
           </textarea>
 
           <!-- Revision Button -->
