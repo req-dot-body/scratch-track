@@ -22,8 +22,27 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     })
 
     .state('public', {
+      templateUrl: 'views/public.html',
+      controller: 'PublicCtrl'
+    })
+
+    .state('public.landing', {
       templateUrl: 'views/landing.html',
       controller: 'LandingCtrl'
+    })
+  
+    .state('public.signup', {  
+      url: '/signup',
+      templateUrl: 'views/signupForm.html',
+      controller: 'UserCtrl',
+      controllerAs: 'user'
+    })
+
+    .state('public.signin', {
+      url: '/signin',
+      templateUrl: 'views/signinForm.html',
+      controller: 'UserCtrl',
+      controllerAs: 'user'
     })
 
     .state('main', {
@@ -59,20 +78,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controllerAs: 'user'
     })
 
-    .state('public.signup', {  
-      url: '/signup',
-      templateUrl: 'views/signupForm.html',
-      controller: 'UserCtrl',
-      controllerAs: 'user'
-    })
-
-    .state('public.signin', {
-      url: '/signin',
-      templateUrl: 'views/signinForm.html',
-      controller: 'UserCtrl',
-      controllerAs: 'user'
-
-    })
 
     .state('edit', {
       url: '/edit',
