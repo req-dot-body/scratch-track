@@ -1,4 +1,4 @@
-app.controller('UserCtrl', ['$scope', function($scope) {
+app.controller('UserCtrl', ['$scope','User', function($scope,User) {
   $scope.email = '',
   $scope.password = '',
   $scope.first ='',
@@ -6,13 +6,13 @@ app.controller('UserCtrl', ['$scope', function($scope) {
 
   $scope.signinUser = function () {
     //logic goes here
-    var User = {};
-    User.email = $scope.email;
-    User.password = $scope.password;
-    return User;
-
+    var userData = {};
+    userData.email = $scope.email;
+    userData.password = $scope.password;
     //send JSON object to server via factory call
+    User.logIn(userData);
   }
+  
   $scope.signupUser = function () {
     //logic goes here
     var newUser = {};
@@ -20,8 +20,7 @@ app.controller('UserCtrl', ['$scope', function($scope) {
     newUser.password = $scope.password;
     newUser.first = $scope.first;
     newUser.last = $scope.first
-    return newUser;
-
     //send JSON object to server via factory call
+    User.signUp(newUser);
   }
 }]);
