@@ -43,6 +43,10 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     return Project.getProjectRecordings(projectId);
   }
 
+  $scope.getOne = function(id){
+    Lyric.select(id);
+  }
+
   $scope.lyrics = [] || $scope.getAll();
 
 

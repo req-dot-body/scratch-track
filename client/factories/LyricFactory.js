@@ -4,7 +4,7 @@ app.factory('Lyric', ['$http', function($http) {
   }
 
   var select = function(id) {
-    return $http.get('api/lyrics');
+    return $http.get('api/lyrics'+ id);
   }
 
   var edit = function(id) {
