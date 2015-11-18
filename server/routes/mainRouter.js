@@ -50,9 +50,14 @@ apiRouter.use('/lyrics', lyricsRouter);
 apiRouter.use('/stablatures', stablaturesRouter);
 apiRouter.use('/notes', notesRouter);
 
+browserify.settings({ insertGlobals: true, detectGlobals: true });
 // Serve application js files
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
 // Serve Angular and Angular modules
+router.get('/js/vex.js', function (req, res) {
+  res.sendFile(Path.resolve('./node_modules/vextab/releases/vextab-div.js'));
+});
+router.get('/js/jquery.js', browserify(['jquery']));
 router.get('/js/angular.js', browserify(sharedAngular));
 
 // Catch-all router, this must be the last route
