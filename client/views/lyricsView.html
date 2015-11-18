@@ -44,7 +44,7 @@
 
           <!-- Revision Button -->
           <!-- Modal Trigger for Lyric Revision -->
-          <a class="waves-effect waves-light btn modal-trigger" href="#lyric-revision-modal">Create Revision</a>
+          <a class="waves-effect waves-light btn modal-trigger" ng-controller="LyricCtrl" href="#lyric-revision-modal">Create Revision</a>
 
           <!-- Modal Structure for Lyric Revision -->
           <div id="lyric-revision-modal" class="modal">
@@ -53,7 +53,7 @@
               <input type="text">
             </div>
             <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
             </div>
           </div>
 
@@ -63,7 +63,7 @@
 
           <!-- Delete Button -->
           <!-- Modal Trigger for Lyric Delete Confirmation -->
-          <a class="waves-effect waves-light btn modal-trigger" href="#lyric-deletion-modal">Delete</a>
+          <a class="waves-effect waves-light btn modal-trigger" ng-controller="LyricCtrl" href="#lyric-deletion-modal">Delete</a>
 
           <!-- Modal Structure for Lyric Delete Confirmation -->
           <div id="lyric-deletion-modal" class="modal">

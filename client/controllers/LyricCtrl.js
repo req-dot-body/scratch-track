@@ -1,19 +1,4 @@
-app.controller('LyricCtrl', ['$scope', function($scope) {
-  
-  $scope.mockLyrics = [ 
-
-   {
-      project_id: 97,
-      text:  'this is lyrics',
-      name: 'draft1'
-    },
-    {
-       project_id: 98,
-       text:  'this is also lyrics',
-       name: 'draft2'
-     }
-  ]; 
-
+app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
 
   $scope.toggleEditable = function(id) {
     var el = document.getElementById(id);
@@ -29,11 +14,49 @@ app.controller('LyricCtrl', ['$scope', function($scope) {
   };
 
 
+  $scope.mockLyrics = [ 
+
+   {
+      project_id: 97,
+      text:  'this is lyrics',
+      name: 'draft1'
+    },
+    {
+       project_id: 98,
+       text:  'this is also lyrics',
+       name: 'draft2'
+     }
+  ]; 
+
+  $scope.lyrics = [] || $scope.getAll();
+
+
+  $scope.getAll = function(){
+    var projectId = $state.params.id;
+    return Project.getProjectLyrics(projectId);
+  }
+
+
+  $scope.add = function(){
+
+  }
+
+
+  $scope.edit = function(id){
+     
+  }
+
+
+  $scope.delete = function(id) {
+    Lyric.del(id);
+  }
+
   $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $('.collapsible').collapsible({
-          accordion : true
+        accordion : true
     });
   });
+
 
 }]);
