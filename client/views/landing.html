@@ -1,11 +1,8 @@
-   <section class="center-align" style="margin: 0 20%" ng-controller="LandingCtrl as landing">
+  <section class="center-align land-text z-depth-5 anim-fade">
     <h1 class="center-align">ScratchTrack</h1>
-    <p>
-      {{ landing.message }}
-    </p>
-    <a class="btn-large" ui-sref="main">
-      Get Started
-    </a>
+    <p>{{ message }}</p>
+    <a class="btn-large blue-grey" ui-sref="main">Get Started</a>
+    <br><br>
   </section>
 
   <section>
@@ -19,9 +16,6 @@
       </ul>
     </div>
   </section>
-
-  <div ui-view class="anim-in-out"></div>
-
 
 
 

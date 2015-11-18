@@ -1,6 +1,7 @@
-<div class="row">
-  <div class="col s6">
-    <form name="signupForm" class="form-group"novalidate>
+
+<div class="row anim-fade">
+  <div class="col s6 offset-s3 landing-form">
+    <form name="signupForm" class="form-group "novalidate>
 
       <div class="form-header">E-Mail:</div>
       <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field"/>
@@ -46,7 +47,7 @@
       </div>   
     
       <br>
-      <button ng-click="signupUser()" class="waves-effect waves-light btn" ng-disabled='email.length===0 || password.length===0 || signupForm.passwordVerify.$error.pwmatch'>Submit:</button>
+      <button ng-click="signupUser()" class="waves-effect blue-grey btn-large" ng-disabled='email.length===0 || password.length===0 || signupForm.passwordVerify.$error.pwmatch'>Submit</button><br><br>
     </form>
   </div>
 </div>

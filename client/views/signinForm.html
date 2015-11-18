@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col s6">
+<div class="row anim-fade" >
+  <div class="col s6 offset-s3 landing-form">
     <form name="signinForm" novalidate>
       <div class="form-header">E-Mail:</div>
       <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field"/><br>
@@ -20,7 +20,8 @@
         </div>
       </div>     
       <br>
-      <button ng-click="signinUser()" class="waves-effect waves-light btn" ng-disabled='email.length===0 || password.length===0'>Submit:</button>
+      <button ng-click="signinUser()" class="waves-effect blue-grey btn-large" ng-disabled='email.length===0 || password.length===0'>Submit</button><br><br>
     </form>
   </div>
 </div>
+
