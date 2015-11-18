@@ -3,7 +3,7 @@ var helpers = require('./helpers.js');
 var lyricsAPI = require(__server+'/routes/lyricsRouter.js');
 var app = helpers.app;
 
-describe('A project', function() {
+describe('Lyrics', function() {
 
   var session = {passport: {user: {}}};
 
