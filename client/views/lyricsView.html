@@ -5,10 +5,8 @@
 
     <h5>Create New Lyric Sheet</h5>
 
-    {{ lyrics }}
-
     <!-- Modal Trigger for Lyric Creation -->
-    <a class="waves-effect waves-light btn modal-trigger" href="#lyric-creation-modal">Create New Lyric</a>
+    <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-creation-modal">Create New Lyric</a>
 
     <!-- Modal Structure for Lyric Creation -->
     <div id="lyric-creation-modal" class="modal">
@@ -17,7 +15,7 @@
         <input type="text">
       </div>
       <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        <a href="#!" ng-click="removeOverlay()" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
       </div>
     </div>
 
