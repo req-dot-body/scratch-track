@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-  <ul class="collection projects-box anim-slide-rigth" ng-repeat = 'project in products' class = 'projects'>
+  <ul class="collection projects-box anim-slide-right" data-anim-speed="1000" ng-repeat = 'project in products' class = 'projects'>
      <div class="blue-grey darken-2">
         <a ui-sref = "main.project_edit({id:project.id})" class="projects-title">
           {{project.name}}
