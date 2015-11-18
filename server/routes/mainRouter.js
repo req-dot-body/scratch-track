@@ -27,6 +27,7 @@ var sharedAngular = [
   'angular-sanitize',
   'angular-touch',
   'angular-ui-router',
+  'angular-ui-router-anim-in-out',
   './node_modules/angular-materialize/src/angular-materialize',
 ];
 
