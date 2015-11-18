@@ -47,21 +47,26 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       "name": "draft1"
   }
 
-  $scope.id = $state.params.id;
+  // $scope.id = $state.params.id;
   
-  var projectId = $state.params.id;
+  // var projectId = $state.params.id;
+  var projectId = 8;
 
+  
+  $scope.lyrics = [];
 
   $scope.getAll = function(){
-
-    return Project.getProjectLyrics(projectId);
+    Project.getProjectLyrics(projectId).then(function(projects){
+      console.log('projects is:', projects);
+      $scope.lyrics = projects;
+    })
   }
 
+  $scope.getAll();
+  
   $scope.getOne = function(id){
     Lyric.select(id);
   }
-
-  $scope.lyrics = [] || $scope.getAll();
 
 
   $scope.add = function(data){
