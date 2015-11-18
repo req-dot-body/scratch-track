@@ -1,4 +1,10 @@
 app.factory('Lyric', ['$http', function($http) {
+  
+  var testProject = function(){
+    console.log('hitting factory');
+    return $http.post('api/projects');
+  }
+
   var create = function(data) {
     return $http.post('api/lyrics', data);
   }
@@ -20,7 +26,9 @@ app.factory('Lyric', ['$http', function($http) {
     create: create,
     select: select,
     edit: edit,
-    del: del
+    del: del,
+    testProject: testProject
+
   }
   
 }]);

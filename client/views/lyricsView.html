@@ -5,7 +5,11 @@
 
     <h5>Create New Lyric Sheet</h5>
 
-    <div>{{ lyrics }}</div>
+    <div>projectID: {{ id }}</div>
+    <div>lyrics: {{ lyrics }}</div>
+    
+    <a class="btn" ng-click="testProject()">bLAHbity</a>
+    <a class="btn" ng-click="add(mockLyrics2)">bLAH</a>
 
     <!-- Modal Trigger for Lyric Creation -->
     <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-creation-modal">Create New Lyric</a>
