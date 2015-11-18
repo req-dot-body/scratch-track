@@ -1,31 +1,48 @@
 <div>
 
-  <h5>Recording Your Ideas</h5>
-    <div>recording thingy here</div>
-
-  <button onclick="startRecording(this);">record</button>
-  <button onclick="stopRecording(this);" disabled>stop</button>
+  <h5>Record Your Ideas:</h5>
+    <a class="waves-effect waves-light btn modal-trigger" onclick="startRecording(this);">Record</a>
+    <a class="waves-effect waves-light btn modal-trigger" onclick="stopRecording(this);" disabled>Stop</a>
   
-  <h2>Recordings</h2>
-  <ul id="recordingslist"></ul>
-  
-  <h2>Log</h2>
-  <pre id="log"></pre>
+  <p id="log" class="recordingStatus"></p>
 
-  <script>
+  <h5>Recordings for this Project</h5>
+  <ul class="collapsible"  watch>
+    <li id="recordingslist"></li>
+  </ul>
+
+  <!--<ul class="collapsible" data-collapsible="accordion" watch>
+    <li ng-repeat="recording in mockData">
+      <div class="collapsible-header">{{recording.created_at}} - {{recording.name}}</div>
+        <div class="collapsible-body">
+          recording thingy here
+          <div ng-if="recording.description || editing">Description: {{recording.description}}</div>
+          <br>
+          <button ng-hide="editing" class="waves-effect waves-light btn">Edit</button>
+          <button ng-show="editing" class="waves-effect waves-light btn">Save</button>
+          <button class="waves-effect waves-light btn modal-trigger" ng-click="delete(recording.id)">Delete</button>
+        </div>
+    </li>
+  </ul>-->
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+<!-- RECORDER JS INSANTIY FOLLOWS -->
+<script>
   function __log(e, data) {
     log.innerHTML += "\n" + e + " " + (data || '');
   }
 
   function startUserMedia(stream) {
     var input = audio_context.createMediaStreamSource(stream);
-    __log('Media stream created.');
-    
+    //__log('Media stream created.');
     recorder = new Recorder(input);
-    __log('Recorder initialised.');
+    //__log('Recorder initialised.');
   }
 
   function startRecording(button) {
+    log.innerHTML = "";
     recorder && recorder.record();
     button.disabled = true;
     button.nextElementSibling.disabled = false;
@@ -37,11 +54,9 @@
     button.disabled = true;
     button.previousElementSibling.disabled = false;
     __log('Stopped recording.');
-    
     // create WAV download link using audio data blob
     createDownloadLink();
-    
-    //recorder.clear();
+    recorder.clear();
   }
 
   function createDownloadLink() {
@@ -61,36 +76,6 @@
       recordingslist.appendChild(li);
     });
   }
-
-  
   </script>
-
-  
-
-    
-
-      
-    
-    <a class="waves-effect waves-light btn modal-trigger" ng-click="createDownloadLink()">Save</a>
-
-
-  <h5>Recordings for this Project</h5>
-  <ul class="collapsible" data-collapsible="accordion" watch>
-    <li ng-repeat="recording in mockData">
-      <div class="collapsible-header">{{recording.created_at}} - {{recording.name}}</div>
-        <div class="collapsible-body">
-          recording thingy here
-          <div ng-if="recording.description || editing">Description: {{recording.description}}</div>
-          <br>
-          <button ng-hide="editing" class="waves-effect waves-light btn">Edit</button>
-          <button ng-show="editing" class="waves-effect waves-light btn">Save</button>
-          <button class="waves-effect waves-light btn modal-trigger" ng-click="delete(recording.id)">Delete</button>
-        </div>
-    </li>
-  </ul>
-
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
 
 
