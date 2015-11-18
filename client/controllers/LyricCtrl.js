@@ -22,9 +22,9 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     }
   };
 
-  $scope.testProject = function() {
-    console.log('hitting controller');
-    return Lyric.testProject();
+  $scope.testProject = function(data) {
+    console.log('hitting controller:', data);
+    return Lyric.testProject(data);
   };
   
   $scope.mockLyrics = [ 
@@ -47,7 +47,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       "name": "draft1"
   }
 
-  // $scope.id = $state.params.id;
+  $scope.id = $state.params.id;
   
   // var projectId = $state.params.id;
   var projectId = 8;
@@ -57,19 +57,19 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
   $scope.getAll = function(){
     Project.getProjectLyrics(projectId).then(function(projects){
-      console.log('projects is:', projects);
       $scope.lyrics = projects;
     })
   }
 
   $scope.getAll();
-  
+
   $scope.getOne = function(id){
     Lyric.select(id);
   }
 
 
   $scope.add = function(data){
+    console.log('data in ctrl:', data);
     Lyric.create(data);
   }
 

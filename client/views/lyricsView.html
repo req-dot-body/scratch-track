@@ -3,17 +3,16 @@
   <!-- Create New Lyric Sheet -->
   <section>
     
-    <a class="btn" ng-click="getAll()">get lyrics</a>
+<!--     <a class="btn" ng-click="getAll()">get lyrics</a> -->
 
     <div>{{ lyrics }}</div>
 
     <h5>Create New Lyric Sheet</h5>
 
     <div>projectID: {{ id }}</div>
-    <div>lyrics: {{ lyrics }}</div>
     
 <!--     <a class="btn" ng-click="testProject()">bLAHbity</a> -->
-    <a class="btn" ng-click="add(mockLyrics2)">bLAH</a>
+<!--     <a class="btn" ng-click="add(mockLyrics2)">bLAH</a> -->
 
     <!-- Modal Trigger for Lyric Creation -->
     <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-creation-modal">Create New Lyric</a>
@@ -22,10 +21,10 @@
     <div id="lyric-creation-modal" class="modal">
       <div class="modal-content">
         <h4>Lyric Name</h4>
-        <input type="text">
+        <input type="text" ng-model="lyricData">
       </div>
       <div class="modal-footer">
-        <a href="#!" ng-click="removeOverlay()" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        <a href="#!" ng-click="removeOverlay(); testProject(lyricData)" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
       </div>
     </div>
 
@@ -63,7 +62,7 @@
               <input type="text">
             </div>
             <div class="modal-footer">
-              <a href="#!" ng-click="removeOverlay()" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
             </div>
           </div>
 

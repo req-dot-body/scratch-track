@@ -98,10 +98,8 @@ app.factory('Project', ['$http','$state', function($http,$state) {
 
 //get current project recordings
   var getProjectLyrics = function(projectId) {
-    console.log('hitting factory');
     return $http.get('/api/projects/'+projectId+'/lyrics')
     .then(function(response){
-      console.log('resp:', response);
       return response;
     })
     .catch(function(err){
