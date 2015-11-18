@@ -35,7 +35,7 @@
         <div class="collapsible-header">{{ lyricsheet.name }}</div>
         
         <!-- Accordion Element Body -->
-        <div class="collapsible-body">
+        <div class="collapsible-body" ng-controller="LyricCtrl">
 
           <!-- Editable Lyric Area -->
           <textarea id="lyrictext" class="materialize-textarea" readonly="readonly">
@@ -44,7 +44,7 @@
 
           <!-- Revision Button -->
           <!-- Modal Trigger for Lyric Revision -->
-          <a class="waves-effect waves-light btn modal-trigger" ng-controller="LyricCtrl" href="#lyric-revision-modal">Create Revision</a>
+          <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-revision-modal">Create Revision</a>
 
           <!-- Modal Structure for Lyric Revision -->
           <div id="lyric-revision-modal" class="modal">
@@ -53,7 +53,7 @@
               <input type="text">
             </div>
             <div class="modal-footer">
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+              <a href="#!" ng-click="removeOverlay()" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
             </div>
           </div>
 
@@ -63,7 +63,7 @@
 
           <!-- Delete Button -->
           <!-- Modal Trigger for Lyric Delete Confirmation -->
-          <a class="waves-effect waves-light btn modal-trigger" ng-controller="LyricCtrl" href="#lyric-deletion-modal">Delete</a>
+          <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-deletion-modal">Delete</a>
 
           <!-- Modal Structure for Lyric Delete Confirmation -->
           <div id="lyric-deletion-modal" class="modal">
@@ -71,8 +71,8 @@
               <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
             </div>
             <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes, Really Delete</a>
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">No, Go Back To Lyrics</a>
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Yes, Really Delete</a>
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">No, Go Back To Lyrics</a>
             </div>
           </div>
 

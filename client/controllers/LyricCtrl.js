@@ -12,7 +12,16 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       document.getElementById('edit-lyrics-btn').innerHTML="Edit";
     }
   };
-
+ 
+  $scope.removeOverlay = function() {
+    if (document.getElementsByClassName('lean-overlay')) {
+      var overlays = document.getElementsByClassName('lean-overlay');
+      // console.log(overlays);
+      for (var i = 0; i < overlays.length; i++) {
+        overlays[i].remove();
+      }
+    }
+  };
 
   $scope.mockLyrics = [ 
 
