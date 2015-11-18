@@ -2,11 +2,15 @@ var angular = require('angular');
 var ngCookies = require('angular-cookies');
 var ui = require('angular-ui-router');
 var ngMessages = require('angular-messages');
+var ngAnimate = require('angular-animate');
+var ngAnimate_inOut = require('angular-ui-router-anim-in-out');
 
 window.app = angular.module('myApp', [
+  ngAnimate,
   'ngCookies',
   'ui.router',
-  'ngMessages'
+  'ngMessages',
+  ngAnimate_inOut
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
