@@ -1,14 +1,14 @@
 app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
 
-  $scope.toggleEditable = function(id) {
-    var el = document.getElementById(id);
+  $scope.toggleEditable = function() {
+    var textbox = document.getElementById('lyrictext');
 
-    if (el.hasAttribute('readOnly')) {
-      el.removeAttribute('readOnly');
+    if (textbox.hasAttribute('readOnly')) {
+      textbox.removeAttribute('readOnly');
       document.getElementById('edit-lyrics-btn').innerHTML="Save";
     }
     else {
-      el.setAttribute('readOnly', 'readOnly');
+      textbox.setAttribute('readOnly', 'readOnly');
       document.getElementById('edit-lyrics-btn').innerHTML="Edit";
     }
   };
@@ -37,22 +37,23 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
      }
   ]; 
 
-  $scope.lyrics = [] || $scope.getAll();
-
 
   $scope.getAll = function(){
     var projectId = $state.params.id;
-    return Project.getProjectLyrics(projectId);
+    console.log('blah');
+    return Project.getProjectRecordings(projectId);
   }
+
+  $scope.lyrics = [] || $scope.getAll();
 
 
   $scope.add = function(){
-
+    Lyric.add();
   }
 
 
   $scope.edit = function(id){
-     
+     Lyric.edit(id);
   }
 
 
