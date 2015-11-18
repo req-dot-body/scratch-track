@@ -2,7 +2,7 @@ app.factory('Lyric', ['$http', function($http) {
   
   var testProject = function(data){
     console.log('hitting factory:', data);
-    // return $http.post('api/projects');
+    return $http.post('api/lyrics', data);
   }
 
   var create = function(data) {
