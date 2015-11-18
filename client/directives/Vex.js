@@ -1,3 +1,4 @@
+
 app.directive('vextab', function($compile){
     // console.log("rendering vextab");
     // var canvas = document.createElement('canvas');
