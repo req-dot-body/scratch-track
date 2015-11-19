@@ -16,9 +16,6 @@ Resource.findById = function(tableName, ids){
 		if (!resourceInfo) throw 404;
 		return resourceInfo;
 	})
-	.catch(function(err){
-		throw err;
-	})
 }
 
 //finds all resources for a project
@@ -32,15 +29,9 @@ Resource.findByProject = function(tableName, ids){
 		if (project.owner_id !== ids.user) throw 401;
 
 		return db(tableName).select('*').where({project_id: ids.project})
-			.then(function(resources){
-				return resources;
-			})
-			.catch(function(err){
-				throw err;
-			})
-	})
-	.catch(function(err){
-		throw err; 
+		.then(function(resources){
+			return resources;
+		})
 	})
 }
 
@@ -56,15 +47,9 @@ Resource.create = function(tableName, ids, attrs){
 
 		//creates new project
 		return db(tableName).insert(attrs).returning('*')
-			.then(function(rows){
-				return rows[0]; 
-			})
-			.catch(function(err){
-				throw err;
-			})
-	})
-	.catch(function(err){
-		throw err;
+		.then(function(rows){
+			return rows[0]; 
+		})
 	})
 }
 
@@ -85,12 +70,6 @@ Resource.update = function(tableName, ids, attrs){
 		.then(function(rows){
 			return rows[0];
 		})
-		.catch(function(err){
-			throw err;
-		})
-	})
-	.catch(function(err){
-		throw err;
 	})
 }
 
@@ -105,10 +84,33 @@ Resource.delete = function(tableName, ids){
 		//could not find resource belonging to authed user
 		if (!rows[0]) throw 404;
 		//deletes resource entry
-		return db(tableName).where('id', '=', ids.resource).del()
+		return db(tableName).where('id', '=', ids.resource)
+		.del().returning('project_id')
+		.then(function(rows){
+			return rows[0]
+		})
 	})
-	.catch(function(err){
-		throw err;
+}
+
+//deletes all resources for a particular project
+Resource.deleteAll = function(projectId){
+	//finds all resources from a particular table and deletes
+	var del = function(tableName){
+		return db.select('*').from(tableName)
+		.where(tableName + '.project_id', '=', projectId)
+		.del() 
+	}
+
+	//deletes all four 
+	return del('lyrics')
+	.then(function(){
+		return del('stablature');
+	})
+	.then(function(){
+		return del('recordings');
+	})
+	.then(function(){
+		return del('notes');
 	})
 }
 
