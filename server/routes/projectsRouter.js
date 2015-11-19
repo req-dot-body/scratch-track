@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Project = require('../models/project.js'); 
-var resourceHandler = require('./resourceHandler.js');
+var Resource = require('../models/resource.js');
 
 // Get all projects that can be accessed
 router.get('/', function (req, res) {
@@ -104,25 +104,21 @@ router.delete('/:projectId', function (req, res) {
   })
 });
 
+// Get all resource of a type associated with a specific project
+router.get('/:projectId/:resourceType', function (req, res) {
+  var resourceType = req.params.resourceType;
+  var ids = {
+    project: req.params.projectId,
+    user: req.session.passport.user.id
+  }
 
-// Get all lyrics associated with a specific project
-router.get('/:projectId/lyrics', function (req, res) {
-  resourceHandler.getByProject(req, res, 'lyrics');
-});
-
-// Get all recordings associated with a specific project
-router.get('/:projectId/recordings', function (req, res) {
-  resourceHandler.getByProject(req, res, 'recordings');
-});
-
-// Get all stablatures associated with a specific project
-router.get('/:projectId/stablature', function (req, res) {
-  resourceHandler.getByProject(req, res, 'stablature');
-});
-
-// Get all notes associated with a specific project
-router.get('/:projectId/notes', function (req, res) {
-  resourceHandler.getByProject(req, res, 'notes');
+  Resource.findByProject(resourceType, ids)
+  .then(function(resources){
+    res.status(200).send(resources)
+  })
+  .catch(function(err){
+    res.sendStatus(400)
+  })
 });
 
 module.exports = router;
