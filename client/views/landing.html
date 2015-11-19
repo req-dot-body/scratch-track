@@ -3,6 +3,9 @@
     <p>
       {{ landing.message }}
     </p>
+    <div class="vex-tabdiv" ng-bind="code"></div>
+    <textarea id="stabcode" ng-model="userInput" ng-change="updateCode()" class="materialize-textarea" >
+    </textarea>
     <a class="btn-large" ui-sref="main">
       Get Started
     </a>
@@ -19,11 +22,6 @@
       </ul>
     </div>
   </section>
-   <div class="vex-tabdiv">
-      tabstave notation=true tablature=false
-notes C-D-E-F-G-A-B/4 C/5
-    </div>
-<script src="/js/vex.js"></script>
 
 
 
