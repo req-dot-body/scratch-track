@@ -78,9 +78,9 @@ exports.delete = function(req, res, tableName){
 	};
 
 	Resource.delete(tableName, ids)
-	.then(function(){
+	.then(function(projectId){
 		//changes updated_at on project
-		Project.updateResource(updatedResource.project_id)
+		Project.updateResource(projectId)
 		.then(function(){
 			res.sendStatus(200);
 		})

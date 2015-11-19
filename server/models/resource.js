@@ -105,7 +105,14 @@ Resource.delete = function(tableName, ids){
 		//could not find resource belonging to authed user
 		if (!rows[0]) throw 404;
 		//deletes resource entry
-		return db(tableName).where('id', '=', ids.resource).del()
+		return db(tableName).where('id', '=', ids.resource)
+		.del().returning('project_id')
+		.then(function(rows){
+			return rows[0]
+		})
+		.catch(function(err){
+			throw err; 
+		})
 	})
 	.catch(function(err){
 		throw err;
