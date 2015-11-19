@@ -94,7 +94,7 @@ describe('The User', function() {
 
       });
 
-      describe('Projects endpoints', function () {
+      xdescribe('Projects endpoints', function () {
         it('POST /api/projects', function () {
           return request(app)
             .post()
