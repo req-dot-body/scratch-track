@@ -75,8 +75,8 @@ app.factory('Project', ['$http','$state', function($http,$state) {
   };
 
 //deletes current project
-  var deleteProject = function(projectId) {
-    return $http.delete('/api/projects/'+projectId)
+  var deleteProject = function (projectId) {
+    return $http.delete('/api/projects/' + projectId)
     .then(function(response){
 
     })
