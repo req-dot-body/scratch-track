@@ -4,7 +4,7 @@ app.directive('vextab', function($compile){
     scope: {
       code: '=code'
     }, 
-    link: function(scope, element, attrs){
+    link: function(scope, element){
       element.text(scope.code);
       new Vex.Flow.TabDiv(element);
     }
