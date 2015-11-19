@@ -23,7 +23,7 @@ var users = [
     first: 'Shady Pete',
     last: 'Johnson'
   }
-]
+];
 
 var resources = {};
 
@@ -34,50 +34,52 @@ resources.lyrics = {
 
 resources.stablature = {
   code: 'this is some stab code yes indeed'
-}
+};
 
 resources.notes = {
   text: 'this song is going to rock so hard'
-}
+};
 
 resources.recordings = {
   name: 'shredding guitar solo',
   url: 'awesomesong.com/stuff.mp3'
-}
+};
 
 
 //clears projects and project resources from DB
 exports.clearProjects = function(){
   return db('lyrics').del()
     .then(function(){
-      return db('recordings').del()
+      return db('recordings').del();
     })
     .then(function(){
-      return db('stablature').del()
+      return db('stablature').del();
     })
     .then(function(){
-      return db('notes').del()
+      return db('notes').del();
     })
     .then(function(){
-      return db('projects').del()
-    })
-}
+      return db('projects').del();
+    });
+};
 
 //fully clear DB
 exports.clearDB = function(){
   return exports.clearProjects()
     .then(function(){
-      return db('users').del()
-    })
-}
+      return db('users').del();
+    }).catch(function (err) {
+      console.log('Error clearing database (helpers.js exports.clearDB)');
+    });
+};
 
 //creates a new user and returns then id
 exports.authedUser = function(userIndex){
-	return db('users').insert(users[userIndex]).returning('id')
+  return db('users').insert(users[userIndex]).returning('id')
   .then(function(rows){
     return rows[0];
-  })
-}
+  });
+};
 
 //creates a new project
 exports.createProject = function(userId){
@@ -86,13 +88,13 @@ exports.createProject = function(userId){
     owner_id: userId,
     created_at: now,
     updated_at: now
-  }
+  };
 
   return db('projects').insert(project).returning('*')
   .then(function(rows){
     return rows[0];
-  })
-}
+  });
+};
 
 exports.addResource = function(tableName, userId, projectId){
   return exports.createProject(userId)
@@ -105,5 +107,5 @@ exports.addResource = function(tableName, userId, projectId){
     .then(function(rows){
       return rows[0]; 
     });
-  }) 
-}
+  });
+};

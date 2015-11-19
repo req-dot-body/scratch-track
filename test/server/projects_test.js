@@ -3,7 +3,7 @@ var helpers = require('./helpers.js');
 var projectsAPI = require(__server+'/routes/projectsRouter.js');
 var app = helpers.app;
 
-describe('The User', function() {
+describe('Projects', function() {
 
   var session = {passport: {user: {}}};
 

@@ -36,6 +36,8 @@ var sharedAngular = [
 router.use(function(req, res, next) {
   if (req.isAuthenticated()) {
     res.cookie('isLoggedIn', true);
+  } else {
+    res.cookie('isLoggedIn', false);
   }
   next();
 });

@@ -22,6 +22,8 @@ if(process.env.NODE_ENV !== 'test') {
   // Create and run a server
   var app = express();
 
+  app.set('json spaces', 4);
+
   // Use morgan to log requests to our express server to the console
   app.use(morgan('dev'));
 

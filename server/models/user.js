@@ -34,8 +34,6 @@ User.findUser = function (userAttrs) {
 
 // creates a new user with name, and hashed password
 User.signUp = function (attrs) {
-  console.log('User.signUp attrs:', attrs);
-
   // Create this object incase attrs contains any extra data we dont want/need
   var userAttrs = {
     email: attrs.email,
