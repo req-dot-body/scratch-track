@@ -22,7 +22,7 @@ app.factory('Lyric', ['$http', function($http) {
 
   var del = function(id) {
     console.log('deleted the thing.', id);
-    // return $http.delete('api/lyrics/' + id);
+    return $http.delete('api/lyrics/' + id);
   }
 
   return {

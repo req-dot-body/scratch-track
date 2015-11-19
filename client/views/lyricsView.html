@@ -1,4 +1,4 @@
-<container id="lyrics-container">
+<container ng-click="removeOverlay()" id="lyrics-container">
 
   <!-- Create New Lyric Sheet -->
   <section>
@@ -72,7 +72,7 @@
               <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
             </div>
             <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Yes, Really Delete</a>
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay(); delete(lyricsheet.id)">Yes, Really Delete</a>
               <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">No, Go Back To Lyrics</a>
             </div>
           </div>
