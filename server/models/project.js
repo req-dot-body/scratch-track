@@ -59,6 +59,7 @@ Project.updateResource = function(projectId) {
   var updated = {
     updated_at: Math.round(Date.now()/1000)
   };
+  console.log('updating resource')
   return db('projects').where('id', '=', projectId).update(updated);
 }
 

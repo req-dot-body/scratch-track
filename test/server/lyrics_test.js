@@ -34,15 +34,25 @@ describe('Lyrics', function() {
         })
   })
 
-  xit('can have lyrics added', function(){
-    return helpers.addResource('lyrics', session.passport.user.id)
-    .then(function(lyrics){
-      expect(lyrics.id);
-      expect(lyrics.name).to.equal('sweet rhymes');
+  it('can have lyrics added', function(){
+    return helpers.createProject(session.passport.user.id)
+    .then(function(project){
+      var lyricInfo = helpers.resources.lyrics;
+      lyricInfo.project_id = project.id;
+
+      return request(app)
+      .post('/resources/lyrics/')
+      .send(lyricInfo)
+      .expect(201)
+      .expect(function(res){
+        var lyrics = res.body; 
+        expect(lyrics.id);
+        expect(lyrics.name).to.equal('sweet rhymes');
+      })
     })
   })
 
-  xit('can have lyrics retrieved', function(){
+  it('can have lyrics retrieved', function(){
     return helpers.addResource('lyrics', session.passport.user.id)
     .then(function(lyrics){
       var id = lyrics.id;
@@ -55,7 +65,7 @@ describe('Lyrics', function() {
     })
   })
 
-  xit('can have old lyrics edited', function(){
+  it('can have old lyrics edited', function(){
     return helpers.addResource('lyrics', session.passport.user.id)
     .then(function(lyrics){
       var id = lyrics.id;
@@ -69,7 +79,7 @@ describe('Lyrics', function() {
     })
   })
 
-  xit('can have old lyrics deleted', function(){
+  it('can have old lyrics deleted', function(){
     var lyricsId;
 
     return helpers.addResource('lyrics', session.passport.user.id)
