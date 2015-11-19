@@ -17,6 +17,7 @@
         <input type="text" ng-model="lyricData" ng-click="removeOverlay()">
       </div>
       <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Cancel</a>
         <a href="#!" ng-click="removeOverlay(); add(lyricData)" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
       </div>
     </div>
@@ -54,6 +55,8 @@
               <input type="text" ng-model="val" ng-click="removeOverlay()">
             </div>
             <div class="modal-footer">
+
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Cancel</a>
               <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay(); add(val)">Save</a>
             </div>
           </div>
