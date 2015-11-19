@@ -5,8 +5,6 @@
     
 <!--     <a class="btn" ng-click="getAll()">get lyrics</a> -->
 
-    <div>{{ lyrics }}</div>
-
     <h5>Create New Lyric Sheet</h5>
     
 <!--     <a class="btn" ng-click="testProject()">bLAHbity</a> -->
@@ -37,7 +35,7 @@
     <!-- Accordion for Lyric Sheets -->
     <ul class="collapsible" data-collapsible="accordion" watch>
 
-      <li ng-repeat="lyricsheet in mockLyrics">
+      <li ng-repeat="lyricsheet in lyrics.data">
         <!-- Accordion Element Header -->
         <div class="collapsible-header">{{ lyricsheet.name }}</div>
         

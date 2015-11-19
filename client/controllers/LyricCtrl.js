@@ -49,6 +49,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
      }
   ]
 
+
   $scope.mockLyrics2 = {
       "project_id": 8,
       "text":  "this is lyrics",
