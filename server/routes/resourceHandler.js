@@ -1,21 +1,30 @@
 var Resource = require('../models/resource.js');
-
+var Project = require('../models/project.js');
 //request handles for the four project resources:
 //lyrics, stablature, recordings, and notes
 
 //creates a new resource
 exports.post = function(req, res, tableName){
 	var ids = {user: req.session.passport.user.id};
-	var projectInfo = req.body;
-	projectInfo.created_at = Math.round(Date.now()/1000);
+	var resourceInfo = req.body;
+	resourceInfo.created_at = Math.round(Date.now()/1000);
 
 	//passes in the type of resource, attributes, and user id to the model
-	Resource.create(tableName, ids, projectInfo)
+	Resource.create(tableName, ids, resourceInfo)
 	.then(function(resource){
-		res.status(201).send(resource);
+		//changes updated_at on project
+		Project.updateResource(resource.project_id)
+		.then(function(){
+			res.status(201).send(resource);
+		})
+		.catch(function(err){
+			console.log('could not change project updated_at');
+			res.sendStatus(400);
+		})
 	})
 	.catch(function(err){
-		console.log('Could not create new resource')
+		console.log('Could not create new resource');
+		res.sendStatus(400);
 	}) 
 }
 
@@ -45,7 +54,15 @@ exports.put = function(req, res, tableName){
 
 	Resource.update(tableName, ids, req.body)
 	.then(function(updatedResource){
-		res.status(200).send(updatedResource);
+		//changes updated_at on project
+		Project.updateResource(updatedResource.project_id)
+		.then(function(){
+			res.status(200).send(updatedResource);
+		})
+		.catch(function(err){
+			console.log('could not change project updated_at');
+			res.sendStatus(400);
+		})
 	})
 	.catch(function(err){
 		console.log('resource failed to update')
@@ -62,7 +79,15 @@ exports.delete = function(req, res, tableName){
 
 	Resource.delete(tableName, ids)
 	.then(function(){
-		res.sendStatus(200);
+		//changes updated_at on project
+		Project.updateResource(updatedResource.project_id)
+		.then(function(){
+			res.sendStatus(200);
+		})
+		.catch(function(err){
+			console.log('could not change project updated_at');
+			res.sendStatus(400);
+		})
 	}) 
 	.catch(function(err){
 		console.log('failed to delete resource')

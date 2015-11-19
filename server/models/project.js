@@ -48,6 +48,7 @@ Project.create = function (attrs, username) {
     });
 };
 
+//updated a project based on id
 Project.update = function (projectId, attrs) {
   return db('projects').where('id', '=', projectId).update(attrs)
   .then(function(){
@@ -55,17 +56,28 @@ Project.update = function (projectId, attrs) {
     .then(function(rows){
       return rows[0];
     })
+    .catch(function(err){
+      throw err; 
+    })
   })
   .catch(function(err){
     throw err;
   })
 }
 
+//changes created_at when a resource is updated 
+Project.updateResource = function(projectId) {
+  var updated = {
+    updated_at: Math.round(Date.now()/1000)
+  };
+  return db('projects').where('id', '=', projectId).update(updated);
+}
+
+//deletes an entire project
+//including all resources
 Project.del = function(projectId){
   return db('projects').where('id', '=', projectId).del()
-  .catch(function(err){
-    throw err; 
-  })
+
 }
 
 module.exports = Project;
