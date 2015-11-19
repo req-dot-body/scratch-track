@@ -1,5 +1,14 @@
-app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 
-	function($scope, $state, Stablature) {
+app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project',
+	function($scope, $state, Stablature, Project) {
+
+	$scope.stabList = [];
+
+	var projectId = $state.params.id;
+	
+	Project.getProjectStablature(projectId)
+	.then(function(stabRes){
+		$scope.stabList = stabRes.data; 
+	})
 
 	$scope.code = "tabstave notation=false \n notes 4-5/3";
 
@@ -12,5 +21,6 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature',
 
 		Stablature.create(newStab);
 	}
+
 
 }]);

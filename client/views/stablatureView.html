@@ -8,21 +8,35 @@
       </textarea>
     </div>
   </section>
+
+
   <button class="waves-effect waves-light btn" ng-click="create()">Submit Tabs</button>
 
   <section>
-    <h5>Pertinent Stuff</h5>
-    <p>stablature</p>
+    <p>Insert explanation/link on how to use vex-tabs here</p>
   </section>
 
   <section>
-    <h5>Listing</h5>
-    <p>stablature</p>
+<h5>Your Stablature for This Project</h5>
+
+    <!-- Accordion for Lyric Sheets -->
+    <ul class="collapsible" data-collapsible="accordion" watch>
+
+      <li ng-repeat="stab in stabList">
+        <!-- Accordion Element Header -->
+        <div class="collapsible-header">{{ stab.created_at}} {{stab.name}}</div>
+        <div class="collapsible-body" ng-controller="StablatureCtrl">
+          <vextab code="stab.code"></vextab>
+        </div>        
+        
+      </li>
+
+    </ul>
+
   </section>
-<vextab bindTo="code"> 
-</vextab>
 </container>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
 <script type="text/javascript">
   var jq = $
 </script>
@@ -30,5 +44,4 @@
 <script type="text/javascript">
   $ = jq;
 </script>
-
 
