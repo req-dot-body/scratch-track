@@ -8,17 +8,14 @@ var Project = {};
 //        public projects become a thing
 Project.findById = function(projectId, userId) {
   return db('projects').select('*').where({id: projectId}).limit(1)
-    .then(function(rows) {
-      var project = rows[0]
-      if (!project) throw 404;
-      //checks that user owns that project
-      if (project.owner_id !== userId) throw 401;
-      //projects exists and belongs to the expected user
-      return project;
-    })
-    .catch(function(err) {
-      throw err;
-    });
+  .then(function(rows) {
+    var project = rows[0]
+    if (!project) throw 404;
+    //checks that user owns that project
+    if (project.owner_id !== userId) throw 401;
+    //projects exists and belongs to the expected user
+    return project;
+  })
 };
 
 // returns all projects for a user 
@@ -26,12 +23,9 @@ Project.findById = function(projectId, userId) {
 //      public projects become a thing
 Project.findByUser = function (owner_id) {
   return db('projects').select('*').where({owner_id: owner_id})
-    .then(function(rows){
-      return rows;
-    })
-    .catch(function(err){
-      throw err;
-    })
+  .then(function(rows){
+    return rows;
+  })
 };
 
 // creates a new project
@@ -56,12 +50,6 @@ Project.update = function (projectId, attrs) {
     .then(function(rows){
       return rows[0];
     })
-    .catch(function(err){
-      throw err; 
-    })
-  })
-  .catch(function(err){
-    throw err;
   })
 }
 
