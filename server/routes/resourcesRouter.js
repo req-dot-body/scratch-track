@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Resource = require('../models/resource');
+var Project = require('../models/project');
+
 // Add a new resource
 router.post('/:resourceType/', function (req, res) {
 	console.log('posting new resource', req.body);
@@ -13,6 +15,7 @@ router.post('/:resourceType/', function (req, res) {
 	//passes in the type of resource, attributes, and user id to the model
 	Resource.create(resourceType, ids, resourceInfo)
 	.then(function(resource){
+		console.log('whats going on hurrr?', resource);
 		//changes updated_at on project
 		Project.updateResource(resource.project_id)
 		.then(function(){
