@@ -11,12 +11,12 @@
     <!-- Modal Structure for Lyric Creation -->
     <div id="lyric-creation-modal" class="modal" ng-click="removeOverlay()">
       <div class="modal-content">
-        <h4>Lyric Name</h4>
-        <input type="text" ng-model="lyricData" ng-click="removeOverlay()">
+        <input type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)">
+        <input type="text" ng-model="lyricData" ng-click="removeOverlay()" placeholder="Enter lyrics here.">
       </div>
       <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Cancel</a>
-        <a href="#!" ng-click="removeOverlay(); add(lyricData)" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        <a href="#!" ng-click="removeOverlay(); add(titleVal, lyricData)" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
       </div>
     </div>
 
@@ -29,9 +29,9 @@
     <h5>Your Lyrics for This Project</h5>
 
     <!-- Accordion for Lyric Sheets -->
-    <ul class="collapsible" data-collapsible="accordion" ng-click="removeOverlay()" watch>
+    <ul class="collapsible" data-collapsible="accordion" ng-click="removeOverlay()">
 
-      <li ng-repeat="lyricsheet in lyrics.data" watch>
+      <li ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
         <!-- Accordion Element Header -->
         <div class="collapsible-header">{{ lyricsheet.name }}</div>
         

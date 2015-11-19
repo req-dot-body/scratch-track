@@ -30,10 +30,15 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
 
   $scope.val = "";
-  
+  $scope.titleVal = "Untitled"
+
 
   $scope.updateVal = function(newValue) {
     $scope.val = newValue;
+  }
+
+  $scope.updateTitle = function(newTitle) {
+    $scope.titleVal = newTitle;
   }
   
 
@@ -51,12 +56,12 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     Lyric.select(id);
   }
 
-  $scope.add = function(data){
-    console.log('data in ctrl:', data);
+  $scope.add = function(titleData, data){
+    console.log('data in ctrl:', titleData, data);
     var requestData = {
       "project_id": projectId,
       "text":  data,
-      "name": "draft"
+      "name": titleData
     }
 
     return Lyric.create(requestData);
