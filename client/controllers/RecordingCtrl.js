@@ -1,8 +1,6 @@
 app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
 	function($scope, $state, Recording, Project) {
 
-	
-
 	$scope.mockData = [
 	  {
 	  	id: 8,
