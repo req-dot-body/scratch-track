@@ -4,18 +4,20 @@
   <section>
 
     <h5>Create New Lyric Sheet</h5>
+    
+    <!--     <a class="btn" ng-click="testProject()">bLAHbity</a> -->
 
     <!-- Modal Trigger for Lyric Creation -->
-    <a class="waves-effect waves-light btn modal-trigger" href="#lyric-creation-modal">Create New Lyric</a>
+    <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-creation-modal">Create New Lyric</a>
 
     <!-- Modal Structure for Lyric Creation -->
     <div id="lyric-creation-modal" class="modal">
       <div class="modal-content">
         <h4>Lyric Name</h4>
-        <input type="text">
+        <input type="text" ng-model="lyricData">
       </div>
       <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        <a href="#!" ng-click="removeOverlay(); add(lyricData)" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
       </div>
     </div>
 
@@ -30,21 +32,20 @@
     <!-- Accordion for Lyric Sheets -->
     <ul class="collapsible" data-collapsible="accordion" watch>
 
-      <li ng-repeat="lyricsheet in mockLyrics">
+      <li ng-repeat="lyricsheet in lyrics.data">
         <!-- Accordion Element Header -->
         <div class="collapsible-header">{{ lyricsheet.name }}</div>
         
         <!-- Accordion Element Body -->
-        <div class="collapsible-body">
+        <div class="collapsible-body" ng-controller="LyricCtrl">
 
           <!-- Editable Lyric Area -->
-          <textarea id="lyrictext" class="materialize-textarea" readonly="readonly">
-            {{ lyricsheet.text }}
+          <textarea id="lyrictext" ng-model="lyricsheet.text" class="materialize-textarea" readonly="readonly">
           </textarea>
 
           <!-- Revision Button -->
           <!-- Modal Trigger for Lyric Revision -->
-          <a class="waves-effect waves-light btn modal-trigger" href="#lyric-revision-modal">Create Revision</a>
+          <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-revision-modal">Create Revision</a>
 
           <!-- Modal Structure for Lyric Revision -->
           <div id="lyric-revision-modal" class="modal">
@@ -53,17 +54,17 @@
               <input type="text">
             </div>
             <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Save</a>
             </div>
           </div>
 
           <!-- Edit Button -->
           <!-- Toggles Editable TextArea -->
-          <a class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext')" href="">Edit</a>
+          <a class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); edit(lyricsheet.id, lyricsheet)" href="">Edit</a>
 
           <!-- Delete Button -->
           <!-- Modal Trigger for Lyric Delete Confirmation -->
-          <a class="waves-effect waves-light btn modal-trigger" href="#lyric-deletion-modal">Delete</a>
+          <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-deletion-modal">Delete</a>
 
           <!-- Modal Structure for Lyric Delete Confirmation -->
           <div id="lyric-deletion-modal" class="modal">
@@ -71,8 +72,8 @@
               <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
             </div>
             <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Yes, Really Delete</a>
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">No, Go Back To Lyrics</a>
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Yes, Really Delete</a>
+              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">No, Go Back To Lyrics</a>
             </div>
           </div>
 
