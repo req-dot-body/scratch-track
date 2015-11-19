@@ -22,6 +22,7 @@ router.get('/', function (req, res) {
 
 // Create new project
 router.post('/', function (req, res) {
+  console.log('making a new project');
   var now = Math.round(Date.now()/1000);
   console.log('session stuff:', req.session);
   var projectInfo = {

@@ -1,7 +1,7 @@
 app.factory('Stablature', ['$http', function($http) {
 
   var create = function(stabInfo){
-  	return $http.post('api/stablature', stabInfo)
+  	return $http.post('api/stablature/', stabInfo)
   	.catch(function(err){
   		console.log('could not create new stab', err);
   	})

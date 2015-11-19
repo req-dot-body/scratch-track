@@ -50,7 +50,7 @@ apiRouter.use('/users', usersRouter);
 apiRouter.use('/projects', projectsRouter);
 apiRouter.use('/recordings', recordingsRouter);
 apiRouter.use('/lyrics', lyricsRouter);
-apiRouter.use('/stablatures', stablaturesRouter);
+apiRouter.use('/stablature', stablaturesRouter);
 apiRouter.use('/notes', notesRouter);
 
 browserify.settings({ insertGlobals: true, detectGlobals: true });

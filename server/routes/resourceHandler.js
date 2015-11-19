@@ -9,6 +9,7 @@ exports.post = function(req, res, tableName){
 	var resourceInfo = req.body;
 	resourceInfo.created_at = Math.round(Date.now()/1000);
 
+	console.log('creating new', tableName, 'with the following info', resourceInfo)
 	//passes in the type of resource, attributes, and user id to the model
 	Resource.create(tableName, ids, resourceInfo)
 	.then(function(resource){
