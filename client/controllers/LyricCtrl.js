@@ -59,6 +59,12 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       "text":  "this is lyrics",
       "name": "draft1"
   }
+
+  $scope.val = "rawr";
+
+  $scope.updateVal = function(newValue) {
+    $scope.val = newValue;
+  }
   
 
   $scope.lyrics = [];
@@ -85,7 +91,6 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
     return Lyric.create(requestData);
   }
-
 
   $scope.edit = function(id, data){
     if($scope.toggleMode === "Edit") {
