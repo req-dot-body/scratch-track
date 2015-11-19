@@ -16,26 +16,27 @@ router.get('/', function (req, res) {
 router.post('/signup', function (req, res, next) {
   passport.authenticate('local-signup', function (err, user, info) {
     if (err) {
-      res.status(401).json({ signedUp: false, error: err, info: info });
+      res.status(500).json({ signedUp: false, error: err, info: info });
       return;
     }
     if (!user) {
       res.status(401).json({ signedUp: false, info: info });
       return;
     }
-    res.status(200).json({ signedUp: true });
+    res.status(201).json({ signedUp: true });
   })(req, res, next);
 });
 
 // Authenticates a user
 router.post('/signin', function (req, res, next) {
-  console.log('Signin');
   passport.authenticate('local-login', function (err, user, info) {
     if (err) {
+      console.log('signin err', err);
       res.status(401).json({ loggedIn: false, error: true, info: info });
       return;
     }
     if (!user) {
+      console.log('signin !user');
       res.status(401).json({ loggedIn: false, error: true, info: info });
       return;
     }
@@ -44,7 +45,7 @@ router.post('/signin', function (req, res, next) {
         return res.status(401).json({ loggedIn: false, error: true, info: info });
       }
       res.cookie('isLoggedIn', true);
-      res.json({ loggedIn: true });
+      res.status(200).json({ loggedIn: true });
     });
   })(req, res, next);
 });
