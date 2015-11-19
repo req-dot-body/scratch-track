@@ -15,7 +15,6 @@ Project.getProject(id)
 
 $state.go('main.project_edit.dash');
 
-
 $scope.deleteProject = function(id){
 
 };

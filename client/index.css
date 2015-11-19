@@ -141,9 +141,8 @@ position: absolute;
 /*DASH VIEW*/
 
 .panel-lyric {
-    max-height:308px;
+    min-height:307px;
+    max-height:307px;
     overflow-y:scroll;
 }
-
-
 
