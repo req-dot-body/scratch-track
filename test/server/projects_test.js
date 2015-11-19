@@ -100,6 +100,21 @@ describe('Projects', function() {
     })
   })
 
+  it('can delete a project with resources', function(){
+    return helpers.addResource('lyrics', session.passport.user.id)
+    .then(function(lyrics){
+      var userId = session.passport.user.id;
+      var projectId = lyrics.project_id;
+      return helpers.addResource('stablature', userId, projectId);
+    })
+    .then(function(stablature){
+      var projectId = stablature.project_id;
+      return request(app)
+      .del('projects/'+projectId)
+      .expect(200)
+    })
+  })
+
   it('can retrieve lyrics for a particular project', function(){
     var projectId;
 
