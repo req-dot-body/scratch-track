@@ -11,6 +11,5 @@ require('./PublicCtrl');
 require('./LandingCtrl');
 require('./TourCtrl');
 require('./ProjectDashCtrl');
-require('./VexCtrl');
 
 
