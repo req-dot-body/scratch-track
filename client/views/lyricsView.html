@@ -2,13 +2,10 @@
 
   <!-- Create New Lyric Sheet -->
   <section>
-    
-<!--     <a class="btn" ng-click="getAll()">get lyrics</a> -->
 
     <h5>Create New Lyric Sheet</h5>
     
-<!--     <a class="btn" ng-click="testProject()">bLAHbity</a> -->
-<!--     <a class="btn" ng-click="add(mockLyrics2)">bLAH</a> -->
+    <!--     <a class="btn" ng-click="testProject()">bLAHbity</a> -->
 
     <!-- Modal Trigger for Lyric Creation -->
     <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-creation-modal">Create New Lyric</a>
@@ -20,7 +17,7 @@
         <input type="text" ng-model="lyricData">
       </div>
       <div class="modal-footer">
-        <a href="#!" ng-click="removeOverlay(); testProject(lyricData)" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+        <a href="#!" ng-click="removeOverlay(); add(lyricData)" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
       </div>
     </div>
 
@@ -43,8 +40,7 @@
         <div class="collapsible-body" ng-controller="LyricCtrl">
 
           <!-- Editable Lyric Area -->
-          <textarea id="lyrictext" class="materialize-textarea" readonly="readonly">
-            {{ lyricsheet.text }}
+          <textarea id="lyrictext" ng-model="lyricsheet" class="materialize-textarea" readonly="readonly">
           </textarea>
 
           <!-- Revision Button -->
@@ -58,13 +54,13 @@
               <input type="text">
             </div>
             <div class="modal-footer">
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Save</a>
             </div>
           </div>
 
           <!-- Edit Button -->
           <!-- Toggles Editable TextArea -->
-          <a class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext')" href="">Edit</a>
+          <a class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); edit(lyricsheet.id, lyricsheet)" href="">Edit</a>
 
           <!-- Delete Button -->
           <!-- Modal Trigger for Lyric Delete Confirmation -->

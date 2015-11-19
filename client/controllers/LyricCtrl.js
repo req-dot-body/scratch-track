@@ -1,15 +1,19 @@
 app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
 
+  $scope.toggleMode = "Edit";
+
   $scope.toggleEditable = function() {
     var textbox = document.getElementById('lyrictext');
 
     if (textbox.hasAttribute('readOnly')) {
       textbox.removeAttribute('readOnly');
       document.getElementById('edit-lyrics-btn').innerHTML="Save";
+      $scope.toggleMode = "Save";
     }
     else {
       textbox.setAttribute('readOnly', 'readOnly');
       document.getElementById('edit-lyrics-btn').innerHTML="Edit";
+      $scope.toggleMode = "Edit";
     }
   };
  
@@ -71,15 +75,25 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     Lyric.select(id);
   }
 
-
   $scope.add = function(data){
     console.log('data in ctrl:', data);
-    Lyric.create(data);
+    var requestData = {
+      "project_id": projectId,
+      "text":  data,
+      "name": "draft"
+    }
+
+    return Lyric.create(requestData);
   }
 
 
-  $scope.edit = function(id){
-     Lyric.edit(id);
+  $scope.edit = function(id, data){
+    if($scope.toggleMode === "Edit") {
+      Lyric.edit(id, data); 
+    }
+    else {
+      console.log("Cannot post. You are not in edit mode.")
+    }
   }
 
 
