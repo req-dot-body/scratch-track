@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
+var Project = require('../models/project.js'); 
 var Resource = require('../models/resource.js');
 
 // Get all projects that can be accessed

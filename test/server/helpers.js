@@ -45,6 +45,7 @@ resources.recordings = {
   url: 'awesomesong.com/stuff.mp3'
 };
 
+exports.resources = resources;
 
 //clears projects and project resources from DB
 exports.clearProjects = function(){
