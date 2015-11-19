@@ -28,39 +28,9 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
   var projectId = $state.params.id;
 
-  $scope.testProject = function(data) {
-    console.log('hitting controller:', data);
-    var requestData = {
-      "project_id": projectId,
-      "text":  data,
-      "name": "draft"
-    }
 
-    return Lyric.testProject(requestData);
-  };
+  $scope.val = "";
   
-  $scope.mockLyrics = [ 
-
-   {
-      "project_id": 97,
-      "text":  "this is lyrics",
-      "name": "draft1"
-    },
-    {
-       "project_id": 98,
-       "text": "this is also lyrics",
-       "name": "draft2"
-     }
-  ]
-
-
-  $scope.mockLyrics2 = {
-      "project_id": 8,
-      "text":  "this is lyrics",
-      "name": "draft1"
-  }
-
-  $scope.val = "rawr";
 
   $scope.updateVal = function(newValue) {
     $scope.val = newValue;
