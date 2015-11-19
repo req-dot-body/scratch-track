@@ -1,3 +1,11 @@
+
+/*RECORDING VIEW*/
+
+#log {
+  font-style: italic;
+}
+
+/*SIGN-IN/UP VIEWS*/
 .validation-error {
   height: 20px;
   color: red;
@@ -23,7 +31,6 @@ body form .form-header {
   color: white;
   text-decoration: italic;
   padding: 2%;
-
 }
 
 .add-project {
