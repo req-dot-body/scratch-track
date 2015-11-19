@@ -138,6 +138,12 @@ position: absolute;
   margin-top: 25px;
 }
 
-/*PROJECT VIEW*/
+/*DASH VIEW*/
+
+.panel-lyric {
+    max-height:308px;
+    overflow-y:scroll;
+}
+
 
 
