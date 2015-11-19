@@ -5,7 +5,7 @@ require('./Tour');
 require('./passwordCompare')
 require('./ResourceTemplate');
 require('./Projects');
-require('./Vex');
+require('./Vextab');
 require('./ProjectDash')
 
 
