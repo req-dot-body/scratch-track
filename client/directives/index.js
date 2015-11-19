@@ -6,7 +6,7 @@ require('./passwordCompare')
 require('./ResourceTemplate');
 require('./Projects');
 require('./Vex');
-requiere('./ProjectDash')
+require('./ProjectDash')
 
 
 // resourceDirectives
