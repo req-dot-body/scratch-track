@@ -1,24 +1,5 @@
 app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$state,Project) {
 
-//Data Structure of Projets to display
-  $scope.mockProjects = [ 
-    { owner_id: 1, 
-      id: 1,
-      created_at: '13-NOV-2015',
-      updated_at: '14-NOV-2015',
-      name: 'November Rain',
-      description: 'The Best Song Ever'
-    }, 
-    { owner_id: 2,
-      id:2,
-      created_at: '06-FEB-2015',
-      updated_at: '03-MAR-2015',
-      name: 'Mamma Mia',
-      description: 'The Italian Macarena'
-    } 
-  ]; 
-
-  $scope.products = $scope.mockProjects;
 //Get projects from Projects factory
   $scope.getProjects = function () {
     console.log('getting all projects')
@@ -43,6 +24,17 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
       //stay on same state
       $state.go('main.projects');
     })
+  }
+
+  $scope.deleteProject = function (projectId) {
+    console.log("deleting project with ID:", projectId);
+    Project.deleteProject(projectId)
+    .then(function(response){
+      $scope.getProjects();
+    }).catch(function(error){
+      console.error(error);
+    })
+
   }
 
 // Get projects on controller loading....
