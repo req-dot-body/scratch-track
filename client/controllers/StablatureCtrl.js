@@ -22,5 +22,20 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project',
 		Stablature.create(newStab);
 	}
 
+	$scope.removeOverlay = function() {
+    if (document.getElementsByClassName('lean-overlay')) {
+      var overlays = document.getElementsByClassName('lean-overlay');
+      for (var i = 0; i < overlays.length; i++) {
+        overlays[i].remove();
+      }
+    }
+  };
+
+  $(document).ready(function() {
+    $('.modal-trigger').leanModal();
+    $('.collapsible').collapsible({
+        accordion : true
+    });
+  });
 
 }]);

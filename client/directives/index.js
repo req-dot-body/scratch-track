@@ -2,11 +2,12 @@ require('./Signup');
 require('./Signin');
 require('./Landing');
 require('./Tour');
-require('./passwordCompare')
+require('./passwordCompare');
 require('./ResourceTemplate');
 require('./Projects');
 require('./Vextab');
-require('./ProjectDash')
+require('./ProjectDash');
+require('./CreateStab');
 
 
 // resourceDirectives

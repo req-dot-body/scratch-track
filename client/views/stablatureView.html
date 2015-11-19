@@ -1,23 +1,21 @@
-<container>
-  <section>
-   <h5>Create New Tabs</h5>
-    <div class="vex-tabdiv" editor="true" ng-bind="code">
-      <canvas class="vex-canvas">
-      <div class="editor-error">
-      <textarea class="editor">
-      </textarea>
+<container ng-click="removeOverlay()">
+
+  <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#create-stab">Create New Tab</a>
+  <!-- <createstab></createstab> -->
+  <div id="create-stab" class="modal" ng-click="removeOverlay()">
+    <div class="modal-content">
+      <h5>Create New Tabs</h5>
+      <div class="vex-tabdiv" editor="true" ng-bind="code">
+        <canvas class="vex-canvas"/>
+        <div class="editor-error"/>
+        <textarea class="editor"></textarea>
+      </div>
     </div>
-  </section>
-
-
-  <button class="waves-effect waves-light btn" ng-click="create()">Submit Tabs</button>
+    <div class="modal-footer"></div>
+  </div>
 
   <section>
-    <p>Insert explanation/link on how to use vex-tabs here</p>
-  </section>
-
-  <section>
-<h5>Your Stablature for This Project</h5>
+<h5>Your Stablature</h5>
 
     <!-- Accordion for Lyric Sheets -->
     <ul class="collapsible" data-collapsible="accordion" watch>
@@ -36,7 +34,7 @@
   </section>
 </container>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
 <script type="text/javascript">
   var jq = $
 </script>
