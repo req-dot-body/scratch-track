@@ -1,14 +1,8 @@
-   <section class="center-align" style="margin: 0 20%" ng-controller="LandingCtrl as landing">
+  <section class="center-align land-text z-depth-5 anim-fade">
     <h1 class="center-align">ScratchTrack</h1>
-    <p>
-      {{ landing.message }}
-    </p>
-    <div class="vex-tabdiv" ng-bind="code"></div>
-    <textarea id="stabcode" ng-model="userInput" ng-change="updateCode()" class="materialize-textarea" >
-    </textarea>
-    <a class="btn-large" ui-sref="main">
-      Get Started
-    </a>
+    <p>{{ message }}</p>
+    <a class="btn-large blue-grey" ui-sref="public.signin">Get Started</a>
+    <br><br>
   </section>
 
   <section>

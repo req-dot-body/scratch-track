@@ -27,6 +27,7 @@ var sharedAngular = [
   'angular-sanitize',
   'angular-touch',
   'angular-ui-router',
+  'angular-ui-router-anim-in-out',
   './node_modules/angular-materialize/src/angular-materialize',
 ];
 
@@ -35,6 +36,8 @@ var sharedAngular = [
 router.use(function(req, res, next) {
   if (req.isAuthenticated()) {
     res.cookie('isLoggedIn', true);
+  } else {
+    res.cookie('isLoggedIn', false);
   }
   next();
 });
