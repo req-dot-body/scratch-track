@@ -18,7 +18,7 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
     .then(function(response){
       console.log('project created response: ',response);
       var id = response.data.id;
-      $state.go('main.project_edit', { id: id });
+      $state.go('main.project_edit.dash', { id: id });
     }).catch(function(error){
       //display a message error 
       //stay on same state

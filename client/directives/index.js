@@ -6,6 +6,8 @@ require('./passwordCompare')
 require('./ResourceTemplate');
 require('./Projects');
 require('./Vex');
+require('./ProjectDash')
+
 
 // resourceDirectives
 // require('./resourceDirectives/CreateLyric.js');

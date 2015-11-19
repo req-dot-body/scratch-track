@@ -92,7 +92,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
       return response;
     })
     .catch(function(err){
-      console.log('deleteProject err: ', err);
+      console.log('getProjectRecordings err: ', err);
     });
   };
 
@@ -103,7 +103,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
       return response;
     })
     .catch(function(err){
-      console.log('deleteProject err: ', err);
+      console.log('getProjectLyrics err: ', err);
     });
   };
 
@@ -114,7 +114,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
       return response;
     })
     .catch(function(err){
-      console.log('deleteProject err: ', err);
+      console.log('getProjectStablature err: ', err);
     });
   };
 
@@ -125,7 +125,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
       return response;
     })
     .catch(function(err){
-      console.log('deleteProject err: ', err);
+      console.log('getProjectNotes err: ', err);
     });
   };
 
