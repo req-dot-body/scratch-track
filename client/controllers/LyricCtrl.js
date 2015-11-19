@@ -28,36 +28,17 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
   var projectId = $state.params.id;
 
-  $scope.testProject = function(data) {
-    console.log('hitting controller:', data);
-    var requestData = {
-      "project_id": projectId,
-      "text":  data,
-      "name": "draft"
-    }
 
-    return Lyric.testProject(requestData);
-  };
-  
-  $scope.mockLyrics = [ 
-
-   {
-      "project_id": 97,
-      "text":  "this is lyrics",
-      "name": "draft1"
-    },
-    {
-       "project_id": 98,
-       "text": "this is also lyrics",
-       "name": "draft2"
-     }
-  ]
+  $scope.val = "";
+  $scope.titleVal = "Untitled"
 
 
-  $scope.mockLyrics2 = {
-      "project_id": 8,
-      "text":  "this is lyrics",
-      "name": "draft1"
+  $scope.updateVal = function(newValue) {
+    $scope.val = newValue;
+  }
+
+  $scope.updateTitle = function(newTitle) {
+    $scope.titleVal = newTitle;
   }
   
 
@@ -75,17 +56,16 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     Lyric.select(id);
   }
 
-  $scope.add = function(data){
-    console.log('data in ctrl:', data);
+  $scope.add = function(titleData, data){
+    console.log('data in ctrl:', titleData, data);
     var requestData = {
       "project_id": projectId,
       "text":  data,
-      "name": "draft"
+      "name": titleData
     }
 
     return Lyric.create(requestData);
   }
-
 
   $scope.edit = function(id, data){
     if($scope.toggleMode === "Edit") {
