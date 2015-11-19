@@ -55,7 +55,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     })
 
     .state('main', {
-      url: '/main',
       authenticate: true,
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
@@ -70,7 +69,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     })
 
     .state('main.project_edit', {
-      url:'/{id:int}/edit',
+      url:'/projects/{id:int}/edit',
       authenticate: true,
       templateUrl: 'views/projectEdit.html',
       controller: 'ProjectEditCtrl' 
@@ -78,24 +77,28 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     .state('main.project_edit.lyrics', {
       url: '/lyrics',
+      authenticate: true,
       templateUrl: 'views/lyricsView.html',
       controller: 'LyricCtrl'
     })
 
     .state('main.project_edit.notes', {
       url: '/notes',
+      authenticate: true,
       templateUrl: 'views/notesView.html',
       controller: 'NoteCtrl'
     })
 
     .state('main.project_edit.recordings', {
       url: '/recordings',
+      authetnicate: true,
       templateUrl: 'views/recordingsView.html',
       controller: 'RecordingCtrl',
     })
 
     .state('main.project_edit.stablature', {
       url: '/stablature',
+      authenticate: true,
       templateUrl: 'views/stablatureView.html',
       controller: 'StablatureCtrl'
     })
@@ -129,7 +132,10 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 })
 .run(function ($timeout, $rootScope, $location, $state, Auth) {
   $rootScope.$on('$stateChangeStart', function (evt, next, current) {
-    if (next.authenticate && Auth.isLoggedIn() === false) {
+    // If the next state has an authenticate param that is truthy, or
+    // If the authenticate param is undefined, we default to the page
+    // requiring the user to be authenticated in order to view
+    if ((next.authenticate || typeof next.authenticate === 'undefined') && Auth.isLoggedIn() === false) {
       // Stop state from trying to change to the next one
       // Instead send it to the home state
       evt.preventDefault();
