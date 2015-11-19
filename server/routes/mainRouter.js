@@ -6,10 +6,7 @@ var apiRouter = express.Router();
 
 var usersRouter = require('./usersRouter');
 var projectsRouter = require('./projectsRouter');
-var recordingsRouter = require('./recordingsRouter');
-var lyricsRouter = require('./lyricsRouter');
-var stablaturesRouter = require('./stablatureRouter');
-var notesRouter = require('./notesRouter');
+var resourcesRouter = require('./resourcesRouter');
 
 var browserify  = require('browserify-middleware');
 var ngAnnotate  = require('browserify-ngannotate');
@@ -48,10 +45,7 @@ router.use('/api', apiRouter);
 // Set up our different api endpoints
 apiRouter.use('/users', usersRouter);
 apiRouter.use('/projects', projectsRouter);
-apiRouter.use('/recordings', recordingsRouter);
-apiRouter.use('/lyrics', lyricsRouter);
-apiRouter.use('/stablatures', stablaturesRouter);
-apiRouter.use('/notes', notesRouter);
+apiRouter.use('/resources', resourcesRouter);
 
 browserify.settings({ insertGlobals: true, detectGlobals: true });
 // Serve application js files

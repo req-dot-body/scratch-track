@@ -173,7 +173,7 @@ note: 'id' always refers to whatever directly follows 'api' in the url
   }
 
 
-  *** api/recordings
+  *** api/resources/recordings
 
     GET - :/:id - Retrieves a specific recording instance
       {
@@ -204,7 +204,7 @@ note: 'id' always refers to whatever directly follows 'api' in the url
     DELETE - :/:id - Deletes a specific recording instance.
 
 
-  *** api/lyrics
+  *** api/resources/lyrics
 
     GET - :/:id - Retrieves a specific lyrics instance.
      {
@@ -229,7 +229,7 @@ note: 'id' always refers to whatever directly follows 'api' in the url
     DELETE - :/:id - Deletes a specific lyrics instance.
 
 
-  *** api/stablature
+  *** api/resources/stablature
 
     GET - :/:id - Retrieves a specific stab instance.
       {
@@ -258,7 +258,7 @@ note: 'id' always refers to whatever directly follows 'api' in the url
     DELETE - :/:id - Deletes a specific stab instance.
 
 
-  *** api/notes
+  *** api/resources/notes
 
     GET - :/:id - Retrieves a specific note instance.
       {

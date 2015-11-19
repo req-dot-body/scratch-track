@@ -1,16 +1,17 @@
-var Resource = require('../models/resource.js');
-var Project = require('../models/project.js');
-//request handles for the four project resources:
-//lyrics, stablature, recordings, and notes
-
-//creates a new resource
-exports.post = function(req, res, tableName){
-	var ids = {user: req.session.passport.user.id};
+var express = require('express');
+var router = express.Router();
+var Resource = require('../models/resource');
+// Add a new resource
+router.post('/:resourceType/', function (req, res) {
+	console.log('posting new resource', req.body);
+  var resourceType = req.params.resourceType;
+  var ids = {user: req.session.passport.user.id};
+	
 	var resourceInfo = req.body;
 	resourceInfo.created_at = Math.round(Date.now()/1000);
 
 	//passes in the type of resource, attributes, and user id to the model
-	Resource.create(tableName, ids, resourceInfo)
+	Resource.create(resourceType, ids, resourceInfo)
 	.then(function(resource){
 		//changes updated_at on project
 		Project.updateResource(resource.project_id)
@@ -26,16 +27,19 @@ exports.post = function(req, res, tableName){
 		console.log('Could not create new resource');
 		res.sendStatus(400);
 	}) 
-}
 
-//retrieves a resource by id 
-exports.get = function(req, res, tableName){
-	var ids = {
+});
+
+// Get resource by id
+router.get('/:resourceType/:resourceId', function (req, res) {
+	console.log('getting resource');
+  var resourceType = req.params.resourceType;
+  var ids = {
 		user: req.session.passport.user.id,
 		resource: req.params.resourceId
 	};
 
-	Resource.findById(tableName, ids)
+	Resource.findById(resourceType, ids)
 	.then(function(resource){
 		res.status(200).send(resource);
 	})
@@ -43,16 +47,18 @@ exports.get = function(req, res, tableName){
 		console.log('could not find resource')
 		res.sendStatus(404);
 	})
-}
+});
 
-//updates a resource by id
-exports.put = function(req, res, tableName){
+// Edit resource by id
+router.put('/:resourceType/:resourceId', function (req, res) {
+	console.log('editing resource')
+	var resourceType = req.params.resourceType;	
 	var ids = {
 		user: req.session.passport.user.id,
 		resource: req.params.resourceId
 	};
 
-	Resource.update(tableName, ids, req.body)
+	Resource.update(resourceType, ids, req.body)
 	.then(function(updatedResource){
 		//changes updated_at on project
 		Project.updateResource(updatedResource.project_id)
@@ -68,16 +74,18 @@ exports.put = function(req, res, tableName){
 		console.log('resource failed to update')
 		res.sendStatus(400);
 	})
-}
+});
 
-//deletes a resource by id
-exports.delete = function(req, res, tableName){
-	var ids = {
+// Delete resource by id
+router.delete('/:resourceType/:resourceId', function (req, res) {
+	console.log('deleting resource');
+  var resourceType = req.params.resourceType;
+  var ids = {
 		user: req.session.passport.user.id,
 		resource: req.params.resourceId
 	};
 
-	Resource.delete(tableName, ids)
+	Resource.delete(resourceType, ids)
 	.then(function(projectId){
 		//changes updated_at on project
 		Project.updateResource(projectId)
@@ -93,19 +101,6 @@ exports.delete = function(req, res, tableName){
 		console.log('failed to delete resource')
 		res.sendStatus(400);
 	})
-}
+});
 
-exports.getByProject = function(req, res, tableName){
-	var ids = {
-		project: req.params.projectId,
-		user: req.session.passport.user.id
-	}
-	Resource.findByProject(tableName, ids)
-	.then(function(resources){
-		res.status(200).send(resources)
-	})
-	.catch(function(err){
-		res.sendStatus(400)
-	})
-
-}
+module.exports = router;
