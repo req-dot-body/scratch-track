@@ -1,6 +1,41 @@
 // var vextab = require('vextab');
+app.controller('ProjectEditCtrl', ['$scope','$state','Project', function($scope,$state,Project) {
 
-app.controller('ProjectEditCtrl', ['$scope', function($scope) {
+//getting current project id
+var id = $state.params.id
+
+//get current project info
+Project.getProject(id)
+.then(function(response){
+  $scope.pdata = response.data;
+}) 
+.catch(function(err){
+  console.log('there was an error loading the project, id: ', id);
+})
+
+$state.go('main.project_edit.dash');
+
+
+$scope.deleteProject = function(id){
+
+};
+
+$scope.displayRecordings = function(recordings){
+
+};
+
+$scope.displayNotes = function(notes){
+
+};
+
+$scope.displayLyrics = function (lyrics) {
+
+};
+
+$scope.displayStablature = function (stablature) {
+
+};
+
 
 // VexTab = vextab.VexTab;
 // Artist = vextab.Artist;

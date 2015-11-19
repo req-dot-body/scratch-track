@@ -75,6 +75,13 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       controller: 'ProjectEditCtrl' 
     })
 
+    .state('main.project_edit.dash', {
+      url:'/dash',
+      authenticate: true,
+      templateUrl: 'views/projectDash.html',
+      controller: 'ProjectDashCtrl' 
+    })
+
     .state('main.project_edit.lyrics', {
       url: '/lyrics',
       authenticate: true,
