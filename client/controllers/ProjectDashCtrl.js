@@ -11,6 +11,20 @@ $scope.deleteProject = function(id){
   })
 };
 
+$scope.toggleInfoForm =function(){
+  $('#info-form').toggle();
+  $('#info-display').toggle();
+};
+
+$scope.saveProjectInfo = function(){
+  Project.editProject($scope.projectData)
+  .then(function(){
+    $('#info-form').toggle();
+    $('#info-display').toggle();    
+  })
+
+};
+
 
 
 $scope.displayRecordings = function(recordings){

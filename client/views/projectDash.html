@@ -1,8 +1,8 @@
 <nav class="projectNav">
   <div class="nav-wrapper blue-grey darken-4">
-    <a sref="main" class="brand-logo left">Project{{pdata.name}}</a>
+    <a sref="main" class="brand-logo left">Project Dash</a>
     <ul class="right">
-      <li><a ui-sref="main.projects">Edit Info</a></li>
+      <li><a ng-click ='toggleInfoForm()'>Edit Info</a></li>
       <li><a class="modal-trigger" href="#delete-modal">Delete</a></li>
       <li><a ui-sref="main.projects">Exit</a></li>
     </ul>
@@ -10,6 +10,31 @@
 </nav>
 <!-- P-DASH VIEW-->
 <div class="row dash-row-top">
+  <!-- EDIT PROJECT -->
+  <form class="col s12 m12" id="info-form">
+    <br><br>
+    <div class="row">
+      <div class="input-field col s12 m8 offset-m2">
+        <input ng-model='projectData.name' id="projectName" type="text" class="validate">
+        <label class="active" for="projectName">Project Name</label>
+      </div>
+      <div class="input-field col s12 m8 offset-m2">
+        <input ng-model='projectData.description' id="projectDescription" type="text" class="validate">
+        <label class="active" for="projectDescription">Project Description</label>
+      </div>
+    </div>
+    <div class ='col s4 m4 offset-m3'>
+      <a ng-click='saveProjectInfo()' class="right waves-effect white black-text btn" style="width:60%;height:100%;">Save</a>
+    </div>
+     <div class ='col s4 m4'>
+      <a ng-click='toggleInfoForm()' class="left waves-effect white black-text btn" style="width:60%;height:100%;">Cancel</a>
+    </div><br><br><br>
+  </form>
+  <div class = 'col s12 m12' id='info-display'>
+  <h5>Project Name: {{projectData.name}}</h5>
+  <p>Description: {{projectData.description}}</p>
+  </div>
+
   <div class="col s12 m6 dash-left-panel">
     <ul class="collection with-header">
       <li class="collection-header green lighten-1"><h6>Recent Recordings</h6></li>
@@ -69,8 +94,8 @@
 <!-- DELETE MODAL   -->
 <div id="delete-modal" class="modal">
   <div class="modal-content">
-    <h4 class = 'align-center'>Delete Project</h4>
-    <h5 class = 'red-text'>ATTENTION! Project {{pdata.name}} will be DELETED!</h5>
+    <h5 class = 'align-center'>DELETE PROJECT</h5>
+    <p class = 'red-text'>ATTENTION! Project {{projectData.name}} will be deleted, this changes can't be undone.</p>
   </div>
   <div class="modal-footer">
     <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a><a ng-click='deleteProject(projectData.id)' href='' class=" modal-action modal-close waves-effect waves-green btn-flat">Accept</a>
