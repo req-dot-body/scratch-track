@@ -110,7 +110,7 @@ describe('Projects', function() {
     .then(function(stablature){
       var projectId = stablature.project_id;
       return request(app)
-      .del('projects/'+projectId)
+      .del('/projects/'+projectId)
       .expect(200)
     })
   })

@@ -1,5 +1,6 @@
 var db = require('../lib/db');
 var User = require('./user.js');
+var Resource = require('./resource.js');
 
 var Project = {};
 
@@ -62,10 +63,13 @@ Project.updateResource = function(projectId) {
 }
 
 //deletes an entire project
-//including all resources
 Project.del = function(projectId){
-  return db('projects').where('id', '=', projectId).del()
-
+  //deleting all associated resources
+  return Resource.deleteAll(projectId)
+  .then(function(){
+    //deleting project
+    return db('projects').where('id', '=', projectId).del();  
+  })
 }
 
 module.exports = Project;

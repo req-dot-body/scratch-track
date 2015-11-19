@@ -86,6 +86,7 @@ router.delete('/:projectId', function (req, res) {
   //checks that project is authorized by user
   Project.findById(projectId, req.session.passport.user.id)
   .then(function(){
+    //deleting project and resources
     Project.del(projectId)
     .then(function(){
       //successfully deleted

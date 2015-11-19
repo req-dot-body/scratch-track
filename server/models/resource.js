@@ -92,4 +92,26 @@ Resource.delete = function(tableName, ids){
 	})
 }
 
+//deletes all resources for a particular project
+Resource.deleteAll = function(projectId){
+	//finds all resources from a particular table and deletes
+	var del = function(tableName){
+		return db.select('*').from(tableName)
+		.where(tableName + '.project_id', '=', projectId)
+		.del() 
+	}
+
+	//deletes all four 
+	return del('lyrics')
+	.then(function(){
+		return del('stablature');
+	})
+	.then(function(){
+		return del('recordings');
+	})
+	.then(function(){
+		return del('notes');
+	})
+}
+
 module.exports = Resource; 
