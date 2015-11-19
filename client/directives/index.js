@@ -5,6 +5,7 @@ require('./Tour');
 require('./passwordCompare')
 require('./ResourceTemplate');
 require('./Projects');
+require('./Vex');
 
 // resourceDirectives
 // require('./resourceDirectives/CreateLyric.js');

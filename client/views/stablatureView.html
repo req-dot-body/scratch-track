@@ -1,8 +1,14 @@
 <container>
   <section>
-    <h5>Create New Thingy</h5>
-    <p>stablature</p>
+   <h5>Create New Tabs</h5>
+    <div class="vex-tabdiv" editor="true" ng-bind="code">
+      <canvas class="vex-canvas">
+      <div class="editor-error">
+      <textarea class="editor">
+      </textarea>
+    </div>
   </section>
+  <button class="waves-effect waves-light btn" ng-click="create()">Submit Tabs</button>
 
   <section>
     <h5>Pertinent Stuff</h5>
@@ -15,3 +21,13 @@
   </section>
 
 </container>
+
+<script type="text/javascript">
+  var jq = $
+</script>
+<script src="/js/vex.js"></script>
+<script type="text/javascript">
+  $ = jq;
+</script>
+
+
