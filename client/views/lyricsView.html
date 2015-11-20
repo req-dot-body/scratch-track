@@ -1,24 +1,20 @@
-<container id="lyrics-container">
+<container id="lyrics-container" style="width: 90%">
 
   <!-- Create New Lyric Sheet -->
   <section>
 
-    <h5>Create New Lyric Sheet</h5>
-
-    <!-- Trigger for Lyric Creation -->
-    <a class="waves-effect waves-light btn">Create New Lyric</a>
-
     <!-- Structure for Lyric Creation -->
-    <div>
+    <div id="lyric-creation">
+      <h5>Create New Lyric Sheet</h5>
       <div>
         <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
         <textarea type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
       </div>
       <div>
-        <a href="#!" class="waves-effect waves-green btn-flat">Cancel</a>
-        <a href="#!" ng-click="add(titleVal, lyricData)" class="waves-effect waves-green btn-flat">Save</a>
+        <a href="#!" class="waves-effect waves-light btn" ng-click="add(titleVal, lyricData)">Save</a>
       </div>
     </div>
+
 
   </section>
 
@@ -47,36 +43,32 @@
           <textarea id="lyrictext" ng-model="lyricsheet.text" class="materialize-textarea" readonly="readonly">
           </textarea>
 
-          <!-- Revision Button -->
-          <!-- Trigger for Lyric Revision -->
-          <a class="waves-effect waves-light btn" ng-click="updateVal(lyricsheet.text); updateTitle(lyricsheet.name)" href="">Create Revision</a>
 
           <!-- Structure for Lyric Revision -->
-          <div>
+          <div id="lyric-revision" style="display: none;">
+            <h5>Create New Revision</h5>
             <div>
               <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
               <textarea type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
-
-<!--               <h4>Lyric Name</h4>
-              <textarea type="text" ng-model="val"></textarea> -->
             </div>
             <div>
-
-              <a href="#!" class="waves-effect waves-green btn-flat">Cancel</a>
-              <a href="#!" class="waves-effect waves-green btn-flat" ng-click="add(titleVal, val)">Save</a>
+              <a href="#!" class="waves-effect waves-light btn" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">Save</a>
             </div>
           </div>
 
+          <!-- Button for Lyric Revision -->
+          <a class="waves-effect waves-light btn" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)" href="">Create Revision</a>
+
           <!-- Edit Button -->
           <!-- Toggles Editable TextArea -->
-          <a class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()" href="">Edit</a>
+          <a href="#!" class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()" href="">Edit</a>
 
           <!-- Delete Button -->
           <!-- Trigger for Lyric Delete Confirmation -->
-          <a class="waves-effect waves-light btn" href="">Delete</a>
+          <a href="#!"  class="waves-effect waves-light btn" ng-click="console.log('clicked')">Delete</a>
 
           <!-- Structure for Lyric Delete Confirmation -->
-          <div>
+          <div id="delete-confirmation">
             <div>
               <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
             </div>
