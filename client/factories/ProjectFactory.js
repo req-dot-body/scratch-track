@@ -24,6 +24,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
 // GET - :/:id/notes - Retrieves all notes for a specific project { notes: [ { id: project_id: text: created_at: name: }, ... ]
 // }
 
+// if a project is just created this is set to true
 
 //sends request to the server to get all projects
   var getAllProjects = function (){
@@ -64,8 +65,9 @@ app.factory('Project', ['$http','$state', function($http,$state) {
   };
 
 //edits current project
-  var editProject = function(projectId,projectData) {
-    return $http.put('/api/projects/'+projectId,projectData)
+  var editProject = function(projectData) {
+    var id = projectData.id;
+    return $http.put('/api/projects/'+id,projectData)
     .then(function(response){
 
     })
