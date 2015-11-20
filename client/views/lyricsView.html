@@ -5,10 +5,10 @@
 
     <h5>Create New Lyric Sheet</h5>
 
-    <!-- Modal Trigger for Lyric Creation -->
+    <!-- Trigger for Lyric Creation -->
     <a class="waves-effect waves-light btn">Create New Lyric</a>
 
-    <!-- Modal Structure for Lyric Creation -->
+    <!-- Structure for Lyric Creation -->
     <div>
       <div>
         <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
@@ -48,10 +48,10 @@
           </textarea>
 
           <!-- Revision Button -->
-          <!-- Modal Trigger for Lyric Revision -->
+          <!-- Trigger for Lyric Revision -->
           <a class="waves-effect waves-light btn" ng-click="updateVal(lyricsheet.text); updateTitle(lyricsheet.name)" href="">Create Revision</a>
 
-          <!-- Modal Structure for Lyric Revision -->
+          <!-- Structure for Lyric Revision -->
           <div>
             <div>
               <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
@@ -72,10 +72,10 @@
           <a class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()" href="">Edit</a>
 
           <!-- Delete Button -->
-          <!-- Modal Trigger for Lyric Delete Confirmation -->
+          <!-- Trigger for Lyric Delete Confirmation -->
           <a class="waves-effect waves-light btn" href="">Delete</a>
 
-          <!-- Modal Structure for Lyric Delete Confirmation -->
+          <!-- Structure for Lyric Delete Confirmation -->
           <div>
             <div>
               <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
