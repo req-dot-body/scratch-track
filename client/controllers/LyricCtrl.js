@@ -2,8 +2,8 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
   $scope.toggleMode = "Edit";
 
-  $scope.toggleEditable = function() {
-    var textbox = document.getElementById('lyrictext');
+  $scope.toggleEditable = function(id) {
+    var textbox = document.getElementById(id);
 
     if (textbox.hasAttribute('readOnly')) {
       textbox.removeAttribute('readOnly');
@@ -16,21 +16,31 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       $scope.toggleMode = "Edit";
     }
   };
- 
-  $scope.removeOverlay = function() {
-    if (document.getElementsByClassName('lean-overlay')) {
-      var overlays = document.getElementsByClassName('lean-overlay');
-      for (var i = 0; i < overlays.length; i++) {
-        overlays[i].remove();
+
+  $scope.toggleDiv = function(id) {
+    div = document.getElementById(id);
+      if(div.style.display == "none") {
+         div.style.display = "block";
       }
-    }
-  };
+      else {
+         div.style.display = "none";
+      }
+  }
+ 
+  // $scope.removeOverlay = function() {
+  //   if (document.getElementsByClassName('lean-overlay')) {
+  //     var overlays = document.getElementsByClassName('lean-overlay');
+  //     for (var i = 0; i < overlays.length; i++) {
+  //       overlays[i].remove();
+  //     }
+  //   }
+  // };
 
   var projectId = $state.params.id;
 
 
   $scope.val = "";
-  $scope.titleVal = "Untitled"
+  $scope.titleVal = ""
 
 
   $scope.updateVal = function(newValue) {
@@ -81,12 +91,19 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     Lyric.del(id);
   }
 
+
   $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $('.collapsible').collapsible({
-        accordion : true
+        accordion : false
     });
   });
 
+
+  $("textarea").keyup(function(e) {
+    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+      $(this).height($(this).height()+1);
+    };
+  });
 
 }]);

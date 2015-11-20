@@ -3,11 +3,10 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project', function($scope,
 
 //getting current project id
 var id = $state.params.id
-
 //get current project info
 Project.getProject(id)
 .then(function(response){
-  $scope.pdata = response.data;
+  $scope.projectData = response.data;
 }) 
 .catch(function(err){
   console.log('there was an error loading the project, id: ', id);
@@ -15,25 +14,8 @@ Project.getProject(id)
 
 $state.go('main.project_edit.dash');
 
-$scope.deleteProject = function(id){
 
-};
 
-$scope.displayRecordings = function(recordings){
-
-};
-
-$scope.displayNotes = function(notes){
-
-};
-
-$scope.displayLyrics = function (lyrics) {
-
-};
-
-$scope.displayStablature = function (stablature) {
-
-};
 
 
 // VexTab = vextab.VexTab;

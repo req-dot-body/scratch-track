@@ -18,7 +18,7 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
     .then(function(response){
       console.log('project created response: ',response);
       var id = response.data.id;
-      $state.go('main.project_edit.dash', { id: id });
+      $state.go('main.project_edit.dash', { id: id, created:true });
     }).catch(function(error){
       //display a message error 
       //stay on same state
@@ -34,7 +34,6 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
     }).catch(function(error){
       console.error(error);
     })
-
   }
 
 // Get projects on controller loading....

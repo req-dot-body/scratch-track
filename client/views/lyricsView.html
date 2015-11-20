@@ -1,24 +1,20 @@
-<container ng-click="removeOverlay()" id="lyrics-container">
+<container id="lyrics-container" style="width: 90%">
 
   <!-- Create New Lyric Sheet -->
   <section>
 
-    <h5>Create New Lyric Sheet</h5>
-
-    <!-- Modal Trigger for Lyric Creation -->
-    <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-creation-modal">Create New Lyric</a>
-
-    <!-- Modal Structure for Lyric Creation -->
-    <div id="lyric-creation-modal" class="modal" ng-click="removeOverlay()">
-      <div class="modal-content">
-        <input type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)">
-        <input type="text" ng-model="lyricData" ng-click="removeOverlay()" placeholder="Enter lyrics here.">
+    <!-- Structure for Lyric Creation -->
+    <div id="lyric-creation">
+      <h5>Create New Lyric Sheet</h5>
+      <div>
+        <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
+        <textarea type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
       </div>
-      <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Cancel</a>
-        <a href="#!" ng-click="removeOverlay(); add(titleVal, lyricData)" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+      <div>
+        <a href="#!" class="waves-effect waves-light btn" ng-click="add(titleVal, lyricData)">Save</a>
       </div>
     </div>
+
 
   </section>
 
@@ -29,52 +25,56 @@
     <h5>Your Lyrics for This Project</h5>
 
     <!-- Accordion for Lyric Sheets -->
-    <ul class="collapsible" data-collapsible="accordion" ng-click="removeOverlay()">
+    <ul class="collapsible" data-collapsible="accordion">
 
       <li ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
         <!-- Accordion Element Header -->
-        <div class="collapsible-header">{{ lyricsheet.name }}</div>
-        
+        <div class="collapsible-header row" style="overflow: hidden">
+          <div class="col s6">
+            {{ lyricsheet.created_at }}
+            <input id="lyrictitle" ng-model="lyricsheet.name" type="text" style="border:none; color: black !important; width: 200px;" ng-click="$event.stopPropagation()" readonly="readonly">
+          </div>
+        </div>
+
         <!-- Accordion Element Body -->
-        <div class="collapsible-body" ng-controller="LyricCtrl" ng-click="removeOverlay()">
+        <div class="collapsible-body" ng-controller="LyricCtrl">
 
           <!-- Editable Lyric Area -->
-          <textarea id="lyrictext" ng-model="lyricsheet.text" class="materialize-textarea" readonly="readonly" ng-click="removeOverlay()">
+          <textarea id="lyrictext" ng-model="lyricsheet.text" class="materialize-textarea" readonly="readonly">
           </textarea>
 
-          <!-- Revision Button -->
-          <!-- Modal Trigger for Lyric Revision -->
-          <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay(); updateVal(lyricsheet.text)" href="#lyric-revision-modal">Create Revision</a>
 
-          <!-- Modal Structure for Lyric Revision -->
-          <div id="lyric-revision-modal" class="modal" ng-click="removeOverlay()">
-            <div class="modal-content">
-              <h4>Lyric Name</h4>
-              <input type="text" ng-model="val" ng-click="removeOverlay()">
+          <!-- Structure for Lyric Revision -->
+          <div id="lyric-revision" style="display: none;">
+            <h5>Create New Revision</h5>
+            <div>
+              <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
+              <textarea type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
             </div>
-            <div class="modal-footer">
-
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">Cancel</a>
-              <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay(); add(val)">Save</a>
+            <div>
+              <a href="#!" class="waves-effect waves-light btn" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">Save</a>
             </div>
           </div>
 
+          <!-- Button for Lyric Revision -->
+          <a class="waves-effect waves-light btn" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)" href="">Create Revision</a>
+
           <!-- Edit Button -->
           <!-- Toggles Editable TextArea -->
-          <a class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); edit(lyricsheet.id, lyricsheet); removeOverlay()" href="">Edit</a>
+          <a href="#!" class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()" href="">Edit</a>
 
           <!-- Delete Button -->
-          <!-- Modal Trigger for Lyric Delete Confirmation -->
-          <a class="waves-effect waves-light btn modal-trigger" ng-click="removeOverlay()" href="#lyric-deletion-modal">Delete</a>
+          <!-- Trigger for Lyric Delete Confirmation -->
+          <a href="#!"  class="waves-effect waves-light btn" ng-click="console.log('clicked')">Delete</a>
 
-          <!-- Modal Structure for Lyric Delete Confirmation -->
-          <div id="lyric-deletion-modal" class="modal" ng-click="removeOverlay()">
-            <div class="modal-content">
+          <!-- Structure for Lyric Delete Confirmation -->
+          <div id="delete-confirmation">
+            <div>
               <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
             </div>
-            <div class="modal-footer">
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay(); delete(lyricsheet.id)">Yes, Really Delete</a>
-              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="removeOverlay()">No, Go Back To Lyrics</a>
+            <div>
+              <a href="#!" class="waves-effect waves-green btn-flat" ng-click="delete(lyricsheet.id)">Yes, Really Delete</a>
+              <a href="#!" class="waves-effect waves-green btn-flat">No, Go Back To Lyrics</a>
             </div>
           </div>
 
