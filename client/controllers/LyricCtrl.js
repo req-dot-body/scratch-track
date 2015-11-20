@@ -16,15 +16,25 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       $scope.toggleMode = "Edit";
     }
   };
- 
-  $scope.removeOverlay = function() {
-    if (document.getElementsByClassName('lean-overlay')) {
-      var overlays = document.getElementsByClassName('lean-overlay');
-      for (var i = 0; i < overlays.length; i++) {
-        overlays[i].remove();
+
+  $scope.toggleDiv = function(id) {
+    div = document.getElementById(id);
+      if(div.style.display == "none") {
+         div.style.display = "block";
       }
-    }
-  };
+      else {
+         div.style.display = "none";
+      }
+  }
+ 
+  // $scope.removeOverlay = function() {
+  //   if (document.getElementsByClassName('lean-overlay')) {
+  //     var overlays = document.getElementsByClassName('lean-overlay');
+  //     for (var i = 0; i < overlays.length; i++) {
+  //       overlays[i].remove();
+  //     }
+  //   }
+  // };
 
   var projectId = $state.params.id;
 
@@ -85,7 +95,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $('.collapsible').collapsible({
-        accordion : true
+        accordion : false
     });
   });
 
