@@ -26,7 +26,6 @@ $scope.saveProjectInfo = function(){
 };
 
 
-
 $scope.displayRecordings = function(recordings){
 
 };
