@@ -3,6 +3,12 @@ app.controller('ProjectDashCtrl', ['$scope','$state','Project', function($scope,
 //load delete modal
 $('.modal-trigger').leanModal();
 
+//if the project is just created show info-Form
+if($state.params.created){
+  $('#info-form').toggle();
+  $('#info-display').toggle();
+}
+
 $scope.deleteProject = function(id){
 
   Project.deleteProject(id)
@@ -11,7 +17,7 @@ $scope.deleteProject = function(id){
   })
 };
 
-$scope.toggleInfoForm =function(){
+$scope.toggleInfoForm = function(){
   $('#info-form').toggle();
   $('#info-display').toggle();
 };
@@ -41,7 +47,6 @@ $scope.displayLyrics = function (lyrics) {
 $scope.displayStablature = function (stablature) {
 
 };
-
 
 
 

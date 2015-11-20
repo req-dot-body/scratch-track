@@ -3,7 +3,6 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project', function($scope,
 
 //getting current project id
 var id = $state.params.id
-
 //get current project info
 Project.getProject(id)
 .then(function(response){
@@ -14,6 +13,7 @@ Project.getProject(id)
 })
 
 $state.go('main.project_edit.dash');
+
 
 
 
