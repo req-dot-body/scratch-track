@@ -2,8 +2,8 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
   $scope.toggleMode = "Edit";
 
-  $scope.toggleEditable = function() {
-    var textbox = document.getElementById('lyrictext');
+  $scope.toggleEditable = function(id) {
+    var textbox = document.getElementById(id);
 
     if (textbox.hasAttribute('readOnly')) {
       textbox.removeAttribute('readOnly');
@@ -30,7 +30,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
 
   $scope.val = "";
-  $scope.titleVal = "Untitled"
+  $scope.titleVal = ""
 
 
   $scope.updateVal = function(newValue) {
@@ -81,6 +81,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     Lyric.del(id);
   }
 
+
   $(document).ready(function() {
     $('.modal-trigger').leanModal();
     $('.collapsible').collapsible({
@@ -88,5 +89,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     });
   });
 
+
+  $("textarea").keyup(function(e) {
+    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+      $(this).height($(this).height()+1);
+    };
+  });
 
 }]);
