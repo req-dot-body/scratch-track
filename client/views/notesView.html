@@ -4,6 +4,12 @@
     <p>notes</p>
   </section>
 
+  <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes" ng-model="note">
+    <zf-accordion-item title="{{note.name}}">
+    {{note.text}}
+    </zf-accordion-item>
+  </zf-accordion>
+
   <section>
     <h5>Pertinent Stuff</h5>
     <p>notes</p>
@@ -15,3 +21,5 @@
   </section>
 
 </container>
+
+
