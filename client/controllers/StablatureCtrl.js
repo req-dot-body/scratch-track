@@ -9,33 +9,47 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project',
 	.then(function(stabRes){
 		$scope.stabList = stabRes.data; 
 	})
+	
+var defaultStab = {
+		code: "tabstave notation=false \n notes 4-5/3",
+		name: '',
+		description: '' 
+	};
 
-	$scope.code = "tabstave notation=false \n notes 4-5/3";
+	$scope.stabInfo = defaultStab;
+	$scope.editing = false;
 
-	$scope.create = function(){
-		console.log('id?', $state.params.id)
+
+	$scope.toggleEditor = function(){
+		console.log('what even?')
+		// angular.element(document).find('textarea.editor').val(defaultStab.code);
+		$scope.editing = !$scope.editing;
+	};
+
+
+	$scope.submit = function(){
+		//ideally some sort of validation here
+		// console.log('error', angular.element(document).find('div.text').val());
+
+		var stabInfo = $scope.stabInfo;
+	
+		//hacky nonsense to grab the textarea input
+		//because vex sucks
+		stabInfo.code = angular.element(document).find('textarea.editor').val()
+
 		var newStab = {
-			code: $scope.code,
+			code: stabInfo.code,
+			name: stabInfo.name,
+			description: stabInfo.description,
 			project_id: $state.params.id
 		};
 
+		$scope.editing = false;
 		Stablature.create(newStab);
-	}
+	};
 
-	$scope.removeOverlay = function() {
-    if (document.getElementsByClassName('lean-overlay')) {
-      var overlays = document.getElementsByClassName('lean-overlay');
-      for (var i = 0; i < overlays.length; i++) {
-        overlays[i].remove();
-      }
-    }
-  };
-
-  $(document).ready(function() {
-    $('.modal-trigger').leanModal();
-    $('.collapsible').collapsible({
-        accordion : true
-    });
-  });
+	$scope.delete = function(id){
+		Stablature.del(id);
+	};
 
 }]);
