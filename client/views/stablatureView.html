@@ -1,28 +1,35 @@
 <container>
 
-  <a class="waves-effect waves-light btn">Create New Tab</a>
-  <div id="create-stab">
-    <div>
-      <h5>Create New Tabs</h5>
-      <div class="vex-tabdiv" editor="true" ng-bind="code">
-        <canvas class="vex-canvas"/>
-        <div class="editor-error"/>
-        <textarea class="editor"></textarea>
-      </div>
+  <button ng-hide="editing" ng-click="openEditor()">Create New Tab</button>
+  <div ng-show="editing">
+  <h5>New Tab</h5>
+    <div class="vex-tabdiv" editor="true" ng-bind="stabInfo.code">
+      <canvas class="vex-canvas"/>
+      <div class="editor-error"></div>
+      <textarea id='vex-input' class="editor"></textarea>
     </div>
+    Title: <input ng-model="stabInfo.name"></input>
+    <br>
+    Description: <input ng-model="stabInfo.description"></input>
+    <br>
+    <button ng-click="submit()">Submit</button>
+    <button ng-click="closeEditor()">Cancel</button>
   </div>
 
   <section>
 <h5>Your Stablature</h5>
 
-    <!-- Accordion for Lyric Sheets -->
-    <ul class="collapsible" data-collapsible="accordion" watch>
+    <ul watch>
 
       <li ng-repeat="stab in stabList">
         <!-- Accordion Element Header -->
-        <div class="collapsible-header">{{ stab.created_at}} {{stab.name}}</div>
-        <div class="collapsible-body" ng-controller="StablatureCtrl">
+        <h5>{{ stab.created_at}} {{stab.name}}</h5>
+        <div ng-controller="StablatureCtrl">
           <vextab code="stab.code"></vextab>
+          <br>
+          <p>{{stab.description}}</p> 
+          <button ng-click="openEditor()">Revise</button>
+          <button ng-click="delete(stab.id)">Delete</button> 
         </div>        
         
       </li>

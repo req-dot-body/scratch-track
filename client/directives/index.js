@@ -7,8 +7,6 @@ require('./ResourceTemplate');
 require('./Projects');
 require('./Vextab');
 require('./ProjectDash');
-require('./CreateStab');
-
 
 // resourceDirectives
 // require('./resourceDirectives/CreateLyric.js');
