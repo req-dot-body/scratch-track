@@ -148,6 +148,14 @@ position: absolute;
 
 #info-form {
   display:none;
-
 }
 
+
+/* Lyric Styles */
+.lyric-textarea:read-only {
+  color: gray;
+}
+
+.lyric-textarea:read-only:hover {
+  color: gray;
+}

@@ -1,54 +1,69 @@
-  <div>
-    <h4>Create New Lyric Sheet</h4>
+<div class="vertical grid-block">
+  <div class="grid-block text-center">
+    <div class="grid-content noscroll small-10 small-offset-1">
+      
+      <h1>Lyrics</h1>
 
-    <a class="button" href="#">CREATE NEW LYRIC</a>
-
-    <div>
-      <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
-      <textarea type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
-      <a class="button" href="#" ng-click="add(titleVal, lyricData)">Save</a>
+      <p>
+        He ate in the same open air; that is, his two only meals,&mdash;breakfast and dinner: supper he never touched; nor reaped his beard; which darkly grew all gnarled, as unearthed roots of trees blown over, which still grow idly on at naked base, though perished in the upper verdure. But though his whole life was now become one watch on deck; and though the Parsee's mystic watch was without intermission as his own; yet these two never seemed to speak&mdash;one man to the other&mdash;unless at long intervals some passing unmomentous matter made it necessary. 
+      </p>
     </div>
-    
+  </div>
+
+
+  <div class="grid-block">
+    <div class="grid-content">
+      <h4>Create New Lyric Sheet</h4>
+
+          <textarea class="lyric-textarea" type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
+          <textarea class="lyric-textarea" type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
+          <a class="button" href="#" ng-click="add(titleVal, lyricData)">SAVE</a>
+          <a zf-close="" class="button">CANCEL</a>
+
+    </div>
+  </div>
+
+
+  <div class="grid-block">
+    <div class="grid-content">
+
     <h4>Your Lyrics for This Project</h4>
 
-    <div>
       <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
-        <zf-accordion-item title="{{ lyricsheet.created_at}}">
-          <textarea id="lyrictext" ng-model="lyricsheet.text readonly="readonly">
+        <zf-accordion-item title="{{ lyricsheet.created_at}} {{ lyricsheet.name}}">
+          <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly">
           </textarea>
           <div id="lyric-revision" style="display: none;">
 
             <h5>Create New Revision</h5>
 
             <div>
-              <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
+              <textarea class="lyric-textarea" type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
 
-              <textarea type="text" ng-model="val" placeholder="Enter lyrics here." style="background-color:red !important"></textarea>
+              <textarea class="lyric-textarea" type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
             </div>
             <div>
-              <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">Save</a>
+              <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">SAVE</a>
             </div>
           </div>
 
-          <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)">Create Revision</a>
+          <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)">CREATE REVISION</a>
 
-          <a class="button" href="#" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()">Edit</a>
+          <a class="button" href="#" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()">EDIT</a>
 
-          <a class="button" href="#" ng-click="console.log('clicked')">Delete</a>
-
-          <div id="delete-confirmation">
+          <a zf-open="deleteLyricModal" class="button">DELETE</a>
+          <div zf-modal="" id="deleteLyricModal">
             <div>
-              <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
-            </div>
-            <div>
-              <a class="button" href="#" ng-click="delete(lyricsheet.id)">Yes, Really Delete</a>
+                <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
+              <a class="button" href="#" ng-click="delete(lyricsheet.id)">YES, REALLY DELETE</a>
 
-              <a class="button" href="#">No, Go Back to Lyrics</a>
+              <a zf-close="" class="button" href="#">NO, GO BACK TO LYRICS</a>
             </div>
           </div>
 
         </zf-accordion-item>
       </zf-accordion>
-    </div>
 
+    </div>
+  </div>
 </div>
