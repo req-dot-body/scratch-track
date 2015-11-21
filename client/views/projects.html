@@ -1,38 +1,53 @@
-<div>
-  <div class = 'row'>
-    <div class = 'col s6'>
-      <h3>Projects</h3>
-    </div>
-    <div class='col s1 offset-s5'>
-      
-      <div class = 'btn-action-btn add-project'>
-        <a ng-click='createProject()'class="btn-floating btn-medium blue-grey">
-          <i class="large material-icons">add</i>
-        </a>
+<h3>Lastest Projects</h3>
+<div class="grid-block">
+  <div class="grid-container small-3" ng-repeat="project in projects|limitTo:-3|orderBy:'updated_at'">
+    <div class="card">
+      <div class="card-divider project-recent">
+        Name: {{project.name}}
+      </div>
+      <div class="card-section">
+        <p>Description: {{project.description}}</p>
       </div>
     </div>
   </div>
-  <ul class="collection projects-box anim-fade" data-anim-speed="500" ng-repeat = 'project in products' class = 'projects' ng-model='products' watch>
-     <div class="blue-grey darken-2">
-        <a ui-sref = "main.project_edit({id:project.id})" class="projects-title">
-          {{project.name}}
-        </a>
-      </div>
-      <li class="collection-item avatar">
-        <i class="material-icons circle black">queue_music</i>
-        Description: {{project.description}}<br>
-        Created At: {{project.created_at*1000|date}}<br>
-        Updated At: {{project.updated_at*1000|date}}  
-        </p>
-        <p><a ui-sref = "main.project_edit({id:project.id})" class="secondary-content"><i class="small material-icons blue-grey-text darken-3-text">input</i></a>
-        <div style="float:right"><a ng-click="deleteProject(project.id)"><i class="small material-icons blue-grey-text darken-3-text">delete</i></a></div>
-        </p>
-        <!--This should eventually trigger a prompt asking to confirm delete-->
-        
-        
-      </li>
-  </ul>
+</div>
+<br>
+
+<div class="align center grid-block">
+  <div class="grid-container small-3">
+    <a ng-click='createProject()' class="alert hollow button">Create New Project</a>
+  </div>
 </div>
 
+<div class="grid-block">
+  <div class="grid-container small-11">
+    <label>
+    Search
+    <span class="inline-label">
+    <input ng-model="searchText" type="search" placeholder="Search Project">
+    </span>
+    </label>
+  </div>
+</div>
 
+<div class="grid-block" ng-repeat='project in projects|filter:searchText'>
+  <div class="grid-container small-10">
+    <br>
+    <div class="primary title-bar">
+      <span class="title left">Project:{{project.name}}</span>
+      <span class="right">
+        <a ui-sref = "main.project_edit({id:project.id})">Go</a>
+      </span>
+    </div>
+    <div class="card"> 
+      <div class="card-section">
+        <p>Description: {{project.descrition}}</p>
+        <p>Created at: {{project.created_at*1000|date}}</p>
+        <p>Updated at: {{project.updated_at*1000|date}}</p>
+      </div>
+    </div>  
+  </div>
+</div>
+
+  
 
