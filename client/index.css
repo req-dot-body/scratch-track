@@ -34,7 +34,20 @@ height:100%;
 position: absolute;
 }
 
-#landing-form {
+.land-text p{
+  padding: 5%;
+}
+
+.landing-form {
+
+  position: relative;
+  top: 50%;
+  transform: translateY(30%);
+  color: white;
+
+}
+
+#landing-box {
   border: 2px solid black;
   padding: 5%;
   background-color: white;
