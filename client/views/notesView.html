@@ -1,23 +1,26 @@
 <container>
   <section>
-    <h5>Create New Thingy</h5>
-    <p>notes</p>
-  </section>
+    <div><h5>Create New Note</h5></div>
+    <label>
+      Note Title:
+      <input type="text" placeholder="Enter note title here" ng-model="newNote.name">
+    </label>
+    <label>
+      Note Body:
+      <input type="text" placeholder="Enter note here" ng-model="newNote.text">
+    </label>
+    <a class="large button" ng-click="addNote(newNote)">Add Note</a>
 
-  <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes" ng-model="note">
-    <zf-accordion-item title="{{note.name}}">
-    {{note.text}}
-    </zf-accordion-item>
-  </zf-accordion>
-
-  <section>
-    <h5>Pertinent Stuff</h5>
-    <p>notes</p>
   </section>
 
   <section>
-    <h5>Listing</h5>
-    <p>notes</p>
+    <h5>Your Project Notes:</h5>
+    <zf-accordion auto-open="false" collapsible="true" multi-open="true">
+      <zf-accordion-item title="{{note.name}} - {{note.created_at}}" ng-repeat="note in notes" ng-model="note" watch>
+      {{note.text}}
+      </zf-accordion-item>
+    </zf-accordion>
+    
   </section>
 
 </container>
