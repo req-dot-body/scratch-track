@@ -1,8 +1,8 @@
-<div class="row anim-fade landing-form">
-  <div class="col s6 offset-s3 landing-form">
-    <form name="signinForm" novalidate>
+<div class="anim-fade landing-form">
+  <div class="row small-6 grid-content">
+    <form name="signinForm" class="form-group" novalidate>
       <div class="form-header">E-Mail:</div>
-      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field"/><br>
+      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field" placeholder="Enter your e-mail" ng-blur="buttonControl()"/><br>
       <div class="form-group"> 
         <div class="validation-error" ng-messages="signinForm.emailField.$error" ng-if="signinForm.emailField.$touched">
           <div ng-message="required">This field is required</div>
@@ -11,7 +11,7 @@
       </div>     
 
       <div class="form-header">Password:</div>
-      <input type="password" required ng-model="password" name="passwordField" ng-minlength="6" ng-minlength="12"/>
+      <input type="password" required ng-model="password" name="passwordField" ng-minlength="6" ng-minlength="12" placeholder="Enter your password" ng-blur="buttonControl()"/>
       <div class="form-group"> 
         <div class="validation-error" ng-messages="signinForm.passwordField.$error" ng-if="signinForm.passwordField.$touched">
           <div ng-message="required">This field is required</div>
@@ -20,8 +20,9 @@
         </div>
       </div>     
       <br>
-      <button ng-click="signinUser()" class="waves-effect blue-grey btn-large" ng-disabled='email.length===0 || password.length===0'>Submit</button><br><br>
-      <p>Not have an account yet? <a ui-sref='public.signup'>Sign Up!</a>
+      <a class="large button" href="#" ng-submit="signinUser()" ng-click="signinUser()" id="submit-btn">Submit</a>
+      <br><br>
+      <p>Don't have an account? <a ui-sref='public.signup'>Sign Up!</a>
     </form>
   </div>
 </div>
