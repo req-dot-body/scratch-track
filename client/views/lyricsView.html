@@ -1,90 +1,31 @@
-<container id="lyrics-container" style="width: 90%">
 
-  <!-- Create New Lyric Sheet -->
-  <section>
+<div class="row">
 
-    <!-- Structure for Lyric Creation -->
-    <div id="lyric-creation">
-      <h5>Create New Lyric Sheet</h5>
-      <div>
-        <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
-        <textarea type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
-      </div>
-      <div>
-        <a href="#!" class="waves-effect waves-light btn" ng-click="add(titleVal, lyricData)">Save</a>
-      </div>
+  <div class="small-12">
+    <h4>Create New Lyric Sheet</h4>
+    <div class="small-12">
+
+    <a class="button" href="#">CREATE NEW LYRIC</a>
+
+    <p>"Queequeg," said I, "do you think that we can make out a supper for us both on one clam?"</p>
+
+    <p>However, a warm savory steam from the kitchen served to belie the apparently cheerless prospect before us. But when that smoking chowder came in, the mystery was delightfully explained. Oh, sweet friends! hearken to me. It was made of small juicy clams, scarcely bigger than hazel nuts, mixed with pounded ship biscuit, and salted pork cut up into little flakes; the whole enriched with butter, and plentifully seasoned with pepper and salt. Our appetites being sharpened by the frosty voyage, and in particular, Queequeg seeing his favourite fishing food before him, and the chowder being surpassingly excellent, we despatched it with great expedition: when leaning back a moment and bethinking me of Mrs. Hussey's clam and cod announcement, I thought I would try a little experiment. Stepping to the kitchen door, I uttered the word "cod" with great emphasis, and resumed my seat. In a few moments the savoury steam came forth again, but with a different flavor, and in good time a fine cod-chowder was placed before us.
+    </p>
+    
+    <h4>Your Lyrics for This Project</h4>
+
+    <div>
+      <zf-accordion>
+      <zf-accordion-item title="Lyric 1">
+      Fa lalala
+      </zf-accordion-item>
+      <zf-accordion-item title="Lyric 2">
+      la la
+      </zf-accordion-item>
+      <zf-accordion-item title="Lyric 3">
+      la la~!
+      </zf-accordion-item>
+      </zf-accordion>
     </div>
 
-
-  </section>
-
-
-  <!-- List of Lyric Sheets -->
-  <section>
-
-    <h5>Your Lyrics for This Project</h5>
-
-    <!-- Accordion for Lyric Sheets -->
-    <ul class="collapsible" data-collapsible="accordion">
-
-      <li ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
-        <!-- Accordion Element Header -->
-        <div class="collapsible-header row" style="overflow: hidden">
-          <div class="col s6">
-            {{ lyricsheet.created_at }}
-            <input id="lyrictitle" ng-model="lyricsheet.name" type="text" style="border:none; color: black !important; width: 200px;" ng-click="$event.stopPropagation()" readonly="readonly">
-          </div>
-        </div>
-
-        <!-- Accordion Element Body -->
-        <div class="collapsible-body" ng-controller="LyricCtrl">
-
-          <!-- Editable Lyric Area -->
-          <textarea id="lyrictext" ng-model="lyricsheet.text" class="materialize-textarea" readonly="readonly">
-          </textarea>
-
-
-          <!-- Structure for Lyric Revision -->
-          <div id="lyric-revision" style="display: none;">
-            <h5>Create New Revision</h5>
-            <div>
-              <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
-              <textarea type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
-            </div>
-            <div>
-              <a href="#!" class="waves-effect waves-light btn" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">Save</a>
-            </div>
-          </div>
-
-          <!-- Button for Lyric Revision -->
-          <a class="waves-effect waves-light btn" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)" href="">Create Revision</a>
-
-          <!-- Edit Button -->
-          <!-- Toggles Editable TextArea -->
-          <a href="#!" class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()" href="">Edit</a>
-
-          <!-- Delete Button -->
-          <!-- Trigger for Lyric Delete Confirmation -->
-          <a href="#!"  class="waves-effect waves-light btn" ng-click="console.log('clicked')">Delete</a>
-
-          <!-- Structure for Lyric Delete Confirmation -->
-          <div id="delete-confirmation">
-            <div>
-              <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
-            </div>
-            <div>
-              <a href="#!" class="waves-effect waves-green btn-flat" ng-click="delete(lyricsheet.id)">Yes, Really Delete</a>
-              <a href="#!" class="waves-effect waves-green btn-flat">No, Go Back To Lyrics</a>
-            </div>
-          </div>
-
-        </div>
-      </li>
-
-    </ul>
-
-  </section>
-
-</container>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+</div>
