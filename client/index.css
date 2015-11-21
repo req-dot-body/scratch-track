@@ -51,12 +51,17 @@ position: absolute;
 }
 
 .landing-form {
-
+  text-align: center;
   position: relative;
   top: 50%;
   transform: translateY(30%);
   color: white;
 
+}
+
+.landing-form h1 {
+  text-align: center;
+  color: white;
 }
 
  /* label color */

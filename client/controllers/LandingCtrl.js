@@ -1,7 +1,6 @@
 app.controller('LandingCtrl', ['$scope', function($scope) {
   console.log('Lading Controller hitted')
 
-  $scope.code = "tabstave notation=false \n notes 4-5/3";
   $scope.message = "But, at last, when turning to the eastward," + 
     "the Cape winds began howling around us, and we rose and fell upon the long, " +
     "troubled seas that are there; when the ivory-tusked Pequod sharply bowed to the blast, " +
