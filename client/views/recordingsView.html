@@ -61,7 +61,22 @@
   }
 
   function createDownloadLink() {
-    recorder && recorder.exportWAV(function(blob) {
+    if (!recorder) {
+      return;
+    }
+
+    // Send to AWS
+    recorder.exportWAV(function (blob) {
+      // Need to get signed url from server
+
+      // Need to PUT to aws
+
+      // Need to display url we PUT to aws
+    });
+
+    // Show download link
+    recorder.exportWAV(function(blob) {
+
       var url = URL.createObjectURL(blob);
       var div = document.createElement('div');
         div.className = "collapsible-header"
