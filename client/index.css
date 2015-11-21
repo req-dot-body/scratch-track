@@ -159,6 +159,8 @@ position: absolute;
   color: gray;
 }
 
-.lyric-textarea:read-only:hover {
-  color: gray;
+/*PROJECTS VIEW*/
+.project-recent {
+  color: black;
 }
+
