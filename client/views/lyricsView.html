@@ -6,39 +6,42 @@
     <div>
       <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
       <textarea type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
-      <a class="button" href="#">Save</a>
+      <a class="button" href="#" ng-click="add(titleVal, lyricData)">Save</a>
     </div>
     
     <h4>Your Lyrics for This Project</h4>
 
     <div>
-      <zf-accordion ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
+      <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
         <zf-accordion-item title="{{ lyricsheet.created_at}}">
-          <textarea id="lyrictext" ng-model="lyricsheet.text" class="materialize-textarea" readonly="readonly">
+          <textarea id="lyrictext" ng-model="lyricsheet.text readonly="readonly">
           </textarea>
           <div id="lyric-revision" style="display: none;">
+
             <h5>Create New Revision</h5>
+
             <div>
               <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
-              <textarea type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
+
+              <textarea type="text" ng-model="val" placeholder="Enter lyrics here." style="background-color:red !important"></textarea>
             </div>
             <div>
-              <a class="button" href="#">Save</a>
+              <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">Save</a>
             </div>
           </div>
 
-          <a class="button" href="#">Create Revision</a>
+          <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)">Create Revision</a>
 
-          <a class="button" href="#">Edit</a>
+          <a class="button" href="#" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()">Edit</a>
 
-          <a class="button" href="#">Delete</a>
+          <a class="button" href="#" ng-click="console.log('clicked')">Delete</a>
 
           <div id="delete-confirmation">
             <div>
               <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
             </div>
             <div>
-              <a class="button" href="#">Yes, Really Delete</a>
+              <a class="button" href="#" ng-click="delete(lyricsheet.id)">Yes, Really Delete</a>
 
               <a class="button" href="#">No, Go Back to Lyrics</a>
             </div>
