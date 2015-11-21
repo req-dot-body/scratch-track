@@ -1,6 +1,6 @@
 <container>
 
-  <button ng-hide="editing" ng-click="toggleEditor()">Create New Tab</button>
+  <button ng-hide="editing" ng-click="openEditor()">Create New Tab</button>
   <div ng-show="editing">
   <h5>New Tab</h5>
     <div class="vex-tabdiv" editor="true" ng-bind="stabInfo.code">
@@ -13,7 +13,7 @@
     Description: <input ng-model="stabInfo.description"></input>
     <br>
     <button ng-click="submit()">Submit</button>
-    <button ng-click="toggleEditor()">Cancel</button>
+    <button ng-click="closeEditor()">Cancel</button>
   </div>
 
   <section>
@@ -28,7 +28,7 @@
           <vextab code="stab.code"></vextab>
           <br>
           <p>{{stab.description}}</p> 
-          <button ng-click="toggleEditor()">Revise</button>
+          <button ng-click="openEditor()">Revise</button>
           <button ng-click="delete(stab.id)">Delete</button> 
         </div>        
         

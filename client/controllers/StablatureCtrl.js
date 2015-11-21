@@ -20,12 +20,14 @@ var defaultStab = {
 	$scope.editing = false;
 
 
-	$scope.toggleEditor = function(){
-		console.log('what even?')
+	$scope.openEditor = function(){
 		// angular.element(document).find('textarea.editor').val(defaultStab.code);
-		$scope.editing = !$scope.editing;
+		$scope.editing = true;
 	};
 
+	$scope.closeEditor = function(){
+		$scope.editing = false;
+	}
 
 	$scope.submit = function(){
 		//ideally some sort of validation here
