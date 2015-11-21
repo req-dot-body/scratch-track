@@ -72,12 +72,15 @@ router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }
 router.get('/js/angular.js', browserify(sharedAngular));
 // Serve Foundation
 router.get('/js/foundation.js', (req, res) => res.sendFile(Path.resolve('./node_modules/foundation-apps/dist/js/foundation-apps.js')));
+// Serve Foundation Templates
+router.get('/js/foundation-templates.js', (req, res) => res.sendFile(Path.resolve('./node_modules/foundation-apps/dist/js/foundation-apps-templates.js')));
 // Serve Angular work around for Foundation
 router.get('/js/index.js', browserify('./client/index.js'));
 //vex sucks so we have to serve it manually 
 router.get('/js/vex.js', function (req, res) {
   res.sendFile(Path.resolve('./node_modules/vextab/releases/vextab-div.js'));
 });
+
 
 router.get('/css/main.css', sass.serve('./client/style.scss'));
 
