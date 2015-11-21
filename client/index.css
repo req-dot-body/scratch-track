@@ -34,34 +34,20 @@ height:100%;
 position: absolute;
 }
 
-
-/*LANDING VIEW*/
-.land-text {
-  margin: 0 20%; 
-  color:white;
-  border-radius: 10px;
-  border: 1px solid white;
-  position: relative;
-  top: 50%;
-  transform: translateY(30%);
-}
-
-.land-text p{
-  padding: 5%;
-}
-
-.landing-form {
+#landing-form {
+  border: 2px solid black;
   padding: 5%;
   background-color: white;
-  opacity: .3;
+  opacity: .5;
   text-align: center;
   position: relative;
-  margin-top: 10%;
+  margin: 10%;
 }
 
-.landing-form h1 {
+#landing-title {
   text-align: center;
 }
+
 
  /* label color */
    .input-field label {
