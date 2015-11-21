@@ -1,16 +1,36 @@
-var angular = require('angular');
-var ngCookies = require('angular-cookies');
-var ui = require('angular-ui-router');
-var ngMessages = require('angular-messages');
+
+// window.angular = require('angular');
+// window.foundation = require('foundation-apps/dist/js/foundation-apps');
 var ngAnimate = require('angular-animate');
 var ngAnimate_inOut = require('angular-ui-router-anim-in-out');
-
+var ngCookies = require('angular-cookies');
+var ngResource = require('angular-resource');
+var ngMessages = require('angular-messages');
+var ngSanitize = require('angular-sanitize');
+var ngTouch = require('angular-touch');
+var uiRouter = require('angular-ui-router');
+window.foundationRoutes = [];//[{"name":"home","url":"/","path":"/../"}];
+console.log('typeof angular', typeof angular);
 window.app = angular.module('myApp', [
-  ngAnimate,
+  'ngAnimate',
   'ngCookies',
   'ui.router',
-  'ngMessages',
-  ngAnimate_inOut
+  // 'ngMessages',
+  // 'anim-in-out',
+  // 'ngTouch',
+  // 'ngSanitize',
+  // 'ngResource',
+  'foundation',
+  // 'foundation.dynamicRouting',
+  // 'foundation.dynamicRouting.animations'
+  // ngAnimate,
+  // ngAnimate_inOut,
+  // ngCookies,
+  // ngMessages,
+  // ngResource,
+  // ngSanitize,
+  // ngTouch,
+  // uiRouter,
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {

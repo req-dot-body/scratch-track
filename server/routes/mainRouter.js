@@ -8,12 +8,30 @@ var usersRouter = require('./usersRouter');
 var projectsRouter = require('./projectsRouter');
 var resourcesRouter = require('./resourcesRouter');
 
+var sass = require('node-sass-endpoint');
 var browserify  = require('browserify-middleware');
 var ngAnnotate  = require('browserify-ngannotate');
+
+// var angular = require('angular');
+// var foundation = require('foundation-apps/dist/js/foundation-apps');
+
 
 var assetFolder = Path.resolve(__dirname, '../../client/');
 router.use(express.static(assetFolder));
 
+// var sharedAngular = [
+//  - 'angular',
+//  - 'angular-animate',
+//  - 'angular-cookies',
+//   'angular-mocks',
+//  - 'angular-messages',
+//  - 'angular-resource',
+//  - 'angular-sanitize',
+//  - 'angular-touch',
+//  - 'angular-ui-router',
+//  - 'angular-ui-router-anim-in-out',
+//   './node_modules/angular-materialize/src/angular-materialize',
+// ];
 var sharedAngular = [
   'angular',
   'angular-animate',
@@ -25,7 +43,6 @@ var sharedAngular = [
   'angular-touch',
   'angular-ui-router',
   'angular-ui-router-anim-in-out',
-  './node_modules/angular-materialize/src/angular-materialize',
 ];
 
 // Middleware that checks if logged in and sets cookie to true
@@ -47,16 +64,22 @@ apiRouter.use('/users', usersRouter);
 apiRouter.use('/projects', projectsRouter);
 apiRouter.use('/resources', resourcesRouter);
 
-browserify.settings({ insertGlobals: true, detectGlobals: true });
+
+browserify.settings({ insertGlobals: true, detectGlobals: true, external: ['angular'] });
 // Serve application js files
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
+// Serve Angular and Angular modules
+router.get('/js/angular.js', browserify(sharedAngular));
+// Serve Foundation
+router.get('/js/foundation.js', (req, res) => res.sendFile(Path.resolve('./node_modules/foundation-apps/dist/js/foundation-apps.js')));
+// Serve Angular work around for Foundation
+router.get('/js/index.js', browserify('./client/index.js'));
 //vex sucks so we have to serve it manually 
 router.get('/js/vex.js', function (req, res) {
   res.sendFile(Path.resolve('./node_modules/vextab/releases/vextab-div.js'));
 });
-// Serve Angular and Angular modules
-router.get('/js/jquery.js', browserify(['jquery']));
-router.get('/js/angular.js', browserify(sharedAngular));
+
+router.get('/css/main.css', sass.serve('./client/style.scss'));
 
 // Catch-all router, this must be the last route
 // Basically, if we get to this point, serve our Angular app and let Angular deal with routing
