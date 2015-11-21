@@ -1,6 +1,3 @@
-
-// window.angular = require('angular');
-// window.foundation = require('foundation-apps/dist/js/foundation-apps');
 var ngAnimate = require('angular-animate');
 var ngAnimate_inOut = require('angular-ui-router-anim-in-out');
 var ngCookies = require('angular-cookies');
@@ -10,16 +7,15 @@ var ngSanitize = require('angular-sanitize');
 var ngTouch = require('angular-touch');
 var uiRouter = require('angular-ui-router');
 window.foundationRoutes = [];//[{"name":"home","url":"/","path":"/../"}];
-console.log('typeof angular', typeof angular);
 window.app = angular.module('myApp', [
   'ngAnimate',
   'ngCookies',
   'ui.router',
-  // 'ngMessages',
+  'ngMessages',
   // 'anim-in-out',
-  // 'ngTouch',
-  // 'ngSanitize',
-  // 'ngResource',
+  'ngTouch',
+  'ngSanitize',
+  'ngResource',
   'foundation',
   // 'foundation.dynamicRouting',
   // 'foundation.dynamicRouting.animations'
