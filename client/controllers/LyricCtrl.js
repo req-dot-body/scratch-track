@@ -1,109 +1,109 @@
 app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
 
-//   $scope.toggleMode = "Edit";
+  $scope.toggleMode = "Edit";
 
-//   $scope.toggleEditable = function(id) {
-//     var textbox = document.getElementById(id);
+  $scope.toggleEditable = function(id) {
+    var textbox = document.getElementById(id);
 
-//     if (textbox.hasAttribute('readOnly')) {
-//       textbox.removeAttribute('readOnly');
-//       document.getElementById('edit-lyrics-btn').innerHTML="Save";
-//       $scope.toggleMode = "Save";
-//     }
-//     else {
-//       textbox.setAttribute('readOnly', 'readOnly');
-//       document.getElementById('edit-lyrics-btn').innerHTML="Edit";
-//       $scope.toggleMode = "Edit";
-//     }
-//   };
+    if (textbox.hasAttribute('readOnly')) {
+      textbox.removeAttribute('readOnly');
+      document.getElementById('edit-lyrics-btn').innerHTML="Save";
+      $scope.toggleMode = "Save";
+    }
+    else {
+      textbox.setAttribute('readOnly', 'readOnly');
+      document.getElementById('edit-lyrics-btn').innerHTML="Edit";
+      $scope.toggleMode = "Edit";
+    }
+  };
 
-//   $scope.toggleDiv = function(id) {
-//     div = document.getElementById(id);
-//       if(div.style.display == "none") {
-//          div.style.display = "block";
-//       }
-//       else {
-//          div.style.display = "none";
-//       }
-//   }
+  $scope.toggleDiv = function(id) {
+    div = document.getElementById(id);
+      if(div.style.display == "none") {
+         div.style.display = "block";
+      }
+      else {
+         div.style.display = "none";
+      }
+  }
  
-//   // $scope.removeOverlay = function() {
-//   //   if (document.getElementsByClassName('lean-overlay')) {
-//   //     var overlays = document.getElementsByClassName('lean-overlay');
-//   //     for (var i = 0; i < overlays.length; i++) {
-//   //       overlays[i].remove();
-//   //     }
-//   //   }
-//   // };
+  // $scope.removeOverlay = function() {
+  //   if (document.getElementsByClassName('lean-overlay')) {
+  //     var overlays = document.getElementsByClassName('lean-overlay');
+  //     for (var i = 0; i < overlays.length; i++) {
+  //       overlays[i].remove();
+  //     }
+  //   }
+  // };
 
-//   var projectId = $state.params.id;
-
-
-//   $scope.val = "";
-//   $scope.titleVal = ""
+  var projectId = $state.params.id;
 
 
-//   $scope.updateVal = function(newValue) {
-//     $scope.val = newValue;
-//   }
+  $scope.val = "";
+  $scope.titleVal = ""
 
-//   $scope.updateTitle = function(newTitle) {
-//     $scope.titleVal = newTitle;
-//   }
+
+  $scope.updateVal = function(newValue) {
+    $scope.val = newValue;
+  }
+
+  $scope.updateTitle = function(newTitle) {
+    $scope.titleVal = newTitle;
+  }
   
 
-//   $scope.lyrics = [];
+  $scope.lyrics = [];
 
-//   $scope.getAll = function(){
-//     Project.getProjectLyrics(projectId).then(function(projects){
-//       $scope.lyrics = projects;
-//     })
-//   }
+  $scope.getAll = function(){
+    Project.getProjectLyrics(projectId).then(function(projects){
+      $scope.lyrics = projects;
+    })
+  }
 
-//   $scope.getAll();
+  $scope.getAll();
 
-//   $scope.getOne = function(id){
-//     Lyric.select(id);
-//   }
+  $scope.getOne = function(id){
+    Lyric.select(id);
+  }
 
-//   $scope.add = function(titleData, data){
-//     console.log('data in ctrl:', titleData, data);
-//     var requestData = {
-//       "project_id": projectId,
-//       "text":  data,
-//       "name": titleData
-//     }
+  $scope.add = function(titleData, data){
+    console.log('data in ctrl:', titleData, data);
+    var requestData = {
+      "project_id": projectId,
+      "text":  data,
+      "name": titleData
+    }
 
-//     return Lyric.create(requestData);
-//   }
+    return Lyric.create(requestData);
+  }
 
-//   $scope.edit = function(id, data){
-//     if($scope.toggleMode === "Edit") {
-//       Lyric.edit(id, data); 
-//     }
-//     else {
-//       console.log("Cannot post. You are not in edit mode.")
-//     }
-//   }
-
-
-//   $scope.delete = function(id) {
-//     Lyric.del(id);
-//   }
+  $scope.edit = function(id, data){
+    if($scope.toggleMode === "Edit") {
+      Lyric.edit(id, data); 
+    }
+    else {
+      console.log("Cannot post. You are not in edit mode.")
+    }
+  }
 
 
-//   $(document).ready(function() {
-//     $('.modal-trigger').leanModal();
-//     $('.collapsible').collapsible({
-//         accordion : false
-//     });
-//   });
+  $scope.delete = function(id) {
+    Lyric.del(id);
+  }
 
 
-//   $("textarea").keyup(function(e) {
-//     while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
-//       $(this).height($(this).height()+1);
-//     };
-//   });
+  $(document).ready(function() {
+    $('.modal-trigger').leanModal();
+    $('.collapsible').collapsible({
+        accordion : false
+    });
+  });
+
+
+  $("textarea").keyup(function(e) {
+    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+      $(this).height($(this).height()+1);
+    };
+  });
 
 }]);
