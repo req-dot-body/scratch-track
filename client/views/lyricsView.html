@@ -1,90 +1,69 @@
-<container id="lyrics-container" style="width: 90%">
+<div class="vertical grid-block">
+  <div class="grid-block text-center">
+    <div class="grid-content noscroll small-10 small-offset-1">
+      
+      <h1>Lyrics</h1>
 
-  <!-- Create New Lyric Sheet -->
-  <section>
-
-    <!-- Structure for Lyric Creation -->
-    <div id="lyric-creation">
-      <h5>Create New Lyric Sheet</h5>
-      <div>
-        <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
-        <textarea type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
-      </div>
-      <div>
-        <a href="#!" class="waves-effect waves-light btn" ng-click="add(titleVal, lyricData)">Save</a>
-      </div>
+      <p>
+        He ate in the same open air; that is, his two only meals,&mdash;breakfast and dinner: supper he never touched; nor reaped his beard; which darkly grew all gnarled, as unearthed roots of trees blown over, which still grow idly on at naked base, though perished in the upper verdure. But though his whole life was now become one watch on deck; and though the Parsee's mystic watch was without intermission as his own; yet these two never seemed to speak&mdash;one man to the other&mdash;unless at long intervals some passing unmomentous matter made it necessary. 
+      </p>
     </div>
+  </div>
 
 
-  </section>
+  <div class="grid-block">
+    <div class="grid-content">
+      <h4>Create New Lyric Sheet</h4>
+
+          <textarea class="lyric-textarea" type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
+          <textarea class="lyric-textarea" type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
+          <a class="button" href="#" ng-click="add(titleVal, lyricData)">SAVE</a>
+          <a zf-close="" class="button">CANCEL</a>
+
+    </div>
+  </div>
 
 
-  <!-- List of Lyric Sheets -->
-  <section>
+  <div class="grid-block">
+    <div class="grid-content">
 
-    <h5>Your Lyrics for This Project</h5>
+    <h4>Your Lyrics for This Project</h4>
 
-    <!-- Accordion for Lyric Sheets -->
-    <ul class="collapsible" data-collapsible="accordion">
-
-      <li ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
-        <!-- Accordion Element Header -->
-        <div class="collapsible-header row" style="overflow: hidden">
-          <div class="col s6">
-            {{ lyricsheet.created_at }}
-            <input id="lyrictitle" ng-model="lyricsheet.name" type="text" style="border:none; color: black !important; width: 200px;" ng-click="$event.stopPropagation()" readonly="readonly">
-          </div>
-        </div>
-
-        <!-- Accordion Element Body -->
-        <div class="collapsible-body" ng-controller="LyricCtrl">
-
-          <!-- Editable Lyric Area -->
-          <textarea id="lyrictext" ng-model="lyricsheet.text" class="materialize-textarea" readonly="readonly">
+      <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
+        <zf-accordion-item title="{{ lyricsheet.created_at}} {{ lyricsheet.name}}">
+          <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly">
           </textarea>
-
-
-          <!-- Structure for Lyric Revision -->
           <div id="lyric-revision" style="display: none;">
+
             <h5>Create New Revision</h5>
+
             <div>
-              <textarea type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
-              <textarea type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
+              <textarea class="lyric-textarea" type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
+
+              <textarea class="lyric-textarea" type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
             </div>
             <div>
-              <a href="#!" class="waves-effect waves-light btn" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">Save</a>
-            </div>
-          </div>
-
-          <!-- Button for Lyric Revision -->
-          <a class="waves-effect waves-light btn" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)" href="">Create Revision</a>
-
-          <!-- Edit Button -->
-          <!-- Toggles Editable TextArea -->
-          <a href="#!" class="btn" id="edit-lyrics-btn" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()" href="">Edit</a>
-
-          <!-- Delete Button -->
-          <!-- Trigger for Lyric Delete Confirmation -->
-          <a href="#!"  class="waves-effect waves-light btn" ng-click="console.log('clicked')">Delete</a>
-
-          <!-- Structure for Lyric Delete Confirmation -->
-          <div id="delete-confirmation">
-            <div>
-              <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
-            </div>
-            <div>
-              <a href="#!" class="waves-effect waves-green btn-flat" ng-click="delete(lyricsheet.id)">Yes, Really Delete</a>
-              <a href="#!" class="waves-effect waves-green btn-flat">No, Go Back To Lyrics</a>
+              <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">SAVE</a>
             </div>
           </div>
 
-        </div>
-      </li>
+          <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)">CREATE REVISION</a>
 
-    </ul>
+          <a class="button" href="#" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()">EDIT</a>
 
-  </section>
+          <a zf-open="deleteLyricModal" class="button">DELETE</a>
+          <div zf-modal="" id="deleteLyricModal">
+            <div>
+                <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
+              <a class="button" href="#" ng-click="delete(lyricsheet.id)">YES, REALLY DELETE</a>
 
-</container>
+              <a zf-close="" class="button" href="#">NO, GO BACK TO LYRICS</a>
+            </div>
+          </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+        </zf-accordion-item>
+      </zf-accordion>
+
+    </div>
+  </div>
+</div>

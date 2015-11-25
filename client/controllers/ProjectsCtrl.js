@@ -6,7 +6,8 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
     Project.getAllProjects()
     .then(function(data){
       console.log('Projects Data:', data)
-      $scope.products = data;
+      $scope.projects = data;
+      $scope.lastThreeUpdated(data);
     }).catch(function(error){
         //case of server error getting projects 
     })
@@ -36,7 +37,7 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
     })
   }
 
-// Get projects on controller loading....
-  $scope.getProjects();
+// Get projects on controller loading
+  $scope.getProjects()
 
 }]);

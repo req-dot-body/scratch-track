@@ -34,18 +34,6 @@ height:100%;
 position: absolute;
 }
 
-
-/*LANDING VIEW*/
-.land-text {
-  margin: 0 20%; 
-  color:white;
-  border-radius: 10px;
-  border: 1px solid white;
-  position: relative;
-  top: 50%;
-  transform: translateY(30%);
-}
-
 .land-text p{
   padding: 5%;
 }
@@ -58,6 +46,21 @@ position: absolute;
   color: white;
 
 }
+
+#landing-box {
+  border: 2px solid black;
+  padding: 5%;
+  background-color: white;
+  opacity: .5;
+  text-align: center;
+  position: relative;
+  margin: 10%;
+}
+
+#landing-title {
+  text-align: center;
+}
+
 
  /* label color */
    .input-field label {
@@ -148,6 +151,16 @@ position: absolute;
 
 #info-form {
   display:none;
+}
 
+
+/* Lyric Styles */
+.lyric-textarea:read-only {
+  color: gray;
+}
+
+/*PROJECTS VIEW*/
+.project-recent {
+  color: black;
 }
 
