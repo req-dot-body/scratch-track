@@ -2,12 +2,9 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
 
 //Get projects from Projects factory
   $scope.getProjects = function () {
-    console.log('getting all projects')
     Project.getAllProjects()
     .then(function(data){
-      console.log('Projects Data:', data)
       $scope.projects = data;
-      $scope.lastThreeUpdated(data);
     }).catch(function(error){
         //case of server error getting projects 
     })
@@ -17,18 +14,15 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
   $scope.createProject = function () {
     Project.createProject()
     .then(function(response){
-      console.log('project created response: ',response);
       var id = response.data.id;
       $state.go('main.project_edit.dash', { id: id, created:true });
     }).catch(function(error){
-      //display a message error 
-      //stay on same state
+      //if not created stay in same state
       $state.go('main.projects');
     })
   }
 
   $scope.deleteProject = function (projectId) {
-    console.log("deleting project with ID:", projectId);
     Project.deleteProject(projectId)
     .then(function(response){
       $scope.getProjects();
