@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<div class="grid-block" ng-repeat='project in projects|filter:searchText'>
+<div class="grid-block" ng-repeat='project in projects|toArray|filter:searchText'>
   <div class="grid-container small-10">
     <br>
     <div class="primary title-bar">
