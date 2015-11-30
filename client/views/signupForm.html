@@ -2,7 +2,7 @@
   <div class="row small-6 columns">
     <form name="signupForm" class="form-group" novalidate>
       <div class="form-header">E-Mail:</div>
-      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field"/>
+      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field" ng-blur="signupButtonControl()"/>
       <div class="form-group"> 
         <div class="validation-error" ng-messages="signupForm.emailField.$error" ng-if="signupForm.emailField.$touched">
           <div ng-message="required">This field is required</div>
@@ -10,7 +10,7 @@
         </div>
 
       <div class="form-header">Password:</div>
-      <input type="password" id="password" name="password" ng-model="password" required ng-minlength="6" ng-maxlength="15" />
+      <input type="password" id="password" name="password" ng-model="password" required ng-minlength="6" ng-maxlength="15" ng-blur="signupButtonControl()"/>
       <div class="form-group"> 
         <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched" class="validation-error">
           <div ng-message="required">This field is required</div>
@@ -21,7 +21,7 @@
 
 
       <div class="form-header">Confirm Password:</div>
-      <input type="password" name="passwordVerify" ng-model="passwordVerify" ng-required="" pw-check="password" />
+      <input type="password" name="passwordVerify" ng-model="passwordVerify" ng-required="" pw-check="password" ng-blur="signupButtonControl()"/>
       <div class="form-group" ng-show="signupForm.$error"> 
         <div class="validation-error" ng-show="signupForm.passwordVerify.$error.pwmatch"> 
         Passwords do not match
@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-header">First Name:</div>
-      <input type="text" required ng-model="first" name="firstField" class="input-field"/>
+      <input type="text" required ng-model="first" name="firstField" class="input-field" ng-blur="signupButtonControl()"/>
       <div class="form-group"> 
         <div ng-messages="signupForm.firstField.$error" ng-if="signupForm.firstField.$touched" class="validation-error">
           <div ng-message="required">This field is required</div>
@@ -37,7 +37,7 @@
       </div>   
 
       <div class="form-header">Last Name:</div>
-      <input type="text" required ng-model="last" name="lastField" class="input-field"/>
+      <input type="text" required ng-model="last" name="lastField" class="input-field" ng-blur="signupButtonControl()"/>
       <div class="form-group"> 
         <div ng-messages="signupForm.lastField.$error" ng-if="signupForm.lastField.$touched" class="validation-error">
           <div ng-message="required">This field is required</div>
@@ -45,7 +45,7 @@
       </div>   
     
       <br>
-      <a class="large button" ng-submit="signupUser()" ng-click="signupUser()" id="submit-btn">Submit</a><br><br>
+      <a class="large button disabled" ng-submit="signupUser()" ng-click="signupUser()" id="submit-btn">Submit</a><br><br>
       <p>Already a Member? <a ui-sref='public.signin'>Sign in!</a>
     </form>
   </div>

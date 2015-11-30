@@ -1,4 +1,4 @@
-app.controller('UserCtrl', ['$scope','User', function($scope,User) {
+app.controller('UserCtrl', ['$scope','User', function($scope, User) {
   $scope.email = '',
   $scope.password = '',
   $scope.first ='',
@@ -26,17 +26,19 @@ app.controller('UserCtrl', ['$scope','User', function($scope,User) {
   } 
 
   $scope.buttonControl = function () {
-    /*console.log("function called")
-      var button = angular.element(document).find('a.submit-btn')
-      console.log("button is", button);
-    if (!($scope.email === '' && $scope.password === '')) {
-      button.removeClass( "large button disabled" ).addClass( "large button" )
-    }*/
+    var button = $('#submit-btn');
+    
+    if ($scope.email !== '' && $scope.password !== '') {
+      button.removeClass("large button disabled").addClass("large button");
+    }
   }
 
   $scope.signupButtonControl = function () {
-
-  /*email.length===0 || password.length===0 || signupForm.passwordVerify.$error.pwmatch*/
+     var button = $('#submit-btn');
+    
+    if ($scope.email !== '' && $scope.password !== '' && $scope.first !== '' && $scope.last !== '') {
+      button.removeClass("large button disabled").addClass("large button");
+    }
   }
 
 
