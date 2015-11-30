@@ -86,6 +86,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   }
 
 
+  $scope.formatDate = function(date) {
+    return moment.unix(date).calendar();
+  };
+
+
   $("textarea").keyup(function(e) {
     while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
       $(this).height($(this).height()+1);
