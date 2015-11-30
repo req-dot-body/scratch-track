@@ -19,7 +19,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     }
   };
 
-  $scope.toggleDiv = function(id) {
+  $scope.toggleElement = function(id) {
     div = document.getElementById(id);
 
     if(div.style.display == "none") {

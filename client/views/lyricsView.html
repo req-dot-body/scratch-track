@@ -32,8 +32,8 @@
 
       <textarea class="lyric-textarea" type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
 
-      <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet'); add(titleVal, val)">SAVE</a>
-      <a ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet');" class="button">CANCEL</a>
+      <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); add(titleVal, val)">SAVE</a>
+      <a ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet');" class="button">CANCEL</a>
     </div>
   </div>
 
@@ -45,12 +45,16 @@
 
       <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data | orderBy:'-created_at'" ng-model="lyrics">
         <zf-accordion-item title="{{ formatDate(lyricsheet.created_at) }} {{ lyricsheet.name}}">
+
+          <textarea class="lyric-textarea" id="lyrictitle" ng-model="lyricsheet.name" style="display: none;">
+          </textarea>
+
           <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly">
           </textarea>
 
-          <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
+          <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
 
-          <a class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); edit(lyricsheet.id, lyricsheet)">EDIT</a>
+          <a class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); toggleElement('lyrictitle'); edit(lyricsheet.id, lyricsheet)">EDIT</a>
 
           <a zf-open="deleteLyricModal" class="button">DELETE</a>
           <div zf-modal="" id="deleteLyricModal">
