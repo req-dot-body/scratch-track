@@ -92,12 +92,12 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   }
 
 
-  $(document).ready(function() {
-    $('.modal-trigger').leanModal();
-    $('.collapsible').collapsible({
-        accordion : false
-    });
-  });
+  // $(document).ready(function() {
+  //   $('.modal-trigger').leanModal();
+  //   $('.collapsible').collapsible({
+  //       accordion : false
+  //   });
+  // });
 
 
   $("textarea").keyup(function(e) {
