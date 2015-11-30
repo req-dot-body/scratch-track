@@ -4,15 +4,17 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/anim-in-out.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/index.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <base href="/">
   </head>
   
   <body ng-app="myApp">
-
-    <div ui-view class="home-view anim-in-out anim-fade" data-anim-speed="200"> </div>
-
+    <div class="grid-frame vertical">
+      <div ui-view class="grid-block home-view anim-in-out anim-fade" data-anim-speed="200">
+      </div>
+    </div>
   </body>
   
   <footer>
@@ -20,8 +22,6 @@
     <script src="/js/index.js"></script>
     <script src="/js/foundation.js"></script>
     <script src="/js/foundation-templates.js"></script>
-    
-
 
     <script src="/js/app.js"></script>
     <script src="/recorder.js"></script>

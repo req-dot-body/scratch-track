@@ -1,4 +1,4 @@
-<nav class="projectNav">
+<!-- <nav class="projectNav">
   <div class="nav-wrapper blue-grey darken-4">
     <a sref="main" class="brand-logo left">Project Dash</a>
     <ul class="right">
@@ -7,11 +7,12 @@
       <li><a ui-sref="main.projects">Exit</a></li>
     </ul>
   </div>
-</nav>
+</nav> -->
 <!-- P-DASH VIEW-->
-<div class="row dash-row-top">
+<div class="grid-block wrap dash-row-top">
   <!-- EDIT PROJECT -->
-  <form class="col s12 m12" id="info-form">
+  <!-- TODO : commented out because of foundation -->
+<!--   <form class="col s12 m12" id="info-form">
     <br><br>
     <div class="row">
       <div class="input-field col s12 m8 offset-m2">
@@ -29,13 +30,49 @@
      <div class ='col s6 m4'>
       <a ng-click='toggleInfoForm()' class="left waves-effect white black-text btn" style="width:60%;height:100%;">Cancel</a>
     </div><br><br><br>
-  </form>
-  <div class = 'col s12 m12' id='info-display'>
-  <h5>Project Name: {{projectData.name}}</h5>
-  <p>Description: {{projectData.description}}</p>
-  </div>
+  </form> -->
 
-  <div class="col s12 m6 dash-left-panel">
+  <!-- <div class="grid-block small-12" id="info-display"> -->
+  <div class="grid-content small-12">
+    <h5>Project Name: {{projectData.name}}</h5>
+    <p>Description: {{projectData.description}}</p>
+  </div>
+  <!-- </div> -->
+
+  <!-- <div class="grid-block wrap small-12 medium-6"> -->
+    <div class="grid-content small-12 medium-6 medium-order-0">
+      <div class="card success">
+        <div class="card-divider">
+          Recent Recordings
+        </div>
+        <div class="card-section">
+          <ul>
+            <li><a href="#">Recording 1</a></li>
+            <li><a href="#">Recording 2</a></li>
+            <li><a href="#">Recording 3</a></li>
+            <li><a ui-sref="main.project_edit.recordings">Recordings</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-content small-12 medium-6 medium-order-1">
+      <div class="card warning">
+        <div class="card-divider">
+          Last Notes
+        </div>
+        <div class="card-section">
+          <ul>
+            <li><a href="#">Note 1</a></li>
+            <li><a href="#">Note 2</a></li>
+            <li><a href="#">Note 3</a></li>
+            <li><a ui-sref="main.project_edit.notes">Notes</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+<!--   <div class="dash-left-panel">
     <ul class="collection with-header">
       <li class="collection-header green lighten-1"><h6>Recent Recordings</h6></li>
       <li class="collection-item">Recording1</li>
@@ -43,17 +80,69 @@
       <li class="collection-item">Recording3</li>
       <a ui-sref='main.project_edit.recordings' class="waves-effect white black-text btn" style="width:100%;height:100%;"><i class="small material-icons right">trending_flat</i>Recordings</a>
     </ul>
+  </div> -->
 
+<!--   <div class="grid-block small-12 medium-6">
+    <div class="card warning">
+      <div class="card-divider">
+        Last Notes
+      </div>
+      <div class="card-section">
+        <ul>
+          <li><a href="#">Note 1</a></li>
+          <li><a href="#">Note 2</a></li>
+          <li><a href="#">Note 3</a></li>
+          <li><a ui-sref="main.project_edit.notes">Notes</a></li>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+<!--   <div class="small-12 medium-6 dash-left-panel grid-content">
     <ul class="collection with-header">
       <li class="collection-header orange lighten-1"><h6>Last Notes</h6></li>
       <li class="collection-item">note1</li>
       <li class="collection-item">note2</li>
       <li class="collection-item">note3</li>
       <a ui-sref='main.project_edit.notes' class="waves-effect white black-text btn" style="width:100%;height:100%;"><i class="small material-icons right">trending_flat</i>Notes</a>
+    </ul>
+  </div> -->
 
-    </ul>      
+  <div class="grid-content small-12 medium-6 medium-order-2>
+    <div class="card alert">
+      <div class="card-divider">
+        Last Lyric
+      </div>
+      <div class="card-section">
+        <ul>
+          <li class="collection-item">
+          <p class ='panel-lyric'> Mama take this badge from me
+              I can't use it anymore
+              It's getting dark too dark to see
+              Feels like I'm knockin' on heaven's door
+
+              Knock-knock-knockin' on heaven's door
+              Knock-knock-knockin' on heaven's door
+              Knock-knock-knockin' on heaven's door
+              Knock-knock-knockin' on heaven's door
+
+              Mama put my guns in the ground
+              I can't shoot them anymore
+              That cold black cloud is comin' down
+              Feels like I'm knockin' on heaven's door
+
+              Knock-knock-knockin' on heaven's door
+              Knock-knock-knockin' on heaven's door
+              Knock-knock-knockin' on heaven's door
+              Knock-knock-knockin' on heaven's door
+
+              Knock-knock-knockin' on heaven's door</P>
+              </li>
+              <a ui-sref='main.project_edit.lyrics' class="waves-effect white black-text btn" style="width:100%;height:100%;"><i class="small material-icons right">trending_flat</i>Lyrics</a> 
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="col s12 m6 dash-right-panel">
+<!--   <div class="grid-content small-12 medium-6 dash-right-panel">
     <ul class="collection with-header">
       <li class="collection-header red lighten-1"><h6>Last Lyric</h6></li>
       <li class="collection-item">
@@ -81,18 +170,29 @@
           </li>
           <a href='http://localhost:4000/projects/8/edit/lyrics' class="waves-effect white black-text btn" style="width:100%;height:100%;"><i class="small material-icons right">trending_flat</i>Lyrics</a>
     </ul>   
+  </div> -->
+  <div class="grid-content small-12 medium-order-3">
+    <div class="card primary">
+      <div class="card-divider">
+        Stablature
+      </div>
+      <div class="card-section">
+        Testing stuff
+      </div>
+    </div>
   </div>
-  <div class="col s12 m12 dash-bottom-panel">
+<!--   <div class="grid-content small-12 medium-12 dash-bottom-panel">
     <ul class="collection with-header">
-        <li class="collection-header yellow lighten-1"><h6>Stablature</h6></li>
+        <li class="success collection-header yellow lighten-1"><h6>Stablature</h6></li>
         <li class="collection-item">Displaying Tab</li>
         <a ui-sref='main.project_edit.stablature' class="waves-effect white black-text btn" style="width:100%;height:100%;"><i class="small material-icons right">trending_flat</i>Stablature</a>
     </ul>
-  </div>
+  </div> -->
 </div>
     
 <!-- DELETE MODAL   -->
-<div id="delete-modal" class="modal">
+<!-- TODO : commented out due to Foundation -->
+<!-- <div id="delete-modal" class="modal">
   <div class="modal-content">
     <h5 class = 'align-center'>DELETE PROJECT</h5>
     <p class = 'red-text'>ATTENTION! Project {{projectData.name}} will be deleted, this changes can't be undone.</p>
@@ -101,4 +201,4 @@
     <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a><a ng-click='deleteProject(projectData.id)' href='' class=" modal-action modal-close waves-effect waves-green btn-flat">Accept</a>
   </div>
 </div>
-  
+   -->

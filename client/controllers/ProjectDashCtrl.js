@@ -1,7 +1,8 @@
 app.controller('ProjectDashCtrl', ['$scope','$state','Project', function($scope,$state,Project) {
 
 //load delete modal
-$('.modal-trigger').leanModal();
+// TODO : commented out because of foundation
+// $('.modal-trigger').leanModal();
 
 //if the project is just created show info-Form
 if($state.params.created){
