@@ -44,7 +44,7 @@
     "express-session": "^1.12.1",
     "foundation-apps": "^1.1.0",
     "jquery": "^2.1.4",
-    "knex": "^0.9.0",
+    "knex": "^0.8.6",
     "metalsmith-vextab": "^0.2.1",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",

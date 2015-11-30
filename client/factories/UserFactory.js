@@ -15,7 +15,6 @@ app.factory('User', ['$http','$state', function($http,$state) {
   };
 
   var signUp = function (newUser){
-
     return $http.post('/api/users/signup', newUser)
     .then(function(response){
       //the idea is to make a tour in this case
