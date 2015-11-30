@@ -43,7 +43,7 @@
 
     <h4>Your Lyrics for This Project</h4>
 
-      <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
+      <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data | orderBy:'-created_at'" ng-model="lyrics">
         <zf-accordion-item title="{{ formatDate(lyricsheet.created_at) }} {{ lyricsheet.name}}">
           <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly">
           </textarea>
