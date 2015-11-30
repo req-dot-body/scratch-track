@@ -68,6 +68,8 @@ apiRouter.use('/resources', resourcesRouter);
 browserify.settings({ insertGlobals: true, detectGlobals: true, external: ['angular'] });
 // Serve application js files
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
+// Serve jQuery
+router.get('/js/jquery.js', (req, res) => res.sendFile(Path.resolve('./node_modules/jquery/dist/jquery.js'))); 
 // Serve Angular and Angular modules
 router.get('/js/angular.js', browserify(sharedAngular));
 // Serve Foundation
