@@ -11,15 +11,29 @@
   </div>
 
 
-  <div class="grid-block">
+  <div id="create-lyricsheet" class="grid-block">
     <div class="grid-content">
       <h4>Create New Lyric Sheet</h4>
 
-          <textarea class="lyric-textarea" type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
-          <textarea class="lyric-textarea" type="text" ng-model="lyricData" placeholder="Enter lyrics here."></textarea>
-          <a class="button" href="#" ng-click="add(titleVal, lyricData)">SAVE</a>
-          <a zf-close="" class="button">CANCEL</a>
+          <textarea class="lyric-textarea" type="text" ng-model="newTitleVal" placeholder="Enter title here."></textarea>
 
+          <textarea class="lyric-textarea" type="text" ng-model="newVal" placeholder="Enter lyrics here."></textarea>
+
+          <a class="button" href="#" ng-click="add(newTitleVal, newVal)">SAVE</a>
+    </div>
+  </div>
+
+
+  <div id="lyric-revision" class="grid-block" style="display: none;">
+    <div class="grid-content">
+    <h4>Create New Revision</h4>
+
+      <textarea class="lyric-textarea" type="text" ng-model="titleVal" placeholder="Enter title here."></textarea>
+
+      <textarea class="lyric-textarea" type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
+
+      <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet'); add(titleVal, val)">SAVE</a>
+      <a ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet');" class="button">CANCEL</a>
     </div>
   </div>
 
@@ -30,26 +44,13 @@
     <h4>Your Lyrics for This Project</h4>
 
       <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
-        <zf-accordion-item title="{{ lyricsheet.created_at}} {{ lyricsheet.name}}">
+        <zf-accordion-item title="{{ formatDate(lyricsheet.created_at) }} {{ lyricsheet.name}}">
           <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly">
           </textarea>
-          <div id="lyric-revision" style="display: none;">
 
-            <h5>Create New Revision</h5>
+          <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
 
-            <div>
-              <textarea class="lyric-textarea" type="text" ng-model="titleVal" ng-click="updateTitle(titleVal)" placeholder="Enter title here."></textarea>
-
-              <textarea class="lyric-textarea" type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
-            </div>
-            <div>
-              <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); add(titleVal, val)">SAVE</a>
-            </div>
-          </div>
-
-          <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); updateVal(lyricsheet.text); updateTitle(lyricsheet.name)">CREATE REVISION</a>
-
-          <a class="button" href="#" ng-click="toggleEditable('lyrictext'); toggleEditable('lyrictitle'); edit(lyricsheet.id, lyricsheet); removeOverlay()">EDIT</a>
+          <a class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); edit(lyricsheet.id, lyricsheet)">EDIT</a>
 
           <a zf-open="deleteLyricModal" class="button">DELETE</a>
           <div zf-modal="" id="deleteLyricModal">

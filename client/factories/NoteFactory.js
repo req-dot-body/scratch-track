@@ -11,14 +11,13 @@ var editBody = function(noteId, data) {
 
 var del = function(noteId) {
   return $http.delete('api/resources/notes/' + noteId);
-}
-
+};
 
 return {
   create: create,
   editBody: editBody,
   del: del
 }
-  
+
 
 }]);
