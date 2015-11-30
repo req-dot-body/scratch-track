@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
 
   $scope.toggleMode = "Edit";
@@ -25,16 +27,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       else {
          div.style.display = "none";
       }
-  }
- 
-  // $scope.removeOverlay = function() {
-  //   if (document.getElementsByClassName('lean-overlay')) {
-  //     var overlays = document.getElementsByClassName('lean-overlay');
-  //     for (var i = 0; i < overlays.length; i++) {
-  //       overlays[i].remove();
-  //     }
-  //   }
-  // };
+  };
+
+  $scope.formatDate = function(date) {
+    return moment.unix(date).calendar();
+  };
 
   var projectId = $state.params.id;
 
