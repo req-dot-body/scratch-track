@@ -2,7 +2,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
 
   var projectId = $state.params.id;
 
-  $scope.notes = [];
+  $scope.notes = $scope.notes || [];
 
   $scope.newNote = {
     name: '',
@@ -20,6 +20,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
   $scope.getAll = function (projectId) {
     Project.getProjectNotes(projectId)
     .then(function(notes){
+      console.log(notes.data)
       $scope.notes = notes.data;
     });
   }
@@ -55,5 +56,10 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
       $scope.getAll(projectId);
     });
   }
+
+  var init = function () {
+    $scope.getAll(projectId);
+  }
+  init();
 
 }]);
