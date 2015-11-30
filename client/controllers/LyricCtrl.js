@@ -1,4 +1,4 @@
-var moment = require('moment');
+var moment = require('moment/moment');
 
 app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
 
