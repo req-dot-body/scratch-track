@@ -2,26 +2,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
 
   var projectId = $state.params.id;
 
-  $scope.notes = [
-    {
-      name: 'test',
-      text: 'testetesetsetsetsetst',
-      created_at: '11/11/15',
-      id: 1
-    },
-    {
-      name: 'test',
-      text: 'testetesetsetsetset112121st',
-      created_at: '11/11/15',
-      id: 2
-    },
-    {
-      name: 'test',
-      text: 'testetesetsetsetsetst',
-      created_at: '11/11/15',
-      id: 3
-    }
-  ];
+  $scope.notes = [];
 
   $scope.newNote = {
     name: '',
@@ -37,22 +18,24 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
 
   //Note Methods:
   $scope.getAll = function (projectId) {
-    var notes = Project.getProjectNotes(projectId);
-    console.log(notes)
-    $scope.notes = notes.data
+    Project.getProjectNotes(projectId)
+    .then(function(notes){
+      $scope.notes = notes.data;
+    });
   }
 
   $scope.addNote = function (newNote) {
-    return Note.create(newNote).then = function (response) {
-      console.log("fn called")
+    return Note.create(newNote)
+    .then(function(){
       $scope.getAll(projectId);
-    }
+    });
   }
 
   $scope.deleteNote = function (noteId) {
-    return Note.del(noteId).then = function (response) {
+    return Note.del(noteId)
+    .then(function(){
       $scope.getAll(projectId);
-    }
+    });
   }
 
   $scope.editToggle = false;
@@ -67,9 +50,10 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
     $scope.editToggle = false;
     var text = $('#note-text');
     text.attr('readonly', 'true ');
-    return Note.editBody(noteId, value).then = function (response) {
+    return Note.editBody(noteId, value)
+    .then(function(){
       $scope.getAll(projectId);
-    }
+    });
   }
 
 }]);
