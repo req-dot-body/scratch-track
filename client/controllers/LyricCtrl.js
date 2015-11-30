@@ -4,34 +4,31 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
   $scope.toggleMode = "Edit";
 
-  $scope.toggleEditable = function(id) {
-    var textbox = document.getElementById(id);
+  $scope.toggleEditable = function() {
+    var textbox = document.getElementById('lyrictext');
 
     if (textbox.hasAttribute('readOnly')) {
       textbox.removeAttribute('readOnly');
-      document.getElementById('edit-lyrics-btn').innerHTML="Save";
+      document.getElementById('edit-lyrics-btn').innerHTML="SAVE";
       $scope.toggleMode = "Save";
     }
     else {
       textbox.setAttribute('readOnly', 'readOnly');
-      document.getElementById('edit-lyrics-btn').innerHTML="Edit";
+      document.getElementById('edit-lyrics-btn').innerHTML="EDIT";
       $scope.toggleMode = "Edit";
     }
   };
 
   $scope.toggleDiv = function(id) {
     div = document.getElementById(id);
-      if(div.style.display == "none") {
-         div.style.display = "block";
-      }
-      else {
-         div.style.display = "none";
-      }
-  };
 
-  $scope.formatDate = function(date) {
-    return moment.unix(date).calendar();
-  };
+    if(div.style.display == "none") {
+      div.style.display = "block";
+    }
+    else {
+      div.style.display = "none";
+    }
+  }
 
   var projectId = $state.params.id;
 
@@ -87,14 +84,6 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   $scope.delete = function(id) {
     Lyric.del(id);
   }
-
-
-  // $(document).ready(function() {
-  //   $('.modal-trigger').leanModal();
-  //   $('.collapsible').collapsible({
-  //       accordion : false
-  //   });
-  // });
 
 
   $("textarea").keyup(function(e) {
