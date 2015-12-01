@@ -22,6 +22,11 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     $scope.newRecording.url = url;
     Recording.create($scope.newRecording)
     .then(function(){
+      $scope.newRecording = {
+        project_id: projectId,
+        url: '',
+        name: 'New Recording'
+      };
       $scope.getAll();
     })
   };
@@ -173,4 +178,11 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   init();
 
 
+}]);
+
+//Allows us to circumvent Angular's security so we can link to AWS files in an HTML5 audio element
+app.filter('trusted', ['$sce', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
 }]);

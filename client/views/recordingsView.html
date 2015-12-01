@@ -19,7 +19,10 @@
       <br>
         <zf-accordion auto-open="false" collapsible="true" multi-open="true" id="recordingslist">
           <zf-accordion-item ng-repeat="recording in recordings" ng-model="recordings" title="{{recording.created_at}} - {{recording.name}}" watch>
-            <audio src="{{recording.url}}" controls="true"></audio> <br/>
+            <audio controls="true">
+              <source ng-src="{{recording.url | trusted}}" type="audio/wav"/>
+            </audio>
+            <br/>
             <a class="small button" download href="{{recording.url}}">Download Link</a>
             <a class="small alert button" zf-open="delModal">Delete Recording</a>
             <div zf-modal="" id="delModal">
