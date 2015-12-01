@@ -51,7 +51,8 @@ window.app = angular.module('myApp', [
   // uiRouter,
 ]);
 
-app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
+$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
