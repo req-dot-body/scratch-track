@@ -1,8 +1,10 @@
-var moment = require('moment');
+var moment = require('moment/moment');
 
 app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
 
-  $scope.toggleMode = "Edit";
+
+  var projectId = $state.params.id;
+
 
   $scope.toggleEditable = function() {
     var textbox = document.getElementById('lyrictext');
@@ -19,7 +21,8 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     }
   };
 
-  $scope.toggleDiv = function(id) {
+
+  $scope.toggleElement = function(id) {
     div = document.getElementById(id);
 
     if(div.style.display == "none") {
@@ -28,37 +31,43 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     else {
       div.style.display = "none";
     }
-  }
+  };
+  
 
-  var projectId = $state.params.id;
-
-
-  $scope.val = "";
-  $scope.titleVal = ""
+  $scope.formatDate = function(date) {
+    return moment.unix(date).calendar();
+  };
 
 
   $scope.updateVal = function(newValue) {
     $scope.val = newValue;
-  }
+  };
+
 
   $scope.updateTitle = function(newTitle) {
     $scope.titleVal = newTitle;
-  }
-  
+  };
 
-  $scope.lyrics = [];
+
+  $scope.clearValues = function() {
+    $scope.val = "";
+    $scope.titleVal = ""
+    $scope.newVal = "";
+    $scope.newTitleVal = ""
+  };
+
 
   $scope.getAll = function(){
-    Project.getProjectLyrics(projectId).then(function(projects){
+    Project.getProjectLyrics(projectId).then(function(projects) {
       $scope.lyrics = projects;
     })
-  }
-
-  $scope.getAll();
+  };
+  
 
   $scope.getOne = function(id){
     Lyric.select(id);
-  }
+  };
+
 
   $scope.add = function(titleData, data){
     console.log('data in ctrl:', titleData, data);
@@ -68,8 +77,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       "name": titleData
     }
 
-    return Lyric.create(requestData);
-  }
+    Lyric.create(requestData).then(function() {
+      $scope.getAll();
+    });
+  };
+
 
   $scope.edit = function(id, data){
     if($scope.toggleMode === "Edit") {
@@ -78,18 +90,27 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     else {
       console.log("Cannot post. You are not in edit mode.")
     }
-  }
+  };
 
 
   $scope.delete = function(id) {
-    Lyric.del(id);
-  }
+    Lyric.del(id).then(function() {
+      $scope.getAll();
+    });
+  };
 
 
+  // Makes textareas expand as you type
   $("textarea").keyup(function(e) {
     while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
       $(this).height($(this).height()+1);
     };
   });
 
+  // Initial Setup
+  $scope.getAll();
+  $scope.lyrics = [];
+  $scope.toggleMode = "Edit";
+  $scope.clearValues();
+  
 }]);

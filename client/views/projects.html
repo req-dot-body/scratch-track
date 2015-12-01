@@ -1,5 +1,14 @@
-<h3>Latest Projects You've Worked on</h3>
-<div class="grid-block">
+<div class = 'text-center'>
+  <div class="grid-block">
+    <div class="grid-container small-12 text-left">
+      <a ng-click='createProject()' class="success expand button">Create New Project</a>
+      <h1>Projects</h1>
+    </div>
+  </div>
+  <h3>Latest Projects You've Worked on</h3>
+  <br>
+</div>
+<div class="grid-block text-center">
   <div ng-if='projects.length>0'class="grid-container small-12 medium-3" ng-repeat="project in projects|limitTo:-3|orderBy:'updated_at'">
     <div class="dark card">
       <div class="card-divider project-recent">
@@ -13,10 +22,9 @@
 </div>
 <br>
 
-<div class="grid-block">
+<div class="grid-block text-center">
   <div class="grid-container small-11">
     <label>
-    Search
     <span class="inline-label">
     <input ng-model="searchText" type="search" placeholder="Search Project">
     </span>
@@ -24,30 +32,24 @@
   </div>
 </div>
 
-<div class="grid-block">
-  <div class="grid-container small-3">
-    <a ng-click='createProject()' class="success hollow button">Create New Project</a>
-  </div>
-</div>
-
-<div class="grid-block" ng-repeat='project in projects|filter:searchText'>
+<div class="grid-block" ng-repeat='project in projects|toArray|filter:searchText'>
   <div class="grid-container small-10">
     <br>
-    <div class="primary title-bar">
+    <div class="primary title-bar dark">
       <span class="title left">Project:{{project.name}}</span>
       <span class="right">
         <a ui-sref = "main.project_edit({id:project.id})">Go</a>
       </span>
-    </div>
+    </div>   
     <div class="card"> 
       <div class="card-section">
         <p>Description: {{project.descrition}}</p>
         <p>Created at: {{project.created_at*1000|date}}</p>
         <p>Updated at: {{project.updated_at*1000|date}}</p>
       </div>
-    </div>
-    <div class="align-center grid-container small-3">
+    <div class="text-center grid-container small-3">
       <a  zf-open='deleteModal' class="alert hollow button">Delete Project</a>
+    </div>
       <div zf-modal="" id="deleteModal">
         <a zf-close="deleteModal" class="close-button">×</a>
         <h3>Delete Project: {{project.name}}</h3>

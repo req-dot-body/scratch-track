@@ -19,7 +19,7 @@
 
           <textarea class="lyric-textarea" type="text" ng-model="newVal" placeholder="Enter lyrics here."></textarea>
 
-          <a class="button" href="#" ng-click="add(newTitleVal, newVal)">SAVE</a>
+          <a class="button" href="#" ng-click="add(newTitleVal, newVal); clearValues();">SAVE</a>
     </div>
   </div>
 
@@ -32,8 +32,8 @@
 
       <textarea class="lyric-textarea" type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
 
-      <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet'); add(titleVal, val)">SAVE</a>
-      <a ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet');" class="button">CANCEL</a>
+      <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); add(titleVal, val); clearValues();">SAVE</a>
+      <a ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet');" class="button">CANCEL</a>
     </div>
   </div>
 
@@ -43,22 +43,26 @@
 
     <h4>Your Lyrics for This Project</h4>
 
-      <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data" ng-model="lyrics">
+      <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data | orderBy:'-created_at'" ng-model="lyrics">
         <zf-accordion-item title="{{ formatDate(lyricsheet.created_at) }} {{ lyricsheet.name}}">
+
+          <textarea class="lyric-textarea" id="lyrictitle" ng-model="lyricsheet.name" style="display: none;">
+          </textarea>
+
           <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly">
           </textarea>
 
-          <a class="button" href="#" ng-click="toggleDiv('lyric-revision'); toggleDiv('create-lyricsheet'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
+          <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
 
-          <a class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); edit(lyricsheet.id, lyricsheet)">EDIT</a>
+          <a class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); toggleElement('lyrictitle'); edit(lyricsheet.id, lyricsheet)">EDIT</a>
 
           <a zf-open="deleteLyricModal" class="button">DELETE</a>
           <div zf-modal="" id="deleteLyricModal">
             <div>
                 <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
-              <a class="button" href="#" ng-click="delete(lyricsheet.id)">YES, REALLY DELETE</a>
+              <a class="button" ng-click="delete(lyricsheet.id)">YES, REALLY DELETE</a>
 
-              <a zf-close="" class="button" href="#">NO, GO BACK TO LYRICS</a>
+              <a zf-close="" class="button">NO, GO BACK TO LYRICS</a>
             </div>
           </div>
 
