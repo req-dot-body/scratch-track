@@ -1,16 +1,30 @@
-<div>
+<div class="vertical grid-block">
+  <div class="grid-block text-center">
+    <div class="grid-content noscroll small-10 small-offset-1">
+      <div class="title-bar">
+        <span class="title center">Create New Recording</span>
+      </div> 
+      <br>
+      <a class="large button" onclick="startRecording(this);"> <i class="material-icons left">mic_none</i>Record</a>
+      <a class="large alert button" onclick="stopRecording(this);" disabled><i class="material-icons left">mic_off</i>Stop</a>
+      <p id="log" class="recordingStatus"></p>
 
-  <h5>Record Your Ideas:</h5>
-  
-    <a class="waves-effect waves-light btn modal-trigger" onclick="startRecording(this);"> <i class="material-icons left">mic_none</i>Record</a>
-    <a class="waves-effect waves-light btn modal-trigger" onclick="stopRecording(this);" disabled><i class="material-icons left">mic_off</i>Stop</a>
-  
-  <p id="log" class="recordingStatus"></p>
+      <div class="title-bar">
+        <span class="title center">Recordings for this Project</span>
+      </div> 
+      <br>
 
-  <h5>Recordings for this Project</h5>
-  <ul class="collapsible"  watch>
-    <li id="recordingslist"></li>
-  </ul>
+
+  
+        <a id="recordingslist"></a>
+    </div>
+  </div>
+</div>
+
+
+
+
+  
 
   <!--<ul class="collapsible" data-collapsible="accordion" watch>
     <li ng-repeat="recording in mockData">
