@@ -41,17 +41,25 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
 
   $scope.editToggle = false;
 
-  $scope.editNote = function () {
+  $scope.editNote = function (noteId) {
     $scope.editToggle = true;
-    var text = $('#note-text');
+    var textId = '#note-text' + noteId;
+    var text = $(textId);
     text.removeAttr('readonly');
   }
 
-  $scope.confirmEdit = function (noteId, value) {
+  $scope.confirmEdit = function (noteId, value, name) {
     $scope.editToggle = false;
-    var text = $('#note-text');
+    var textId = '#note-text' + noteId;
+    var text = $(textId);
     text.attr('readonly', 'true ');
-    return Note.editBody(noteId, value)
+
+    var data = {
+      text: value,
+      name: name
+    }
+
+    return Note.editBody(noteId, data)
     .then(function(){
       $scope.getAll(projectId);
     });
