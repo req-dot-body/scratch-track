@@ -137,5 +137,22 @@ video#intro-video {
   background-color: gray;
 }
 
+.editor {
+  width: 100% !important;
+}
 
 
+.title > .accordion-title {
+  background-color: #00558b !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.title > .accordion-title:hover {
+  background-color: #004977 !important;
+}
+
+.spaced {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}

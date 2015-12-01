@@ -31,6 +31,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     else {
       div.style.display = "none";
     }
+    console.log('togging');
   };
   
 
@@ -51,9 +52,9 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
   $scope.clearValues = function() {
     $scope.val = "";
-    $scope.titleVal = ""
+    $scope.titleVal = "";
     $scope.newVal = "";
-    $scope.newTitleVal = ""
+    $scope.newTitleVal = "";
   };
 
 
@@ -108,9 +109,9 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   });
 
   // Initial Setup
+  $scope.val = "";
   $scope.getAll();
   $scope.lyrics = [];
   $scope.toggleMode = "Edit";
-  $scope.clearValues();
   
 }]);

@@ -1,44 +1,64 @@
-<container>
+<div class="vertical grid-block">
+  <div class="grid-block text-center">
+    <div class="grid-content noscroll small-10 small-offset-1">
+      
+      <section class="spaced"> 
+        <h1>Stablature</h1>
 
-  <button ng-hide="editing" ng-click="openEditor()">Create New Tab</button>
-  <div ng-show="editing">
-  <h5>New Tab</h5>
-    <div class="vex-tabdiv" editor="true" ng-bind="stabInfo.code">
-      <canvas class="vex-canvas"/>
-      <div class="editor-error"></div>
-      <textarea id='vex-input' class="editor"></textarea>
+        <p>
+          Here you can create guitar tabs and sheet music for your project.
+        </p>
+      </section>
+ 
+      <zf-accordion id="create-stab" auto-open="false" >
+        <zf-accordion-item class="title" title="Click To Create New Tab">
+          <div id="create-stab-content">
+            <label>Title:</label>
+            <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
+
+            <label>Description:</label>
+            <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here.">
+            </input>
+
+            <div class="vex-tabdiv text-center" editor="true" ng-bind="stabInfo.code">
+              <textarea id="vex-input" class="editor"></textarea>
+              <canvas class="vex-canvas"></canvas>
+              <div class="editor-error"></div>
+            </div>
+          </div>
+
+          <a class="button" ng-click="submit()">SUBMIT</a>
+          <a class="button" ng-click="closeAccordion()">CANCEL</a>
+        </zf-accordion-item>
+      </zf-accordion>
+ 
+      <br> 
+      <br>
+      <div class="vertical grid-block">
+        <div class="grid-content">
+          <div class="title-bar">
+            <span class="title center">Your Stablature for This Project</span>
+          </div>
+            <ul>
+              <div class="grid-block align-justify">
+                <li class="spaced" style="list-style: none;" ng-repeat="stab in stabList">
+                  <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
+                  <div ng-controller="StablatureCtrl">
+                    <vextab code="stab.code"></vextab>
+               
+                    <p><em>{{stab.description}}</em></p>
+                    <a class="button" ng-click="openEditor()">CREATE REVISION</a>
+                    <a class="button" ng-click="delete(stab.id)">DELETE</a> 
+                  </div>
+                </li>
+              </div>
+            </ul>
+        </div>
+      </div>
+
     </div>
-    Title: <input ng-model="stabInfo.name"></input>
-    <br>
-    Description: <input ng-model="stabInfo.description"></input>
-    <br>
-    <button ng-click="submit()">Submit</button>
-    <button ng-click="closeEditor()">Cancel</button>
   </div>
-
-  <section>
-<h5>Your Stablature</h5>
-
-    <ul watch>
-
-      <li ng-repeat="stab in stabList">
-        <!-- Accordion Element Header -->
-        <h5>{{ stab.created_at}} {{stab.name}}</h5>
-        <div ng-controller="StablatureCtrl">
-          <vextab code="stab.code"></vextab>
-          <br>
-          <p>{{stab.description}}</p> 
-          <button ng-click="openEditor()">Revise</button>
-          <button ng-click="delete(stab.id)">Delete</button> 
-        </div>        
-        
-      </li>
-
-    </ul>
-
-  </section>
-</container>
+</div>
 
 <script src="/js/vex.js"></script>
-
 

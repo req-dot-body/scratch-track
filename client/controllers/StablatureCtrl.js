@@ -1,3 +1,5 @@
+var moment = require('moment/moment');
+
 app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project',
 	function($scope, $state, Stablature, Project) {
 
@@ -20,6 +22,10 @@ var defaultStab = {
 	$scope.editing = false;
 
 
+  $scope.formatDate = function(date) {
+    return moment.unix(date).calendar();
+  };
+
 	$scope.openEditor = function(){
 		// angular.element(document).find('textarea.editor').val(defaultStab.code);
 		$scope.editing = true;
@@ -27,6 +33,10 @@ var defaultStab = {
 
 	$scope.closeEditor = function(){
 		$scope.editing = false;
+	}
+
+	$scope.closeAccordion = function(){
+		$('.accordion div').removeClass('is-active');
 	}
 
 	$scope.submit = function(){
