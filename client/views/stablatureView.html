@@ -26,10 +26,10 @@
         <textarea id='vex-input' class="editor"></textarea>
       </div>
         
-      Title: <input ng-model="stabInfo.name"></input>
+      Title: <input type="text" ng-model="stabInfo.name"></input>
 
-      Description: <input ng-model="stabInfo.description"></input>
-      
+      Description: <input type="text" ng-model="stabInfo.description"></input>
+
       <a class="button" ng-click="submit()">SUBMIT</a>
       <a class="button" ng-click="closeEditor()">CANCEL</a>
     </div>
@@ -39,7 +39,7 @@
 
   <div class="grid-block">
     <div class="grid-content">
-  <h4>Your Stablature</h4>
+  <h4>Your Stablature for This Project</h4>
 
     <ul watch>
       <div class="grid-block">
@@ -52,11 +52,11 @@
             <p>{{stab.description}}</p> 
             <a class="button" ng-click="openEditor()">CREATE REVISION</a>
             <a class="button" ng-click="delete(stab.id)">DELETE</a> 
+          </div>
                 
           
         </li>
-    
-
+      </div>
     </ul>
 
 </div>

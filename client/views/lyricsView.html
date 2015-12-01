@@ -41,7 +41,7 @@
   <div class="grid-block">
     <div class="grid-content">
 
-    <h4>Your Lyrics for This Project</h4>
+      <h4>Your Lyrics for This Project</h4>
 
       <zf-accordion auto-open="false" multi-open="false" ng-repeat="lyricsheet in lyrics.data | orderBy:'-created_at'" ng-model="lyrics">
         <zf-accordion-item title="{{ formatDate(lyricsheet.created_at) }} {{ lyricsheet.name}}">
