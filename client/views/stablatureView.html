@@ -11,22 +11,24 @@
 
       <zf-accordion id="create-stab" auto-open="false" >
         <zf-accordion-item class="title" title="Click To Create New Tab">
-          <label>Title:</label>
-          <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
+          <div id="create-stab-content">
+            <label>Title:</label>
+            <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
 
-          <br>
-          <label>Description:</label>
-          <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here.">
-          </input>
+            <br>
+            <label>Description:</label>
+            <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here.">
+            </input>
 
-          <div class="vex-tabdiv text-center" editor="true" ng-bind="stabInfo.code">
-            <textarea id="vex-input" class="editor"></textarea>
-            <canvas class="vex-canvas"></canvas>
-            <div class="editor-error"></div>
+            <div class="vex-tabdiv text-center" editor="true" ng-bind="stabInfo.code">
+              <textarea id="vex-input" class="editor"></textarea>
+              <canvas class="vex-canvas"></canvas>
+              <div class="editor-error"></div>
+            </div>
           </div>
 
           <a class="button" ng-click="submit()">SUBMIT</a>
-          <a class="button" ng-click="closeEditor()">CANCEL</a>
+          <a class="button" ng-click="closeAccordion()">CANCEL</a>
         </zf-accordion-item>
       </zf-accordion>
 
@@ -42,7 +44,7 @@
           <div>
             <ul watch>
               <div class="grid-block align-justify">
-                <li style="list-style: none;" ng-repeat="stab in stabList">
+                <li style="list-style: none; margin-bottom: 20px;" ng-repeat="stab in stabList">
                   <!-- Accordion Element Header -->
                   <h5>{{ formatDate(stab.created_at) }} - {{stab.name}}</h5>
                   <div ng-controller="StablatureCtrl">

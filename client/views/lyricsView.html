@@ -9,7 +9,7 @@
       </p>
       
       <br>
-      <zf-accordion id="create-lyric" auto-open="false" >
+      <zf-accordion id="create-lyricsheet" auto-open="false" >
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
           
         <div class="grid-content">
@@ -22,7 +22,7 @@
           <label>Lyric Body:</label>
           <textarea class="lyric-textarea" type="text" ng-model="newVal" placeholder="Enter lyrics here." style="min-height: 100px;"></textarea>
 
-          <a class="button" href="#" ng-click="add(newTitleVal, newVal); clearValues();">SAVE</a>
+          <a class="button" href="#" ng-click="add(newTitleVal, newVal);">SAVE</a>
         </div>
         </zf-accordion-item>
       </zf-accordion>
@@ -39,7 +39,7 @@
           <label>Revision Body:</label>
           <textarea class="lyric-textarea" type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
 
-          <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); add(titleVal, val); clearValues();">SAVE</a>
+          <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); add(titleVal, val);">SAVE</a>
           <a ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet');" class="button">CANCEL</a>
           
         </zf-accordion-item>
@@ -67,7 +67,7 @@
               <label>Lyric Body:</label>
               <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly"></textarea>
 
-              <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
+              <a class="button" href="#" ng-click="toggleElement('lyric-revision'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
 
               <a class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); toggleElement('lyrictitle'); edit(lyricsheet.id, lyricsheet)">EDIT</a>
 

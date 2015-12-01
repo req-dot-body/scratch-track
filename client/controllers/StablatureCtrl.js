@@ -21,9 +21,7 @@ var defaultStab = {
 	$scope.stabInfo = defaultStab;
 	$scope.editing = false;
 
-	$scope.print = console.log("clicked");
 
-  
   $scope.formatDate = function(date) {
     return moment.unix(date).calendar();
   };
@@ -35,6 +33,10 @@ var defaultStab = {
 
 	$scope.closeEditor = function(){
 		$scope.editing = false;
+	}
+
+	$scope.closeAccordion = function(){
+		$('.accordion div').removeClass('is-active');
 	}
 
 	$scope.submit = function(){
