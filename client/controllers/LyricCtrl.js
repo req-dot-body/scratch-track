@@ -109,7 +109,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   });
 
   // Initial Setup
-  $scope.val = "fdjj";
+  $scope.val = "";
   $scope.getAll();
   $scope.lyrics = [];
   $scope.toggleMode = "Edit";
