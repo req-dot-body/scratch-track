@@ -47,11 +47,11 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   $scope.audio_context = null;
   $scope.recorder = null;
   $scope.log = $('#log');
-
-
   
   $scope.__log = function (e, data) {
-    $scope.log.innerHTML += '\n' + e + ' ' + (data || '');
+    
+    var htmlString = '\n' + e + ' ' + (data || '');
+    $scope.log.html(htmlString);
   }
 
   $scope.startUserMedia = function (stream) {
@@ -62,7 +62,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   }
 
   $scope.startRecording = function () {
-    $scope.log.innerHTML = '';
+    $scope.log.html('');
     $scope.recorder && $scope.recorder.record();
 
     var button = $('#record-btn');
