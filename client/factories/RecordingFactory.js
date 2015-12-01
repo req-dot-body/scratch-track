@@ -15,7 +15,7 @@ app.factory('Recording', ['$http', function($http) {
 
 	var del = function(id){
 		console.log('deleted!', id);
-		// return $http.delete('api/recordings/'+id);
+		return $http.delete('api/resources/recordings/' + id);
 	}
 
 	return {

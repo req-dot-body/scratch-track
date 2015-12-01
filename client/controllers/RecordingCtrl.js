@@ -5,6 +5,12 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
 
   $scope.recordings = [];
 
+  $scope.newRecording = {
+    project_id: projectId,
+    url: '',
+    name: 'New Recording'
+  };
+
   $scope.getAll = function(){
     return Project.getProjectRecordings(projectId)
     .then(function(response){
@@ -13,14 +19,8 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   };
 
   $scope.add = function(url){
-
-    var newRecording = {
-      project_id: projectId,
-      url: url, 
-      name: 'New Recording'
-    };
-
-    Recording.create(newRecording)
+    $scope.newRecording.url = url;
+    Recording.create($scope.newRecording)
     .then(function(){
       $scope.getAll();
     })
@@ -30,7 +30,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
 
   };
 
-  // $scope.delete = Recording.del;
   $scope.delete = function(id) {
     Recording.del(id)
     .then(function(){
@@ -135,26 +134,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
             var url = response.url
 
             $scope.add(url);
-
-
-
-            /*var recordingEl = document.createElement('zf-accordion-item');
-            recordingEl.setAttribute('title', 'New Recording');                      
-
-            var audioElement = document.createElement('audio');
-            audioElement.controls = true;
-            audioElement.src = URL.createObjectURL(blob);
-
-            var downloadLink = document.createElement('a');
-            downloadLink.className = 'recording-element';
-            downloadLink.href = response.url;
-            downloadLink.innerHTML = '<a class="small button" download>Download Recording</a>'
-
-            recordingEl.appendChild(audioElement);
-            recordingEl.appendChild(downloadLink);
-            document.getElementById('recordingslist').appendChild(recordingEl);*/
-
-            // TODO : Save recording information in database
           } else if (xhr.status === 403) {
             // Something was changed in the signed url, its not what the server signed
             // Amazon rejected the upload
