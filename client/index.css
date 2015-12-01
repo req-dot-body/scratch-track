@@ -34,10 +34,6 @@ height:100%;
 position: absolute;
 }*/
 
-#landing {
-  overflow: auto;
-}
-
 .land-text p{
   padding: 5%;
 }
@@ -118,34 +114,7 @@ video#intro-video {
    
 }
 
-/*MAIN VIEW*/
 
-/*.main-view {
-background-color: #eceff1;
-width: 100%;
-height:100%;
-/*position: absolute;*/
-}*/
-
-/*PROJECTS VIEW*/
-.projects-box {
-  border-radius: 10px;
-  border: 1px solid #37474f;
-}
-
-.projects-title  {
-  font-size: 1.3em;
-  color: white;
-  text-decoration: italic;
-  padding: 2%;
-
-}
-
-.add-project {
-  margin-top: 25px;
-}
-
-/*DASH VIEW*/
 
 .panel-lyric {
     min-height:307px;
@@ -163,8 +132,10 @@ height:100%;
   color: gray;
 }
 
-/*PROJECTS VIEW*/
-.project-recent {
-  color: black;
+/* Lyric Styles */
+.all-projects-title {
+  background-color: gray;
 }
+
+
 
