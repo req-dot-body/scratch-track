@@ -3,6 +3,7 @@ var router = express.Router();
 var Resource = require('../models/resource');
 var Project = require('../models/project');
 
+var aws = require('aws-sdk');
 var uuid = require('node-uuid');
 
 // Add a new resource
@@ -108,10 +109,50 @@ router.delete('/:resourceType/:resourceId', function (req, res) {
   });
 });
 
+// Handles generating a signed url to allow client to upload to AWS S3
 router.post('/recordings/signedAWS', function(req, res) {
+  // Set up AWS to use our authorization keys
+  aws.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  });
+
+  // Set the region in which our S3 bucket it located
+  aws.config.region = process.env.AWS_REGION;
+
+  // Generate a unique file name, extremely low chance of collisions
   var uniqueName = uuid.v4();
-  console.log('Posted to here', uniqueName);
-  res.send(uniqueName);
+
+  var s3 = new aws.S3();
+  var bucket = process.env.AWS_BUCKET;
+
+  // Pass this to the function that generates a signed URL
+  // This prevents the client from uploading something different than what we have specified (Amazon will 401)
+  var params = {
+    Bucket: bucket, // S3 bucket to upload to
+    Key: 'recordings/' + uniqueName + '.wav', // Give the file a unique name
+    ContentType: 'audio/wav', // We are always expecting a WAV file. NOTE: There are a few different mime types that can signify a WAV file
+    ACL: 'public-read' // The file we upload should be readable by the public
+  };
+
+  // Generate a signed url that the client can upload to with their recording
+  s3.getSignedUrl('putObject', params, (err, data) => {
+    if (err) {
+      console.log('Error creating a signed url');
+      // TODO : res.json error
+      return;
+    }
+
+    // Information to send back to client
+    var returnData = {
+      signedRequest: data, // Url the client should PUT recording
+      url: 'https://' + bucket + '.s3.amazonaws.com/' + params.Key, // Url the client can access recording after upload
+    };
+
+    res.json(returnData);
+  });
+
+  // res.send(uniqueName);
 });
 
 module.exports = router;
