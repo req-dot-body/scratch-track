@@ -19,7 +19,7 @@
         <span class="title center">Your Project Notes:</span>
       </div> <br/>
       <zf-accordion auto-open="false" collapsible="true" multi-open="true">
-        <zf-accordion-item title="{{note.name}} - {{note.created_at}}" ng-repeat="note in notes" ng-model="notes" watch>
+        <zf-accordion-item title="{{ formatDate(note.created_at) }} - {{ note.name}}" ng-repeat="note in notes" ng-model="notes" watch>
           <textarea readonly="true" ng-model="note.text" id="note-text{{note.id}}">
             {{note.text}}
           </textarea>
