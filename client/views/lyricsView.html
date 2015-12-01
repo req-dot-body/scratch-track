@@ -10,7 +10,7 @@
         </p>
       </section>
       
-      <zf-accordion id="create-lyricsheet" auto-open="false" >
+      <zf-accordion id="create-lyricsheet" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
           <label>Lyric Title:</label>
           <textarea class="lyric-textarea" type="text" ng-model="newTitleVal" placeholder="Enter title here."></textarea>
@@ -55,7 +55,7 @@
               <label>Lyric Body:</label>
               <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly"></textarea>
 
-              <a class="button" href="#" ng-click="toggleElement('lyric-revision'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
+              <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); updateTitle(lyricsheet.name); updateVal(lyricsheet.text);">CREATE REVISION</a>
 
               <a class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); toggleElement('lyrictitle'); edit(lyricsheet.id, lyricsheet)">EDIT</a>
 

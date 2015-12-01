@@ -31,7 +31,6 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     else {
       div.style.display = "none";
     }
-    console.log('togging');
   };
   
 
