@@ -16,11 +16,13 @@ app.directive('vextab', function($compile){
     require: 'ngModel', 
     replace: false, 
     link: function(scope, element, attrs, modelCtrl){
+      var tab = new Vex.Flow.TabDiv(element);
 
       modelCtrl.$render = function(){
+        console.log('jquery?', $);
         console.log('view value', modelCtrl.$viewValue);
         element.text(modelCtrl.$viewValue);
-        new Vex.Flow.TabDiv(element);
+        tab.redraw();
         // scope.displayCode = modelCtrl.$viewValue;
       }
 
