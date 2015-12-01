@@ -2,68 +2,56 @@
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-10 small-offset-1">
       
-      <h1>Lyrics</h1>
+      <section class="spaced">
+        <h1>Lyrics</h1>
 
-      <p>
-        Here you can create lyrics for your project.
-      </p>
+        <p>
+          Here you can create lyrics for your project.
+        </p>
+      </section>
       
-      <br>
       <zf-accordion id="create-lyricsheet" auto-open="false" >
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
-          
-        <div class="grid-content">
-
-          <br>
           <label>Lyric Title:</label>
           <textarea class="lyric-textarea" type="text" ng-model="newTitleVal" placeholder="Enter title here."></textarea>
 
-          <br>
           <label>Lyric Body:</label>
           <textarea class="lyric-textarea" type="text" ng-model="newVal" placeholder="Enter lyrics here." style="min-height: 100px;"></textarea>
 
           <a class="button" href="#" ng-click="add(newTitleVal, newVal);">SAVE</a>
-        </div>
         </zf-accordion-item>
       </zf-accordion>
 
-      <br>
-      <br>
+      
       <zf-accordion id="lyric-revision" style="display: none;">
         <zf-accordion-item class="title" title="Create New Revision">
-          <br>
+
           <label>Revision Title:</label>
           <textarea class="lyric-textarea" type="text" ng-model="titleVal" placeholder="Enter title here."></textarea>
 
-          <br>
           <label>Revision Body:</label>
           <textarea class="lyric-textarea" type="text" ng-model="val" placeholder="Enter lyrics here."></textarea>
 
           <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet'); add(titleVal, val);">SAVE</a>
-          <a ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet');" class="button">CANCEL</a>
-          
+          <a ng-click="toggleElement('lyric-revision'); toggleElement('create-lyricsheet');" class="button">CANCEL</a>         
         </zf-accordion-item>
       </zf-accordion>
 
       <br>
-
+      <br>
       <div class="grid-block">
         <div class="grid-content">
-
           <div class="title-bar">
             <span class="title center">Your Lyrics for This Project</span>
           </div>
 
           <zf-accordion auto-open="false" ng-repeat="lyricsheet in lyrics.data | orderBy:'-created_at'" ng-model="lyrics">
             <zf-accordion-item title="{{ formatDate(lyricsheet.created_at) }} - {{ lyricsheet.name}}">
-
-              <br>
               <div class="lyric-textarea" id="lyrictitle" style="display: none;">
                 <label>Lyric Title:</label>
                 <textarea id="lyrictitle" ng-model="lyricsheet.name"></textarea>
               </div>
-
-              <br>
+              
               <label>Lyric Body:</label>
               <textarea class="lyric-textarea" id="lyrictext" ng-model="lyricsheet.text" readonly="readonly"></textarea>
 
@@ -80,13 +68,12 @@
                   <a zf-close="" class="button">NO, GO BACK TO LYRICS</a>
                 </div>
               </div>
-
             </zf-accordion-item>
           </zf-accordion>
         </div>
-
       </div>
 
     </div>
   </div>
 </div>
+<br>
