@@ -11,7 +11,7 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project',
 	})
 	
 var defaultStab = {
-		code: "tabstave notation=false \n notes 4-5/3",
+		code: "12/3",
 		name: '',
 		description: '' 
 	};
