@@ -5,8 +5,8 @@
         <span class="title center">Create New Recording</span>
       </div> 
       <br>
-      <a class="large button" onclick="startRecording(this);"> <i class="material-icons left">mic_none</i>Record</a>
-      <a class="large alert button" onclick="stopRecording(this);" disabled><i class="material-icons left">mic_off</i>Stop</a>
+      <a class="large button" id="record-btn" onclick="startRecording(this);"> <i class="material-icons left">mic_none</i>Record</a>
+      <a class="large alert button disabled" id="stop-btn" onclick="stopRecording(this);"><i class="material-icons left">mic_off</i>Stop</a>
       <p id="log" class="recordingStatus"></p>
 
       <div class="title-bar">
@@ -14,8 +14,6 @@
       </div> 
       <br>
 
-
-  
         <a id="recordingslist"></a>
     </div>
   </div>
@@ -59,15 +57,27 @@
   function startRecording(button) {
     log.innerHTML = '';
     recorder && recorder.record();
-    button.disabled = true;
-    button.nextElementSibling.disabled = false;
+
+    var button = $('#record-btn');
+    var stopButton = $('#stop-btn');
+    button.removeClass('large button')
+    button.addClass('large button disabled')
+    stopButton.removeClass('large alert button disabled')
+    stopButton.addClass('large alert button')
+
+
     __log('Recording...');
   }
 
   function stopRecording(button) {
     recorder && recorder.stop();
-    button.disabled = true;
-    button.previousElementSibling.disabled = false;
+    
+    var button = $('#record-btn');
+    var stopButton = $('#stop-btn');
+    button.removeClass('large button disabled')
+    button.addClass('large button')
+    stopButton.removeClass('large alert button')
+    stopButton.addClass('large alert button disabled')
     __log('Stopped recording.');
     // create WAV download link using audio data blob
     createDownloadLink();
