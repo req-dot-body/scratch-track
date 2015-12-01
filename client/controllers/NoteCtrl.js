@@ -1,3 +1,5 @@
+var moment = require('moment/moment');
+
 app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($scope, $state, Note, Project) {
 
   var projectId = $state.params.id;
@@ -17,6 +19,10 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
   }
 
   //Note Methods:
+  $scope.formatDate = function(date) {
+    return moment.unix(date).calendar();
+  };
+  
   $scope.getAll = function (projectId) {
     Project.getProjectNotes(projectId)
     .then(function(notes){
