@@ -111,18 +111,23 @@ router.delete('/:resourceType/:resourceId', function (req, res) {
 
 // Handles generating a signed url to allow client to upload to AWS S3
 router.post('/recordings/signedAWS', function(req, res) {
-  // Set up AWS to use our authorization keys
-  aws.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  });
 
-  // Set the region in which our S3 bucket it located
-  aws.config.region = process.env.AWS_REGION;
+  var fileSize = req.body.size;
+  // Check if file size was sent with request
+  if (typeof fileSize === 'undefined') {
+    res.json({ error: 'Error getting file information' });
+    return;
+  }
+
+  if (fileSize > 75000000) {
+    res.json({ error: 'Error processing file' });
+    return;
+  }
 
   // Generate a unique file name, extremely low chance of collisions
   var uniqueName = uuid.v4();
 
+  // We configured AWS in app.js
   var s3 = new aws.S3();
   var bucket = process.env.AWS_BUCKET;
 
@@ -132,14 +137,16 @@ router.post('/recordings/signedAWS', function(req, res) {
     Bucket: bucket, // S3 bucket to upload to
     Key: 'recordings/' + uniqueName + '.wav', // Give the file a unique name
     ContentType: 'audio/wav', // We are always expecting a WAV file. NOTE: There are a few different mime types that can signify a WAV file
-    ACL: 'public-read' // The file we upload should be readable by the public
+    ACL: 'public-read', // The file we upload should be readable by the public
+    Expires: 180, // Signed URL will expire 3 minutes after being generated
   };
 
   // Generate a signed url that the client can upload to with their recording
   s3.getSignedUrl('putObject', params, (err, data) => {
+    console.log('Blob size:', req.body.size);
     if (err) {
       console.log('Error creating a signed url');
-      // TODO : res.json error
+      res.json({ error: 'Error creating a signed url' });
       return;
     }
 
