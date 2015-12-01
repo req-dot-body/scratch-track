@@ -5,60 +5,63 @@
       <h1>Stablature</h1>
 
       <p>
-        But, they were all eagerness again, as Ahab, now half-revolving in his pivot-hole, with one hand reaching high up a shroud, and tightly, almost convulsively grasping it, addressed them thus:&mdash; "All ye mast-headers have before now heard me give orders about a white whale. Look ye! d'ye see this Spanish ounce of gold?"&mdash;holding up a broad bright coin to the sun&mdash;"it is a sixteen dollar piece, men. D'ye see it? Mr. Starbuck, hand me yon top-maul."
+        Here you can create guitar tabs and sheet music for your project.
       </p>
-    </div>
-  </div>
+      <br>
 
-<!--     <a class="button" ng-hide="editing" ng-click="openEditor()">Create New Tab</a> -->
+      <zf-accordion id="create-stab" auto-open="false" >
+        <zf-accordion-item class="title" title="Click To Create New Tab">
+          <label>Title:</label>
+          <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
 
-<!-- 
-  <div class="grid-content" ng-show="editing"> -->
+          <br>
+          <label>Description:</label>
+          <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here.">
+          </input>
 
-
-  <div id="create-tab" class="grid-block">
-    <div class="grid-content">
-      <h4>Create New Tab</h4>
-
-      <div class="vex-tabdiv" editor="true" ng-bind="stabInfo.code">
-        <canvas class="vex-canvas"/>
-        <div class="editor-error"></div>
-        <textarea id='vex-input' class="editor"></textarea>
-      </div>
-        
-      Title: <input type="text" ng-model="stabInfo.name"></input>
-
-      Description: <input type="text" ng-model="stabInfo.description"></input>
-
-      <a class="button" ng-click="submit()">SUBMIT</a>
-      <a class="button" ng-click="closeEditor()">CANCEL</a>
-    </div>
-  </div>
-
-
-
-  <div class="grid-block">
-    <div class="grid-content">
-  <h4>Your Stablature for This Project</h4>
-
-    <ul watch>
-      <div class="grid-block">
-        <li style="list-style: none;" ng-repeat="stab in stabList">
-          <!-- Accordion Element Header -->
-          <h5>{{ formatDate(stab.created_at) }} {{stab.name}}</h5>
-          <div ng-controller="StablatureCtrl">
-            <vextab code="stab.code"></vextab>
-            <br>
-            <p>{{stab.description}}</p> 
-            <a class="button" ng-click="openEditor()">CREATE REVISION</a>
-            <a class="button" ng-click="delete(stab.id)">DELETE</a> 
+          <div class="vex-tabdiv text-center" editor="true" ng-bind="stabInfo.code">
+            <textarea id="vex-input" class="editor"></textarea>
+            <canvas class="vex-canvas"></canvas>
+            <div class="editor-error"></div>
           </div>
-                
-          
-        </li>
-      </div>
-    </ul>
 
+          <a class="button" ng-click="submit()">SUBMIT</a>
+          <a class="button" ng-click="closeEditor()">CANCEL</a>
+        </zf-accordion-item>
+      </zf-accordion>
+
+      <br>
+      <br>
+      <div class="grid-block">
+        <div class="grid-content">
+          <div class="title-bar">
+            <span class="title center">Your Stablature for This Project</span>
+          </div>
+
+          <br>
+          <div>
+            <ul watch>
+              <div class="grid-block align-justify">
+                <li style="list-style: none;" ng-repeat="stab in stabList">
+                  <!-- Accordion Element Header -->
+                  <h5>{{ formatDate(stab.created_at) }} - {{stab.name}}</h5>
+                  <div ng-controller="StablatureCtrl">
+                    <vextab code="stab.code"></vextab>
+                    <br>
+                    <p>{{stab.description}}</p> 
+                    <a class="button" ng-click="openEditor()">CREATE REVISION</a>
+                    <a class="button" ng-click="delete(stab.id)">DELETE</a> 
+                  </div>
+                </li>
+              </div>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <script src="/js/vex.js"></script>

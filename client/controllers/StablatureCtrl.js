@@ -21,6 +21,8 @@ var defaultStab = {
 	$scope.stabInfo = defaultStab;
 	$scope.editing = false;
 
+	$scope.print = console.log("clicked");
+
   
   $scope.formatDate = function(date) {
     return moment.unix(date).calendar();
