@@ -19,14 +19,23 @@ var defaultStab = {
 	$scope.stabInfo = defaultStab;
 	$scope.editing = false;
 
+	$scope.code = defaultStab.code; 
 
-	$scope.openEditor = function(){
-		// angular.element(document).find('textarea.editor').val(defaultStab.code);
-		$scope.editing = true;
-	};
+	// $scope.openEditor = function(){
+	// 	// angular.element(document).find('textarea.editor').val(defaultStab.code);
+	// 	// $scope.editing = true;
+	// };
 
-	$scope.closeEditor = function(){
-		$scope.editing = false;
+	// $scope.closeEditor = function(){
+	// 	// $scope.editing = false;
+	// }
+
+	$scope.revise = function(stabInfo){
+		$scope.stabInfo = {
+			code: "tabstave notation=false \n notes 4-5/1",
+			name: "sick lix",
+			description: "totally awesome bro"
+		}
 	}
 
 	$scope.submit = function(){

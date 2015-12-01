@@ -1,3 +1,7 @@
+  <vextab ng-model="code"></vextab>
+  <input ng-model="code"></input>
+
+
 <container>
 
   <button ng-hide="editing" ng-click="openEditor()">Create New Tab</button>
@@ -18,16 +22,17 @@
 
   <section>
 <h5>Your Stablature</h5>
+              <button ng-click="revise()">Press Me!</button>
 
     <ul watch>
 
       <li ng-repeat="stab in stabList">
         <h5>{{ stab.created_at}} {{stab.name}}</h5>
         <div ng-controller="StablatureCtrl">
-          <vextab code="stab.code"></vextab>
-          <br>
+<!--           <vextab code="stab.code"></vextab>
+ -->          <br>
           <p>{{stab.description}}</p> 
-          <button ng-click="openEditor()">Revise</button>
+          <button ng-click="revise(stab)">Revise</button>
           <button ng-click="delete(stab.id)">Delete</button> 
         </div>        
         

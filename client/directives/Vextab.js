@@ -1,12 +1,29 @@
+// app.directive('vextab', function($compile){
+//   return{
+//     restrict: 'E',
+//     require: 'ngModel', 
+//     replace: true, 
+//     link: function(scope, element, attrs, modelCtrl){
+//       element.text(scope.code);
+//       new Vex.Flow.TabDiv(element);
+//     }
+//   }
+// });
+
 app.directive('vextab', function($compile){
   return{
-    restrict: 'EC', 
-    scope: {
-      code: '=code'
-    }, 
-    link: function(scope, element){
-      element.text(scope.code);
-      new Vex.Flow.TabDiv(element);
+    restrict: 'E',
+    require: 'ngModel', 
+    replace: false, 
+    link: function(scope, element, attrs, modelCtrl){
+
+      modelCtrl.$render = function(){
+        console.log('view value', modelCtrl.$viewValue);
+        element.text(modelCtrl.$viewValue);
+        new Vex.Flow.TabDiv(element);
+        // scope.displayCode = modelCtrl.$viewValue;
+      }
+
     }
   }
 });
