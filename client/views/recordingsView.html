@@ -13,34 +13,12 @@
         <span class="title center">Recordings for this Project</span>
       </div> 
       <br>
-
-        <a id="recordingslist"></a>
+        <zf-accordion auto-open="false" collapsible="true" multi-open="true" id="recordingslist"></zf-accordion>
     </div>
   </div>
 </div>
 
 
-
-
-  
-
-  <!--<ul class="collapsible" data-collapsible="accordion" watch>
-    <li ng-repeat="recording in mockData">
-      <div class="collapsible-header">{{recording.created_at}} - {{recording.name}}</div>
-        <div class="collapsible-body">
-          recording thingy here
-          <div ng-if="recording.description || editing">Description: {{recording.description}}</div>
-          <br>
-          <button ng-hide="editing" class="waves-effect waves-light btn">Edit</button>
-          <button ng-show="editing" class="waves-effect waves-light btn">Save</button>
-          <button class="waves-effect waves-light btn modal-trigger" ng-click="delete(recording.id)">Delete</button>
-        </div>
-    </li>
-  </ul>-->
-
-</div>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script> -->
 <!-- RECORDER JS INSANTIY FOLLOWS -->
 <script>
   function __log(e, data) {
@@ -131,8 +109,8 @@
             console.log('Express response:', response);
             console.log('XHR status === 200', e);
 
-            var div = document.createElement('div');
-            div.className = 'collapsible-header';
+            var recordingEl = document.createElement('zf-accordion-item');
+            recordingEl.setAttribute('title', 'New Recording');                      
 
             var audioElement = document.createElement('audio');
             audioElement.controls = true;
@@ -141,11 +119,11 @@
             var downloadLink = document.createElement('a');
             downloadLink.className = 'recording-element';
             downloadLink.href = response.url;
-            downloadLink.innerHTML = response.url;
+            downloadLink.innerHTML = '<a class="small button" download>Download Recording</a>'
 
-            div.appendChild(audioElement);
-            div.appendChild(downloadLink);
-            document.getElementById('recordingslist').appendChild(div);
+            recordingEl.appendChild(audioElement);
+            recordingEl.appendChild(downloadLink);
+            document.getElementById('recordingslist').appendChild(recordingEl);
 
             // TODO : Save recording information in database
           } else if (xhr.status === 403) {
