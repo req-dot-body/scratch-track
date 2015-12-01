@@ -1,15 +1,16 @@
 app.factory('Recording', ['$http', function($http) {
 
   var create = function(data){
-  	return $http.post('api/recordings', data);
+  	console.log('data:', data);
+  	return $http.post('api/resources/recordings/', data);
   }
 
 	var select = function(id){
-		return $http.get('api/recordings/'+id);
+		return $http.get('api/resources/recordings/' + id);
 	}
 
 	var edit = function(id, data){
-		return $http.put('api/recordings/'+id, data);
+		return $http.put('api/resources/recordings/' + id, data);
 	}
 
 	var del = function(id){
