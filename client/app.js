@@ -6,11 +6,8 @@ var ngMessages = require('angular-messages');
 var ngSanitize = require('angular-sanitize');
 var ngTouch = require('angular-touch');
 var uiRouter = require('angular-ui-router');
-window.foundationRoutes = [];//[{"name":"home","url":"/","path":"/../"}];
 
-angular.module('angular-toArrayFilter', [])
-
-.filter('toArray', function () {
+angular.module('angular-toArrayFilter', []).filter('toArray', function () {
   return function (obj, addKey) {
     if (!angular.isObject(obj)) return obj;
     if ( addKey === false ) {
@@ -27,6 +24,7 @@ angular.module('angular-toArrayFilter', [])
     }
   };
 });
+
 
 window.app = angular.module('myApp', [
   'ngAnimate',
