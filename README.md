@@ -99,9 +99,21 @@ note: 'id' always refers to whatever directly follows 'api' in the url
   
    GET - / - Retrieves all project files that can be accessed. 
     
-    { projects: [{project object}, etc.]}
+    {
+      projects: [
+        {project object},
+        ...
+      ]
+    }
 
    GET - /public - Retrieves all projects that are public
+
+    {
+      projects: [
+        {project object},
+        ...
+      ]
+    }
 
    POST - /:id - Creates a new project 
 
