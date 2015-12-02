@@ -1,36 +1,55 @@
 <div class="vertical grid-block">
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-10 small-offset-1">
-      <div class="title-bar">
-        <span class="title center">Create New Note</span>
-      </div> 
-      <br>
-      <label>
-        Note Title:
-        <input type="text" placeholder="Enter note title here" ng-model="newNote.name">
-      </label>
-      <label>
-        Note Body:
-        <textarea placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25"> </textarea>
-      </label>
-      <a class="large button" ng-click="addNote(newNote)" ng-submit="addNote(newNote)">Add Note</a>
 
+      <section class="spaced">
+        <h1>Notes</h1>
+
+        <p>
+          Here you can create notes for your project.
+        </p>
+      </section>
+
+      <zf-accordion id="create-note" auto-open="false">
+        <zf-accordion-item class="title" title="Click To Create New Note">
+          <br>
+          <form name="newNoteForm">
+            <label>
+              Note Title:
+            </label>
+            <input type="text" placeholder="Enter note title here" ng-model="newNote.name" required>
+
+            <div class="form-group"> 
+              <div class="validation-error" ng-messages="newNoteForm.$error" ng-if="submitted">
+                <div ng-message="required">Oops! You have some unfilled fields. Please complete and try again.</div>
+              </div>
+            </div>
+
+            <label>
+              Note Body:
+            </label>
+              <textarea placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
+            <a class="large button" ng-click="addNote(newNote); submit();" ng-submit="addNote(newNote)">ADD NOTE</a>
+          </form>
+      </zf-accordion>
+
+      <br>
       <div class="title-bar">
         <span class="title center">Your Project Notes:</span>
-      </div> <br/>
+      </div>
       <zf-accordion auto-open="false" collapsible="true" multi-open="true">
         <zf-accordion-item title="{{ formatDate(note.created_at) }} - {{ note.name}}" ng-repeat="note in notes" ng-model="notes" watch>
           <textarea readonly="true" ng-model="note.text" id="note-text{{note.id}}">
             {{note.text}}
           </textarea>
-          <a class="medium button" id="edit-btn" ng-click="editNote(note.id)" ng-if="!editToggle">Edit Note</a>
-          <a class="medium success button" id="confirm-edit-btn" ng-click="confirmEdit(note.id, note.text, note.name)" ng-if="editToggle">Confirm Edit</a>
-          <a class="medium alert button" zf-open="delModal">Delete Note</a>
+          <a class="medium button" id="edit-btn" ng-click="editNote(note.id)" ng-if="!editToggle">EDIT</a>
+          <a class="medium success button" id="confirm-edit-btn" ng-click="confirmEdit(note.id, note.text, note.name)" ng-if="editToggle">CONFIRM EDIT</a>
+          <a class="medium alert button" zf-open="delModal">DELETE</a>
           <div zf-modal="" id="delModal">
             <a zf-close="" class="close-button">×</a>
             <h3>Are you sure you want to delete this note?</h3>
-            <a class="medium alert button" zf-close="" ng-click="deleteNote(note.id)">Confirm Delete</a>
-            <a class="medium button" zf-close="" class="close-button">Go Back</a>
+            <a class="medium alert button" zf-close="" ng-click="deleteNote(note.id)">CONFIRM DELETE</a>
+            <a class="medium button" zf-close="" class="close-button">GO BACK</a>
           </div>
         </zf-accordion-item>
       </zf-accordion>

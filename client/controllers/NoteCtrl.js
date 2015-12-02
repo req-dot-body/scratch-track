@@ -22,6 +22,10 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
   $scope.formatDate = function(date) {
     return moment.unix(date).calendar();
   };
+
+  $scope.submit = function(){
+    $scope.submitted = true;
+  };
   
   $scope.getAll = function (projectId) {
     Project.getProjectNotes(projectId)
