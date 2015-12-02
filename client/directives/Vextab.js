@@ -16,6 +16,7 @@ app.directive('vextab', function($compile){
         var code = formatCode(modelCtrl.$viewValue);
 
         if (validCode(code)){
+          element.removeClass('error');
           element.text(code);
           new Vex.Flow.TabDiv(element);
         }
@@ -33,17 +34,17 @@ app.directive('vextab', function($compile){
 
       //checks for valid vex notation
       function validCode(code){
-        var testElement = element.clone();
-        testElement.text(code);
+        var fakeElement = element.clone();
+        fakeElement.text(code);
 
-        var vex = new Vex.Flow.TabDiv(testElement);
+        var vex = new Vex.Flow.TabDiv(fakeElement);
         
         try{
           vex.parser.parse(code);
           return true; 
         }
         catch (e){
-          console.log('uh oh!', e);
+          element.addClass('error');
           return false;
         }
       }

@@ -27,7 +27,7 @@
         </div>
 
         <a class="button" ng-click="submit()">SUBMIT</a>
-        <a class="button" ng-click="closeAccordion()">CANCEL</a>
+        <a class="button" ng-click="closeEditor()">CANCEL</a>
 
         </zf-accordion-item>
       </zf-accordion>
@@ -46,7 +46,7 @@
                     <vextab ng-model="stab.code" notation="false"></vextab>
                
                     <p><em>{{stab.description}}</em></p>
-                    <a class="button" ng-click="openAccordion(stab)">CREATE REVISION</a>
+                    <a class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
                     <a class="button" ng-click="">EDIT</a>
                     <a class="button" ng-click="delete(stab.id)">DELETE</a> 
                   </div>
