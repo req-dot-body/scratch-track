@@ -21,7 +21,7 @@
 
 
       <div class="form-header">Confirm Password:</div>
-      <input type="password" name="passwordVerify" ng-model="passwordVerify" ng-required=""/>
+      <input type="password" name="passwordVerify" pw-check="password" ng-model="passwordVerify" ng-required=""/>
       <div class="form-group" ng-show="signupForm.$error"> 
         <div class="validation-error" ng-show="signupForm.passwordVerify.$error.pwmatch"> 
         Passwords do not match
