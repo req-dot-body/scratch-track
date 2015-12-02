@@ -12,26 +12,9 @@ var sass = require('node-sass-endpoint');
 var browserify  = require('browserify-middleware');
 var ngAnnotate  = require('browserify-ngannotate');
 
-// var angular = require('angular');
-// var foundation = require('foundation-apps/dist/js/foundation-apps');
-
-
 var assetFolder = Path.resolve(__dirname, '../../client/');
 router.use(express.static(assetFolder));
 
-// var sharedAngular = [
-//  - 'angular',
-//  - 'angular-animate',
-//  - 'angular-cookies',
-//   'angular-mocks',
-//  - 'angular-messages',
-//  - 'angular-resource',
-//  - 'angular-sanitize',
-//  - 'angular-touch',
-//  - 'angular-ui-router',
-//  - 'angular-ui-router-anim-in-out',
-//   './node_modules/angular-materialize/src/angular-materialize',
-// ];
 var sharedAngular = [
   'angular',
   'angular-animate',
@@ -43,6 +26,7 @@ var sharedAngular = [
   'angular-touch',
   'angular-ui-router',
   'angular-ui-router-anim-in-out',
+  'jquery',
 ];
 
 // Middleware that checks if logged in and sets cookie to true
@@ -65,11 +49,20 @@ apiRouter.use('/projects', projectsRouter);
 apiRouter.use('/resources', resourcesRouter);
 
 
-browserify.settings({ insertGlobals: true, detectGlobals: true, external: ['angular'] });
+// browserify.settings({ external: ['angular', 'jquery'] });
+browserify.settings({
+  ignoreMissing: true,
+  external: [
+    'angular',
+    'jquery',
+  ],
+  noParse: [
+    'angular',
+    'jquery',
+  ]
+});
 // Serve application js files
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
-// Serve jQuery
-router.get('/js/jquery.js', (req, res) => res.sendFile(Path.resolve('./node_modules/jquery/dist/jquery.js'))); 
 // Serve Angular and Angular modules
 router.get('/js/angular.js', browserify(sharedAngular));
 // Serve Foundation
@@ -78,6 +71,7 @@ router.get('/js/foundation.js', (req, res) => res.sendFile(Path.resolve('./node_
 router.get('/js/foundation-templates.js', (req, res) => res.sendFile(Path.resolve('./node_modules/foundation-apps/dist/js/foundation-apps-templates.js')));
 // Serve Angular work around for Foundation
 router.get('/js/index.js', browserify('./client/index.js'));
+// router.get('/js/index.js', browserify(sharedIndex));
 //vex sucks so we have to serve it manually 
 router.get('/js/vex.js', function (req, res) {
   res.sendFile(Path.resolve('./node_modules/vextab/releases/vextab-div.js'));
