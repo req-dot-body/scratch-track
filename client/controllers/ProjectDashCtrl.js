@@ -65,7 +65,6 @@ $scope.saveProjectInfo = function(){
   .then(function(response){
     $scope.projectStablature = response.data;
       // console.log('stablature: ', response.data)
-
   })
 
 }]);
