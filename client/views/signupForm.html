@@ -1,52 +1,65 @@
- <div class="anim-fade landing-form">
-  <div class="row small-6 columns">
+ <div class="anim-fade landing-form align-center grid-block">
+  <div class="medium-4">
     <form name="signupForm" class="form-group" novalidate>
-      <div class="form-header">E-Mail:</div>
-      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field"/>
-      <div class="form-group"> 
-        <div class="validation-error" ng-messages="signupForm.emailField.$error" ng-if="signupForm.emailField.$touched">
-          <div ng-message="required">This field is required</div>
-          <div ng-message="minlength">Not a valid e-mail</div>
-        </div>
-
-      <div class="form-header">Password:</div>
-      <input type="password" id="password" name="password" ng-model="password" required ng-minlength="6" ng-maxlength="15"/>
-      <div class="form-group"> 
-        <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched" class="validation-error">
-          <div ng-message="required">This field is required</div>
-          <div ng-message="minlength">Password must be at least 6 characters</div>
-          <div ng-message="minlength">Password must be less than 15 characters</div>
-        </div>
-      </div>     
-
-
-      <div class="form-header">Confirm Password:</div>
-      <input type="password" name="passwordVerify" pw-check="password" ng-model="passwordVerify" ng-required=""/>
-      <div class="form-group" ng-show="signupForm.$error"> 
-        <div class="validation-error" ng-show="signupForm.passwordVerify.$error.pwmatch"> 
-        Passwords do not match
-      </div>  
-      </div>
-
-      <div class="form-header">First Name:</div>
+    
+      <label class="form-header">First Name:</label>
       <input type="text" required ng-model="first" name="firstField" class="input-field"/>
+
       <div class="form-group"> 
         <div ng-messages="signupForm.firstField.$error" ng-if="signupForm.firstField.$touched" class="validation-error">
           <div ng-message="required">This field is required</div>
         </div>
       </div>   
 
-      <div class="form-header">Last Name:</div>
+      <label class="form-header">Last Name:</label>
       <input type="text" required ng-model="last" name="lastField" class="input-field"/>
+
       <div class="form-group"> 
         <div ng-messages="signupForm.lastField.$error" ng-if="signupForm.lastField.$touched" class="validation-error">
-          <div ng-message="required">This field is required</div>
+        <div ng-message="required">This field is required</div>
         </div>
-      </div>   
+      </div>       
+
+      <label class="form-header">E-Mail:</label>
+      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field"/>
+      <br>
+
+      <div class="form-group"> 
+        <div class="validation-error" ng-messages="signupForm.emailField.$error" ng-if="signupForm.emailField.$touched">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="minlength">Not a valid e-mail</div>
+        </div>
+      </div>
+
+      <label class="form-header">Password:</label>
+      <input type="password" id="password" name="password" ng-model="password" required ng-minlength="6" ng-maxlength="15"/>
+
+      <div class="form-group"> 
+        <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched" class="validation-error">
+          <div ng-message="required">This field is required</div>
+          <div ng-message="minlength">Password must be at least 6 characters</div>
+          <div ng-message="minlength">Password must be less than 15 characters</div>
+        </div>
+      </div>
+
+      <label class="form-header">Confirm Password:</label>
+      <input type="password" name="passwordVerify" pw-check="password" ng-model="passwordVerify" ng-required=""/>
+      
+      <div class="form-group" ng-show="signupForm.$error"> 
+        <div class="validation-error" ng-show="signupForm.passwordVerify.$error.pwmatch"> 
+        Passwords do not match</div>  
+      </div>
+
     
       <br>
-      <a class="large button" ng-submit="signupUser()" ng-click="signupUser()" id="submit-btn">Submit</a><br><br>
-      <p>Already a Member? <a class="contrast" ui-sref='public.signin'>Sign in!</a>
+      <div class="align-center grid-block">
+        <a class="large button" ng-submit="signupUser()" ng-click="signupUser()" id="submit-btn">Submit</a>
+      </div>
+
+      <br>
+      <div class="align-center grid-block">
+        <p>Already a Member? <a class="contrast" ui-sref='public.signin'>Sign in!</a></p>
+      </div>
     </form>
   </div>
 </div>

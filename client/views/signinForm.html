@@ -1,8 +1,11 @@
-<div class="anim-fade landing-form">
-  <div class="row small-6 grid-content">
+<div class="anim-fade landing-form align-center grid-block">
+  <div class="medium-4">
     <form name="signinForm" class="form-group" novalidate>
-      <div class="form-header">E-Mail:</div>
-      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field" placeholder="Enter your e-mail"/><br>
+
+      <label class="form-header">E-Mail:</label>
+      <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field" placeholder="Enter your e-mail"/>
+      <br>
+
       <div class="form-group"> 
         <div class="validation-error" ng-messages="signinForm.emailField.$error" ng-if="signinForm.emailField.$touched">
           <div ng-message="required">This field is required</div>
@@ -10,19 +13,25 @@
         </div>
       </div>     
 
-      <div class="form-header">Password:</div>
+      <label class="form-header">Password:</label>
       <input type="password" required ng-model="password" name="passwordField" ng-minlength="6" ng-minlength="12" placeholder="Enter your password"/>
+
       <div class="form-group"> 
-        <div class="validation-error" ng-messages="signinForm.passwordField.$error" ng-if="signinForm.passwordField.$touched">
+        <div class="validation-error" ng-messages="signinForm.passwordField.$error" ng-if="signinForm.passwordField.$touched" class="validation-error">
           <div ng-message="required">This field is required</div>
           <div ng-message="minlength">Password must be at least 6 characters</div>
           <div ng-message="minlength">Password must less than 12 characters</div>
         </div>
-      </div>     
+      </div>  
+
       <br>
-      <a class="large button" href="#" ng-submit="signinUser()" ng-click="signinUser()" id="submit-btn">Submit</a>
-      <br><br>
-      <p>Don't have an account? <a class="contrast" ui-sref='public.signup'>Sign Up!</a>
+      <div class="align-center grid-block">
+        <a class="large button" href="#" ng-submit="signinUser()" ng-click="signinUser()" id="submit-btn">Submit</a>
+      </div>
+      <br>
+      <div class="align-center grid-block">
+        <p>Don't have an account? <a class="contrast" ui-sref='public.signup'>Sign Up!</a></p>
+      </div>
     </form>
   </div>
 </div>

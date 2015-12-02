@@ -25,6 +25,10 @@ body form .form-header {
   font-weight: bold;
 }
 
+.form-header {
+  color: #fff;
+}
+
 /*HOME VIEW*/
 
 /*.main-view {
@@ -39,12 +43,10 @@ position: absolute;
 }
 
 .landing-form {
-
   position: relative;
-  top: 50%;
-  transform: translateY(30%);
+  top: 0%;
+  transform: translateY(10%);
   color: white;
-
 }
 
 #landing-box {
