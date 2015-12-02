@@ -5,11 +5,11 @@
 </ul>
 <div class="grid-block wrap dash-row-top">
 
+  <h1>Project Dash</h1>
   <div class="grid-content small-12">
     <br> 
-    <h1>Project Dash</h1>
     <h3>Project Name: {{projectData.name}}</h3>
-    <h3>Description: {{projectData.description}}</h3>
+    <h3 ng-if = 'projectData.description!==null'>Description: {{projectData.description}}</h3>
     <br><br>
   </div>
 
@@ -17,30 +17,30 @@
     
     <div class="card-recordings">
       <a ui-sref="main.project_edit.recordings">
-        <img src="./resources/guitar_banner.jpg">
+        <!-- <img src="./resources/guitar_banner.jpg"> -->
         <div class="recordings-card-divider text-center">
           Recordings
         </div></a>
       <div class="recordings-card-section">
         <ul>
-          <li>Recording 1</li>
-          <li>Recording 2</li>
-          <li>Recording 3</li>
+          <li ng-repeat = 'recording in projectRecordings|limitTo:-3|orderBy:"updated_at"'>
+            {{recording.name}}
+          </li>
         </ul>
       </div>
     </div>
 
     <div class="card-notes">
       <a ui-sref="main.project_edit.notes">
-        <img src="./resources/notes_banner.jpg">
+        <!-- <img src="./resources/notes_banner.jpg"> -->
         <div class="notes-card-divider text-center">
           Notes
         </div></a>
       <div class="notes-card-section">
         <ul>
-          <li>Note 1</li>
-          <li>Note 2</li>
-          <li>Note 3</li>
+          <li ng-repeat = 'note in projectNotes|limitTo:-3|orderBy:"updated_at"'>
+            {{note.name}}
+          </li>
         </ul>
       </div>
     </div>
@@ -53,35 +53,16 @@
 
     <div class="card-lyrics">
       <a ui-sref="main.project_edit.lyrics">
-        <img src="./resources/lyrics_banner.jpg">
+        <!-- <img src="./resources/lyrics_banner.jpg"> -->
         <div class="lyrics-card-divider text-center">
          Lyrics
         </div></a>
       <div class="lyrics-card-section">
          <ul>
-          <li class="collection-item">
-          <p class ='panel-lyric'> Mama take this badge from me
-              I can't use it anymore
-              It's getting dark too dark to see
-              Feels like I'm knockin' on heaven's door
-
-              Knock-knock-knockin' on heaven's door
-              Knock-knock-knockin' on heaven's door
-              Knock-knock-knockin' on heaven's door
-              Knock-knock-knockin' on heaven's door
-
-              Mama put my guns in the ground
-              I can't shoot them anymore
-              That cold black cloud is comin' down
-              Feels like I'm knockin' on heaven's door
-
-              Knock-knock-knockin' on heaven's door
-              Knock-knock-knockin' on heaven's door
-              Knock-knock-knockin' on heaven's door
-              Knock-knock-knockin' on heaven's door
-
-              Knock-knock-knockin' on heaven's door</P>
-              </li>
+          <li class="collection-item" ng-repeat = 'lyric in projectLyrics|limitTo:-1|orderBy:"updated_at"'>
+            <h5>{{lyric.name}}</h5>
+            <p class ='panel-lyric'>{{lyric.text}}</P>
+          </li>
         </ul>
       </div>
     </div>
@@ -92,14 +73,14 @@
     
     <div class="card-stablature">
       <a ui-sref="main.project_edit.stablature">
-        <img src="./resources/stablature_banner.jpg">
+        <!-- <img src="./resources/stablature_banner.jpg"> -->
         <div class="stablature-card-divider text-center">
           The 'Stablature'
         </div></a>
       <div class="stablature-card-section">
-        <ul>
-          <li>Displaying Tab</li>
-        </ul>
+        <div ng-repeat = 'stab in projectStablature|limitTo:-1|orderBy:"updated_at"' class = 'text-center'>
+          <vextab ng-model="stab.code"></vextab>
+        </div>
       </div>
     </div>
   </div>
@@ -134,3 +115,4 @@
     <p>Warning this operation can't be undone</p>
     <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
   </div>
+
