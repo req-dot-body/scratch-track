@@ -26,6 +26,10 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
   $scope.submit = function(){
     $scope.submitted = true;
   };
+
+  $scope.closeAccordion = function(){
+    $('.accordion div').removeClass('is-active');
+  };
   
   $scope.getAll = function (projectId) {
     Project.getProjectNotes(projectId)
@@ -78,6 +82,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
 
   $scope.resetForm = function () {
     $scope.newNote = {};
+    $scope.hasBeenReset = true;
   }
 
   var init = function () {

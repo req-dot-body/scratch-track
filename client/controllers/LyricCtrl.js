@@ -6,6 +6,13 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   var projectId = $state.params.id;
 
 
+  $scope.newLyric = {
+    name: '',
+    text: '',
+    project_id: projectId
+  };
+  
+
   $scope.toggleEditable = function() {
     var textbox = document.getElementById('lyrictext');
 
@@ -37,6 +44,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       div.style.display = "none";
     }
   };
+
+
+  $scope.closeAccordion = function(){
+    $('.accordion div').removeClass('is-active');
+  };
   
 
   $scope.formatDate = function(date) {
@@ -49,21 +61,28 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   };
 
 
-  $scope.updateTitle = function(newTitle) {
-    $scope.titleVal = newTitle;
+  $scope.update = function(newTitle, newValue) {
+    $scope.newLyric = {
+      name: newTitle,
+      text: newValue,
+      project_id: projectId
+    };
   };
 
 
   $scope.clearValues = function() {
-    $scope.val = "";
-    $scope.titleVal = "";
-    $scope.newVal = "";
-    $scope.newTitleVal = "";
+    $scope.newLyric = {
+      name: '',
+      text: '',
+      project_id: projectId
+    };
+    $scope.hasBeenReset = true;
   };
 
 
-  $scope.getAll = function(){
-    Project.getProjectLyrics(projectId).then(function(projects) {
+  $scope.getAll = function(projectId){
+    Project.getProjectLyrics(projectId)
+    .then(function(projects) {
       $scope.lyrics = projects;
     })
   };
@@ -74,16 +93,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   };
 
 
-  $scope.add = function(titleData, data){
-    console.log('data in ctrl:', titleData, data);
-    var requestData = {
-      "project_id": projectId,
-      "text":  data,
-      "name": titleData
-    }
-
-    Lyric.create(requestData).then(function() {
-      $scope.getAll();
+  $scope.add = function(newLyric){
+    Lyric.create(newLyric)
+    .then(function() {
+      $scope.clearValues();
+      $scope.getAll(projectId);
     });
   };
 
@@ -98,9 +112,10 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   };
 
 
-  $scope.delete = function(id) {
-    Lyric.del(id).then(function() {
-      $scope.getAll();
+  $scope.delete = function(noteId) {
+    Lyric.del(noteId)
+    .then(function() {
+      $scope.getAll(projectId);
     });
   };
 
@@ -113,8 +128,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   });
 
   // Initial Setup
-  $scope.val = "";
-  $scope.getAll();
+  $scope.getAll(projectId);
   $scope.lyrics = [];
   $scope.toggleMode = "Edit";
   

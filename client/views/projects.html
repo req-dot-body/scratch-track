@@ -10,25 +10,25 @@
 </div>
 <div class="grid-block text-center">
   <div ng-if='projects.length>0'class="grid-container small-12 medium-3" ng-repeat="project in projects|limitTo:-3|orderBy:'updated_at'">
-    <div class="dark card">
+    <a ui-sref = "main.project_edit({id:project.id})"><div class="dark card">
       <div class="card-divider project-recent">
         Name: {{project.name}}
       </div>
       <div class="card-section">
         <p>Description: {{project.description}}</p>
       </div>
-    </div>
+    </div></a>
   </div>
 </div>
 <br>
 
 <div class="grid-block text-center">
   <div class="grid-container small-11">
-    <label>
-    <span class="inline-label">
-    <input ng-model="searchText" type="search" placeholder="Search Project">
-    </span>
-    </label>
+    <form class='project-search'>  
+      <label>
+        <input class = 'projects-seach' ng-model="searchText" type="search" placeholder="Search Project">
+      </label>
+    </form>      
   </div>
 </div>
 
