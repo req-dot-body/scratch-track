@@ -1,3 +1,153 @@
 /* Import Foundation */
 @import
   '../node_modules/foundation-apps/scss/foundation';
+
+//PROJECT DASH BOARD
+.dash-menu-bar {
+  border-bottom: 1px solid #000;
+// This placeholder selector gets you the core structural styles for the menu
+@extend %menu-bar;
+// Set the orientation and sizing of the menu bar
+@include menu-bar-layout(
+$orientation: horizontal, // Can be horizontal or vertical
+$stretch: true // Set to false for a condensed menu
+);
+// Add styles for the menu bar items and text
+@include menu-bar-style(
+$background: #424242, // Background color of items
+$background-hover: #333, // Background color of item on hover
+$background-active: #666, // Background color of an active item
+$color: #fff, // Text color of items
+// $color-hover, // Text color of item on hover
+// $color-active, // Text color of item when active
+$autocolor: false // When true, all the above colors will be derived from $background
+);
+
+}
+
+
+
+.card-recordings {
+  @include card-container(
+  $background: #fff, // Background color
+  $color: #000, // Text color
+  $border: 1px solid #000, // Border
+  $radius: 4px, // Border radius
+  $shadow: 0 4px 10px black, // Box shadow
+  $padding: 1rem,
+  $margin: 1rem // Margin bottom
+  );
+  }
+  // This is a card divider
+  .recordings-card-divider:hover {
+    background:#263238;
+  }
+  .recordings-card-divider {
+    color:white;
+    font-size: 1.3rem;
+  @include card-divider(
+  $background: #212121,
+  $padding: 1rem
+  );
+  }
+  // This is a card section
+  .recordings-card-section {
+  @include card-section(
+  $padding: 1rem
+  );
+}
+
+.card-notes {
+ 
+  @include card-container(
+  $background: #fff, // Background color
+  $color: #000, // Text color
+  $border: 1px solid #000, // Border
+  $radius: 4px, // Border radius
+  $shadow: 0 4px 10px black, // Box shadow
+  $padding: 1rem,
+  $margin: 1rem // Margin bottom
+  );
+  }
+  // This is a card divider
+  .notes-card-divider:hover {
+    background:#263238;
+  }
+  .notes-card-divider {
+    color:white;
+    font-size: 1.3rem;
+  @include card-divider(
+  $background: #212121,
+  $padding: 1rem
+  );
+  }
+  // This is a card section
+  .notes-card-section {
+  @include card-section(
+  $padding: 1rem
+  );
+}
+
+.card-lyrics {
+  @include card-container(
+  $background: #fff, // Background color
+  $color: #000, // Text color
+  $border: 1px solid #000, // Border
+  $radius: 4px, // Border radius
+  $shadow: 0 4px 10px black, // Box shadow
+  $padding: 1rem,
+  $margin: 1rem // Margin bottom
+  );
+  }
+  // This is a card divider
+  .lyrics-card-divider:hover {
+    background:#263238;
+  }
+  .lyrics-card-divider {
+    color:white;
+    font-size: 1.3rem;
+  @include card-divider(
+  $background: #212121,
+  $padding: 1rem
+  );
+  }
+  // This is a card section
+  .lyrics-card-section {
+  @include card-section(
+  $padding: 1rem
+  );
+}
+
+.card-stablature {
+  img {
+    max-height: 200px;
+  }
+  
+  @include card-container(
+  $background: #fff, // Background color
+  $color: #000, // Text color
+  $border: 1px solid #000, // Border
+  $radius: 4px, // Border radius
+  $shadow: 0 4px 10px black, // Box shadow
+  $padding: 1rem,
+  $margin: 1rem // Margin bottom
+  );
+  }
+  // This is a card divider
+  .stablature-card-divider:hover {
+    background:#263238;
+  }
+  .stablature-card-divider {
+    color:white;
+    font-size: 1.3rem;
+  @include card-divider(
+  $background: #212121,
+  $padding: 1rem
+  );
+  }
+  // This is a card section
+  .stablature-card-section {
+  @include card-section(
+  $padding: 1rem
+  );
+}
