@@ -6,16 +6,20 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   var projectId = $state.params.id;
 
   $scope.recordings = [];
+  $scope.newRecordingSrc = '';
+  $scope.newRecordingBlob;
 
   $scope.newRecording = {
     project_id: projectId,
     url: '',
-    name: 'New Recording'
+    name: 'New Recording',
+    description: ''
   };
 
   $scope.getAll = function(){
     return Project.getProjectRecordings(projectId)
     .then(function(response){
+      console.log("recording data is", response);
       $scope.recordings = response.data;
     })
   };
@@ -27,13 +31,29 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
       $scope.newRecording = {
         project_id: projectId,
         url: '',
-        name: 'New Recording'
+        name: 'New Recording',
+        description: ''
       };
       $scope.getAll();
     })
   };
 
-  $scope.edit = function(id){
+  $scope.edit = function(id, name, desc, url){
+
+    var editedRecording = {
+      project_id: projectId,
+      url: url,
+      name: name,
+      description: desc
+    }
+
+    Recording.edit(id, editedRecording)
+    .then(function(){
+      $scope.getAll();
+    })
+
+    console.log("edit called", editedRecording);
+
 
   };
 
@@ -42,6 +62,10 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     .then(function(){
       $scope.getAll();
     })
+  };
+
+   $scope.formatDate = function(date) {
+    return moment.unix(date).calendar();
   };
 
   //RecorderJS:
@@ -69,27 +93,38 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
 
     var button = $('#record-btn');
     var stopButton = $('#stop-btn');
-    button.removeClass('large button')
-    button.addClass('large button disabled')
-    stopButton.removeClass('large alert button disabled')
-    stopButton.addClass('large alert button')
+    button.removeClass('large button');
+    button.addClass('large button disabled');
+    stopButton.removeClass('large alert button disabled');
+    stopButton.addClass('large alert button');
 
     $scope.__log('Recording...');
   }
 
    $scope.stopRecording = function () {
     $scope.recorder && $scope.recorder.stop();
-    
+    $scope.buttonToggle();
+    $scope.__log('Stopped recording.');
+
+    // create WAV download link using audio data blob
+    $scope.createDownloadLink();
+    $scope.recorder.clear();
+  }
+
+  $scope.buttonToggle = function () {
     var button = $('#record-btn');
     var stopButton = $('#stop-btn');
+    var saveButton = $('#save-btn');
+    var discardButton = $('#discard-btn');
+
     button.removeClass('large button disabled')
     button.addClass('large button')
     stopButton.removeClass('large alert button')
     stopButton.addClass('large alert button disabled')
-    $scope.__log('Stopped recording.');
-    // create WAV download link using audio data blob
-    $scope.createDownloadLink();
-    $scope.recorder.clear();
+    saveButton.removeClass('medium button disabled');
+    saveButton.addClass('medium button');
+    discardButton.removeClass('medium alert button disabled');
+    discardButton.addClass('medium alert button');
   }
 
   $scope.createDownloadLink = function () {
@@ -99,60 +134,85 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
 
     // Show download link
     $scope.recorder.exportWAV(function(blob) {
+      $scope.newRecordingBlob = blob;
+      $scope.newRecordingSrc = URL.createObjectURL(blob);
+      console.log("new recording src var is", $scope.newRecordingSrc);
 
-      console.log('Blob stuff:', blob.size, blob);
+      $('#audio-player').load();
+    });
+  };
 
-      if (blob.size < 64) { // WAV is instantiated to a size of 44 
+  $scope.completeRecording = function () {
+    var saveButton = $('#save-btn');
+    var discardButton = $('#discard-btn');
+    saveButton.removeClass('medium button');
+    saveButton.addClass('medium button disabled');
+    discardButton.removeClass('medium alert button');
+    discardButton.addClass('medium alert button disabled');
+  }
+
+  $scope.discardRecording = function () {
+    console.log("discard called")
+    $scope.newRecordingSrc = '';
+    $scope.newRecordingBlob = {};
+    $scope.completeRecording();
+    $scope.__log('Discarded recording.');
+  }
+
+  $scope.saveRecording = function (audioBlob) {
+    $scope.__log('Saved recording.');
+    $scope.completeRecording();
+
+    if (audioBlob.size < 64) { // WAV is instantiated to a size of 44 
+      return;
+    }
+    // Send request to Express server to get a signed url
+    $.ajax({
+      method: 'post',
+      url: window.location.origin + '/api/resources/recordings/signedAWS',
+      data: JSON.stringify({ size: audioBlob.size }),
+      contentType: 'application/json',
+    })
+    // Get signed AWS url
+    .then(function(response) {
+      console.log('Response:', response);
+
+      if (response.error) {
+        console.log('Some error...');
         return;
       }
-      // Send request to Express server to get a signed url
-      $.ajax({
-        method: 'post',
-        url: window.location.origin + '/api/resources/recordings/signedAWS',
-        data: JSON.stringify({ size: blob.size }),
-        contentType: 'application/json',
-      })
-      // Get signed AWS url
-      .then(function(response) {
-        console.log('Response:', response);
 
-        if (response.error) {
-          console.log('Some error...');
-          return;
+      if (typeof response.signedRequest === 'undefined' || typeof response.url === 'undefined') {
+        // This shouldnt happen
+        console.log('SignedRequest or URL was undefined');
+        return;
+      }
+
+      // In order for this to work, we must use the ol' fashion XMLHttpRequest object
+      var xhr = new XMLHttpRequest();
+
+      xhr.open('PUT', response.signedRequest);
+      xhr.onload = function (e) {
+        var amazonResult = e.response;
+        console.log('Amazon stuff:', e);
+
+        if (xhr.status === 200) {
+          console.log('Express response:', response);
+          console.log('XHR status === 200', e);
+          var url = response.url
+
+          $scope.add(url);
+        } else if (xhr.status === 403) {
+          // Something was changed in the signed url, its not what the server signed
+          // Amazon rejected the upload
         }
+      };
 
-        if (typeof response.signedRequest === 'undefined' || typeof response.url === 'undefined') {
-          // This shouldnt happen
-          console.log('SignedRequest or URL was undefined');
-          return;
-        }
-
-        // In order for this to work, we must use the ol' fashion XMLHttpRequest object
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('PUT', response.signedRequest);
-        xhr.onload = function (e) {
-          var amazonResult = e.response;
-          console.log('Amazon stuff:', e);
-
-          if (xhr.status === 200) {
-            console.log('Express response:', response);
-            console.log('XHR status === 200', e);
-            var url = response.url
-
-            $scope.add(url);
-          } else if (xhr.status === 403) {
-            // Something was changed in the signed url, its not what the server signed
-            // Amazon rejected the upload
-          }
-        };
-
-        xhr.onerror = function () {
-          console.log('Error uploading file');
-        };
-        xhr.send(blob);
-      });
-    });
+      xhr.onerror = function () {
+        console.log('Error uploading file');
+      };
+      xhr.send(audioBlob);
+    }); 
   }
 
 

@@ -5,12 +5,15 @@
         <span class="title center">Create New Recording</span>
       </div> 
       <br>
-      <label>
-        Recording Title:
-        <input type="text" ng-model="newRecording.name">
-      </label>
+
       <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
-      <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a>
+      <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
+      <br>
+      <audio controls="true">
+        <source id="audio-player" ng-src="{{newRecordingSrc | trusted}}" type="audio/wav">
+      </audio> <br>
+      <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
+      <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
       <p id="log" class="recordingStatus"></p>
 
       <div class="title-bar">
@@ -18,19 +21,38 @@
       </div> 
       <br>
         <zf-accordion auto-open="false" collapsible="true" multi-open="true" id="recordingslist">
-          <zf-accordion-item ng-repeat="recording in recordings" ng-model="recordings" title="{{recording.created_at}} - {{recording.name}}" watch>
+          <zf-accordion-item ng-repeat="recording in recordings" ng-model="recordings" title="{{ formatDate(recording.created_at) }} - {{recording.name}}" watch>
             <audio controls="true">
               <source ng-src="{{recording.url | trusted}}" type="audio/wav"/>
             </audio>
             <br/>
             <a class="small button" download href="{{recording.url}}">Download Link</a>
-            <a class="small alert button" zf-open="delModal">Delete Recording</a>
+            <a class="small button" zf-open="editModal">Edit Recording Info</a>
+            <a class="small alert button" zf-open="delModal">Delete Recording</a> <br>
+            <div class="card">
+              <label>Description:</label><p>{{recording.description}}</p>
+            </div>
+
+            <!--Edit & Delete Modals-->
             <div zf-modal="" id="delModal">
               <a zf-close="" class="close-button">×</a>
               <h3>Are you sure you want to delete this recording?</h3>
               <a class="medium alert button" zf-close="" ng-click="delete(recording.id)">Confirm Delete</a>
               <a class="medium button" zf-close="" class="close-button">Go Back</a>
           </div>
+
+          <div zf-modal="" id="editModal">
+              <a zf-close="" class="close-button">×</a>
+              <label>
+                Title This Recording:
+                <input type="text" ng-model="recording.name"/>
+                Recording Description:
+                <textarea ng-model="recording.description" maxlength="72"></textarea>
+              </label>
+              <a class="medium alert button" zf-close="" ng-click="edit(recording.id, recording.name, recording.description, recording.url)">Save Changes</a>
+              <a class="medium button" zf-close="" class="close-button">Discard Changes</a>
+          </div>
+
           </zf-accordion-item>
         </zf-accordion>
     </div>
