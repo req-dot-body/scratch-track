@@ -12,13 +12,23 @@
       
       <zf-accordion id="create-lyricsheet" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
-          <label>Lyric Title:</label>
-          <textarea class="lyric-textarea" type="text" ng-model="newTitleVal" placeholder="Enter title here."></textarea>
+          <form name="newLyricForm" class="form-group" novalidate>
+            <label>Lyric Title:</label>
+            <textarea class="lyric-textarea" type="text" name="lyric-title" ng-model="newTitleVal" placeholder="Enter title here." required></textarea>
+            <br />
 
-          <label>Lyric Body:</label>
-          <textarea class="lyric-textarea" type="text" ng-model="newVal" placeholder="Enter lyrics here." style="min-height: 100px;"></textarea>
+            <div class="form-group"> 
+              <div class="validation-error" ng-messages="newLyricForm.$error" ng-if="submitted">
+                <div ng-message="required">Oops! You have some unfilled fields. Please complete and try again.</div>
+              </div>
+            </div>     
 
-          <a class="button" href="#" ng-click="add(newTitleVal, newVal);">SAVE</a>
+            <label>Lyric Body:</label>
+            <textarea class="lyric-textarea" type="text" name="lyric-body" ng-model="newVal" placeholder="Enter lyrics here." style="min-height: 100px;" required></textarea>
+            <br />
+
+            <a class="button" type="submit" href="#" ng-click="add(newTitleVal, newVal); submit();">SAVE</a>
+          </form>
         </zf-accordion-item>
       </zf-accordion>
 

@@ -22,6 +22,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   };
 
 
+  $scope.submit = function(){
+     $scope.submitted = true;
+  };
+
+
   $scope.toggleElement = function(id) {
     div = document.getElementById(id);
 
