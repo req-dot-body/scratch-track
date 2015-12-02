@@ -14,8 +14,11 @@ app.directive('vextab', function($compile){
       //creates new tab when model is updated
       modelCtrl.$render = function(){
         var code = formatCode(modelCtrl.$viewValue);
-        element.text(code);
-        new Vex.Flow.TabDiv(element);
+
+        if (validCode(code)){
+          element.text(code);
+          new Vex.Flow.TabDiv(element);
+        }
       }
 
       //formats user input into vex notation
@@ -28,6 +31,23 @@ app.directive('vextab', function($compile){
         return split.join('\n');
       }
 
+      //checks for valid vex notation
+      function validCode(code){
+        var testElement = element.clone();
+        testElement.text(code);
+
+        var vex = new Vex.Flow.TabDiv(testElement);
+        
+        try{
+          vex.parser.parse(code);
+          return true; 
+        }
+        catch (e){
+          console.log('uh oh!', e);
+          return false;
+        }
+      }
+
     }
   }
 });
@@ -36,7 +56,4 @@ app.directive('vextab', function($compile){
 To use: <vextab ng-model= notation=""></vextab>
 set model equal to the code property of a stablature object
 set notation equal to notation property if present 
-
-in order for it to work you put have the following script on your view:
-<script src="/js/vex.js"></script>
 */

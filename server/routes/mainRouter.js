@@ -53,12 +53,12 @@ apiRouter.use('/resources', resourcesRouter);
 browserify.settings({
   ignoreMissing: true,
   external: [
-    'angular',
     'jquery',
+    'angular',
   ],
   noParse: [
-    'angular',
     'jquery',
+    'angular',
   ]
 });
 // Serve application js files
