@@ -126,8 +126,8 @@ video#intro-video {
 }
 
 .panel-lyric {
-    min-height:410px;
-    max-height:410px;
+    min-height:250px;
+    max-height:250px;
     overflow-y:scroll;
 }
 

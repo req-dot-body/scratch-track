@@ -3,11 +3,20 @@ var moment = require('moment/moment');
 
 app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', function($scope,$state,Project, FoundationApi) {
 
-Project.getProject($state.params.id)
+projectId = $state.params.id; 
+
+
+Project.getProject(projectId)
 .then(function(response){
   $scope.projectData = response.data;
+  
+  if ($scope.projectData.name === null){
+    $scope.projectData.name = 'MyProject: '+ projectId;
+    $scope.saveProjectInfo($scope.projectData);
+  }
+
   $scope.projectCreated = false;
-  if($state.params.created || $scope.projectData.name === null){
+  if($state.params.created){
     $scope.projectCreated = true;
   }
 })
@@ -30,7 +39,8 @@ $scope.saveProjectInfo = function(){
 };
 
 
-$scope.displayRecordings = function(recordings){
+$scope.displayRecordings = function(){
+  Project.getProjectRecordings()
 
 };
 
