@@ -81,7 +81,6 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
   }
 
   $scope.resetForm = function () {
-    console.log('hasBeenReset');
     $scope.newNote = {};
     $scope.hasBeenReset = true;
   }
