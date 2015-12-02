@@ -132,7 +132,7 @@ router.post('/recordings/signedAWS', function(req, res) {
   var bucket = process.env.AWS_BUCKET;
 
   // Pass this to the function that generates a signed URL
-  // This prevents the client from uploading something different than what we have specified (Amazon will 401)
+  // This prevents the client from uploading something different than what we have specified (Amazon will 403)
   var params = {
     Bucket: bucket, // S3 bucket to upload to
     Key: 'recordings/' + uniqueName + '.wav', // Give the file a unique name
