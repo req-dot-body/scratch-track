@@ -1,0 +1,14 @@
+  <div id="create-stab-content">
+    <label>Title:</label>
+    <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
+
+    <label>Description:</label>
+    <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here.">
+    </input>
+
+    <vextab ng-model="stabInfo.code"></vextab>
+      <textarea ng-model="stabInfo.code"></textarea>
+  </div>
+
+  <a class="button" ng-click="submit()">SUBMIT</a>
+  <a class="button" ng-click="closeAccordion()">CANCEL</a>
