@@ -29,6 +29,10 @@ Project.findByUser = function (owner_id) {
   })
 };
 
+Project.findByPublic = function () {
+  return db.select('*').from('projects').where({ private: 0 });
+};
+
 // creates a new project
 Project.create = function (attrs, username) {
   return db('projects').insert(attrs).returning('id')
@@ -37,7 +41,8 @@ Project.create = function (attrs, username) {
         id: rows[0],
         owner_id: attrs.owner_id,
         created_at: attrs.created_at,
-        updated_at: attrs.updated_at
+        updated_at: attrs.updated_at,
+        // private: 1, // Default projects to be private
       };
       return newProject;
     });
