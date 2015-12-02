@@ -25,22 +25,4 @@ app.controller('UserCtrl', ['$scope','User', function($scope, User) {
     User.signUp(newUser);
   } 
 
-  $scope.buttonControl = function () {
-    var button = $('#submit-btn');
-    
-    if ($scope.email !== '' && $scope.password !== '') {
-      button.removeClass("large button disabled").addClass("large button");
-    }
-  }
-
-  $scope.signupButtonControl = function () {
-     var button = $('#submit-btn');
-    
-    if ($scope.email !== '' && $scope.password !== '' && $scope.first !== '' && $scope.last !== '') {
-      button.removeClass("large button disabled").addClass("large button");
-    }
-  }
-
-
-
 }]);

@@ -1,3 +1,5 @@
+var moment = require('moment/moment');
+
 app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project',
 	function($scope, $state, Stablature, Project) {
 
@@ -5,10 +7,14 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project',
 
 	var projectId = $state.params.id;
 	
-	Project.getProjectStablature(projectId)
-	.then(function(stabRes){
-		$scope.stabList = stabRes.data; 
-	})
+	$scope.getAll = function(){
+		Project.getProjectStablature(projectId)
+		.then(function(stabRes){
+			$scope.stabList = stabRes.data; 
+		});
+	}
+
+	$scope.getAll();
 	
 var defaultStab = {
 		code: "12/3",
@@ -19,34 +25,34 @@ var defaultStab = {
 	$scope.stabInfo = defaultStab;
 	$scope.editing = false;
 
-	$scope.code = defaultStab.code; 
+  $scope.formatDate = function(date) {
+    return moment.unix(date).calendar();
+  };
 
-	// $scope.openEditor = function(){
-	// 	// angular.element(document).find('textarea.editor').val(defaultStab.code);
-	// 	// $scope.editing = true;
-	// };
+  $scope.test = function(){
+  	var stab = {
+  		code: '1-2-3/6',
+  		name: 'yo',
+  		description: ''
+  	};
 
-	// $scope.closeEditor = function(){
-	// 	// $scope.editing = false;
-	// }
+  	$scope.openAccordion(stab);
+  }
 
-	$scope.revise = function(stabInfo){
-		$scope.stabInfo = {
-			code: "tabstave notation=false \n notes 4-5/1",
-			name: "sick lix",
-			description: "totally awesome bro"
-		}
-	}
+	$scope.openAccordion = function(stabInfo){
+		$scope.stabInfo = stabInfo || defaultStab;
+		console.log('Stab info:', stabInfo, 'DefaultStab:', defaultStab);
+		$('.accordion div').addClass('is-active');
+	};
+
+	$scope.closeAccordion = function(){
+		$('.accordion div').removeClass('is-active');
+	};
 
 	$scope.submit = function(){
 		//ideally some sort of validation here
-		// console.log('error', angular.element(document).find('div.text').val());
 
 		var stabInfo = $scope.stabInfo;
-	
-		//hacky nonsense to grab the textarea input
-		//because vex sucks
-		stabInfo.code = angular.element(document).find('textarea.editor').val()
 
 		var newStab = {
 			code: stabInfo.code,
@@ -55,12 +61,19 @@ var defaultStab = {
 			project_id: $state.params.id
 		};
 
-		$scope.editing = false;
-		Stablature.create(newStab);
+		$scope.closeAccordion();
+
+		Stablature.create(newStab)
+		.then(function(){
+			$scope.getAll();
+		});
 	};
 
 	$scope.delete = function(id){
-		Stablature.del(id);
+		Stablature.del(id)
+		.then(function(){
+			$scope.getAll();
+		});
 	};
 
 }]);

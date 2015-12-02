@@ -1,55 +1,55 @@
 app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
-	function($scope, $state, Recording, Project) {
+  function($scope, $state, Recording, Project) {
 
-	$scope.mockData = [
-	  {
-	  	id: 8,
-	    project_id: 1,
-	    url: 'www.mediaupload.com/test.mp3',
-	    created_at: '10/6/15',
-	    description: ''
-	  },
-	  {
-	  	id: 10,
-	    project_id: 1,
-	    url: 'www.mediaupload.com/toadcroak.mp3',
-	    description: 'sampled from a swamp in the dead of night',
-	    created_at: '11/11/15'
-	  },
-	  {
-	  	id: 19,
-	    project_id: 1,
-	    url: 'www.mediaupload.com/frognado.mp3',
-	    created_at: '11/12/15',
-	    name: 'Frognado',
-	    description: 'it was quite the blustery frognado'
-	  }
-	]
+  $scope.mockData = [
+    {
+      id: 8,
+      project_id: 1,
+      url: 'www.mediaupload.com/test.mp3',
+      created_at: '10/6/15',
+      description: ''
+    },
+    {
+      id: 10,
+      project_id: 1,
+      url: 'www.mediaupload.com/toadcroak.mp3',
+      description: 'sampled from a swamp in the dead of night',
+      created_at: '11/11/15'
+    },
+    {
+      id: 19,
+      project_id: 1,
+      url: 'www.mediaupload.com/frognado.mp3',
+      created_at: '11/12/15',
+      name: 'Frognado',
+      description: 'it was quite the blustery frognado'
+    }
+  ];
 
-	$scope.recordings = [] || $scope.getAll();
+  $scope.recordings = [] || $scope.getAll();
 
-	$scope.getAll = function(){
-		var projectId = $state.params.id;
-		return Project.getProjectRecordings(projectId);
-	}
+  $scope.getAll = function(){
+    var projectId = $state.params.id;
+    return Project.getProjectRecordings(projectId);
+  };
 
-	$scope.add = function(){
+  $scope.add = function(){
 
-	}
+  };
 
-	$scope.edit = function(id){
-		 
-	}
+  $scope.edit = function(id){
 
-	// $scope.delete = Recording.del;
-	$scope.delete = function(id) {
-		Recording.del(id);
-	}
+  };
 
-	//RecorderJS:
+  // $scope.delete = Recording.del;
+  $scope.delete = function(id) {
+    Recording.del(id);
+  };
 
-	$scope.audio_context;
-  $scope.recorder;
+  //RecorderJS:
+
+  $scope.audio_context = null;
+  $scope.recorder = null;
 
   function init() {
     try {

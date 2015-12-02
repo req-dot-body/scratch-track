@@ -13,7 +13,7 @@
         Note Body:
         <textarea placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25"> </textarea>
       </label>
-      <a class="large button" ng-click="addNote(newNote)">Add Note</a>
+      <a class="large button" ng-click="addNote(newNote)" ng-submit="addNote(newNote)">Add Note</a>
 
       <div class="title-bar">
         <span class="title center">Your Project Notes:</span>

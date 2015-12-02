@@ -28,6 +28,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
   $scope.addNote = function (newNote) {
     return Note.create(newNote)
     .then(function(){
+      $scope.resetForm();
       $scope.getAll(projectId);
     });
   }
@@ -63,6 +64,10 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
     .then(function(){
       $scope.getAll(projectId);
     });
+  }
+
+  $scope.resetForm = function () {
+    $scope.newNote = {};
   }
 
   var init = function () {

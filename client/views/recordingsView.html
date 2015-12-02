@@ -28,11 +28,11 @@
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script> -->
 <!-- RECORDER JS INSANTIY FOLLOWS -->
 <script>
   function __log(e, data) {
-    log.innerHTML += "\n" + e + " " + (data || '');
+    log.innerHTML += '\n' + e + ' ' + (data || '');
   }
 
   function startUserMedia(stream) {
@@ -43,7 +43,7 @@
   }
 
   function startRecording(button) {
-    log.innerHTML = "";
+    log.innerHTML = '';
     recorder && recorder.record();
     button.disabled = true;
     button.nextElementSibling.disabled = false;
@@ -65,33 +65,76 @@
       return;
     }
 
-    // Send to AWS
-    recorder.exportWAV(function (blob) {
-      // Need to get signed url from server
-
-      // Need to PUT to aws
-
-      // Need to display url we PUT to aws
-    });
-
     // Show download link
     recorder.exportWAV(function(blob) {
 
-      var url = URL.createObjectURL(blob);
-      var div = document.createElement('div');
-        div.className = "collapsible-header"
-      var au = document.createElement('audio');
-      var hf = document.createElement('a');
-        hf.className = "recording-element"
-      
-      au.controls = true;
-      au.src = url;
-      hf.href = url;
-      hf.download = new Date().toISOString() + '.wav';
-      hf.innerHTML = hf.download;
-      div.appendChild(au);
-      div.appendChild(hf);
-      recordingslist.appendChild(div);
+      console.log('Blob stuff:', blob.size, blob);
+
+      if (blob.size < 64) { // WAV is instantiated to a size of 44 
+        return;
+      }
+      // Send request to Express server to get a signed url
+      $.ajax({
+        method: 'post',
+        url: window.location.origin + '/api/resources/recordings/signedAWS',
+        data: JSON.stringify({ size: blob.size }),
+        contentType: 'application/json',
+      })
+      // Get signed AWS url
+      .then(function(response) {
+        console.log('Response:', response);
+
+        if (response.error) {
+          console.log('Some error...');
+          return;
+        }
+
+        if (typeof response.signedRequest === 'undefined' || typeof response.url === 'undefined') {
+          // This shouldnt happen
+          console.log('SignedRequest or URL was undefined');
+          return;
+        }
+
+        // In order for this to work, we must use the ol' fashion XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('PUT', response.signedRequest);
+        xhr.onload = function (e) {
+          var amazonResult = e.response;
+          console.log('Amazon stuff:', e);
+
+          if (xhr.status === 200) {
+            console.log('Express response:', response);
+            console.log('XHR status === 200', e);
+
+            var div = document.createElement('div');
+            div.className = 'collapsible-header';
+
+            var audioElement = document.createElement('audio');
+            audioElement.controls = true;
+            audioElement.src = URL.createObjectURL(blob);
+
+            var downloadLink = document.createElement('a');
+            downloadLink.className = 'recording-element';
+            downloadLink.href = response.url;
+            downloadLink.innerHTML = response.url;
+
+            div.appendChild(audioElement);
+            div.appendChild(downloadLink);
+            document.getElementById('recordingslist').appendChild(div);
+
+            // TODO : Save recording information in database
+          } else if (xhr.status === 403) {
+            // Something was changed in the signed url, its not what the server signed
+            // Amazon rejected the upload
+          }
+        };
+
+        xhr.onerror = function () {
+          console.log('Error uploading file');
+        };
+        xhr.send(blob);
+      });
     });
   }
   </script>
