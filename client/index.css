@@ -161,3 +161,16 @@ video#intro-video {
   margin-top: 20px;
   margin-bottom: 40px;
 }
+
+.button.contrast {
+  background-color: #008b36 !important;
+}
+
+.button.contrast:hover {
+  background-color: #00772e !important;
+}
+
+.contrast {
+  color: #008b36;
+}
+
