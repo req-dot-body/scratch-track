@@ -13,9 +13,19 @@ app.directive('vextab', function($compile){
 
       //creates new tab when model is updated
       modelCtrl.$render = function(){
-        console.log('view value', modelCtrl.$viewValue)
-        element.text(prefix + modelCtrl.$viewValue);
+        var code = formatCode(modelCtrl.$viewValue);
+        element.text(code);
         new Vex.Flow.TabDiv(element);
+      }
+
+      //formats user input into vex notation
+      function formatCode(code){
+        var split = code.split('\n');
+        split.forEach(function(line, i){
+          split[i] = prefix + line;
+        });
+
+        return split.join('\n');
       }
 
     }
