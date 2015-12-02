@@ -1,10 +1,9 @@
-<!-- <ul class="menu-bar right condensed">
-<li><a href="#">Recordings</a></li>
-<li><a href="#">Notes</a></li>
-<li><a href="#">Lyrics</a></li>
-<li><a href="#">Stablature</a></li>
-<li><a href="#">Back</a></li>
-</ul> -->
-
+<ul class="menu-bar right condensed" ng-if ='state.current.name !== "main.project_edit.dash"'>
+<li><a ui-sref="main.project_edit.recordings">Recordings</a></li>
+<li><a ui-sref="main.project_edit.notes">Notes</a></li>
+<li><a ui-sref="main.project_edit.lyrics">Lyrics</a></li>
+<li><a ui-sref="main.project_edit.stablature">Stablature</a></li>
+<li><a ui-sref="main.project_edit.dash">Dash</a></li>
+</ul>
 <section ui-view></section>
 
