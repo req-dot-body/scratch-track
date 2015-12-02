@@ -46,7 +46,7 @@ var defaultStab = {
 
 		//checks for proper vex code
 		if ($('vextab').hasClass('error')){
-			//make modal appear here 
+			//error checking right here 
 			return;
 		}
 
@@ -76,5 +76,11 @@ var defaultStab = {
 			$scope.getAll();
 		});
 	};
+
+	$scope.tabExplanation = 
+	"Scratch-Track utilizes an easy-to-use language called VexTab for instantly rendering tablature as you write it. "
+	+ "The basics are simple. For example, to render frets 2, 4, and 7 on the 5th (A) string, just type '2-4-7/5'. "
+	+"\nFor more examples, click the tutorial link below. However, keep in mind that when using Scratch-Track's editor "
+	+"you do not need to write out any of the VexTab keywords such as 'tabstave', 'notation', or 'notes'."
 
 }]);

@@ -23,11 +23,30 @@
 
 
           <vextab ng-model="stabInfo.code"></vextab>
+          <br>
+          <a class="button" zf-open="learnHowModal">How To Write Tabs</a>
+          <br>
           <textarea ng-model="stabInfo.code"></textarea>
         </div>
 
         <a class="button" ng-click="submit()">SUBMIT</a>
         <a class="button" ng-click="closeEditor()">CANCEL</a>
+
+        <div zf-modal="">
+          <div>
+              <h5> Looks like you have a problem with your vex code. </h4>
+            <a zf-close="" class="button">Okay</a>
+          </div>
+        </div>
+
+        <div zf-modal="" id="learnHowModal">
+          <div>
+            <p>{{tabExplanation}}</p>
+            <br>
+            <a class="button" href="http://www.vexflow.com/vextab/tutorial.html" target="_blank">Tutorial</a>
+            <a zf-close="" class="button">Close</a>
+          </div>
+        </div>
 
         </zf-accordion-item>
       </zf-accordion>
@@ -48,8 +67,18 @@
                     <p><em>{{stab.description}}</em></p>
                     <a class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
                     <a class="button" ng-click="">EDIT</a>
-                    <a class="button" ng-click="delete(stab.id)">DELETE</a> 
+                    <a class="button" zf-open="deleteModal">DELETE</a> 
                   </div>
+
+                  <div zf-modal="" id="deleteModal">
+                    <div>
+                      <h4>Are You Sure That You Want To Delete This Entry?</h4>
+                      <a class="alert button" ng-click="delete(stab.id)">YES, REALLY DELETE</a>
+
+                      <a zf-close="" class="button">NO, GO BACK TO LIST</a>
+                    </div>
+                  </div>
+
                 </li>
               </div>
             </ul>
