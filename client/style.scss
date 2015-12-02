@@ -25,8 +25,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
 }
 
-
-
 .card-recordings {
   @include card-container(
   $background: #fff, // Background color
@@ -150,4 +148,12 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   @include card-section(
   $padding: 1rem
   );
+}
+
+//Projects View
+.project-search {
+  input{ 
+    border: 1px solid #000;
+    // shadow: 0 4px 1-px black;
+  }
 }

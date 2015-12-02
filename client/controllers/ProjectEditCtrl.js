@@ -1,6 +1,8 @@
 // var vextab = require('vextab');
 app.controller('ProjectEditCtrl', ['$scope','$state','Project', function($scope,$state,Project) {
 
+$scope.state = $state;
+
 //getting current project id
 var id = $state.params.id
 //get current project info
@@ -16,9 +18,6 @@ Project.getProject(id)
 if($state.is('main.project_edit')){
   $state.go('main.project_edit.dash');
 }
-
-
-
 
 
 // VexTab = vextab.VexTab;

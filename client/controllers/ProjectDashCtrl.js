@@ -38,37 +38,34 @@ $scope.saveProjectInfo = function(){
   Project.editProject($scope.projectData)
 };
 
-
+//gets all recordings 
   Project.getProjectRecordings(projectId)
   .then(function(response){
     $scope.projectRecordings = response.data;
-    console.log('recordings: ', response.data)
+    // console.log('recordings: ', response.data)
   })
-
+//gets all notes 
   Project.getProjectNotes(projectId)
   .then(function(response){
     $scope.projectNotes = response.data;
-      console.log('notes: ', response.data)
+      // console.log('notes: ', response.data)
 
   })
 
-
+//gets all lyrics 
   Project.getProjectLyrics(projectId)
   .then(function(response){
     $scope.projectLyrics = response.data;
-      console.log('lyrics: ', response.data)
+      // console.log('lyrics: ', response.data)
 
   })
 
-
+//gets all stablatures 
   Project.getProjectStablature(projectId)
   .then(function(response){
     $scope.projectStablature = response.data;
-      console.log('stablature: ', response.data)
-
+      // console.log('stablature: ', response.data)
   })
-
-  $scope.code = "1-2-3/4";
 
 }]);
 
