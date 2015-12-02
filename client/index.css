@@ -114,16 +114,21 @@ video#intro-video {
    
 }
 
+/*DASH VIEW*/
 
-
-.panel-lyric {
-    min-height:307px;
-    max-height:307px;
-    overflow-y:scroll;
+.left-panel {
+  min-height: 100%;
 }
 
-#info-form {
-  display:none;
+.right-panel {
+  min-height: 100%;
+  
+}
+
+.panel-lyric {
+    min-height:410px;
+    max-height:410px;
+    overflow-y:scroll;
 }
 
 

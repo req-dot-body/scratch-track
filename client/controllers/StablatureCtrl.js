@@ -29,6 +29,7 @@ var defaultStab = {
     return moment.unix(date).calendar();
   };
 
+
   $scope.test = function(){
   	var stab = {
   		code: '1-2-3/6',
