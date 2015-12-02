@@ -6,6 +6,13 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
   var projectId = $state.params.id;
 
 
+  $scope.newLyric = {
+    name: '',
+    text: '',
+    project_id: projectId
+  };
+
+
   $scope.toggleEditable = function() {
     var textbox = document.getElementById('lyrictext');
 

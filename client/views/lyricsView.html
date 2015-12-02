@@ -12,10 +12,11 @@
       
       <zf-accordion id="create-lyricsheet" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
+          <br>
           <form name="newLyricForm" class="form-group" novalidate>
             <label>Lyric Title:</label>
             <textarea class="lyric-textarea" type="text" name="lyric-title" ng-model="newTitleVal" placeholder="Enter title here." required></textarea>
-            <br />
+            <br>
 
             <div class="form-group"> 
               <div class="validation-error" ng-messages="newLyricForm.$error" ng-if="submitted">
@@ -25,7 +26,7 @@
 
             <label>Lyric Body:</label>
             <textarea class="lyric-textarea" type="text" name="lyric-body" ng-model="newVal" placeholder="Enter lyrics here." style="min-height: 100px;" required></textarea>
-            <br />
+            <br>
 
             <a class="button" type="submit" href="#" ng-click="add(newTitleVal, newVal); submit(); closeAccordion();">SAVE</a>
           </form>
