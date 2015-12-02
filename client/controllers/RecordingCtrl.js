@@ -103,13 +103,20 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
 
    $scope.stopRecording = function () {
     $scope.recorder && $scope.recorder.stop();
-    
+    $scope.buttonToggle();
+    $scope.__log('Stopped recording.');
+
+    // create WAV download link using audio data blob
+    $scope.createDownloadLink();
+    $scope.recorder.clear();
+  }
+
+  $scope.buttonToggle = function () {
     var button = $('#record-btn');
     var stopButton = $('#stop-btn');
     var saveButton = $('#save-btn');
     var discardButton = $('#discard-btn');
 
-    //Button Manipulation:
     button.removeClass('large button disabled')
     button.addClass('large button')
     stopButton.removeClass('large alert button')
@@ -118,12 +125,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     saveButton.addClass('medium button');
     discardButton.removeClass('medium alert button disabled');
     discardButton.addClass('medium alert button');
-
-    $scope.__log('Stopped recording.');
-
-    // create WAV download link using audio data blob
-    $scope.createDownloadLink();
-    $scope.recorder.clear();
   }
 
   $scope.createDownloadLink = function () {

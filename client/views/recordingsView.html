@@ -7,7 +7,8 @@
       <br>
 
       <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
-      <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a>
+      <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
+      <br>
       <audio controls="true">
         <source id="audio-player" ng-src="{{newRecordingSrc | trusted}}" type="audio/wav">
       </audio> <br>
@@ -46,7 +47,7 @@
                 Title This Recording:
                 <input type="text" ng-model="recording.name"/>
                 Recording Description:
-                <textarea ng-model="recording.description"></textarea>
+                <textarea ng-model="recording.description" maxlength="72"></textarea>
               </label>
               <a class="medium alert button" zf-close="" ng-click="edit(recording.id, recording.name, recording.description, recording.url)">Save Changes</a>
               <a class="medium button" zf-close="" class="close-button">Discard Changes</a>
