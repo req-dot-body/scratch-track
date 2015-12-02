@@ -29,24 +29,14 @@ var defaultStab = {
     return moment.unix(date).calendar();
   };
 
-
-  $scope.test = function(){
-  	var stab = {
-  		code: '1-2-3/6',
-  		name: 'yo',
-  		description: ''
-  	};
-
-  	$scope.openAccordion(stab);
-  }
-
 	$scope.openAccordion = function(stabInfo){
 		$scope.stabInfo = stabInfo || defaultStab;
-		console.log('Stab info:', stabInfo, 'DefaultStab:', defaultStab);
 		$('.accordion div').addClass('is-active');
 	};
 
 	$scope.closeAccordion = function(){
+		$scope.stabInfo = defaultStab;
+		console.log('stabInfo', $scope.stabInfo)
 		$('.accordion div').removeClass('is-active');
 	};
 
