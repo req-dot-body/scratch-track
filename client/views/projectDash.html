@@ -9,7 +9,7 @@
   <div class="grid-content small-12">
     <br> 
     <h3>Project Name: {{projectData.name}}</h3>
-    <h3>Description: {{projectData.description}}</h3>
+    <h3 ng-if = 'projectData.description!==null'>Description: {{projectData.description}}</h3>
     <br><br>
   </div>
 
@@ -78,9 +78,9 @@
           The 'Stablature'
         </div></a>
       <div class="stablature-card-section">
-        <ul>
-          <li><vextab ng-model="2-5/2"></vextab></li>
-        </ul>
+        <div ng-repeat = 'stab in projectStablature|limitTo:-1|orderBy:"updated_at"' class = 'text-center'>
+          <vextab ng-model="stab.code"></vextab>
+        </div>
       </div>
     </div>
   </div>

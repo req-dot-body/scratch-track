@@ -68,6 +68,8 @@ $scope.saveProjectInfo = function(){
 
   })
 
+  $scope.code = "1-2-3/4";
+
 }]);
 
 
