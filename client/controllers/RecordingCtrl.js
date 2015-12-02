@@ -6,6 +6,8 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   var projectId = $state.params.id;
 
   $scope.recordings = [];
+  $scope.newRecordingSrc = '';
+  $scope.newRecordingBlob;
 
   $scope.newRecording = {
     project_id: projectId,
@@ -13,9 +15,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     name: 'New Recording',
     description: ''
   };
-
-  $scope.newRecordingSrc = '';
-  $scope.newRecordingBlob;
 
   $scope.getAll = function(){
     return Project.getProjectRecordings(projectId)
@@ -39,7 +38,22 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     })
   };
 
-  $scope.edit = function(id){
+  $scope.edit = function(id, name, desc, url){
+
+    var editedRecording = {
+      project_id: projectId,
+      url: url,
+      name: name,
+      description: desc
+    }
+
+    Recording.edit(id, editedRecording)
+    .then(function(){
+      $scope.getAll();
+    })
+
+    console.log("edit called", editedRecording);
+
 
   };
 
