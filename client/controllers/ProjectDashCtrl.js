@@ -39,23 +39,49 @@ $scope.saveProjectInfo = function(){
 };
 
 
-$scope.displayRecordings = function(){
-  Project.getProjectRecordings()
+$scope.displayRecordings = function(projectId){
+  Project.getProjectRecordings(projectId)
+  .then(function(response){
+    $scope.projectRecordings = 'recordings'
+    console.log('recordings: ', response)
+  })
+};
+
+$scope.displayNotes = function(projectId){
+  Project.getProjectNotes(projectId)
+  .then(function(response){
+    $scope.projectRecordings = 'notes'
+      console.log('notes: ', response)
+
+  })
 
 };
 
-$scope.displayNotes = function(notes){
+$scope.displayLyrics = function (projectId) {
+  Project.getProjectLyrics(projectId)
+  .then(function(response){
+    $scope.projectRecordings = 'lyrics'
+      console.log('lyrics: ', response)
+
+  })
 
 };
 
-$scope.displayLyrics = function (lyrics) {
+$scope.displayStablature = function (projectId) {
+  Project.getProjectStablature(projectId)
+  .then(function(response){
+    $scope.projectRecordings = 'stablature'
+      console.log('stablature: ', response)
+
+  })
+
 
 };
 
-$scope.displayStablature = function (stablature) {
-
-};
-
+$scope.displayRecordings(projectId);
+$scope.displayNotes(projectId);
+$scope.displayLyrics(projectId);
+$scope.displayStablature(projectId);
 
 }]);
 
