@@ -10,13 +10,13 @@ var Project = {};
 Project.findById = function(projectId, userId) {
   return db('projects').select('*').where({id: projectId}).limit(1)
   .then(function(rows) {
-    var project = rows[0]
-    if (!project) throw 404;
+    var project = rows[0];
+    if (!project) { throw 404; }
     //checks that user owns that project
-    if (project.owner_id !== userId) throw 401;
+    if (project.owner_id !== userId) { throw 401; }
     //projects exists and belongs to the expected user
     return project;
-  })
+  });
 };
 
 // returns all projects for a user 
@@ -26,7 +26,11 @@ Project.findByUser = function (owner_id) {
   return db('projects').select('*').where({owner_id: owner_id})
   .then(function(rows){
     return rows;
-  })
+  });
+};
+
+Project.findByPublic = function () {
+  return db.select('*').from('projects').where({ private: 0 });
 };
 
 // creates a new project
@@ -37,7 +41,8 @@ Project.create = function (attrs, username) {
         id: rows[0],
         owner_id: attrs.owner_id,
         created_at: attrs.created_at,
-        updated_at: attrs.updated_at
+        updated_at: attrs.updated_at,
+        // private: 1, // Default projects to be private
       };
       return newProject;
     });
@@ -50,18 +55,18 @@ Project.update = function (projectId, attrs) {
     return db('projects').select('*').where({id: projectId})
     .then(function(rows){
       return rows[0];
-    })
-  })
-}
+    });
+  });
+};
 
 //changes created_at when a resource is updated 
 Project.updateResource = function(projectId) {
   var updated = {
     updated_at: Math.round(Date.now()/1000)
   };
-  console.log('updating resource')
+  console.log('updating resource');
   return db('projects').where('id', '=', projectId).update(updated);
-}
+};
 
 //deletes an entire project
 Project.del = function(projectId){
@@ -70,7 +75,7 @@ Project.del = function(projectId){
   .then(function(){
     //deleting project
     return db('projects').where('id', '=', projectId).del();  
-  })
-}
+  });
+};
 
 module.exports = Project;

@@ -15,9 +15,21 @@ router.get('/', function (req, res) {
       res.status(200).send({projects: projects});
     })
     .catch(function(err){
-      console.log("Could not find projects for this user");
+      console.log('Could not find projects for this user');
       res.sendStatus(404);
-    })
+    });
+});
+
+// Gets all public projects
+router.get('/public', (req, res) => {
+  Project.findByPublic()
+  .then((projects) => {
+    res.json({ projects: projects });
+  })
+  .catch((err) => {
+    console.log('Error finding public projects:', err);
+    res.status(500).json({error:'Error finding public projects'});
+  });
 });
 
 // Create new project
@@ -39,7 +51,7 @@ router.post('/', function (req, res) {
   .catch(function(err){
     console.log('Could not create project', err);
     res.sendStatus(400);
-  })
+  });
 });
 
 // Get a project by id
@@ -53,8 +65,7 @@ router.get('/:projectId', function (req, res) {
   .catch(function(err){
     console.log('could not find project');
     res.sendStatus(404);
-  })
-
+  });
 });
 
 // Update a project using its id
@@ -68,17 +79,17 @@ router.put('/:projectId', function (req, res) {
     Project.update(projectId, req.body)
     .then(function(project){
       //succesfully updated
-      res.status(200).send(project)
+      res.status(200).send(project);
     })
     .catch(function(err){
       console.log('could not update project');
       res.sendStatus(400);
-    })
+    });
   })
   .catch(function(err){
     console.log('could not find project');
     res.sendStatus(404);
-  })
+  });
 });
 
 // Delete a project using its id
@@ -94,14 +105,14 @@ router.delete('/:projectId', function (req, res) {
       res.status(200).send();
     })
     .catch(function(err){
-      console.log('could not delete project')
+      console.log('could not delete project');
       res.sendStatus(400);
-    })
+    });
   })
   .catch(function(err){
-    console.log('could not find project')
+    console.log('could not find project');
     res.sendStatus(404);
-  })
+  });
 });
 
 // Get all resource of a type associated with a specific project
@@ -110,15 +121,15 @@ router.get('/:projectId/:resourceType', function (req, res) {
   var ids = {
     project: req.params.projectId,
     user: req.session.passport.user.id
-  }
+  };
 
   Resource.findByProject(resourceType, ids)
   .then(function(resources){
-    res.status(200).send(resources)
+    res.status(200).send(resources);
   })
   .catch(function(err){
-    res.sendStatus(400)
-  })
+    res.sendStatus(400);
+  });
 });
 
 module.exports = router;
