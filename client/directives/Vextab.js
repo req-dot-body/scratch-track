@@ -13,7 +13,6 @@ app.directive('vextab', function($compile){
 
       //creates new tab when model is updated
       modelCtrl.$render = function(){
-        console.log('render') 
         console.log('view value', modelCtrl.$viewValue)
         element.text(prefix + modelCtrl.$viewValue);
         new Vex.Flow.TabDiv(element);
