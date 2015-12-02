@@ -11,6 +11,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     text: '',
     project_id: projectId
   };
+  
 
   $scope.toggleEditable = function() {
     var textbox = document.getElementById('lyrictext');
@@ -70,10 +71,6 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
 
   $scope.clearValues = function() {
-    // $scope.val = "";
-    // $scope.titleVal = "";
-    // $scope.newVal = "";
-    // $scope.newTitleVal = "";
     $scope.newLyric = {
       name: '',
       text: '',
@@ -97,13 +94,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
 
 
   $scope.add = function(newLyric){
-    // $scope.newLyric = {
-    //   name: titleData,
-    //   text: data,
-    //   project_id: projectId
-    // };
-
-    return Lyric.create(newLyric)
+    Lyric.create(newLyric)
     .then(function() {
       $scope.clearValues();
       $scope.getAll(projectId);
