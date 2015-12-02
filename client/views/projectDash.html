@@ -1,53 +1,64 @@
+<ul class="dash-menu-bar">
+  <li><a href="#" ng-click = 'projectCreated=true' zf-open='projectInfo'>Edit</a></li>
+  <li><a href="#" zf-open="deleteModal2">Delete</a></li>
+  <li><a ui-sref="main.projects">Back</a></li>
+</ul>
 <div class="grid-block wrap dash-row-top">
 
   <div class="grid-content small-12">
-    <h5>Project Name: {{projectData.name}}</h5>
-    <p>Description: {{projectData.description}}</p>
+    <br> 
+    <h1>Project Dash</h1>
+    <h3>Project Name: {{projectData.name}}</h3>
+    <h3>Description: {{projectData.description}}</h3>
+    <br><br>
   </div>
-  
 
-    <div class="grid-content small-12 medium-6 medium-order-0">
-      <div class="card success">
-        <div class="card-divider">
-          Recent Recordings
-        </div>
-        <div class="card-section">
-          <ul>
-            <li><a href="#">Recording 1</a></li>
-            <li><a href="#">Recording 2</a></li>
-            <li><a href="#">Recording 3</a></li>
-          </ul>
-        </div>
-        <div class="card-divider">
-          <a ui-sref="main.project_edit.recordings">Recordings</a>
-        </div>
-      </div>
-
-      <div class="card warning">
-        <div class="card-divider">
-          Last Notes
-        </div>
-        <div class="card-section">
-          <ul>
-            <li><a href="#">Note 1</a></li>
-            <li><a href="#">Note 2</a></li>
-            <li><a href="#">Note 3</a></li>
-          </ul>
-        </div>
-        <div class="card-divider">
-          <a ui-sref="main.project_edit.notes">Notes</a>
-        </div>
+  <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
+    
+    <div class="card-recordings">
+      <a ui-sref="main.project_edit.recordings">
+        <img src="./resources/guitar_banner.jpg">
+        <div class="recordings-card-divider text-center">
+          Recordings
+        </div></a>
+      <div class="recordings-card-section">
+        <ul>
+          <li>Recording 1</li>
+          <li>Recording 2</li>
+          <li>Recording 3</li>
+        </ul>
       </div>
     </div>
 
-
-  <div class="grid-content small-12 medium-6 medium-order-2">
-    <div class="card alert">
-      <div class="card-divider">
-        Last Lyric
-      </div>
-      <div class="card-section">
+    <div class="card-notes">
+      <a ui-sref="main.project_edit.notes">
+        <img src="./resources/notes_banner.jpg">
+        <div class="notes-card-divider text-center">
+          Notes
+        </div></a>
+      <div class="notes-card-section">
         <ul>
+          <li>Note 1</li>
+          <li>Note 2</li>
+          <li>Note 3</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
+    
+
+    <div class="card-lyrics">
+      <a ui-sref="main.project_edit.lyrics">
+        <img src="./resources/lyrics_banner.jpg">
+        <div class="lyrics-card-divider text-center">
+         Lyrics
+        </div></a>
+      <div class="lyrics-card-section">
+         <ul>
           <li class="collection-item">
           <p class ='panel-lyric'> Mama take this badge from me
               I can't use it anymore
@@ -73,25 +84,53 @@
               </li>
         </ul>
       </div>
-      <div class="card-divider">
-        <a ui-sref="main.project_edit.lyrics">Lyrics</a>
-      </div>
     </div>
   </div>
 
-  <div class="grid-content small-12 medium-order-3">
-    <div class="card primary">
-      <div class="card-divider">
-        Stablature
-      </div>
-      <div class="card-section">
-        Displaying Tab
-      </div>
-      <div class="card-divider color-white">
-        <a class="success"ui-sref="main.project_edit.stablature">Stablature</a>
-      </div>
-    </div>
-  </div>
 </div>
+  <div class="grid-content small-12 medium-order-3">
     
+    <div class="card-stablature">
+      <a ui-sref="main.project_edit.stablature">
+        <img src="./resources/stablature_banner.jpg">
+        <div class="stablature-card-divider text-center">
+          The 'Stablature'
+        </div></a>
+      <div class="stablature-card-section">
+        <ul>
+          <li>Displaying Tab</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
+ <div zf-modal="" id="projectInfo" class="collapse large is-active" ng-show ='projectCreated===true'>
+  
+  <div class="grid-block vertical">
+      <div class="dark title-bar">
+        <div class="center title">Project Information</div>
+      </div>
+      <div class="grid-content padding" style="padding-top: 1rem;">
+        <form>
+          <label>
+            <h5>Project Name</h5>
+            <input ng-model='projectData.name' type="text" placeholder="Name">
+          </label>
+          <label>
+            <h5>Project Description</h5>
+            <input ng-model='projectData.description' type="text" placeholder="Description">
+          </label>
+        </form>
+        <div class = 'text-center'>
+          <a ng-click='saveProjectInfo()' zf-close="" class="success expand button">Save</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div zf-modal="" id="deleteModal2">
+    <a zf-close="deleteModal2" class="close-button">×</a>
+    <h3>Delete Project: {{project.name}}</h3>
+    <p>Warning this operation can't be undone</p>
+    <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
+  </div>

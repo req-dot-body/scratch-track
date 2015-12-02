@@ -1,41 +1,32 @@
+
 var moment = require('moment/moment');
 
-app.controller('ProjectDashCtrl', ['$scope','$state','Project', function($scope,$state,Project) {
+app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', function($scope,$state,Project, FoundationApi) {
 
-//load delete modal
-// TODO : commented out because of foundation
-// $('.modal-trigger').leanModal();
+Project.getProject($state.params.id)
+.then(function(response){
+  $scope.projectData = response.data;
+  $scope.projectCreated = false;
+  if($state.params.created || $scope.projectData.name === null){
+    $scope.projectCreated = true;
+  }
+})
 
-//if the project is just created show info-Form
-if($state.params.created){
-  $('#info-form').toggle();
-  $('#info-display').toggle();
-}
 
 $scope.formatDate = function(date) {
   return moment.unix(date).calendar();
 };
 
 $scope.deleteProject = function(id){
-
   Project.deleteProject(id)
   .then(function(){
     $state.go('main.projects')
   })
 };
 
-$scope.toggleInfoForm = function(){
-  $('#info-form').toggle();
-  $('#info-display').toggle();
-};
 
 $scope.saveProjectInfo = function(){
   Project.editProject($scope.projectData)
-  .then(function(){
-    $('#info-form').toggle();
-    $('#info-display').toggle();    
-  })
-
 };
 
 
@@ -54,8 +45,6 @@ $scope.displayLyrics = function (lyrics) {
 $scope.displayStablature = function (stablature) {
 
 };
-
-
 
 
 }]);
