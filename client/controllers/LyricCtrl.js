@@ -37,6 +37,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       div.style.display = "none";
     }
   };
+
+
+  $scope.closeAccordion = function(){
+    $('.accordion div').removeClass('is-active');
+  };
   
 
   $scope.formatDate = function(date) {
