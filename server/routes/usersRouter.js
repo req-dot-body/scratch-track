@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+var helper = require('../helper');
+
 // This wont be here eventually
 // Get all users (for testing)
 router.get('/', function (req, res) {
@@ -51,7 +53,7 @@ router.post('/signin', function (req, res, next) {
 });
 
 // Signs a user out, have it as a post so that people cant be tricked into going to the link
-router.post('/signout', function (req, res) {
+router.post('/signout',  function (req, res) {
   req.logout();
   res.clearCookie('isLoggedIn');
   res.status(200).json({'success':true});
@@ -63,8 +65,9 @@ router.get('/:userId', function (req, res) {
   res.json({'success':true,userId:userId});
 });
 
+// TODO : this currently does nothing
 // Update user info by id
-router.put('/:userId', function (req, res) {
+router.put('/:userId', helper.requireAuth, function (req, res) {
   var userId = req.params.userId;
   res.json({'success':true,userId:userId});
 });
