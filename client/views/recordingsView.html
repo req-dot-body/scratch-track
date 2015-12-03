@@ -40,12 +40,11 @@
                   </div>
                 </div>
                 <div class="small-6 card">
-                  <div class="card-section">
+                  <div class="card-section" ng-controller="StablatureCtrl">
                     <h3>Tabs:</h3>
-                    <select >
-                      <option ng-repeat="tab in tabs" ng-model="" value="" watch></option>
+                    <select ng-model="selectedTab" ng-options="stab.name for stab in stabList">
                     </select>
-
+                    <vextab ng-model="selectedTab.code"></vextab>
                   </div>
                 </div>
               </div>
