@@ -137,8 +137,9 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     $scope.recorder.exportWAV(function(blob) {
       $scope.newRecordingBlob = blob;
       $scope.newRecordingSrc = URL.createObjectURL(blob);
+      $('#audio-src').src = $scope.newRecordingSrc;
       $('#audio-player').load()
-      //$('#audio-src').attr("ng-src", "{{newRecordingSrc | trusted}}");
+      
 
       console.log("new recording src var is", $scope.newRecordingSrc);
 
@@ -152,6 +153,10 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     saveButton.addClass('medium button disabled');
     discardButton.removeClass('medium alert button');
     discardButton.addClass('medium alert button disabled');
+
+    $scope.newRecordingSrc = '';
+    $('#audio-src').src = $scope.newRecordingSrc;
+    $('#audio-player').load()
   }
 
   $scope.discardRecording = function () {
