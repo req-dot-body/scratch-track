@@ -8,6 +8,7 @@ require('./StablatureCtrl');
 require('./NoteCtrl');
 require('./ProjectEditCtrl');
 require('./PublicCtrl');
+require('./PublicProjectsCtrl');
 require('./LandingCtrl');
 require('./TourCtrl');
 require('./ProjectDashCtrl');

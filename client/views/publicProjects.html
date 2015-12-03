@@ -1,0 +1,25 @@
+<pre>
+  {{ projects | json }}
+</pre>
+
+
+<div class="grid-block" ng-repeat='project in projects|toArray'>
+  <!-- {{project}} -->
+  <!-- <pre>{{project}}</pre> -->
+  <div class="grid-container small-10">
+    <br>
+    <div class="primary title-bar dark">
+      <span class="title left">Project:{{project.name}}</span>
+      <span class="right">
+        <a ui-sref="#">Go</a>
+      </span>
+    </div>   
+    <div class="card"> 
+      <div class="card-section">
+        <p>Description: {{project.description}}</p>
+        <p>Created at: {{project.created_at*1000|date}}</p>
+        <p>Updated at: {{project.updated_at*1000|date}}</p>
+      </div>
+    </div>  
+  </div>
+</div>

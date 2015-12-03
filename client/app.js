@@ -99,6 +99,13 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       controller: 'MainCtrl'
     })
 
+    .state('main.pubprojects', {
+      url: '/public',
+      authenticate: false,
+      templateUrl: 'views/publicProjects.html',
+      controller: 'PublicProjectsCtrl',
+    })
+
      .state('main.projects', {
       url:'/projects',
       authenticate: true,
