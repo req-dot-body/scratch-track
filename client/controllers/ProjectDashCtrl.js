@@ -5,6 +5,13 @@ app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi',
 
 projectId = $state.params.id; 
 
+$scope.testLyrics = { 
+  text: 'gonna write some code, s\'gonna be real cool, gonna make y\'all look like total fools',
+  created_at: 12341234,
+  name: 'sweet rhymes',
+  description: 'there\'s going to be mad beats'    
+};
+
 
 Project.getProject(projectId)
 .then(function(response){

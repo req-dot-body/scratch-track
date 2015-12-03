@@ -1,7 +1,10 @@
-app.directive('lyricsEntry', function() {
+app.directive('lyricsentry', function() {
   return  {
     restrict: 'E',
+    scope: {
+      resource: '=resource'
+    },
     templateUrl: '../views/lyricsEntry.html',
-    controller: 'resourceEntryCtrl'
+    controller: 'ResourceEntryCtrl'
   };
 });
