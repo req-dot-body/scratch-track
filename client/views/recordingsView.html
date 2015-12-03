@@ -6,21 +6,56 @@
         <h1>Recordings</h1>
       </section>
 
+      <!--Recording Panel-->
       <zf-accordion id="create-note" auto-open="false">
-        <zf-accordion-item class="title" title="Click To Create New Recording">
-  
-
+        <zf-accordion-item class="title" title="Create New Recording">
           <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
           <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
           <br>
-          <audio controls="true">
-            <source id="audio-player" ng-src="{{newRecordingSrc | trusted}}" type="audio/wav">
-          </audio> <br> <br>
+          <audio controls="true" id="audio-player">
+            <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
+          </audio>
+
+          <br> <br>
           <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
           <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
-          <p id="log" class="recordingStatus"></p>
+          <div class="snall-8">
+            <img src="http://v2.preloaders.net/preloaders/2/Broken%20circle.gif" ng-if="isSaving">
+            <p id="log" class="recordingStatus"></p>
+          </div>
+            
+
+        <!--Select Lyrics & Tabs-->
+          <zf-accordion id="create-note" auto-open="false">
+            <zf-accordion-item class="title" title="Load Lyrics &amp; Tabs">
+              <div class="grid-block">
+                <div class="small-6 card">
+                  <div class="card-section">
+                    <h3>Lyrics:</h3>
+                    <select ng-controller="LyricCtrl">
+                      <option ng-repeat="lyric in lyrics" ng-model="lyrics" value="{{lyric.name}}" watch></option>
+                    </select>
+                    <p id="lyric-field">
+                      {{lyric.text}}
+                    </p>
+                  </div>
+                </div>
+                <div class="small-6 card">
+                  <div class="card-section">
+                    <h3>Tabs:</h3>
+                    <select >
+                      <option ng-repeat="tab in tabs" ng-model="" value="" watch></option>
+                    </select>
+
+                  </div>
+                </div>
+              </div>
+            </zf-accordion-item>
+          </zf-accordion>
         </zf-accordion-item>
       </zf-accordion> <br>
+
+
 
       <div class="title-bar">
         <span class="title center">Recordings for this Project</span>
