@@ -1,20 +1,26 @@
 <div class="vertical grid-block">
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-10 small-offset-1">
-      <div class="title-bar">
-        <span class="title center">Create New Recording</span>
-      </div> 
-      <br>
 
-      <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
-      <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
-      <br>
-      <audio controls="true">
-        <source id="audio-player" ng-src="{{newRecordingSrc | trusted}}" type="audio/wav">
-      </audio> <br>
-      <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
-      <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
-      <p id="log" class="recordingStatus"></p>
+     <section class="spaced">
+        <h1>Recordings</h1>
+      </section>
+
+      <zf-accordion id="create-note" auto-open="false">
+        <zf-accordion-item class="title" title="Click To Create New Recording">
+  
+
+          <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
+          <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
+          <br>
+          <audio controls="true">
+            <source id="audio-player" ng-src="{{newRecordingSrc | trusted}}" type="audio/wav">
+          </audio> <br> <br>
+          <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
+          <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
+          <p id="log" class="recordingStatus"></p>
+        </zf-accordion-item>
+      </zf-accordion> <br>
 
       <div class="title-bar">
         <span class="title center">Recordings for this Project</span>
