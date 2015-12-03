@@ -51,8 +51,6 @@
 
 
   <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
-    
-
     <div class="card-lyrics">
       <a ui-sref="main.project_edit.lyrics">
         <!-- <img src="./resources/lyrics_banner.jpg"> -->
@@ -89,14 +87,32 @@
     </div>
   </div>
 
- <div zf-modal="" id="projectInfo" class="collapse large is-active" ng-show ='projectCreated===true'>
+  <div zf-modal="" animation-out="slideOutUp" id="deleteModal2">
+    <a zf-close="deleteModal2" class="close-button">×</a>
+    <h3>Delete Project: {{project.name}}</h3>
+    <p>Warning this operation can't be undone</p>
+    <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
+  </div>
+ 
+  <div zf-modal="" id="projectInfo" animation-out="slideOutUp" class="collapse large is-active" ng-show ='projectCreated===true'>
   
-  <div class="grid-block vertical">
+    <div class="grid-block vertical">
+      
       <div class="dark title-bar">
         <div class="center title">Project Information</div>
       </div>
+        
       <div class="grid-content padding" style="padding-top: 1rem;">
-        <form>
+        <div class='text-right'>
+          <span>Private</span>
+          <div class="public-project">
+            <input type="checkbox" ng-model="projectData.private" ng-true-value="0" ng-false-value="1" id="public-project">
+            <label for="public-project"></label>
+          </div>
+          <span>Public</span><br>
+        </div>  
+        
+        <form class = 'text-left'>
           <label>
             <h5>Project Name</h5>
             <input ng-model='projectData.name' type="text" placeholder="Name">
@@ -111,12 +127,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <div zf-modal="" id="deleteModal2">
-    <a zf-close="deleteModal2" class="close-button">×</a>
-    <h3>Delete Project: {{project.name}}</h3>
-    <p>Warning this operation can't be undone</p>
-    <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
   </div>
 
