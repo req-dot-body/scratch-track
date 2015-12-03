@@ -84,6 +84,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     Project.getProjectLyrics(projectId)
     .then(function(projects) {
       $scope.lyrics = projects;
+      console.log('lyrics', $scope.lyrics);
     })
   };
   

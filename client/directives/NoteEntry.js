@@ -4,7 +4,7 @@ app.directive('noteEntry', function() {
     scope: {
       resource: '=resource'
     },
-    templateUrl: '../views/noteEntry.html',
+    templateUrl: '../views/lyricsOrNoteEntry.html',
     controller: 'ResourceEntryCtrl'
   };
 });

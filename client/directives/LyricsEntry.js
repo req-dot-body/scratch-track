@@ -4,7 +4,7 @@ app.directive('lyricsentry', function() {
     scope: {
       resource: '=resource'
     },
-    templateUrl: '../views/lyricsEntry.html',
+    templateUrl: '../views/lyricsOrNoteEntry.html',
     controller: 'ResourceEntryCtrl'
   };
 });

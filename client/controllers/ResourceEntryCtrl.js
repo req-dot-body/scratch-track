@@ -20,7 +20,11 @@ app.controller('ResourceEntryCtrl', ['$scope', function($scope) {
 
 	$scope.truncate = function(){
 	  if ($scope.resource.text){
-	  	return $scope.resource.text.substring(0,30) + '...';
+	  	var lastIndex = $scope.resource.text.indexOf('\n', 150)
+
+	  	if (lastIndex === -1) lastIndex = 150;
+
+	  	return $scope.resource.text.substring(0, lastIndex) + '...';
 	  }
 	};
 
