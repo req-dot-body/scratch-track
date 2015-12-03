@@ -1,0 +1,7 @@
+<div>
+	<h5>{{ formatDate(resource.created_at) }} - {{resource.name}}</h5>
+  <p ng-if="resource.description"><i>{{resource.description}}</i></p>
+  <audio controls="true">
+    <source ng-src="{{resource.url | trusted}}" type="audio/wav"/>
+  </audio>
+</div>

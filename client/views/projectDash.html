@@ -24,7 +24,8 @@
       <div class="recordings-card-section">
         <ul>
           <li ng-repeat = 'recording in projectRecordings|limitTo:-3|orderBy:"updated_at"'>
-            {{recording.name}}
+            <recordingentry resource="testRecording"></recordingentry> 
+           <!--  {{recording.name}} -->
           </li>
         </ul>
       </div>

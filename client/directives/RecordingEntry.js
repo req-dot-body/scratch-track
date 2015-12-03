@@ -1,4 +1,4 @@
-app.directive('recordingEntry', function() {
+app.directive('recordingentry', function() {
   return  {
     restrict: 'E',
     scope: {

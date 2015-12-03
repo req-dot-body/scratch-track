@@ -5,6 +5,12 @@ app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi',
 
 projectId = $state.params.id; 
 
+$scope.testRecording = {
+  name: "a recording",
+  description: "that's pretty much all there is to it",
+  url: "https://scratch-track.s3.amazonaws.com/recordings/a39c9438-00e2-4f44-9261-36044cce02fb.wav"
+}
+
 $scope.testLyrics = { 
   text: 'Darkness at the break of noon'+
 '\nShadows even the silver spoon'+
