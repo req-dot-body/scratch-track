@@ -23,11 +23,24 @@
 
 
           <vextab ng-model="stabInfo.code"></vextab>
+          <br>
+          <a class="button" zf-open="learnHowModal">How To Write Tabs</a>
+          <br>
           <textarea ng-model="stabInfo.code"></textarea>
         </div>
 
         <a class="button" ng-click="submit()">SUBMIT</a>
-        <a class="button" ng-click="closeAccordion()">CANCEL</a>
+        <a class="button" ng-click="closeEditor()">CANCEL</a>
+        <div ng-show="submitError">Oops. Looks like there's a problem with your vex code.</div>
+
+        <div zf-modal="" id="learnHowModal">
+          <div>
+            <p>{{tabExplanation}}</p>
+            <br>
+            <a class="button" href="http://www.vexflow.com/vextab/tutorial.html" target="_blank">Tutorial</a>
+            <a zf-close="" class="button">Close</a>
+          </div>
+        </div>
 
         </zf-accordion-item>
       </zf-accordion>
@@ -38,7 +51,7 @@
           <div class="title-bar">
             <span class="title center">Your Stablature for This Project</span>
           </div>
-            <ul ng-repeat="stab in stabList">
+            <ul ng-repeat="stab in stabList | orderBy:'-created_at'">
               <div class="grid-block align-justify">
                 <li class="spaced" style="list-style: none;" >
                   <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
@@ -46,10 +59,20 @@
                     <vextab ng-model="stab.code" notation="false"></vextab>
                
                     <p><em>{{stab.description}}</em></p>
-                    <a class="button" ng-click="openAccordion(stab)">CREATE REVISION</a>
+                    <a class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
                     <a class="button" ng-click="">EDIT</a>
-                    <a class="button" ng-click="delete(stab.id)">DELETE</a> 
+                    <a class="button" zf-open="deleteModal">DELETE</a> 
                   </div>
+
+                  <div zf-modal="" id="deleteModal">
+                    <div>
+                      <h4>Are You Sure That You Want To Delete This Entry?</h4>
+                      <a class="alert button" ng-click="delete(stab.id)">YES, REALLY DELETE</a>
+
+                      <a zf-close="" class="button">NO, GO BACK TO LIST</a>
+                    </div>
+                  </div>
+
                 </li>
               </div>
             </ul>
@@ -60,5 +83,4 @@
   </div>
 </div>
 
-<script src="/js/vex.js"></script>
 
