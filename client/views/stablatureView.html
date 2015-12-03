@@ -31,13 +31,7 @@
 
         <a class="button" ng-click="submit()">SUBMIT</a>
         <a class="button" ng-click="closeEditor()">CANCEL</a>
-
-        <div zf-modal="">
-          <div>
-              <h5> Looks like you have a problem with your vex code. </h4>
-            <a zf-close="" class="button">Okay</a>
-          </div>
-        </div>
+        <div ng-show="submitError">Oops. Looks like there's a problem with your vex code.</div>
 
         <div zf-modal="" id="learnHowModal">
           <div>
@@ -57,7 +51,7 @@
           <div class="title-bar">
             <span class="title center">Your Stablature for This Project</span>
           </div>
-            <ul ng-repeat="stab in stabList">
+            <ul ng-repeat="stab in stabList | orderBy:'-created_at'">
               <div class="grid-block align-justify">
                 <li class="spaced" style="list-style: none;" >
                   <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>

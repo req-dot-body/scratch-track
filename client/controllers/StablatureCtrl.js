@@ -1,7 +1,7 @@
 var moment = require('moment/moment');
 
-app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project',
-	function($scope, $state, Stablature, Project) {
+app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 'Project',
+	function($scope, $state, $timeout, Stablature, Project) {
 
 	$scope.stabList = [];
 
@@ -41,12 +41,19 @@ var defaultStab = {
 		$('.accordion div').removeClass('is-active');
 	};
 
+	$scope.submitError = false; 
+
 	//enters a new project
 	$scope.submit = function(){
 
 		//checks for proper vex code
 		if ($('vextab').hasClass('error')){
-			//error checking right here 
+			$scope.submitError = true;
+
+			$timeout(function(){
+				$scope.submitError = false; 
+			}, 2000);
+
 			return;
 		}
 
