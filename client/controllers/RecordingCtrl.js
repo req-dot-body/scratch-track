@@ -138,8 +138,8 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
       $scope.newRecordingBlob = blob;
       $scope.newRecordingSrc = URL.createObjectURL(blob);
       //$('#audio-src').src = $scope.newRecordingSrc;
+      $scope.$apply();
       $('#audio-player').load()
-      
 
       console.log("new recording src var is", $scope.newRecordingSrc);
 
