@@ -1,6 +1,6 @@
 var moment = require('moment/moment');
 
-app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
+app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project', function($scope, $state, $timeout, Lyric, Project) {
 
 
   var projectId = $state.params.id;
@@ -44,10 +44,12 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
       div.style.display = "none";
     }
   };
-
+  
 
   $scope.closeAccordion = function(){
-    $('.accordion div').removeClass('is-active');
+    $timeout(function() {
+      $('#create-lyric .accordion-title').trigger('click');
+    }, 500);
   };
   
 

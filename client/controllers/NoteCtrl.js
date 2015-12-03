@@ -28,7 +28,9 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($sco
   };
 
   $scope.closeAccordion = function(){
-    $('.accordion div').removeClass('is-active');
+    $timeout(function() {
+      $('#create-note .accordion-title').trigger('click');
+    }, 500);
   };
   
   $scope.getAll = function (projectId) {
