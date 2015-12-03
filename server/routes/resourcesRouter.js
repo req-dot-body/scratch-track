@@ -6,8 +6,10 @@ var Project = require('../models/project');
 var aws = require('aws-sdk');
 var uuid = require('node-uuid');
 
+var helper = require('../helper');
+
 // Add a new resource
-router.post('/:resourceType/', function (req, res) {
+router.post('/:resourceType/', helper.requireAuth, function (req, res) {
   console.log('posting new resource', req.body);
   var resourceType = req.params.resourceType;
   var ids = {user: req.session.passport.user.id};
@@ -44,6 +46,7 @@ router.post('/:resourceType/', function (req, res) {
 
 });
 
+// TODO : how to handle for public?
 // Get resource by id
 router.get('/:resourceType/:resourceId', function (req, res) {
   console.log('getting resource');
@@ -64,7 +67,7 @@ router.get('/:resourceType/:resourceId', function (req, res) {
 });
 
 // Edit resource by id
-router.put('/:resourceType/:resourceId', function (req, res) {
+router.put('/:resourceType/:resourceId', helper.requireAuth, function (req, res) {
   console.log('editing resource');
   var resourceType = req.params.resourceType;  
   var ids = {
@@ -91,7 +94,7 @@ router.put('/:resourceType/:resourceId', function (req, res) {
 });
 
 // Delete resource by id
-router.delete('/:resourceType/:resourceId', function (req, res) {
+router.delete('/:resourceType/:resourceId', helper.requireAuth, function (req, res) {
   console.log('deleting resource');
   var resourceType = req.params.resourceType;
   var ids = {
@@ -118,7 +121,7 @@ router.delete('/:resourceType/:resourceId', function (req, res) {
 });
 
 // Handles generating a signed url to allow client to upload to AWS S3
-router.post('/recordings/signedAWS', function(req, res) {
+router.post('/recordings/signedAWS', helper.requireAuth, function(req, res) {
 
   var fileSize = req.body.size;
   // Check if file size was sent with request
