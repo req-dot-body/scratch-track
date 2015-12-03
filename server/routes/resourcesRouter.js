@@ -15,6 +15,14 @@ router.post('/:resourceType/', function (req, res) {
   var resourceInfo = req.body;
   resourceInfo.created_at = Math.round(Date.now()/1000);
 
+  var singularType = resourceType;
+  
+  if (resourceType.endsWith('s')) {
+    singularType = resourceType.slice(0, -1);
+  }
+
+  resourceInfo.name = resourceInfo.name || 'Untitled ' + singularType;
+
   //passes in the type of resource, attributes, and user id to the model
   Resource.create(resourceType, ids, resourceInfo)
   .then(function(resource){
