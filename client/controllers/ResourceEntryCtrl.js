@@ -25,6 +25,12 @@ app.controller('ResourceEntryCtrl', ['$scope', function($scope) {
 		$scope.displayAll = !$scope.displayAll;
 	}
 
+	$scope.moreOrLess = function(){
+		if ($scope.displayAll) return 'Less';
+
+		return 'More';
+	}
+
 	//shortened version of lyrics/notes/stabs 
 	$scope.truncated = '';
 

@@ -92,6 +92,9 @@ position: absolute;
      color: #000;
    }
 
+.vex-canvas {
+  height: 10rem;
+}
 
 video#intro-video { 
     position: fixed;
@@ -124,6 +127,11 @@ video#intro-video {
     overflow-y:scroll;
 }
 
+.resource-entry {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 5px;
+}
 
 /* Lyric Styles */
 .lyric-textarea:read-only {
