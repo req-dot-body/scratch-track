@@ -30,13 +30,12 @@
             <zf-accordion-item class="title" title="Load Lyrics &amp; Tabs">
               <div class="grid-block">
                 <div class="small-6 card">
-                  <div class="card-section">
+                  <div class="card-section" ng-controller="LyricCtrl">
                     <h3>Lyrics:</h3>
-                    <select ng-controller="LyricCtrl">
-                      <option ng-repeat="lyric in lyrics" ng-model="lyrics" value="{{lyric.name}}" watch></option>
+                    <select ng-model="selectedLyric" ng-options="lyric.name for lyric in lyrics.data">
                     </select>
                     <p id="lyric-field">
-                      {{lyric.text}}
+                      {{selectedLyric.text}}
                     </p>
                   </div>
                 </div>

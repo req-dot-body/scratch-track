@@ -8,6 +8,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   $scope.recordings = [];
   $scope.newRecordingSrc = '';
   $scope.newRecordingBlob;
+  $scope.isSaving = false;
 
   $scope.newRecording = {
     project_id: projectId,
@@ -16,7 +17,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     description: ''
   };
 
-  $scope.isSaving = false;
 
   $scope.getAll = function(){
     return Project.getProjectRecordings(projectId)
@@ -137,7 +137,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     $scope.recorder.exportWAV(function(blob) {
       $scope.newRecordingBlob = blob;
       $scope.newRecordingSrc = URL.createObjectURL(blob);
-      //$('#audio-src').src = $scope.newRecordingSrc;
       $scope.$apply();
       $('#audio-player').load()
 
