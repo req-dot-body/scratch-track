@@ -38,6 +38,7 @@ router.post('/', function (req, res) {
   var now = Math.round(Date.now()/1000);
   console.log('session stuff:', req.session);
   var projectInfo = {
+    name: 'Untitled Project',
     owner_id: req.session.passport.user.id,
     created_at: now,
     updated_at: now
