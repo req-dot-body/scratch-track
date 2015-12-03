@@ -6,10 +6,17 @@ app.controller('ResourceEntryCtrl', ['$scope', function($scope) {
 	    return moment.unix(date).calendar();
 	  };
 
+	//checks to see if lyrics/notes/stabs are too long 
+	//to by default be fulled displayed
 	$scope.tooDamnLong = function(){
+		//for lyrics/notes
 		if ($scope.resource.text) {
 			return $scope.resource.text.length > 150;
 		}
+		//for stabs
+		else if ($scope.resource.code){
+			return ($scope.resource.code.indexOf('\n') > -1)
+		} 
 	}
 
 	$scope.displayAll = !$scope.tooDamnLong();
@@ -18,13 +25,23 @@ app.controller('ResourceEntryCtrl', ['$scope', function($scope) {
 		$scope.displayAll = !$scope.displayAll;
 	}
 
-	$scope.truncate = function(){
+	$scope.truncated;
+
+	//creates shortened version of lyrics/notes/stabs if necessary
+
+	if ($scope.tooDamnLong()){
+		//for lyrics/notes
 	  if ($scope.resource.text){
-	  	var lastIndex = $scope.resource.text.indexOf('\n', 150)
+	  	var lastIndex = $scope.resource.text.indexOf('\n', 150);
 
 	  	if (lastIndex === -1) lastIndex = 150;
 
-	  	return $scope.resource.text.substring(0, lastIndex) + '...';
+	  	$scope.truncated = $scope.resource.text.substring(0, lastIndex) + '...';
+	  }
+	  //for stabs
+	  else if ($scope.resource.code){
+	  	var lastIndex = $scope.resource.code.indexOf('\n');
+	  	$scope.truncated = $scope.resource.code.substring(0, lastIndex);
 	  }
 	};
 

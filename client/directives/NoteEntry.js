@@ -1,4 +1,4 @@
-app.directive('noteEntry', function() {
+app.directive('noteentry', function() {
   return  {
     restrict: 'E',
     scope: {

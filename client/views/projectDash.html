@@ -39,7 +39,8 @@
       <div class="notes-card-section">
         <ul>
           <li ng-repeat = 'note in projectNotes|limitTo:-3|orderBy:"updated_at"'>
-            {{note.name}}
+            <noteentry resource="note"></noteentry>
+            <!-- {{note.name}} -->
           </li>
         </ul>
       </div>
@@ -60,7 +61,7 @@
       <div class="lyrics-card-section">
          <ul>
           <li class="collection-item" ng-repeat = 'lyric in projectLyrics|limitTo:-1|orderBy:"updated_at"'>
-            <lyricsentry resource="testLyrics"></lyricsentry>
+            <lyricsentry resource="lyric"></lyricsentry>
         <!--     <h5>{{lyric.name}}</h5>
             <p class ='panel-lyric'>{{lyric.text}}</P> -->
           </li>
@@ -80,7 +81,8 @@
         </div></a>
       <div class="stablature-card-section">
         <div ng-repeat = 'stab in projectStablature|limitTo:-1|orderBy:"updated_at"' class = 'text-center'>
-          <vextab ng-model="stab.code"></vextab>
+          <stabentry resource="stab"></stabentry>
+          <!-- <vextab ng-model="stab.code"></vextab> -->
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-app.directive('stabEntry', function() {
+app.directive('stabentry', function() {
   return  {
     restrict: 'E',
     scope: {
