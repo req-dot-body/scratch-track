@@ -40,7 +40,10 @@ var defaultStab = {
 	//closes editor and resets default tabs
 	$scope.closeEditor = function(){
 		$scope.stabInfo = $.extend({}, defaultStab);
-		$('.accordion div').removeClass('is-active');
+		// $('.accordion div').removeClass('is-active');
+		$timeout(function() {
+		  $('#create-stab .accordion-title').trigger('click');
+		}, 500);
 	};
 
 	$scope.submitError = false; 
