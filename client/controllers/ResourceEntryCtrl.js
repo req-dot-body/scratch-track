@@ -25,10 +25,10 @@ app.controller('ResourceEntryCtrl', ['$scope', function($scope) {
 		$scope.displayAll = !$scope.displayAll;
 	}
 
-	$scope.truncated;
+	//shortened version of lyrics/notes/stabs 
+	$scope.truncated = '';
 
-	//creates shortened version of lyrics/notes/stabs if necessary
-
+	//assigns truncated to its proper value
 	if ($scope.tooDamnLong()){
 		//for lyrics/notes
 	  if ($scope.resource.text){
