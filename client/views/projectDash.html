@@ -49,8 +49,6 @@
 
 
   <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
-    
-
     <div class="card-lyrics">
       <a ui-sref="main.project_edit.lyrics">
         <!-- <img src="./resources/lyrics_banner.jpg"> -->
@@ -85,14 +83,14 @@
     </div>
   </div>
 
-  <div zf-modal="" id="deleteModal2">
+  <div zf-modal="" animation-out="slideOutUp" id="deleteModal2">
     <a zf-close="deleteModal2" class="close-button">×</a>
     <h3>Delete Project: {{project.name}}</h3>
     <p>Warning this operation can't be undone</p>
     <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
   </div>
  
-  <div zf-modal="" id="projectInfo" class="collapse large is-active" ng-show ='projectCreated===true'>
+  <div zf-modal="" id="projectInfo" animation-out="slideOutUp" class="collapse large is-active" ng-show ='projectCreated===true'>
   
     <div class="grid-block vertical">
       
