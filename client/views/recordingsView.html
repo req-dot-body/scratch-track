@@ -1,20 +1,59 @@
 <div class="vertical grid-block">
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-10 small-offset-1">
-      <div class="title-bar">
-        <span class="title center">Create New Recording</span>
-      </div> 
-      <br>
 
-      <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
-      <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
-      <br>
-      <audio controls="true">
-        <source id="audio-player" ng-src="{{newRecordingSrc | trusted}}" type="audio/wav">
-      </audio> <br>
-      <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
-      <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
-      <p id="log" class="recordingStatus"></p>
+     <section class="spaced">
+        <h1>Recordings</h1>
+      </section>
+
+      <!--Recording Panel-->
+      <zf-accordion id="create-note" auto-open="false">
+        <zf-accordion-item class="title" title="Create New Recording">
+          <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
+          <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
+          <br>
+          <audio controls="true" id="audio-player">
+            <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
+          </audio>
+
+          <br> <br>
+          <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
+          <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
+          <div class="snall-8">
+            <img src="http://v2.preloaders.net/preloaders/2/Broken%20circle.gif" ng-if="isSaving">
+            <p id="log" class="recordingStatus"></p>
+          </div>
+            
+
+        <!--Select Lyrics & Tabs-->
+          <zf-accordion id="create-note" auto-open="false">
+            <zf-accordion-item class="title" title="Load Lyrics &amp; Tabs">
+              <div class="grid-block">
+                <div class="small-12 card">
+                  <div class="card-section" ng-controller="LyricCtrl">
+                    <h3>Lyrics:</h3>
+                    <select ng-model="selectedLyric" ng-options="lyric.name for lyric in lyrics.data">
+                    </select>
+                    <textarea id="lyric-field">
+                      {{selectedLyric.text}}
+                    </textarea>
+                  </div>
+                </div>
+                <div class="small-12 card">
+                  <div class="card-section" ng-controller="StablatureCtrl">
+                    <h3>Tabs:</h3>
+                    <select ng-model="selectedTab" ng-options="stab.name for stab in stabList" ng-init="selectedTab = selectedTab || stab[0]">
+                    </select>
+                    <vextab ng-model="selectedTab.code"></vextab>
+                  </div>
+                </div>
+              </div>
+            </zf-accordion-item>
+          </zf-accordion>
+        </zf-accordion-item>
+      </zf-accordion> <br>
+
+
 
       <div class="title-bar">
         <span class="title center">Recordings for this Project</span>

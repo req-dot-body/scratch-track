@@ -17,6 +17,8 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 
 	$scope.getAll();
 	
+	$scope.selectedTab;
+
 var defaultStab = {
 		code: "9/4 10/5 12/4 10/5 9/4 10/5 12/4 10/5 \n9/4 10/5 12/4 10/5 9h10p9h10p9/4" ,
 		name: '',

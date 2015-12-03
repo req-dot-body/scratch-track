@@ -2,16 +2,15 @@ var moment = require('moment/moment');
 
 app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($scope, $state, Lyric, Project) {
 
-
   var projectId = $state.params.id;
-
 
   $scope.newLyric = {
     name: '',
     text: '',
     project_id: projectId
   };
-  
+
+  $scope.selectedLyric;
 
   $scope.toggleEditable = function() {
     var textbox = document.getElementById('lyrictext');
@@ -84,7 +83,6 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', function($s
     Project.getProjectLyrics(projectId)
     .then(function(projects) {
       $scope.lyrics = projects;
-      console.log('lyrics', $scope.lyrics);
     })
   };
   

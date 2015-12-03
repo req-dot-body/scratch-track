@@ -8,6 +8,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   $scope.recordings = [];
   $scope.newRecordingSrc = '';
   $scope.newRecordingBlob;
+  $scope.isSaving = false;
 
   $scope.newRecording = {
     project_id: projectId,
@@ -15,6 +16,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     name: 'New Recording',
     description: ''
   };
+
 
   $scope.getAll = function(){
     return Project.getProjectRecordings(projectId)
@@ -72,12 +74,11 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
 
   $scope.audio_context = null;
   $scope.recorder = null;
-  $scope.log = $('#log');
   
   $scope.__log = function (e, data) {
     
     var htmlString = '\n' + e + ' ' + (data || '');
-    $scope.log.html(htmlString);
+    $('#log').html(htmlString);
   }
 
   $scope.startUserMedia = function (stream) {
@@ -88,7 +89,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
   }
 
   $scope.startRecording = function () {
-    $scope.log.html('');
+    $scope.__log('');
     $scope.recorder && $scope.recorder.record();
 
     var button = $('#record-btn');
@@ -136,9 +137,11 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     $scope.recorder.exportWAV(function(blob) {
       $scope.newRecordingBlob = blob;
       $scope.newRecordingSrc = URL.createObjectURL(blob);
+      $scope.$apply();
+      $('#audio-player').load()
+
       console.log("new recording src var is", $scope.newRecordingSrc);
 
-      $('#audio-player').load();
     });
   };
 
@@ -159,8 +162,10 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     $scope.__log('Discarded recording.');
   }
 
+
   $scope.saveRecording = function (audioBlob) {
-    $scope.__log('Saved recording.');
+    $scope.isSaving = true;
+    $scope.__log('Saving recording.');
     $scope.completeRecording();
 
     if (audioBlob.size < 64) { // WAV is instantiated to a size of 44 
@@ -175,8 +180,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     })
     // Get signed AWS url
     .then(function(response) {
-      console.log('Response:', response);
-
+      $scope.isSaving = false;
       if (response.error) {
         console.log('Some error...');
         return;
@@ -206,6 +210,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
           // Something was changed in the signed url, its not what the server signed
           // Amazon rejected the upload
         }
+        $scope.__log('Saved!');
       };
 
       xhr.onerror = function () {
