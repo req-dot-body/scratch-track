@@ -1,0 +1,9 @@
+<div class="resource-entry">
+	<h5>{{ formatDate(resource.created_at) }} - {{resource.name}}</h5>
+  <p ng-if="resource.description"><i>{{resource.description}}</i></p>
+  <p ng-hide="displayAll">{{truncated}}</p>
+  <p ng-show="displayAll">{{resource.text}}</p>
+  <a class="button small" ng-if="tooDamnLong()" ng-click="toggleDisplay()">
+    {{moreOrLess()}}
+  </a>
+</div>
