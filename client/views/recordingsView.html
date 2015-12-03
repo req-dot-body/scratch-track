@@ -29,20 +29,20 @@
           <zf-accordion id="create-note" auto-open="false">
             <zf-accordion-item class="title" title="Load Lyrics &amp; Tabs">
               <div class="grid-block">
-                <div class="small-6 card">
+                <div class="small-12 card">
                   <div class="card-section" ng-controller="LyricCtrl">
                     <h3>Lyrics:</h3>
                     <select ng-model="selectedLyric" ng-options="lyric.name for lyric in lyrics.data">
                     </select>
-                    <p id="lyric-field">
+                    <textarea id="lyric-field">
                       {{selectedLyric.text}}
-                    </p>
+                    </textarea>
                   </div>
                 </div>
-                <div class="small-6 card">
+                <div class="small-12 card">
                   <div class="card-section" ng-controller="StablatureCtrl">
                     <h3>Tabs:</h3>
-                    <select ng-model="selectedTab" ng-options="stab.name for stab in stabList">
+                    <select ng-model="selectedTab" ng-options="stab.name for stab in stabList" ng-init="selectedTab = selectedTab || stab[0]">
                     </select>
                     <vextab ng-model="selectedTab.code"></vextab>
                   </div>
