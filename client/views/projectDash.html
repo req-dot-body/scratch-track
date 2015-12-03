@@ -92,7 +92,14 @@
         <div class="center title">Project Information</div>
       </div>
       <div class="grid-content padding" style="padding-top: 1rem;">
-        <form>
+        <div class='text-right'>
+        <span>Private<span>
+          <div class="switch-1">
+            <input type="checkbox" ng-model="projectData.private" ng-true-value="0" ng-false-value="1" id="public-project">
+              <label for="public-project"></label>
+          </div>
+          <span>Public</span><br>
+        <form class = 'text-left'>
           <label>
             <h5>Project Name</h5>
             <input ng-model='projectData.name' type="text" placeholder="Name">
@@ -102,10 +109,10 @@
             <input ng-model='projectData.description' type="text" placeholder="Description">
           </label>
         </form>
+        </div>
         <div class = 'text-center'>
           <a ng-click='saveProjectInfo()' zf-close="" class="success expand button">Save</a>
         </div>
-      </div>
     </div>
   </div>
 

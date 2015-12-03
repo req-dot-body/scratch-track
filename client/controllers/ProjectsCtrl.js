@@ -5,6 +5,7 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project', function($scope,$st
     Project.getAllProjects()
     .then(function(data){
       $scope.projects = data;
+      console.log('this are the projects: ', data)
     }).catch(function(error){
         //case of server error getting projects 
     })
