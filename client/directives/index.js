@@ -7,6 +7,10 @@ require('./ResourceTemplate');
 require('./Projects');
 require('./Vextab');
 require('./ProjectDash');
+require('./LyricsEntry');
+require('./StabEntry');
+require('./RecordingEntry');
+require('./NoteEntry');
 
 // resourceDirectives
 // require('./resourceDirectives/CreateLyric.js');
