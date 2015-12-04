@@ -12,5 +12,6 @@ require('./LandingCtrl');
 require('./TourCtrl');
 require('./ProjectDashCtrl');
 require('./ResourceEntryCtrl');
+require('./LikeCtrl');
 
 
