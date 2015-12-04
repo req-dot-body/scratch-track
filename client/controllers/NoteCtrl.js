@@ -1,6 +1,6 @@
 var moment = require('moment/moment');
 
-app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', function($scope, $state, Note, Project) {
+app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', function($scope, $state,$timeout, Note, Project) {
 
   var projectId = $state.params.id;
 

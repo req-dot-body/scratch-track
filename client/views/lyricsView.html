@@ -13,7 +13,7 @@
       <zf-accordion id="create-lyric" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
           <br>
-          <form name="newLyricForm" class="form-group" novalidate>
+          <form name="newLyricForm" class="form-group" ng-submit="add(newLyric); submit(); closeAccordion();" novalidate>
             <label>Lyric Title:</label>
             <textarea class="lyric-textarea" type="text" name="lyric-title" ng-model="newLyric.name" placeholder="Enter title here." required></textarea>
             <br>
@@ -28,7 +28,7 @@
             <textarea class="lyric-textarea" type="text" name="lyric-body" ng-model="newLyric.text" placeholder="Enter lyrics here." style="min-height: 100px;" required></textarea>
             <br>
 
-            <a class="button" type="submit" href="#" ng-click="add(newLyric); submit(); closeAccordion();">SAVE</a>
+            <button class="button" type="submit" href="#">SAVE</button>
           </form>
         </zf-accordion-item>
       </zf-accordion>
@@ -36,15 +36,17 @@
       
       <zf-accordion id="lyric-revision" style="display: none;">
         <zf-accordion-item class="title" title="Create New Revision">
+          <form name="lyricRevisionForm" class="form-group" ng-submit="toggleElement('lyric-revision'); toggleElement('create-lyric'); add(newLyric);" novalidate>
+            <label>Revision Title:</label>
+            <textarea class="lyric-textarea" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
 
-          <label>Revision Title:</label>
-          <textarea class="lyric-textarea" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
+            <label>Revision Body:</label>
+            <textarea class="lyric-textarea" type="text" ng-model="newLyric.text" placeholder="Enter lyrics here."></textarea>
 
-          <label>Revision Body:</label>
-          <textarea class="lyric-textarea" type="text" ng-model="newLyric.text" placeholder="Enter lyrics here."></textarea>
+            <button class="button" type="submit" href="#" >SAVE</button>
 
-          <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyric'); add(newLyric);">SAVE</a>
-          <a ng-click="toggleElement('lyric-revision'); toggleElement('create-lyric');" class="button">CANCEL</a>         
+            <a ng-click="toggleElement('lyric-revision'); toggleElement('create-lyric');" class="button">CANCEL</a>   
+          </form>      
         </zf-accordion-item>
       </zf-accordion>
 

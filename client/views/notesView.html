@@ -13,7 +13,7 @@
       <zf-accordion id="create-note" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Note">
           <br>
-          <form name="newNoteForm" class="form-group" novalidate>
+          <form name="newNoteForm" class="form-group" ng-submit="addNote(newNote); submit(); closeAccordion();" novalidate>
             <label>
               Note Title:
             </label>
@@ -30,7 +30,7 @@
               Note Body:
             </label>
               <textarea placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
-            <a class="large button" ng-click="addNote(newNote); submit(); closeAccordion();" ng-submit="addNote(newNote)">ADD NOTE</a>
+            <button class="button" type="submit">ADD NOTE</button>
           </form>
         </zf-accordion-item>
       </zf-accordion>
