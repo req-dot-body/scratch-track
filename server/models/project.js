@@ -34,6 +34,13 @@ Project.findByPublic = function () {
   return db.select('*').from('projects').where({ private: 0 });
 };
 
+Project.isPrivate = function(projectId){
+  return db('projects').where('id', '=', projectId)
+  .then(function(rows){
+    return rows[0].private;
+  })
+}
+
 // creates a new project
 Project.create = function (attrs, username) {
   return db('projects').insert(attrs).returning('id')
