@@ -102,7 +102,11 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       authenticate: true,
       templateUrl: 'views/projects.html',
       controller: 'ProjectsCtrl',
-      controllerAs:'projects' 
+      controllerAs:'projects',
+      animation: {
+      enter: 'slideInRight',
+      leave: 'slideOutRight'
+       } 
     })
 
     .state('main.project_edit', {

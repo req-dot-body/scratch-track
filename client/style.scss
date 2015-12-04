@@ -157,3 +157,13 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     // shadow: 0 4px 1-px black;
   }
 }
+
+.public-project {
+  
+  // $switch-background-active: black;
+  @include switch;
+  @include switch-style(
+    $background-active: #000
+    );
+}
+  // $switch-background-active: #000;
