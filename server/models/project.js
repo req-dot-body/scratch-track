@@ -8,6 +8,7 @@ var Project = {};
 // NOTES: this needs to be expanded once collabs and 
 //        public projects become a thing
 Project.findById = function(projectId, userId) {
+  //add like info in here
   return db('projects').select('*').where({id: projectId}).limit(1)
   .then(function(rows) {
     var project = rows[0];
@@ -20,9 +21,8 @@ Project.findById = function(projectId, userId) {
 };
 
 // returns all projects for a user 
-// NOTE: this needs to be expanded once collabs and 
-//      public projects become a thing
 Project.findByUser = function (owner_id) {
+  //add like info somewhere in here
   return db('projects').select('*').where({owner_id: owner_id})
   .then(function(rows){
     return rows;
@@ -30,6 +30,7 @@ Project.findByUser = function (owner_id) {
 };
 
 Project.findByPublic = function () {
+  //add in like info
   return db.select('*').from('projects').where({ private: 0 });
 };
 
@@ -70,6 +71,9 @@ Project.updateResource = function(projectId) {
 
 //deletes an entire project
 Project.del = function(projectId){
+
+  //!! delete all likes
+
   //deleting all associated resources
   return Resource.deleteAll(projectId)
   .then(function(){

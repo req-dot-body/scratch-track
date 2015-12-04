@@ -9,13 +9,36 @@ Likes.toggleLike = function(userId, projectId){
   //if no --> like it
 };
 
+//adds like information to an array of public projects
+Likes.publicProjects = function(projects){
+
+}
+
+//adds like information to an array of your projects
+Likes.myProjects = function(projects){
+
+}
+
+//count likes for that project
 Likes.likeCount = function(projectId){ 
-  //count likes for that project  
+  
 };
 
+//checks if a project is liked by a user
 Likes.likedByUser = function(userId, projectId){
-  //checks if a project is liked by a user
   //return boolean 
+}
+
+//deletes all of a projects likes
+Likes.deleteByProject = function(projectId){
+
+}
+
+//deletes all of a users likes
+//not currently necessary as there 
+//is no way to delete an account
+Likes.deleteByUser = function(userId){
+
 }
 
 module.exports = Likes;

@@ -2,15 +2,13 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Project = require('../models/project.js'); 
-var Likes = require('../models/likes.js');
+var Like = require('../models/like.js');
 var Resource = require('../models/resource.js');
 
 var helper = require('../helper');
 
-// Get all projects that can be accessed
+// Get all projects for a user
 router.get('/', helper.requireAuth, function (req, res) {
-    //this needs to change once public projects and
-    //collabs become a thing 
     console.log('session stuff:', req.session);
     Project.findByUser(req.session.passport.user.id)
     .then(function(projects){
@@ -26,7 +24,7 @@ router.get('/', helper.requireAuth, function (req, res) {
 // Gets all public projects
 router.get('/public', (req, res) => {
   Project.findByPublic()
-  .then((projects) => {
+  .then((projects) => {    
     res.json({ projects: projects });
   })
   .catch((err) => {
@@ -65,6 +63,9 @@ router.get('/:projectId', function (req, res) {
   //grab the project from db
   Project.findById(projectId, req.session.passport.user.id)
   .then(function(project){
+
+    //!!add like info here
+
     res.status(200).send(project);
   })
   .catch(function(err){
@@ -119,6 +120,23 @@ router.delete('/:projectId', helper.requireAuth, function (req, res) {
     res.sendStatus(404);
   });
 });
+
+router.post('/:projectId/like', function(req, res){
+  var ids = {
+    project: req.params.projectId,
+    user: req.session.passport.user.id
+  };
+
+  Like.toggleLike(ids.user, ids.project)
+  .then(function(like){
+    res.status(200).send(like)
+  })
+  .catch(function(){
+    console.log('failed to toggle like');
+    res.sendStatus(400);
+  })
+
+})
 
 // TODO : how to handle for public projects
 // Get all resource of a type associated with a specific project
