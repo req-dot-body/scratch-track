@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Project = require('../models/project.js'); 
+var Likes = require('../models/likes.js');
 var Resource = require('../models/resource.js');
 
 var helper = require('../helper');
