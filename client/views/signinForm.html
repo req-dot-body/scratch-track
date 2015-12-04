@@ -1,6 +1,6 @@
 <div class="anim-fade landing-form align-center grid-block">
   <div class="medium-4">
-    <form name="signinForm" class="form-group" novalidate>
+    <form name="signinForm" ng-submit="signinUser()" class="form-group" novalidate>
 
       <label class="form-header">E-Mail:</label>
       <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field" placeholder="Enter your e-mail"/>
@@ -26,7 +26,7 @@
 
       <br>
       <div class="align-center grid-block">
-        <a class="large button" href="#" ng-submit="signinUser()" ng-click="signinUser()" id="submit-btn">Submit</a>
+        <button class="large button" type="submit" href="#" id="submit-btn">Submit</button>
       </div>
       <br>
       <div class="align-center grid-block">
