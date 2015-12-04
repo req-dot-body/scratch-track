@@ -25,16 +25,23 @@ Likes.toggleLike = function(userId, projectId){
 };
 
 Likes.like = function(userId, projectId){
-  
+  return db('projects').insert({
+    user_id: userId,
+    project_id: projectId
+  }).returning('*')
+  .then(function(rows){
+    return rows[0];
+  })
 };
 
 Likes.unlike = function(likeId){
-
+  return db('likes').where('id', '=', likeId).del();
 }
 
 //adds like information to an array of public projects
 Likes.publicProjects = function(projects){
-
+ 
+ 
 }
 
 //adds like information to an array of your projects
