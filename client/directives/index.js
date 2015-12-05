@@ -6,6 +6,7 @@ require('./passwordCompare');
 require('./ResourceTemplate');
 require('./Projects');
 require('./ProjectDash');
+require('./LikeButton');
 
 //resource directives
 require('./LyricsEntry');
