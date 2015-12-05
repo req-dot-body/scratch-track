@@ -1,6 +1,6 @@
  <div class="anim-fade landing-form align-center grid-block">
-  <div class="medium-4">
-    <form name="signupForm" class="form-group" novalidate>
+  <div class="medium-3">
+    <form name="signupForm" ng-submit="signupUser()" class="form-group" novalidate>
     
       <label class="form-header">First Name:</label>
       <input type="text" required ng-model="first" name="firstField" class="input-field"/>
@@ -53,7 +53,7 @@
     
       <br>
       <div class="align-center grid-block">
-        <a class="large button" ng-submit="signupUser()" ng-click="signupUser()" id="submit-btn">Submit</a>
+        <button class="large button" id="submit-btn">Submit</button>
       </div>
 
       <br>
