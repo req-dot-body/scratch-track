@@ -1,6 +1,6 @@
 <div class="vertical grid-block">
   <div class="grid-block text-center">
-    <div class="grid-content noscroll small-10 small-offset-1">
+    <div class="grid-content noscroll small-8 small-offset-2">
 
       <section class="spaced">
         <h1>Notes</h1>
@@ -13,7 +13,7 @@
       <zf-accordion id="create-note" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Note">
           <br>
-          <form name="newNoteForm" class="form-group" novalidate>
+          <form name="newNoteForm" class="form-group" ng-submit="addNote(newNote); submit(); closeAccordion();" novalidate>
             <label>
               Note Title:
             </label>
@@ -30,17 +30,18 @@
               Note Body:
             </label>
               <textarea placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
-            <a class="large button" ng-click="addNote(newNote); submit(); closeAccordion();" ng-submit="addNote(newNote)">ADD NOTE</a>
+            <button class="button" type="submit">ADD NOTE</button>
           </form>
         </zf-accordion-item>
       </zf-accordion>
-
+      
+      <br>
       <br>
       <div class="title-bar">
-        <span class="title center">Your Notes for This Project</span>
+        <span class="title center">Your Notes for This Project:</span>
       </div>
 
-      <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes" ng-model="notes">
+      <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy:'-created_at'" ng-model="notes">
         <zf-accordion-item title="{{ formatDate(note.created_at) }} - {{ note.name}}">
           <textarea readonly="true" ng-model="note.text" id="note-text{{note.id}}">
             {{note.text}}

@@ -1,7 +1,7 @@
 
 var moment = require('moment/moment');
 
-app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', function($scope,$state,Project, FoundationApi) {
+app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q', function($scope,$state,Project, FoundationApi, nzTour, $q) {
 
 projectId = $state.params.id; 
 
@@ -104,6 +104,50 @@ $scope.saveProjectInfo = function(){
     $scope.projectStablature = response.data;
       // console.log('stablature: ', response.data)
   })
+
+
+//Tour
+
+var tour = {
+    config: {dark:true}, 
+    steps: [{
+        target: '#tour6',
+        content: 'Your project can be either Public(anybody can see it) or Private, Default is private',
+    }, {
+        target: '#tour7',
+        content: 'Put A name and description!, then click next...',
+    }, {
+        target: '#tour8',
+        content: 'And here you can see your projects at any time',
+    },{
+        target: '#tour9',
+        content: 'This is your Project Search Bar',
+    }, {
+        target: '#tour10',
+        content: 'Here You Create a new Project!, I am going to create one for you! Enjoy!',
+        before: function() {
+                    var d = $q.defer();
+                    d.resolve();
+                    return d.promise;
+                },
+        after: function() {
+            var d = $q.defer();
+            $scope.createProject();
+            d.resolve();
+            return d.promise;
+        }
+    }]
+};
+
+// nzTour.start(tour)
+//     .then(function() {
+//         console.log('Tour Finished!');
+//     })
+//     .catch(function() {
+//         console.log('Tour Aborted!')
+//     });
+
+
 
 }]);
 

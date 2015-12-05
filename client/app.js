@@ -37,6 +37,7 @@ window.app = angular.module('myApp', [
   'ngResource',
   'foundation',
   'angular-toArrayFilter',
+  'nzTour'
   // 'foundation.dynamicRouting',
   // 'foundation.dynamicRouting.animations'
   // ngAnimate,
@@ -102,11 +103,7 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       authenticate: true,
       templateUrl: 'views/projects.html',
       controller: 'ProjectsCtrl',
-      controllerAs:'projects',
-      animation: {
-      enter: 'slideInRight',
-      leave: 'slideOutRight'
-       } 
+      controllerAs:'projects'
     })
 
     .state('main.project_edit', {

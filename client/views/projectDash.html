@@ -3,19 +3,19 @@
   <li><a href="#" zf-open="deleteModal2">Delete</a></li>
   <!-- <li><a ui-sref="main.projects">Back</a></li> -->
 </ul>
-<div class="grid-block wrap dash-row-top">
+<h1 class="text-center spaced">Project Dash</h1>
+<div class="grid-block wrap dash-row-top text-center">
 
-  <h1>Project Dash</h1>
   <div class="grid-content small-12">
-    <br> 
     <h3>Project Name: {{projectData.name}}</h3>
     <h3 ng-if = 'projectData.description!==null'>Description: {{projectData.description}}</h3>
-    <br><br>
+    <br>
+    <br>
   </div>
 
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
     
-    <div class="card-recordings">
+    <div class=".card-wrapper card-recordings">
       <a ui-sref="main.project_edit.recordings">
         <!-- <img src="./resources/guitar_banner.jpg"> -->
         <div class="recordings-card-divider text-center">
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="card-notes">
+    <div class=".card-wrapper card-notes">
       <a ui-sref="main.project_edit.notes">
         <!-- <img src="./resources/notes_banner.jpg"> -->
         <div class="notes-card-divider text-center">
@@ -51,7 +51,7 @@
 
 
   <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
-    <div class="card-lyrics">
+    <div class=".card-wrapper card-lyrics">
       <a ui-sref="main.project_edit.lyrics">
         <!-- <img src="./resources/lyrics_banner.jpg"> -->
         <div class="lyrics-card-divider text-center">
@@ -72,7 +72,7 @@
 </div>
   <div class="grid-content small-12 medium-order-3">
     
-    <div class="card-stablature">
+    <div class=".card-wrapper card-stablature">
       <a ui-sref="main.project_edit.stablature">
         <!-- <img src="./resources/stablature_banner.jpg"> -->
         <div class="stablature-card-divider text-center">
@@ -94,7 +94,7 @@
     <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
   </div>
  
-  <div zf-modal="" id="projectInfo" animation-out="slideOutUp" class="collapse large is-active" ng-show ='projectCreated===true'>
+  <div id='tour7' zf-modal="" id="projectInfo" animation-out="slideOutUp" class="collapse large is-active" ng-show ='projectCreated===true'>
   
     <div class="grid-block vertical">
       
@@ -102,7 +102,7 @@
         <div class="center title">Project Information</div>
       </div>
         
-      <div class="grid-content padding" style="padding-top: 1rem;">
+      <div class="grid-content padding" style="padding-top: 1rem;" id='tour6'>
         <div class='text-right'>
           <span>Private</span>
           <div class="public-project">
