@@ -4,7 +4,7 @@
     </div>
   </div>
 
-<div class = 'text-center'>
+<div class='text-center'>
   <h1>Projects</h1>
   <h3>Latest Project You've Worked on</h3>
   <br>
@@ -22,8 +22,13 @@
 
   <div class="grid-block">
     <div class="grid-block small-10 medium-8 small-offset-1 medium-offset-2">
+<<<<<<< HEAD
       <div class = 'grid-content'>
         <form id='tour4' class='project-search'>  
+=======
+      <div class='grid-content'>
+        <form class='project-search'>  
+>>>>>>> More styling
           <label>
             <input class = 'projects-seach' ng-model="searchText" type="search" placeholder="Search Project">
           </label>
@@ -35,15 +40,19 @@
   <div class="grid-block small-12 medium-10 medium-offset-1 small-up-1 medium-up-2">
     <div class="grid-block small-12 medium-6" ng-repeat='project in projects|toArray|filter:searchText'> 
       <div class='grid-content'>  
-       <a ui-sref = "main.project_edit({id:project.id})"><div class="dark card text-center">
+       <a ui-sref = "main.project_edit({id:project.id})">
+       <div class="dark card text-center">
           <div class="card-divider project-recent">
             {{project.name}}
           </div>
         </div></a>
+        <div>
         <p>Description:{{project.description}}</p>
         <p>Created at: {{project.created_at*1000|date}}</p>
         <p>Updated at: {{project.updated_at*1000|date}}</p>
-        <a  zf-open='deleteModal' class="alert expand hollow text-center button">Delete Project</a>
+        <a  zf-open='deleteModal' class="alert expand hollow text-center button">Delete Project</a> 
+        </div>
+
         <hr />
         </div>  
         <div zf-modal="" id="deleteModal" animation-out="slideOutUp">
