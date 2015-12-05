@@ -121,7 +121,7 @@ router.delete('/:projectId', helper.requireAuth, function (req, res) {
   });
 });
 
-router.post('/:projectId/like', function(req, res){
+router.post('/:projectId/like', helper.requireAuth, function (req, res){
   var ids = {
     project: req.params.projectId,
     user: req.session.passport.user.id
@@ -129,7 +129,11 @@ router.post('/:projectId/like', function(req, res){
 
   Like.toggleLike(ids.user, ids.project)
   .then(function(like){
-    res.status(200).send(like)
+    if (like) {
+      res.status(201).send(like);
+    } else{
+      res.sendStatus(200);
+    }
   })
   .catch(function(){
     console.log('failed to toggle like');

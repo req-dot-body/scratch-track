@@ -1,6 +1,6 @@
 var db = require('../lib/db');
-var User = require('./user.js');
-var Resource = require('./resource.js');
+var User = require('./user');
+var Resource = require('./resource');
 
 var Project = {};
 
@@ -8,8 +8,9 @@ var Project = {};
 // NOTES: this needs to be expanded once collabs and 
 //        public projects become a thing
 Project.findById = function(projectId, userId) {
-  //add like info in here
-  return db('projects').select('*').where({id: projectId}).limit(1)
+  return db('projects').select()
+
+  return db('projects').select('*').where({id: projectId})
   .then(function(rows) {
     var project = rows[0];
     if (!project) { throw 404; }
@@ -22,7 +23,6 @@ Project.findById = function(projectId, userId) {
 
 // returns all projects for a user 
 Project.findByUser = function (owner_id) {
-  //add like info somewhere in here
   return db('projects').select('*').where({owner_id: owner_id})
   .then(function(rows){
     return rows;
@@ -30,7 +30,6 @@ Project.findByUser = function (owner_id) {
 };
 
 Project.findByPublic = function () {
-  //add in like info
   return db.select('*').from('projects').where({ private: 0 });
 };
 
@@ -39,7 +38,7 @@ Project.isPrivate = function(projectId){
   .then(function(rows){
     return rows[0].private;
   })
-}
+};
 
 // creates a new project
 Project.create = function (attrs, username) {
@@ -72,17 +71,16 @@ Project.updateResource = function(projectId) {
   var updated = {
     updated_at: Math.round(Date.now()/1000)
   };
-  console.log('updating resource');
   return db('projects').where('id', '=', projectId).update(updated);
 };
 
 //deletes an entire project
 Project.del = function(projectId){
-
-  //!! delete all likes
-
-  //deleting all associated resources
+  //deleting all associated resources & likes
   return Resource.deleteAll(projectId)
+  .then(function(){
+    return db('likes').where('project_id', '=', projectId).del();
+  })
   .then(function(){
     //deleting project
     return db('projects').where('id', '=', projectId).del();  

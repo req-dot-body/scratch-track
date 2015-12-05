@@ -5,15 +5,14 @@ var Likes = {};
 
 Likes.toggleLike = function(userId, projectId){
   //checks that a project is private
-  return Project.isPrivate
+  return Project.isPrivate(projectId)
   .then(function(isPrivate){
     if (isPrivate) throw 404;
 
     //checks if a like exists
-    return db('likes').where('user_id', '=', userId)
-    .andWhere('project_id', '=', projectId)
+    return Likes.findOne(userId, projectId)
     .then(function(rows){
-      if (rows[0]) {
+      if (rows.length) {
         //unlikes existing project
         return Likes.unlike(rows[0].id);
       }
@@ -25,7 +24,7 @@ Likes.toggleLike = function(userId, projectId){
 };
 
 Likes.like = function(userId, projectId){
-  return db('projects').insert({
+  return db('likes').insert({
     user_id: userId,
     project_id: projectId
   }).returning('*')
@@ -35,40 +34,23 @@ Likes.like = function(userId, projectId){
 };
 
 Likes.unlike = function(likeId){
-  return db('likes').where('id', '=', likeId).del();
+  return db('likes').where('id', '=', likeId).del().
+  then(function(){
+    return;
+  })
 }
 
-//adds like information to an array of public projects
-Likes.publicProjects = function(projects){
- 
- 
-}
-
-//adds like information to an array of your projects
-Likes.myProjects = function(projects){
-
-}
-
-//count likes for that project
-Likes.likeCount = function(projectId){ 
-  
-};
-
-//checks if a project is liked by a user
-Likes.likedByUser = function(userId, projectId){
-  //return boolean 
-}
-
-//deletes all of a projects likes
-Likes.deleteByProject = function(projectId){
-
+//finds a like by project and user
+Likes.findOne = function(userId, projectId){
+  return db('likes').where('project_id', '=', projectId)
+  .andWhere('user_id', '=', userId)
 }
 
 //deletes all of a users likes
 //not currently necessary as there 
 //is no way to delete an account
-Likes.deleteByUser = function(userId){
-
+Likes.deleteByUser = function(userId){  
+  return db('likes').where('user_id', '=', userId);
 }
 
 module.exports = Likes;
