@@ -1,4 +1,4 @@
-app.controller('MainCtrl', ['$scope', '$state', 'User', function($scope, $state, User) {
+app.controller('MainCtrl', ['$scope', '$state', 'User','nzTour', function($scope, $state, User, nzTour) {
 
   if ($state.is('main')) {
     $state.go('main.projects');
@@ -7,6 +7,7 @@ app.controller('MainCtrl', ['$scope', '$state', 'User', function($scope, $state,
   $scope.logOut = function () {
     User.logOut();
   };
+
 
 }]);
 
