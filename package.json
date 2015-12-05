@@ -51,6 +51,7 @@
     "node-sass-endpoint": "^0.3.0",
     "node-uuid": "^1.4.7",
     "nodemon": "^1.8.1",
+    "nz-tour": "^1.0.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pg": "^4.4.3",
