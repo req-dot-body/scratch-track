@@ -1,5 +1,7 @@
 app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q', function($scope,$state,Project,nzTour,$q) {
 
+  console.log('Current state:', $state.current);
+
 //Get projects from Projects factory
   $scope.getProjects = function () {
     Project.getAllProjects()
@@ -61,14 +63,17 @@ var projectTour = {
     }]
 };
 
+if($state.params.signedUp){
 
-// nzTour.start(projectTour)
-//     .then(function() {
-//         console.log('Tour Finished!');
-//     })
-//     .catch(function() {
-//         console.log('Tour Aborted!')
-//     });
+  nzTour.start(projectTour)
+      .then(function() {
+          console.log('Tour Finished!');
+      })
+      .catch(function() {
+          console.log('Tour Aborted!')
+      });
+  
+}
 
 
 }]);
