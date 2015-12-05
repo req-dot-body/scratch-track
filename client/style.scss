@@ -8,6 +8,7 @@
 /* jungle mist */
 $primary-color: #c2d4d8;
 $primary-color-darken: darken( $primary-color, 5% );
+$primary-color-lighten: lighten( $primary-color, 5% );
 
 /* paradiso */
 $secondary-color: #3c948b;
@@ -392,16 +393,17 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   .title-bar {
     background-color: $primary-color;
-    color: $light-color;
+    
   }
   
   .accordion-title {
-    background-color: $light-color;
+    background-color: #f1f5f6;
   }
 
   .menu-bar {
     background-color: $primary-color;
-    &:active {
-      background-color: $secondary-color-darken;
-    }
+  }
+
+  .accordion-content {
+    background-color: #f1f5f6;
   }
