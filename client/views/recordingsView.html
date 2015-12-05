@@ -1,9 +1,14 @@
 <div class="vertical grid-block">
   <div class="grid-block text-center">
-    <div class="grid-content noscroll small-10 small-offset-1">
+    <div class="grid-content noscroll small-8 small-offset-2">
 
-     <section class="spaced">
+
+      <section class="spaced">
         <h1>Recordings</h1>
+
+        <p>
+          Here you can create and play-back your recordings.
+        </p>
       </section>
 
       <!--Recording Panel-->
@@ -16,12 +21,13 @@
             <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
           </audio>
 
-          <br> <br>
+          <br> 
+          <br>
           <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
           <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
           <div class="snall-8">
             <img src="http://v2.preloaders.net/preloaders/2/Broken%20circle.gif" ng-if="isSaving">
-            <p id="log" class="recordingStatus"></p>
+            <em id="log" class="recordingStatus"></em>
           </div>
             
 
@@ -54,20 +60,20 @@
       </zf-accordion> <br>
 
 
-
-      <div class="title-bar">
-        <span class="title center">Recordings for this Project</span>
-      </div> 
       <br>
+      <div class="title-bar">
+        <span class="title center">Your Recordings for this Project:</span>
+      </div> 
         <zf-accordion auto-open="false" collapsible="true" multi-open="true" id="recordingslist">
-          <zf-accordion-item ng-repeat="recording in recordings" ng-model="recordings" title="{{ formatDate(recording.created_at) }} - {{recording.name}}" watch>
+          <zf-accordion-item ng-repeat="recording in recordings | orderBy:'-created_at'" ng-model="recordings" title="{{ formatDate(recording.created_at) }} - {{recording.name}}" watch>
             <audio controls="true">
               <source ng-src="{{recording.url | trusted}}" type="audio/wav"/>
             </audio>
-            <br/>
-            <a class="small button" download href="{{recording.url}}">Download Link</a>
-            <a class="small button" zf-open="editModal">Edit Recording Info</a>
-            <a class="small alert button" zf-open="delModal">Delete Recording</a> <br>
+            <br>
+            <br>
+            <a class="button" download href="{{recording.url}}">Download Link</a>
+            <a class="button" zf-open="editModal">Edit Recording Info</a>
+            <a class="alert button" zf-open="delModal">Delete Recording</a> <br>
             <div class="card">
               <label>Description:</label><p>{{recording.description}}</p>
             </div>
