@@ -2,9 +2,33 @@
 @import
   '../node_modules/foundation-apps/scss/foundation';
 
+
+// THEME COLORS
+
+/* jungle mist */
+$primary-color: #c2d4d8;
+$primary-color-darken: darken( $primary-color, 5% );
+$primary-color-lighten: lighten( $primary-color, 5% );
+
+/* paradiso */
+$secondary-color: #3c948b;
+$secondary-color-darken: darken( $secondary-color, 5% ); 
+
+/* willow brook */
+$tertiary-color: #dbe9d8;
+$tertiary-color-darken: darken( $tertiary-color, 5% );
+
+/* chatelle */
+$quaternary-color: #b0aac2;
+$quaternary-color-darken: darken( $quaternary-color, 5% );
+
+$dark-color: #232323;
+$light-color: #f2efe8;
+
+
+
 //PROJECT DASH BOARD
 .dash-menu-bar {
-  border-bottom: 1px solid #000;
 // This placeholder selector gets you the core structural styles for the menu
 @extend %menu-bar;
 // Set the orientation and sizing of the menu bar
@@ -14,10 +38,10 @@ $stretch: true // Set to false for a condensed menu
 );
 // Add styles for the menu bar items and text
 @include menu-bar-style(
-$background: #424242, // Background color of items
-$background-hover: #333, // Background color of item on hover
-$background-active: #666, // Background color of an active item
-$color: #fff, // Text color of items
+$background: $primary-color, // Background color of items
+/*$background-hover: #333, // Background color of item on hover
+$background-active: #666, // Background color of an active item */
+$color: $dark-color, // Text color of items
 // $color-hover, // Text color of item on hover
 // $color-active, // Text color of item when active
 $autocolor: false // When true, all the above colors will be derived from $background
@@ -167,3 +191,235 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     );
 }
   // $switch-background-active: #000;
+
+
+  /*RECORDING VIEW*/
+
+
+  .recording-element {
+    padding: 5px;
+  }
+
+  /*SIGN-IN/UP VIEWS*/
+
+  .validation-error {
+    height: 20px;
+    color: red;
+    font-size: 12px;
+  }
+
+  body form .form-group {
+    height: 20px;
+  }
+
+  body form .form-header {
+    font-weight: bold;
+  }
+
+  .form-header {
+    color: $light-color;
+  }
+
+  .land-text p {
+    padding: 5%;
+  }
+
+  .landing-form {
+    position: relative;
+    top: 100px;
+    transform: translateY(10%);
+    color: white;
+  }
+
+  #landing-box {
+    border: 2px solid black;
+    padding: 5%;
+    background-color: white;
+    opacity: .5;
+    text-align: center;
+    position: relative;
+    margin: 10%;
+  }
+
+  #landing-title {
+    text-align: center;
+  }
+
+
+   /* label color */
+     .input-field label {
+       color: #000;
+     }
+     /* label focus color */
+     .input-field input[type=text]:focus + label {
+       color: #000;
+     }
+     /* label underline focus color */
+     .input-field input[type=text]:focus {
+       border-bottom: 1px solid #000;
+       box-shadow: 0 1px 0 0 #000;
+     }
+     /* valid color */
+     .input-field input[type=text].valid {
+       border-bottom: 1px solid #000;
+       box-shadow: 0 1px 0 0 #000;
+     }
+     /* invalid color */
+     .input-field input[type=text].invalid {
+       border-bottom: 1px solid #000;
+       box-shadow: 0 1px 0 0 #000;
+     }
+     /* icon prefix focus color */
+     .input-field .prefix.active {
+       color: #000;
+     }
+
+  .vex-canvas {
+    height: 10rem;
+  }
+
+  video#intro-video { 
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -100;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+  /*    background: url() no-repeat;
+      background-size: cover; 
+  */
+
+      filter:blur(5px);
+    -o-filter:blur(5px);
+    -ms-filter:blur(5px);
+    -moz-filter:blur(5px);
+    -webkit-filter:blur(5px);
+     
+  }
+
+  /*DASH VIEW*/
+
+  .panel-lyric {
+      min-height:210px;
+      max-height:210px;
+      overflow-y:scroll;
+  }
+
+  .resource-entry {
+    border: 2px solid black;
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .lyric-textarea:read-only {
+    color: gray;
+  }
+
+  /* Lyric Styles */
+  .all-projects-title {
+    background-color: gray;
+  }
+
+  .editor {
+    width: 100% !important;
+  }
+
+  .spaced {
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+  .button {
+    background-color: $secondary-color !important;
+    color: $light-color;
+  }
+
+  .button.contrast {
+    background-color: $secondary-color;
+    color: $light-color;
+    &:hover {
+      background-color: $secondary-color-darken;
+    }
+  }
+
+  .contrast {
+    color: $quaternary-color;
+  }
+  
+  .button.hollow.alert {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: $dark-color !important;
+    border-color: $quaternary-color !important;
+    &:hover {
+      background-color: $secondary-color-darken !important;
+    }
+
+  }
+
+
+  body {
+    background-color: $tertiary-color;
+    color: $dark-color;
+  }
+  
+  .title > .accordion-title {
+    background-color: $secondary-color;
+    color: $light-color;
+    font-weight: bold;
+  }
+
+  .title > .accordion-title:hover {
+    background-color: $secondary-color-darken;
+  }
+
+  .title-bar {
+    background-color: $dark-color;
+    color: $light-color;
+    
+  }
+
+  .menu-bar {
+    background-color: $primary-color-darken;
+  }
+
+  .dash-menu-bar {
+    background-color: $primary-color-darken;
+    border: none;
+  }
+  
+  .accordion-title {
+    background-color: $primary-color;
+  }
+
+  .accordion-content {
+    background-color: $tertiary-color;
+  }
+
+  .card {
+    background-color: $tertiary-color;
+    color: $dark-color !important;
+  }
+  
+
+  .card-wrapper  {
+    $background-color: $primary-color !important;
+  }
+
+  .card-divider {
+    color: $light-color;
+  }
+
+  .menu-group {
+    background-color: $dark-color;
+    color: $light-color;
+  }
+
+  li {
+    list-style: none;
+  }
+
