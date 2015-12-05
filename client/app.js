@@ -37,6 +37,7 @@ window.app = angular.module('myApp', [
   'ngResource',
   'foundation',
   'angular-toArrayFilter',
+  'nzTour'
   // 'foundation.dynamicRouting',
   // 'foundation.dynamicRouting.animations'
   // ngAnimate,
