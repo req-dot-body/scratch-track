@@ -395,12 +395,12 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     background-color: $primary-color;
     
   }
-  
-  .accordion-title {
-    background-color: #f1f5f6;
-  }
 
   .menu-bar {
+    background-color: $primary-color-darken;
+  }
+  
+  .accordion-title {
     background-color: $primary-color;
   }
 
