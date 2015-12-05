@@ -61,6 +61,7 @@ browserify.settings({
     'angular',
   ]
 });
+
 // Serve application js files
 router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
 // Serve Angular and Angular modules
@@ -76,6 +77,10 @@ router.get('/js/index.js', browserify('./client/index.js'));
 router.get('/js/vex.js', function (req, res) {
   res.sendFile(Path.resolve('./node_modules/vextab/releases/vextab-div.js'));
 });
+// Serve nzTour
+router.get('/js/nztour.js', (req, res) => res.sendFile(Path.resolve('./node_modules/nz-tour/dist/nz-tour.min.js')));
+router.get('/css/nztour.css', (req, res) => res.sendFile(Path.resolve('./node_modules/nz-tour/dist/nz-tour.min.css')));
+
 
 
 router.get('/css/main.css', sass.serve('./client/style.scss'));
