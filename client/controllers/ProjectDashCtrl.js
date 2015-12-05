@@ -139,13 +139,13 @@ var tour = {
     }]
 };
 
-nzTour.start(tour)
-    .then(function() {
-        console.log('Tour Finished!');
-    })
-    .catch(function() {
-        console.log('Tour Aborted!')
-    });
+// nzTour.start(tour)
+//     .then(function() {
+//         console.log('Tour Finished!');
+//     })
+//     .catch(function() {
+//         console.log('Tour Aborted!')
+//     });
 
 
 
