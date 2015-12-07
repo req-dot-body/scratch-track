@@ -32,6 +32,17 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
      $scope.submitted = true;
   };
 
+  
+  $scope.sortBy = function(field){
+    if ($scope.sortField === field){
+      $scope.sortDirection = !$scope.sortDirection;
+    }
+    else {
+      $scope.sortField = field;
+      $scope.sortDirection = true;  
+    }
+  };
+
 
   $scope.toggleElement = function(id) {
     div = document.getElementById(id);

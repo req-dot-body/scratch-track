@@ -70,6 +70,16 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     return moment.unix(date).calendar();
   };
 
+  $scope.sortBy = function(field){
+    if ($scope.sortField === field){
+      $scope.sortDirection = !$scope.sortDirection;
+    }
+    else {
+      $scope.sortField = field;
+      $scope.sortDirection = true;  
+    }
+  };
+
   //RecorderJS:
 
   $scope.audio_context = null;

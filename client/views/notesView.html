@@ -37,11 +37,14 @@
       
       <br>
       <br>
+      <input type="text" placeholder="Search Notes..." ng-model="noteSearch">
       <div class="title-bar">
         <span class="title center">Your Notes for This Project:</span>
       </div>
 
-      <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy:'-created_at'" ng-model="notes">
+      <sort></sort>
+
+      <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy: sortField: sortDirection | filter: noteSearch" ng-model="notes">
         <zf-accordion-item title="{{ formatDate(note.created_at) }} - {{ note.name}}">
           <textarea readonly="true" ng-model="note.text" id="note-text{{note.id}}">
             {{note.text}}
