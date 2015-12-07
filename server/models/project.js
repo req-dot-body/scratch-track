@@ -85,6 +85,7 @@ Project.create = function (attrs, username) {
 
 //updated a project based on id
 Project.update = function (projectId, attrs) {
+  delete attrs.likes;
   return db('projects').where('id', '=', projectId).update(attrs)
   .then(function(){
     return db('projects').select('*').where({id: projectId})

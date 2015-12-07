@@ -82,12 +82,15 @@ $scope.deleteProject = function(id){
 //saves the project
 $scope.saveProjectInfo = function(){
   //if user changes the name or description will be saved in a temp variable and only be modified in the database if user clicks 'save'
+    console.log('before edited: ', $scope.projectData);
+
   if($scope.editData.name !== $scope.projectData.name){
     $scope.projectData.name = $scope.editData.name;
   }
    if($scope.editData.description !== $scope.projectData.description){
     $scope.projectData.description = $scope.editData.description;
   }
+  console.log('after edited: ', $scope.projectData);
   Project.editProject($scope.projectData)
 };
 
