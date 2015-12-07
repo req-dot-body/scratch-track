@@ -5,6 +5,7 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', '$http',
 
   $scope.buttonContent = 'thumb_up'
   $scope.textContent = "Like this project"
+  $scope.textContent2 = "likes"
 
   $scope.contentToggle = function () {
     if ($scope.buttonContent === 'thumb_up') {
@@ -24,19 +25,29 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', '$http',
     } */
     $scope.contentToggle();
 
+    if ($scope.project.likes === "1") {
+      $scope.textContent2 = "like";
+    } else {
+      $scope.textContent2 = "likes";
+    }
     //send POST request to API endpoint
     return Like.like($scope.project.id)
     .then(function(){
       return Like.getLikes($scope.project.id)
     })
-    .then(function(response){
-      console.log('res', response);
-      $scope.project.likes = response.data.likes;
-      $scope.project.liked = response.data.liked;
+    .then(function(res){
+      var info = res.data[0]
+      console.log('info', info);
+      $scope.project.likes = info.likes;
+      $scope.project.liked = info.liked;
     })
   }
 
   var init = function () {
+    if ($scope.project.likes === "1") {
+      $scope.textContent2 = "like";
+    }
+
     if ($scope.project.liked === '1') {
       $scope.buttonContent = 'thumb_down';
     } else {
