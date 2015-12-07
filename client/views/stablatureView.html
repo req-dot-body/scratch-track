@@ -53,7 +53,7 @@
             <span class="title center">Your Stablature for This Project:</span>
           </div>
           <sort></sort>
-          <ul ng-repeat="stab in stabList | orderBy: sortField: sortDirection | filter: stabSearch">
+          <ul ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
             <div class="grid-block align-justify">
               <li class="spaced" style="list-style: none;" >
                 <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>

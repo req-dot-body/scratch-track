@@ -3,6 +3,8 @@ app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', '
 
   var projectId = $state.params.id;
 
+  $scope.sort = Resource.sort;
+
   $scope.notes = $scope.notes || [];
 
   $scope.newNote = {
@@ -23,13 +25,7 @@ app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', '
   };
 
   $scope.sortBy = function(field){
-    if ($scope.sortField === field){
-      $scope.sortDirection = !$scope.sortDirection;
-    }
-    else {
-      $scope.sortField = field;
-      $scope.sortDirection = true;  
-    }
+    Resource.sortBy(field);
   };
 
   $scope.submit = function(){

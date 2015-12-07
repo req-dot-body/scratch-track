@@ -3,7 +3,10 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 
 	$scope.stabList = [];
 
+	$scope.sort = Resource.sort;
+
 	var projectId = $state.params.id;
+
 	
 	//gets all stabs for this project from factory
 	$scope.getAll = function(){
@@ -33,13 +36,7 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 
   //provides sort functionality
   $scope.sortBy = function(field){
-    if ($scope.sortField === field){
-      $scope.sortDirection = !$scope.sortDirection;
-    }
-    else {
-      $scope.sortField = field;
-      $scope.sortDirection = true;  
-    }
+    Resource.sortBy(field);
   };
 
   //opens editor, optional info can be passed in

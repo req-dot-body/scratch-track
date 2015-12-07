@@ -15,6 +15,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     description: ''
   };
 
+  $scope.sort = Resource.sort;
 
   $scope.getAll = function(){
     return Project.getProjectRecordings(projectId)
@@ -69,13 +70,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   };
 
   $scope.sortBy = function(field){
-    if ($scope.sortField === field){
-      $scope.sortDirection = !$scope.sortDirection;
-    }
-    else {
-      $scope.sortField = field;
-      $scope.sortDirection = true;  
-    }
+    Resource.sortBy(field);
   };
 
   //RecorderJS:

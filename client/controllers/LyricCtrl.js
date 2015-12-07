@@ -3,6 +3,8 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
 
   var projectId = $state.params.id;
 
+  $scope.sort = Resource.sort;
+
   $scope.newLyric = {
     name: '',
     text: '',
@@ -33,13 +35,7 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
 
   
   $scope.sortBy = function(field){
-    if ($scope.sortField === field){
-      $scope.sortDirection = !$scope.sortDirection;
-    }
-    else {
-      $scope.sortField = field;
-      $scope.sortDirection = true;  
-    }
+    Resource.sortBy(field);
   };
 
 

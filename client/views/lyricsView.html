@@ -62,7 +62,7 @@
 
           <sort></sort>
 
-          <zf-accordion auto-open="false" ng-repeat="lyric in lyrics.data | orderBy: sortField: sortDirection | filter: lyricSearch" ng-model="lyrics">
+          <zf-accordion auto-open="false" ng-repeat="lyric in lyrics.data | orderBy: sort.sortField: sort.sortDirection | filter: lyricSearch" ng-model="lyrics">
             <zf-accordion-item title="{{ formatDate(lyric.created_at) }} - {{ lyric.name}}">
               <div class="lyric-textarea" id="lyrictitle" style="display: none;">
                 <label>Lyric Title:</label>
