@@ -84,7 +84,7 @@ router.get('/css/nztour.css', (req, res) => res.sendFile(Path.resolve('./node_mo
 
 // Alertify
 router.get('/js/alertify.js', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify.js/dist/js/alertify.js')));
-router.get('/css/alertify.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify.js/dist//css/alertify.css')));
+router.get('/css/alertify.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify.js/dist/css/alertify.css')));
 // router.get('/css/alertify.default.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify/themes/alertify.default.css')));
 
 
