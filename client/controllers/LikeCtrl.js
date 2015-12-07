@@ -1,4 +1,7 @@
-app.controller('LikeCtrl', ['$scope','$state', 'Like', function($scope, $state, Like) {
+app.controller('LikeCtrl', ['$scope','$state', 'Like', '$http', 
+  function($scope, $state, Like, $http) {
+
+  $http.put('api/projects/' + $scope.project.id, {private: 0})
 
   $scope.buttonContent = 'thumb_up'
   $scope.textContent = "Like this project"
@@ -19,20 +22,18 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', function($scope, $state, 
     /*if (!(liked in $scope.project)) {
       return $scope.buttonContent = 'thumb_up';
     } */
-
-    if ($scope.project.liked === '1') {
-      $scope.project.liked = '0';
-      $scope.project.likes = parseInt($scope.project.likes) - 1;
-      $scope.project.likes = $scope.project.likes.toString();
-    } else {
-      $scope.project.liked = '1';
-      $scope.project.likes = parseInt($scope.project.likes) + 1;
-      $scope.project.likes = $scope.project.likes.toString();
-    }
     $scope.contentToggle();
 
     //send POST request to API endpoint
-    Like.like($scope.project.id);
+    return Like.like($scope.project.id)
+    .then(function(){
+      return Like.getLikes($scope.project.id)
+    })
+    .then(function(response){
+      console.log('res', response);
+      $scope.project.likes = response.data.likes;
+      $scope.project.liked = response.data.liked;
+    })
   }
 
   var init = function () {
