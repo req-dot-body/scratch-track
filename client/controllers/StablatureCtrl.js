@@ -15,16 +15,18 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 		});
 	}
 
+	//intially retrieves all stabs for this project
 	$scope.getAll();
 	
-	$scope.selectedTab;
-
-var defaultStab = {
+	//displayed by default
+	var defaultStab = {
 		code: "9/4 10/5 12/4 10/5 9/4 10/5 12/4 10/5 \n9/4 10/5 12/4 10/5 9h10p9h10p9/4" ,
+		notation: 0,
 		name: '',
 		description: '' 
 	};
 
+	//the stab that is being displayed in the editor
 	$scope.stabInfo = $.extend({}, defaultStab);
 
   $scope.formatDate = function(date) {

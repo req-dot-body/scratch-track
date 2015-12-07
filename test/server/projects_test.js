@@ -100,6 +100,73 @@ describe('Projects', function() {
     })
   })
 
+  it('can like and unlike a public project', function(){
+    return helpers.createProject(session.passport.user.id)
+    .then(function(project){
+      var id = project.id;
+
+      return request(app)
+      .put('/projects/'+id)
+      .send({private: 0})
+      .expect(200)
+    })
+    .then(function(res){
+      id = res.body.id;
+
+      return request(app)
+      .post('/projects/'+id+'/like')
+      .expect(201)
+    })
+    .then(function(res){
+      id = res.body.project_id
+      return request(app)
+      .post('/projects/'+id+'/like')
+      .expect(200)
+    })
+  })
+
+  it('can retrieve like count', function(){
+    return helpers.createProject(session.passport.user.id)
+    .then(function(){
+      return helpers.createProject(session.passport.user.id)
+    })
+    .then(function(project){
+      var id = project.id;
+
+      return request(app)
+      .put('/projects/'+id)
+      .send({private: 0})
+      .expect(200)
+    })
+    .then(function(res){
+      id = res.body.id;
+
+      return request(app)
+      .post('/projects/'+id+'/like')
+      .expect(201)
+    })
+    .then(function(res){
+      id = res.body.project_id;
+
+      return request(app)
+      .get('/projects/'+id)
+      .expect(200)
+    })
+    .then(function(res){
+      expect(res.body.likes).to.equal('1');
+    })
+  })
+
+  it('cannot like a private project', function(){
+    return helpers.createProject(session.passport.user.id)
+    .then(function(project){
+      var id = project.id;
+      return request(app)
+      .post('/projects/'+id+'/like')
+      .expect(400)
+    })
+  })
+
   it('can delete a project with resources', function(){
     return helpers.addResource('lyrics', session.passport.user.id)
     .then(function(lyrics){

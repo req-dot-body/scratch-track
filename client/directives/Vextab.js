@@ -13,7 +13,7 @@ app.directive('vextab', function($compile){
 
       //creates new tab when model is updated
       modelCtrl.$render = function(){
-        var code = formatCode(modelCtrl.$viewValue);
+        var code = formatCode(modelCtrl.$viewValue || '');
 
         if (validCode(code)){
           element.removeClass('error');

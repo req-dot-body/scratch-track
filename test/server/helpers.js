@@ -61,6 +61,9 @@ exports.clearProjects = function(){
       return db('notes').del();
     })
     .then(function(){
+      return db('likes').del();
+    })
+    .then(function(){
       return db('projects').del();
     });
 };
