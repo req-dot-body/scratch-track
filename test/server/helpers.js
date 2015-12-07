@@ -49,7 +49,6 @@ exports.resources = resources;
 
 //clears projects and project resources from DB
 exports.clearProjects = function(){
-  console.log('clearing projects');
   return db('lyrics').del()
     .then(function(){
       return db('recordings').del();

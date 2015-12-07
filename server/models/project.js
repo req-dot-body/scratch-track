@@ -4,12 +4,15 @@ var Resource = require('./resource');
 
 var Project = {};
 
+//this cluster fuck adds on a like count 
+//to the project with a particular ID
 Project.countLikesWhere = function(condition){
-  return db.raw('SELECT projects.* , ' +
-    'COUNT(likes.project_id) AS "likes" FROM projects ' +
-    'LEFT JOIN likes ON likes.project_id = projects.id ' +
-    'WHERE '+ condition +
-    ' GROUP BY projects.id')
+  return db.raw('SELECT p.* , ' +
+    '(SELECT COUNT(*) FROM likes ' +
+    'WHERE p.id = project_id) ' +
+    'AS "likes" ' +
+    'FROM projects p ' +
+    'WHERE ' + condition)
   .then(function(query){
     return query.rows;
   })
@@ -17,9 +20,7 @@ Project.countLikesWhere = function(condition){
 
 // finds a project by id
 Project.findById = function(projectId, userId) {
-    //this cluster fuck adds on a like count 
-    //to the project with a particular ID
-  return Project.countLikesWhere('projects.id = '+projectId)
+  return Project.countLikesWhere('p.id = '+projectId)
   .then(function(rows) {
     var project = rows[0];
 
@@ -37,8 +38,27 @@ Project.findByUser = function (userId) {
    return Project.countLikesWhere('owner_id = '+userId);
 };
 
-Project.findByPublic = function () {
-  return Project.countLikesWhere('private = '+0);
+Project.findByPublic = function (userId) {
+  //if a user is logged in 
+  //object will contained 'liked' field 
+
+  if (userId){
+    return db.raw('SELECT p.* , ' +
+    '(SELECT COUNT(*) FROM likes ' +
+    'WHERE p.id = project_id) ' +
+    'AS "likes", ' +
+    '(SELECT COUNT(*) FROM likes ' +
+    'WHERE p.id = project_id AND user_id = '+ userId +') '+
+    'AS "liked" ' +
+    'FROM projects p ' +
+    'WHERE private = 0')
+
+    .then(function(query){
+      return query.rows;
+    })
+  } else{
+    return Project.countLikesWhere('private = '+0);
+  }
 };
 
 Project.isPrivate = function(projectId){
