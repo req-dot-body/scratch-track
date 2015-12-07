@@ -56,7 +56,8 @@ Likes.findByProject = function(projectId, userId){
       '(SELECT COUNT(*) FROM likes ' +
       'WHERE p.id = project_id AND user_id = '+ userId +') '+
       'AS "liked" ' +
-      'FROM projects p')
+      'FROM projects p ' +
+      'WHERE p.id = '+projectId)
     .then(function(query){
       return query.rows;
     })
@@ -66,7 +67,8 @@ Likes.findByProject = function(projectId, userId){
       '(SELECT COUNT(*) FROM likes ' +
       'WHERE p.id = project_id) ' +
       'AS "likes" ' +
-      'FROM projects p')
+      'FROM projects p '+
+      'WHERE p.id = '+projectId)
     .then(function(query){
       return query.rows;
     })

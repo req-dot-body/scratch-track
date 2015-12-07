@@ -29,10 +29,11 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', '$http',
     .then(function(){
       return Like.getLikes($scope.project.id)
     })
-    .then(function(response){
-      console.log('res', response);
-      $scope.project.likes = response.data.likes;
-      $scope.project.liked = response.data.liked;
+    .then(function(res){
+      var info = res.data[0]
+      console.log('info', info);
+      $scope.project.likes = info.likes;
+      $scope.project.liked = info.liked;
     })
   }
 
