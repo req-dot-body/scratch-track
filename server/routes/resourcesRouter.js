@@ -28,7 +28,6 @@ router.post('/:resourceType/', helper.requireAuth, function (req, res) {
   //passes in the type of resource, attributes, and user id to the model
   Resource.create(resourceType, ids, resourceInfo)
   .then(function(resource){
-    console.log('whats going on hurrr?', resource);
     //changes updated_at on project
     Project.updateResource(resource.project_id)
     .then(function(){
@@ -46,19 +45,24 @@ router.post('/:resourceType/', helper.requireAuth, function (req, res) {
 
 });
 
-// TODO : how to handle for public?
 // Get resource by id
 router.get('/:resourceType/:resourceId', function (req, res) {
-  console.log('getting resource');
   var resourceType = req.params.resourceType;
-  var ids = {
-    user: req.session.passport.user.id,
-    resource: req.params.resourceId
-  };
+  var userId;
 
-  Resource.findById(resourceType, ids)
+  if (req.session.passport.user){
+    userId = req.session.passport.user.id;
+  }
+
+  Resource.findById(resourceType, req.params.resourceId)
   .then(function(resource){
-    res.status(200).send(resource);
+    //checks that resource should be available to this user
+    if (resource.private && resource.owner_id !== userId){
+      console.log('user not permitted to access resource');
+      res.sendStatus(404);
+    } else {
+      res.status(200).send(resource);
+    }
   })
   .catch(function(err){
     console.log('could not find resource');
@@ -68,7 +72,6 @@ router.get('/:resourceType/:resourceId', function (req, res) {
 
 // Edit resource by id
 router.put('/:resourceType/:resourceId', helper.requireAuth, function (req, res) {
-  console.log('editing resource');
   var resourceType = req.params.resourceType;  
   var ids = {
     user: req.session.passport.user.id,

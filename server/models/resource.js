@@ -5,12 +5,10 @@ var Resource = {};
 //resource model represents Lyrics, Recordings, Stablature, and Notes
 
 //finds one resource by id
-Resource.findById = function(tableName, ids){
-	//checks that it belongs to authed user
+Resource.findById = function(tableName, resourceId){
 	return db.table('projects')
-	.innerJoin(tableName, 'projects.id', '=', tableName+'.project_id')
-	.where('projects.owner_id', '=', ids.user)
-	.andWhere(tableName + '.id', '=', ids.resource)
+		.join(tableName, 'projects.id', '=', tableName+'.project_id')
+		.where(tableName + '.id', '=', resourceId)
 	.then(function(rows){
 		var resourceInfo = rows[0]
 		if (!resourceInfo) throw 404;

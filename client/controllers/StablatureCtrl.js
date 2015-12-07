@@ -1,6 +1,6 @@
 var moment = require('moment/moment');
 
-app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 'Project',
+app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 'Project', 
 	function($scope, $state, $timeout, Stablature, Project) {
 
 	$scope.stabList = [];
