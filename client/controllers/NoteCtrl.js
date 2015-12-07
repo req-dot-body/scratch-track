@@ -1,5 +1,5 @@
-app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', 'Resource',
- function($scope, $state,$timeout, Note, Project, Resource) {
+app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
+ function($scope, $state, Note, Project, Resource) {
 
   var projectId = $state.params.id;
 
@@ -33,9 +33,7 @@ app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', '
   };
 
   $scope.closeAccordion = function(){
-    $timeout(function() {
-      $('#create-note .accordion-title').trigger('click');
-    }, 500);
+    Resource.closeAccordion();
   };
   
   $scope.getAll = function (projectId) {

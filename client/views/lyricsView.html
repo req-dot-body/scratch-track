@@ -10,7 +10,7 @@
         </p>
       </section>
       
-      <zf-accordion id="create-lyric" auto-open="false">
+      <zf-accordion class="create-resource" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
           <br>
           <form name="newLyricForm" class="form-group" ng-submit="add(newLyric); submit();" novalidate>
@@ -36,7 +36,7 @@
       
       <zf-accordion id="lyric-revision" style="display: none;">
         <zf-accordion-item class="title" title="Create New Revision">
-          <form name="lyricRevisionForm" class="form-group" ng-submit="toggleElement('lyric-revision'); toggleElement('create-lyric'); add(newLyric);" novalidate>
+          <form name="lyricRevisionForm" class="form-group" ng-submit="toggleElement('lyric-revision'); toggleElement('create-resource'); add(newLyric);" novalidate>
             <label>Revision Title:</label>
             <textarea class="lyric-textarea" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
 
@@ -45,7 +45,7 @@
 
             <button class="button" type="submit" href="#" >SAVE</button>
 
-            <a ng-click="toggleElement('lyric-revision'); toggleElement('create-lyric');" class="button">CANCEL</a>   
+            <a ng-click="toggleElement('lyric-revision'); toggleElement('create-resource');" class="button">CANCEL</a>   
           </form>      
         </zf-accordion-item>
       </zf-accordion>
@@ -72,7 +72,7 @@
               <label>Lyric Body:</label>
               <textarea class="lyric-textarea" id="lyrictext" ng-model="lyric.text" readonly="readonly"></textarea>
 
-              <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-lyric'); update(lyric.name, lyric.text);">CREATE REVISION</a>
+              <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-resource'); update(lyric.name, lyric.text);">CREATE REVISION</a>
 
               <a class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); toggleElement('lyrictitle'); edit(lyric.id, lyric)">EDIT</a>
 

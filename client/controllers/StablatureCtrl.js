@@ -1,5 +1,5 @@
-app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 'Project', 'Resource',
-	function($scope, $state, $timeout, Stablature, Project, Resource) {
+app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project', 'Resource',
+	function($scope, $state, Stablature, Project, Resource) {
 
 	$scope.stabList = [];
 
@@ -49,10 +49,9 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 	$scope.closeEditor = function(){
 		$scope.stabInfo = $.extend({}, defaultStab);
 		// $('.accordion div').removeClass('is-active');
-		$timeout(function() {
-		  $('#create-stab .accordion-title').trigger('click');
-		}, 500);
+		Resource.closeAccordion();
 	};
+
 
 	$scope.submitError = false; 
 

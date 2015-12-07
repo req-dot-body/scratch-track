@@ -1,4 +1,4 @@
-app.factory('Resource', ['$http', function($http) {
+app.factory('Resource', ['$http', '$timeout', function($http, $timeout) {
 
 
 var moment = require('moment/moment');
@@ -19,9 +19,15 @@ var sortBy = function(field){
   }
   else {
     sort.sortField = field;
-    console.log('sortField', sort.sortField);
     sort.sortDirection = true;
   }
+};
+
+
+var closeAccordion = function(){
+  $timeout(function() {
+    $('.create-resource .accordion-title').trigger('click');
+  }, 500);
 };
 
 
@@ -29,7 +35,8 @@ return{
   moment: moment,
   formatDate: formatDate,
   sort: sort,
-  sortBy: sortBy
+  sortBy: sortBy,
+  closeAccordion: closeAccordion
 }
 
   

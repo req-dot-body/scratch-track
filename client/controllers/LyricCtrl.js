@@ -1,5 +1,5 @@
-app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project', 'Resource', 
-  function($scope, $state, $timeout, Lyric, Project, Resource) {
+app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource', 
+  function($scope, $state, Lyric, Project, Resource) {
 
   var projectId = $state.params.id;
 
@@ -52,9 +52,7 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
   
 
   $scope.closeAccordion = function(){
-    $timeout(function() {
-      $('#create-lyric .accordion-title').trigger('click');
-    }, 500);
+    Resource.closeAccordion();
   };
   
 
@@ -136,11 +134,7 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
 
 
   // Makes textareas expand as you type
-  $("textarea").keyup(function(e) {
-    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
-      $(this).height($(this).height()+1);
-    };
-  });
+
 
   // Initial Setup
   $scope.getAll(projectId);
