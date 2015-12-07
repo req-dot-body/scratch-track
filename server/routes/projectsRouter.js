@@ -23,8 +23,15 @@ router.get('/', helper.requireAuth, function (req, res) {
 
 // Gets all public projects
 router.get('/public', (req, res) => {
-  Project.findByPublic()
-  .then((projects) => {    
+  var userId; 
+
+  //checks if a user is authed
+  if (req.session.passport.user){
+    userId = req.session.passport.user.id;
+  } 
+
+  Project.findByPublic(userId)
+  .then((projects) => {
     res.json({ projects: projects });
   })
   .catch((err) => {
@@ -35,7 +42,6 @@ router.get('/public', (req, res) => {
 
 // Create new project
 router.post('/', helper.requireAuth, function (req, res) {
-  console.log('making a new project');
   var now = Math.round(Date.now()/1000);
   console.log('session stuff:', req.session);
   var projectInfo = {

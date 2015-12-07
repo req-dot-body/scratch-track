@@ -5,7 +5,7 @@ var app = helpers.app;
 
 describe('Projects', function() {
 
-  var session = {passport: {user: {}}};
+  var session = {passport: {}};
 
   before(function() {
       // mocks a logged in user
@@ -29,7 +29,7 @@ describe('Projects', function() {
         .then(function(){
           return helpers.authedUser(0)
           .then(function(id){
-            session.passport.user.id = id;
+            session.passport = {user: {id: id}};
           })
         })
   })
@@ -164,6 +164,33 @@ describe('Projects', function() {
       return request(app)
       .post('/projects/'+id+'/like')
       .expect(400)
+    })
+  })
+
+  it('can get like information on public projects', function(){
+    return helpers.createProject(session.passport.user.id)
+    .then(function(project){
+      var id = project.id;
+      return request(app)
+      .put('/projects/'+id)
+      .send({private: 0})
+      .expect(200)
+    })
+    .then(function(res){
+      id = res.body.id;
+
+      return request(app)
+      .post('/projects/'+id+'/like')
+      .expect(201)
+    })
+    .then(function(){
+      return request(app)
+      .get('/projects/public')
+    })
+    .then(function(res){
+      var project = res.body.projects[0];
+      expect(project.likes).to.equal('1');
+      expect(project.liked).to.equal('1');
     })
   })
 
