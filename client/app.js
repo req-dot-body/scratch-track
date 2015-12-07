@@ -117,7 +117,7 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     .state('main.project_edit.dash', {
       url:'/dash',
       authenticate: true,
-      params:{created:false},
+      params:{created:false, signedUp:false},
       templateUrl: 'views/projectDash.html',
       controller: 'ProjectDashCtrl' 
     })
