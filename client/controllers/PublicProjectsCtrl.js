@@ -6,6 +6,8 @@ function PublicProjectsCtrl($scope, $state, Project) {
   $scope.projects = [];
 
 
+  $scope.status = { public: true };
+
   $scope.getProjects = function () {
     Project.getPublicProjects()
     .then(function (projects) {

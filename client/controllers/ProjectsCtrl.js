@@ -3,6 +3,8 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q','signe
   console.log('Current state:', $state.current);
   console.log('this is signedUp status', signedUp)
 
+  $scope.prefix = {prefix: 'project_edit'};
+
 //Get projects from Projects factory
   $scope.getProjects = function () {
     Project.getAllProjects()

@@ -1,4 +1,4 @@
-  <div class="grid-block">
+  <div ng-if="!status.public" class="grid-block">
     <div class="grid-block small-12 medium-4 medium-offset-4">
       <a id = 'tour5' ng-click='createProject()' class="success expand button">Create New Project</a>
     </div>
@@ -14,17 +14,18 @@
     </section>
     <br>
 
-    <h3>Latest Projects You've Worked on:</h3>
+    <h3 ng-if="!status.public">Latest Projects You've Worked on:</h3>
   </div>
-
   <br>
 <div class="grid-block text-center">
-  <div ng-if='projects.length>0'class="grid-container small-11 medium-3" ng-repeat="project in projects|limitTo:-1|orderBy:'updated_at'">
-    <a ui-sref = "main.project_edit({id:project.id})"><div class="dark card">
-      <div class="card-divider project-recent">
-        {{project.name}}
+  <div ng-if='projects.length>0' class="grid-container small-11 medium-3" ng-repeat="project in projects|limitTo:-1|orderBy:'updated_at'">
+    <a ui-sref="{{ status.public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}">
+      <div class="dark card">
+        <div class="card-divider project-recent">
+          {{project.name}}
+        </div>
       </div>
-    </div></a>
+    </a>
   </div>
 </div>
 <br>
@@ -55,12 +56,12 @@
         <p>Created at: {{project.created_at*1000|date}}</p>
         <p>Updated at: {{project.updated_at*1000|date}}</p>
         <likebutton project="project"></likebutton>
-        <a  zf-open='deleteModal' class="alert expand hollow text-center button">Delete Project</a> 
+        <a ng-if="!status.public" zf-open='deleteModal' class="alert expand hollow text-center button">Delete Project</a> 
         </div>
 
         <hr />
         </div>  
-        <div zf-modal="" id="deleteModal" animation-out="slideOutUp">
+        <div ng-if="!status.public" zf-modal="" id="deleteModal" animation-out="slideOutUp">
           <a zf-close="deleteModal" class="close-button">×</a>
           <h3>Delete Project: {{project.name}}</h3>
           <p>Warning this operation can't be undone</p>
