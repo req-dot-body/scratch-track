@@ -4,33 +4,41 @@ var Resource = require('./resource');
 
 var Project = {};
 
-// finds a project by id
-// NOTES: this needs to be expanded once collabs and 
-//        public projects become a thing
-Project.findById = function(projectId, userId) {
-  return db('projects').select()
+Project.countLikesWhere = function(condition){
+  return db.raw('SELECT projects.* , ' +
+    'COUNT(likes.project_id) AS "likes" FROM projects ' +
+    'LEFT JOIN likes ON likes.project_id = projects.id ' +
+    'WHERE '+ condition +
+    ' GROUP BY projects.id')
+  .then(function(query){
+    return query.rows;
+  })
+}
 
-  return db('projects').select('*').where({id: projectId})
+// finds a project by id
+Project.findById = function(projectId, userId) {
+    //this cluster fuck adds on a like count 
+    //to the project with a particular ID
+  return Project.countLikesWhere('projects.id = '+projectId)
   .then(function(rows) {
     var project = rows[0];
+
     if (!project) { throw 404; }
     //checks that user owns that project
-    if (project.owner_id !== userId) { throw 401; }
+    //if project is private 
+    if (project.private && project.owner_id !== userId) { throw 401; }
     //projects exists and belongs to the expected user
     return project;
   });
 };
 
 // returns all projects for a user 
-Project.findByUser = function (owner_id) {
-  return db('projects').select('*').where({owner_id: owner_id})
-  .then(function(rows){
-    return rows;
-  });
+Project.findByUser = function (userId) {
+   return Project.countLikesWhere('owner_id = '+userId);
 };
 
 Project.findByPublic = function () {
-  return db.select('*').from('projects').where({ private: 0 });
+  return Project.countLikesWhere('private = '+0);
 };
 
 Project.isPrivate = function(projectId){

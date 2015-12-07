@@ -56,16 +56,12 @@ router.post('/', helper.requireAuth, function (req, res) {
   });
 });
 
-// TODO : how to handle for public projects
 // Get a project by id
 router.get('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
   //grab the project from db
   Project.findById(projectId, req.session.passport.user.id)
   .then(function(project){
-
-    //!!add like info here
-
     res.status(200).send(project);
   })
   .catch(function(err){
