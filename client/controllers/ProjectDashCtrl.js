@@ -2,9 +2,16 @@
 var moment = require('moment/moment');
 
 app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q', function($scope,$state,Project, FoundationApi, nzTour, $q) {
-
+//gets the current project ID
 projectId = $state.params.id; 
 
+//declares data for editing window in dash view
+$scope.editData = {
+      name:'',
+      description:''
+};
+
+//THIS IS MOCK DATA AND SHOULD BE DELETED
 $scope.testRecording = {
   name: "a recording",
   description: "that's pretty much all there is to it",
@@ -43,36 +50,44 @@ $scope.testLyrics = {
   description: 'a little something I came up with'    
 };
 
-
+//gets information of project and saves it for the controller
 Project.getProject(projectId)
 .then(function(response){
   $scope.projectData = response.data;
-  
+  console.log($scope.projectData)
+  //if project does not have a name it will add a nave to it
   if ($scope.projectData.name === null){
     $scope.projectData.name = 'MyProject: '+ projectId;
     $scope.saveProjectInfo($scope.projectData);
   }
-
+  //this variable allows to know if the project was just created, if this happen the view will open a model to allow user to put information about it
   $scope.projectCreated = false;
   if($state.params.created){
     $scope.projectCreated = true;
   }
 })
 
-
+//changes the date format
 $scope.formatDate = function(date) {
   return moment.unix(date).calendar();
 };
 
+//delets a project and redirects to main view
 $scope.deleteProject = function(id){
   Project.deleteProject(id)
   .then(function(){
     $state.go('main.projects')
   })
 };
-
-
+//saves the project
 $scope.saveProjectInfo = function(){
+  //if user changes the name or description will be saved in a temp variable and only be modified in the database if user clicks 'save'
+  if($scope.editData.name !== $scope.projectData.name){
+    $scope.projectData.name = $scope.editData.name;
+  }
+   if($scope.editData.description !== $scope.projectData.description){
+    $scope.projectData.description = $scope.editData.description;
+  }
   Project.editProject($scope.projectData)
 };
 

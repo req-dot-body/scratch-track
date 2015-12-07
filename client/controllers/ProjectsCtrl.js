@@ -75,7 +75,7 @@ var projectTour = {
 };
 
 //Tour is only triggered if the user is just signed in
-  if(!$state.params.signedUp){
+  if($state.params.signedUp){
 
     nzTour.start(projectTour)
         .then(function() {
