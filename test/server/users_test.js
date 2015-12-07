@@ -38,7 +38,7 @@ describe('The User', function() {
   // });
 
   describe('Can', function () {
-    it('They can sign up', function () {
+    xit('They can sign up', function () {
       return request(app)
         .post('/api/users/signup')
         .send(fakeUser1)
@@ -53,7 +53,7 @@ describe('The User', function() {
         .expect(200);
     });
 
-    it('They can sign out', function () {
+    xit('They can sign out', function () {
       return request(app)
         .post('/api/users/signout')
         .expect(200);
@@ -61,7 +61,7 @@ describe('The User', function() {
   });
 
   describe('Cant', function () {
-    it('Sign in without existing', function () {
+    xit('Sign in without existing', function () {
       return request(app)
         .post('/api/users/signin')
         .send(fakeUser2)

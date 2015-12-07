@@ -2,14 +2,13 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Project = require('../models/project.js'); 
+var Like = require('../models/like.js');
 var Resource = require('../models/resource.js');
 
 var helper = require('../helper');
 
-// Get all projects that can be accessed
+// Get all projects for a user
 router.get('/', helper.requireAuth, function (req, res) {
-    //this needs to change once public projects and
-    //collabs become a thing 
     console.log('session stuff:', req.session);
     Project.findByUser(req.session.passport.user.id)
     .then(function(projects){
@@ -24,7 +23,14 @@ router.get('/', helper.requireAuth, function (req, res) {
 
 // Gets all public projects
 router.get('/public', (req, res) => {
-  Project.findByPublic()
+  var userId; 
+
+  //checks if a user is authed
+  if (req.session.passport.user){
+    userId = req.session.passport.user.id;
+  } 
+
+  Project.findByPublic(userId)
   .then((projects) => {
     res.json({ projects: projects });
   })
@@ -36,7 +42,6 @@ router.get('/public', (req, res) => {
 
 // Create new project
 router.post('/', helper.requireAuth, function (req, res) {
-  console.log('making a new project');
   var now = Math.round(Date.now()/1000);
   console.log('session stuff:', req.session);
   var projectInfo = {
@@ -57,7 +62,6 @@ router.post('/', helper.requireAuth, function (req, res) {
   });
 });
 
-// TODO : how to handle for public projects
 // Get a project by id
 router.get('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
@@ -118,6 +122,46 @@ router.delete('/:projectId', helper.requireAuth, function (req, res) {
     res.sendStatus(404);
   });
 });
+
+router.get('/:projectId/like', function(req, res){
+  var projectId = req.params.projectId
+  var userId;
+
+  if (req.session.passpost.user){
+    userId = req.session.passport.user.id;
+  }
+
+  Like.countByProject(projectId, userId)
+  .then(function(likeInfo){
+    res.status(200).send(likeInfo);
+  })
+  .catch(function(err){
+    console.log('failed to get like info for your project')
+    res.sendStatus(400);
+  })
+
+})
+
+router.post('/:projectId/like', helper.requireAuth, function (req, res){
+  var ids = {
+    project: req.params.projectId,
+    user: req.session.passport.user.id
+  };
+
+  Like.toggleLike(ids.user, ids.project)
+  .then(function(like){
+    if (like) {
+      res.status(201).send(like);
+    } else{
+      res.sendStatus(200);
+    }
+  })
+  .catch(function(){
+    console.log('failed to toggle like');
+    res.sendStatus(400);
+  })
+
+})
 
 // TODO : how to handle for public projects
 // Get all resource of a type associated with a specific project

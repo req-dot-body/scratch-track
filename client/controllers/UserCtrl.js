@@ -22,7 +22,14 @@ app.controller('UserCtrl', ['$scope','User', function($scope, User) {
     newUser.first = $scope.first;
     newUser.last = $scope.last;
     //send JSON object to server via factory call
-    User.signUp(newUser);
+    User.signUp(newUser)
+    .then (function (){
+      var userData = {};
+      userData.email = $scope.email;
+      userData.password = $scope.password;
+      //sends true to identify that user just signedup
+      User.logIn(userData,true);
+    })
   } 
 
 }]);

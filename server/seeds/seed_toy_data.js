@@ -15,6 +15,7 @@ exports.seed = function(knex, Promise) {
     knex('stablature').del(),
     knex('recordings').del(),
     knex('lyrics').del(),
+    knex('likes').del(),
     knex('projects').del(),
     knex('users').del(),
 

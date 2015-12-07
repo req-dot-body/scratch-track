@@ -7,6 +7,7 @@ require('./ResourceTemplate');
 require('./Projects');
 require('./ProjectDash');
 require('./LikeButton');
+require('./Sort');
 
 //resource directives
 require('./LyricsEntry');

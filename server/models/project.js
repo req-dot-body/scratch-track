@@ -1,36 +1,71 @@
 var db = require('../lib/db');
-var User = require('./user.js');
-var Resource = require('./resource.js');
+var User = require('./user');
+var Resource = require('./resource');
 
 var Project = {};
 
+//this cluster fuck adds on a like count 
+//to the project with a particular ID
+Project.countLikesWhere = function(condition){
+  return db.raw('SELECT p.* , ' +
+    '(SELECT COUNT(*) FROM likes ' +
+    'WHERE p.id = project_id) ' +
+    'AS "likes" ' +
+    'FROM projects p ' +
+    'WHERE ' + condition)
+  .then(function(query){
+    return query.rows;
+  })
+}
+
 // finds a project by id
-// NOTES: this needs to be expanded once collabs and 
-//        public projects become a thing
 Project.findById = function(projectId, userId) {
-  return db('projects').select('*').where({id: projectId}).limit(1)
+  return Project.countLikesWhere('p.id = '+projectId)
   .then(function(rows) {
     var project = rows[0];
+
     if (!project) { throw 404; }
     //checks that user owns that project
-    if (project.owner_id !== userId) { throw 401; }
+    //if project is private 
+    if (project.private && project.owner_id !== userId) { throw 401; }
     //projects exists and belongs to the expected user
     return project;
   });
 };
 
 // returns all projects for a user 
-// NOTE: this needs to be expanded once collabs and 
-//      public projects become a thing
-Project.findByUser = function (owner_id) {
-  return db('projects').select('*').where({owner_id: owner_id})
-  .then(function(rows){
-    return rows;
-  });
+Project.findByUser = function (userId) {
+   return Project.countLikesWhere('owner_id = '+userId);
 };
 
-Project.findByPublic = function () {
-  return db.select('*').from('projects').where({ private: 0 });
+Project.findByPublic = function (userId) {
+  //if a user is logged in 
+  //object will contained 'liked' field 
+
+  if (userId){
+    return db.raw('SELECT p.* , ' +
+    '(SELECT COUNT(*) FROM likes ' +
+    'WHERE p.id = project_id) ' +
+    'AS "likes", ' +
+    '(SELECT COUNT(*) FROM likes ' +
+    'WHERE p.id = project_id AND user_id = '+ userId +') '+
+    'AS "liked" ' +
+    'FROM projects p ' +
+    'WHERE private = 0')
+
+    .then(function(query){
+      return query.rows;
+    })
+  } else{
+    return Project.countLikesWhere('private = '+0);
+  }
+};
+
+Project.isPrivate = function(projectId){
+  return db('projects').where('id', '=', projectId)
+  .then(function(rows){
+    return rows[0].private;
+  })
 };
 
 // creates a new project
@@ -64,14 +99,16 @@ Project.updateResource = function(projectId) {
   var updated = {
     updated_at: Math.round(Date.now()/1000)
   };
-  console.log('updating resource');
   return db('projects').where('id', '=', projectId).update(updated);
 };
 
 //deletes an entire project
 Project.del = function(projectId){
-  //deleting all associated resources
+  //deleting all associated resources & likes
   return Resource.deleteAll(projectId)
+  .then(function(){
+    return db('likes').where('project_id', '=', projectId).del();
+  })
   .then(function(){
     //deleting project
     return db('projects').where('id', '=', projectId).del();  

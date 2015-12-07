@@ -3,8 +3,9 @@
       <a id = 'tour5' ng-click='createProject()' class="success expand button">Create New Project</a>
     </div>
   </div>
-  
-  <div class="text-center">
+
+  <div class="text-center" id='tour6'>
+
     <section class="spaced">
       <h1>Projects</h1>
 
@@ -54,6 +55,7 @@
         <p>Description:{{project.description}}</p>
         <p>Created at: {{project.created_at*1000|date}}</p>
         <p>Updated at: {{project.updated_at*1000|date}}</p>
+        <likebutton project="project"></likebutton>
         <a  zf-open='deleteModal' class="alert expand hollow text-center button">Delete Project</a> 
         </div>
 
@@ -68,3 +70,4 @@
     </div>
   </div>
 
+  <zf-notification-set id="main-notifications" position="top-right"></zf-notification-set>

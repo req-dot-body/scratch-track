@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/req-dot-body/scratch-track",
   "dependencies": {
+    "alertify.js": "^1.0.6",
     "angular": "^1.4.7",
     "angular-animate": "^1.4.7",
     "angular-cookies": "^1.4.7",
@@ -44,6 +45,7 @@
     "express-livereload": "0.0.24",
     "express-session": "^1.12.1",
     "foundation-apps": "^1.1.0",
+    "install": "^0.4.0",
     "jquery": "^2.1.1",
     "knex": "^0.8.6",
     "moment": "^2.10.6",
@@ -51,6 +53,7 @@
     "node-sass-endpoint": "^0.3.0",
     "node-uuid": "^1.4.7",
     "nodemon": "^1.8.1",
+    "npm": "^3.5.1",
     "nz-tour": "^1.0.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",

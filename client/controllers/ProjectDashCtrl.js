@@ -106,47 +106,61 @@ $scope.saveProjectInfo = function(){
   })
 
 
-//Tour
-
-var tour = {
+var newProjectTour = {
     config: {dark:true}, 
     steps: [{
-        target: '#tour6',
-        content: 'Your project can be either Public(anybody can see it) or Private, Default is private',
-    }, {
         target: '#tour7',
-        content: 'Put A name and description!, then click next...',
+        content: 'Awsome you are rocking!',
     }, {
         target: '#tour8',
-        content: 'And here you can see your projects at any time',
-    },{
-        target: '#tour9',
-        content: 'This is your Project Search Bar',
+        content: 'You can make your project Public watchout! other users can edit it! default is Private',
     }, {
+        target: '#tour9',
+        content: 'Change the name!',
+    },{
         target: '#tour10',
-        content: 'Here You Create a new Project!, I am going to create one for you! Enjoy!',
-        before: function() {
-                    var d = $q.defer();
-                    d.resolve();
-                    return d.promise;
-                },
-        after: function() {
-            var d = $q.defer();
-            $scope.createProject();
-            d.resolve();
-            return d.promise;
-        }
+        content: 'Add... a description and Save when you Finish!',
+  
     }]
 };
 
-// nzTour.start(tour)
-//     .then(function() {
-//         console.log('Tour Finished!');
-//     })
-//     .catch(function() {
-//         console.log('Tour Aborted!')
-//     });
+// var newProjectTour = {
+//     config: {dark:true}, 
+//     steps: [{
+//         target: '#tour7',
+//         content: 'Awsome you are rocking!',
+//     }, {
+//         target: '#tour8',
+//         content: 'You can make your project Public watchout! other users can edit it! default is Private',
+//     }, {
+//         target: '#tour9',
+//         content: 'Change the name!',
+//     },{
+//         target: '#tour10',
+//         content: 'Add... a description and Save when you Finish!',
+//         after: function(){
+//             var d = $q.defer();
+//             alertify.logPosition("bottom right")
+//                     .log("Save Your changes!")           
+//                     .closeLogOnClick(true) 
+//             d.resolve(); // or d.reject()
+//             return d.promise
+//         }
+//     }]
+// };
 
+//Tour is only triggered if the user is just signed in
+  if(!$state.params.signedUp){
+
+    nzTour.start(newProjectTour)
+        .then(function() {
+          nzTour(dashTour)
+            console.log('Tour Finished!');
+        })
+        .catch(function() {
+            console.log('Tour Aborted!')
+        });
+  }
 
 
 }]);

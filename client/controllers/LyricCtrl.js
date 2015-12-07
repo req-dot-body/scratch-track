@@ -32,6 +32,17 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
      $scope.submitted = true;
   };
 
+  
+  $scope.sortBy = function(field){
+    if ($scope.sortField === field){
+      $scope.sortDirection = !$scope.sortDirection;
+    }
+    else {
+      $scope.sortField = field;
+      $scope.sortDirection = true;  
+    }
+  };
+
 
   $scope.toggleElement = function(id) {
     div = document.getElementById(id);
@@ -95,10 +106,18 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
 
 
   $scope.add = function(newLyric){
+    console.log('text:', newLyric.text);
+    console.log(typeof newLyric.text);
+    if (newLyric.text === '') {
+      console.log('hitting')
+      return;
+    }
+
     Lyric.create(newLyric)
     .then(function() {
       $scope.clearValues();
       $scope.getAll(projectId);
+      $scope.closeAccordion();
     });
   };
 

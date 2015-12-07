@@ -13,7 +13,7 @@
       <zf-accordion id="create-lyric" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
           <br>
-          <form name="newLyricForm" class="form-group" ng-submit="add(newLyric); submit(); closeAccordion();" novalidate>
+          <form name="newLyricForm" class="form-group" ng-submit="add(newLyric); submit();" novalidate>
             <label>Lyric Title:</label>
             <textarea class="lyric-textarea" type="text" name="lyric-title" ng-model="newLyric.name" placeholder="Enter title here." required></textarea>
             <br>
@@ -54,11 +54,15 @@
       <br>
       <div class="grid-block">
         <div class="grid-content">
+
+          <input type="text" placeholder="Search Lyrics..." ng-model="lyricSearch">
           <div class="title-bar">
             <span class="title center">Your Lyrics for This Project:</span>
           </div>
 
-          <zf-accordion auto-open="false" ng-repeat="lyric in lyrics.data | orderBy:'-created_at'" ng-model="lyrics">
+          <sort></sort>
+
+          <zf-accordion auto-open="false" ng-repeat="lyric in lyrics.data | orderBy: sortField: sortDirection | filter: lyricSearch" ng-model="lyrics">
             <zf-accordion-item title="{{ formatDate(lyric.created_at) }} - {{ lyric.name}}">
               <div class="lyric-textarea" id="lyrictitle" style="display: none;">
                 <label>Lyric Title:</label>
