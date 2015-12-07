@@ -46,6 +46,33 @@ Likes.findOne = function(userId, projectId){
   .andWhere('user_id', '=', userId)
 }
 
+//counts likes for a project
+Likes.findByProject = function(projectId, userId){
+  if (userId){
+     return db.raw('SELECT p.id , ' +
+      '(SELECT COUNT(*) FROM likes ' +
+      'WHERE p.id = project_id) ' +
+      'AS "likes", ' +
+      '(SELECT COUNT(*) FROM likes ' +
+      'WHERE p.id = project_id AND user_id = '+ userId +') '+
+      'AS "liked" ' +
+      'FROM projects p')
+    .then(function(query){
+      return query.rows;
+    })
+  }
+  else{
+    return db.raw('SELECT p.id , ' +
+      '(SELECT COUNT(*) FROM likes ' +
+      'WHERE p.id = project_id) ' +
+      'AS "likes" ' +
+      'FROM projects p')
+    .then(function(query){
+      return query.rows;
+    })
+  }
+}
+
 //deletes all of a users likes
 //not currently necessary as there 
 //is no way to delete an account
