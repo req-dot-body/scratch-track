@@ -46,6 +46,7 @@
       </zf-accordion>
       <br> 
       <br>
+
       <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
       <div class="title-bar">
         <span class="title center">Your Stablature for This Project:</span>
@@ -54,7 +55,7 @@
       <br>
       <div class="grid-block">
         <div class="grid-block align-justify">
-          <ul ng-repeat="stab in stabList | orderBy: sortField: sortDirection | filter: stabSearch">
+          <ul ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
             <div class="grid-block">
               <li class="spaced grid-content" style="list-style: none;" >
                 <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
