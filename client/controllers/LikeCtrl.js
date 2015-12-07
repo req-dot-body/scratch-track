@@ -1,12 +1,15 @@
 app.controller('LikeCtrl', ['$scope','$state', 'Like', function($scope, $state, Like) {
 
   $scope.buttonContent = 'thumb_up'
+  $scope.textContent = "Like this project"
 
-  $scope.buttonToggle = function () {
+  $scope.contentToggle = function () {
     if ($scope.buttonContent === 'thumb_up') {
       $scope.buttonContent = 'thumb_down';
+      $scope.textContent = "Un-like this project"
     } else {
       $scope.buttonContent = 'thumb_up';
+      $scope.textContent = "Like this project"
     }
   }
 
@@ -26,7 +29,7 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', function($scope, $state, 
       $scope.project.likes = parseInt($scope.project.likes) + 1;
       $scope.project.likes = $scope.project.likes.toString();
     }
-    $scope.buttonToggle();
+    $scope.contentToggle();
 
     //send POST request to API endpoint
     Like.like($scope.project.id);
