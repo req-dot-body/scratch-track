@@ -1,8 +1,9 @@
-var moment = require('moment/moment');
-
-app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project', function($scope, $state, $timeout, Lyric, Project) {
+app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource', 
+  function($scope, $state, Lyric, Project, Resource) {
 
   var projectId = $state.params.id;
+
+  $scope.sort = Resource.sort;
 
   $scope.newLyric = {
     name: '',
@@ -34,13 +35,7 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
 
   
   $scope.sortBy = function(field){
-    if ($scope.sortField === field){
-      $scope.sortDirection = !$scope.sortDirection;
-    }
-    else {
-      $scope.sortField = field;
-      $scope.sortDirection = true;  
-    }
+    Resource.sortBy(field);
   };
 
 
@@ -57,14 +52,12 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
   
 
   $scope.closeAccordion = function(){
-    $timeout(function() {
-      $('#create-lyric .accordion-title').trigger('click');
-    }, 500);
+    Resource.closeAccordion();
   };
   
 
   $scope.formatDate = function(date) {
-    return moment.unix(date).calendar();
+    return Resource.formatDate(date);
   };
 
 
@@ -141,11 +134,7 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
 
 
   // Makes textareas expand as you type
-  $("textarea").keyup(function(e) {
-    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
-      $(this).height($(this).height()+1);
-    };
-  });
+
 
   // Initial Setup
   $scope.getAll(projectId);

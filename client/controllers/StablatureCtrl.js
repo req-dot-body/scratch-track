@@ -1,11 +1,12 @@
-var moment = require('moment/moment');
-
-app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 'Project',
-	function($scope, $state, $timeout, Stablature, Project) {
+app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project', 'Resource',
+	function($scope, $state, Stablature, Project, Resource) {
 
 	$scope.stabList = [];
 
+	$scope.sort = Resource.sort;
+
 	var projectId = $state.params.id;
+
 	
 	//gets all stabs for this project from factory
 	$scope.getAll = function(){
@@ -29,19 +30,13 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 	//the stab that is being displayed in the editor
 	$scope.stabInfo = $.extend({}, defaultStab);
 
-  $scope.formatDate = function(date) {
-    return moment.unix(date).calendar();
-  };
+	$scope.formatDate = function(date) {
+	  return Resource.formatDate(date);
+	};
 
   //provides sort functionality
   $scope.sortBy = function(field){
-    if ($scope.sortField === field){
-      $scope.sortDirection = !$scope.sortDirection;
-    }
-    else {
-      $scope.sortField = field;
-      $scope.sortDirection = true;  
-    }
+    Resource.sortBy(field);
   };
 
   //opens editor, optional info can be passed in
@@ -54,10 +49,9 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 	$scope.closeEditor = function(){
 		$scope.stabInfo = $.extend({}, defaultStab);
 		// $('.accordion div').removeClass('is-active');
-		$timeout(function() {
-		  $('#create-stab .accordion-title').trigger('click');
-		}, 500);
+		Resource.closeAccordion();
 	};
+
 
 	$scope.submitError = false; 
 
