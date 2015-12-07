@@ -1,12 +1,9 @@
 app.controller('PublicProjectsCtrl', PublicProjectsCtrl);
 
 function PublicProjectsCtrl($scope, $state, Project) {
-  console.log('Public projects controller, state:', $state.current);
-
   $scope.projects = [];
 
-
-  $scope.status = { public: true };
+  $scope.public = true;
 
   $scope.getProjects = function () {
     Project.getPublicProjects()

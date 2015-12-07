@@ -101,6 +101,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
   }
 
   var init = function () {
+    console.log('Getting notes for project', projectId);
     $scope.getAll(projectId);
   }
   init();

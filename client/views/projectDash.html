@@ -1,4 +1,4 @@
-<ul class="dash-menu-bar" id ='tour12'>
+<ul ng-if="!public" class="dash-menu-bar" id="tour12">
   <li><a href="#" ng-click = 'projectCreated=true' zf-open='projectInfo'>Edit</a></li>
   <li><a href="#" zf-open="deleteModal2">Delete</a></li>
   <!-- <li><a ui-sref="main.projects">Back</a></li> -->
@@ -17,7 +17,7 @@
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
     
     <div class=".card-wrapper card-recordings">
-      <a ui-sref="main.project_edit.recordings">
+      <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">
         <!-- <img src="./resources/guitar_banner.jpg"> -->
         <div class="recordings-card-divider text-center">
           Recordings
@@ -33,7 +33,7 @@
     </div>
 
     <div class=".card-wrapper card-notes">
-      <a ui-sref="main.project_edit.notes">
+      <a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">
         <!-- <img src="./resources/notes_banner.jpg"> -->
         <div class="notes-card-divider text-center">
           Notes
@@ -53,7 +53,7 @@
 
   <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
     <div class=".card-wrapper card-lyrics">
-      <a ui-sref="main.project_edit.lyrics">
+      <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">
         <!-- <img src="./resources/lyrics_banner.jpg"> -->
         <div class="lyrics-card-divider text-center">
          Lyrics
@@ -74,7 +74,7 @@
   <div class="grid-content small-12 medium-order-3">
     
     <div class=".card-wrapper card-stablature">
-      <a ui-sref="main.project_edit.stablature">
+      <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">
         <!-- <img src="./resources/stablature_banner.jpg"> -->
         <div class="stablature-card-divider text-center">
           The 'Stablature'

@@ -74,17 +74,53 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       url: '/public',
       authenticate: false,
       templateUrl: 'views/projects.html',
-      controller: 'PublicProjectsCtrl',
+      controller: 'ProjectsCtrl',
+      // controller: 'PublicProjectsCtrl',
     })
 
     .state('main.public_view', {
       url: '/public/{id:int}',
       authenticate: false,
-      templateUrl: 'views/projects.html',
-      controller: 'PublicViewCtrl'
+      templateUrl: 'views/projectEdit.html',
+      controller: 'ProjectEditCtrl'
     })
 
-     .state('main.projects', {
+    .state('main.public_view.dash', {
+      url: '/dash',
+      authenticate: false,
+      templateUrl: 'views/projectDash.html',
+      controller: 'ProjectDashCtrl'
+    })
+
+    .state('main.public_view.lyrics', {
+      url: '/lyrics',
+      authenticate: false,
+      templateUrl: 'views/lyricsView.html',
+      controller: 'LyricCtrl'
+    })
+
+    .state('main.public_view.notes', {
+      url: '/notes',
+      authenticate: false,
+      templateUrl: 'view/notesView.html',
+      controller: 'NoteCtrl'
+    })
+
+    .state('main.public_view.recordings', {
+      url: '/recordings',
+      authetnicate: false,
+      templateUrl: 'views/recordingsView.html',
+      controller: 'RecordingCtrl',
+    })
+
+    .state('main.public_view.stablature', {
+      url: '/stablature',
+      authenticate: false,
+      templateUrl: 'views/stablatureView.html',
+      controller: 'StablatureCtrl'
+    })
+
+    .state('main.projects', {
       url:'/projects',
       authenticate: true,
       templateUrl: 'views/projects.html',

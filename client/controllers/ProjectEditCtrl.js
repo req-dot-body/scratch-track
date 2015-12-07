@@ -17,6 +17,8 @@ Project.getProject(id)
 //go to dash on default
 if($state.is('main.project_edit')){
   $state.go('main.project_edit.dash');
+} else if ($state.is('main.public_view')) {
+  $state.go('main.public_view.dash');
 }
 
 
