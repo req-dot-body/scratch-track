@@ -1,6 +1,5 @@
-var moment = require('moment/moment');
-
-app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', function($scope, $state,$timeout, Note, Project) {
+app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', 'Resource',
+ function($scope, $state,$timeout, Note, Project, Resource) {
 
   var projectId = $state.params.id;
 
@@ -20,7 +19,7 @@ app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', f
 
   //Note Methods:
   $scope.formatDate = function(date) {
-    return moment.unix(date).calendar();
+    return Resource.formatDate(date);
   };
 
   $scope.sortBy = function(field){

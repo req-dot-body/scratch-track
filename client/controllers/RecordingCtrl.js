@@ -1,7 +1,5 @@
-var moment = require('moment/moment');
-
-app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
-  function($scope, $state, Recording, Project) {
+app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Resource', 
+  function($scope, $state, Recording, Project, Resource) {
 
   var projectId = $state.params.id;
 
@@ -66,8 +64,8 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project',
     })
   };
 
-   $scope.formatDate = function(date) {
-    return moment.unix(date).calendar();
+  $scope.formatDate = function(date) {
+    return Resource.formatDate(date);
   };
 
   $scope.sortBy = function(field){

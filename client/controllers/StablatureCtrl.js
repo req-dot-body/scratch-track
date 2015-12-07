@@ -1,7 +1,5 @@
-var moment = require('moment/moment');
-
-app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 'Project',
-	function($scope, $state, $timeout, Stablature, Project) {
+app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 'Project', 'Resource',
+	function($scope, $state, $timeout, Stablature, Project, Resource) {
 
 	$scope.stabList = [];
 
@@ -29,9 +27,9 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 	//the stab that is being displayed in the editor
 	$scope.stabInfo = $.extend({}, defaultStab);
 
-  $scope.formatDate = function(date) {
-    return moment.unix(date).calendar();
-  };
+	$scope.formatDate = function(date) {
+	  return Resource.formatDate(date);
+	};
 
   //provides sort functionality
   $scope.sortBy = function(field){

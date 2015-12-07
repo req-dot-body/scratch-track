@@ -1,6 +1,5 @@
-var moment = require('moment/moment');
-
-app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project', function($scope, $state, $timeout, Lyric, Project) {
+app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project', 'Resource', 
+  function($scope, $state, $timeout, Lyric, Project, Resource) {
 
   var projectId = $state.params.id;
 
@@ -64,7 +63,7 @@ app.controller('LyricCtrl', ['$scope', '$state', '$timeout', 'Lyric', 'Project',
   
 
   $scope.formatDate = function(date) {
-    return moment.unix(date).calendar();
+    return Resource.formatDate(date);
   };
 
 

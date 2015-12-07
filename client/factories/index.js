@@ -6,3 +6,4 @@ require('./RecordingFactory');
 require('./NoteFactory');
 require('./StablatureFactory');
 require('./LikeFactory');
+require('./ResourceFactory');
