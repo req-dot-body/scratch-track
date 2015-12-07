@@ -33,6 +33,17 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
     return moment.unix(date).calendar();
   };
 
+  //provides sort functionality
+  $scope.sortBy = function(field){
+    if ($scope.sortField === field){
+      $scope.sortDirection = !$scope.sortDirection;
+    }
+    else {
+      $scope.sortField = field;
+      $scope.sortDirection = true;  
+    }
+  };
+
   //opens editor, optional info can be passed in
 	$scope.openEditor = function(stabInfo){
 		$scope.stabInfo = stabInfo || $.extend({}, defaultStab);

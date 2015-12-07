@@ -48,34 +48,36 @@
       <br>
       <div class="vertical grid-block">
         <div class="grid-content">
+          <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
           <div class="title-bar">
             <span class="title center">Your Stablature for This Project:</span>
           </div>
-            <ul ng-repeat="stab in stabList | orderBy:'-created_at'">
-              <div class="grid-block align-justify">
-                <li class="spaced" style="list-style: none;" >
-                  <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
+          <sort></sort>
+          <ul ng-repeat="stab in stabList | orderBy: sortField: sortDirection | filter: stabSearch">
+            <div class="grid-block align-justify">
+              <li class="spaced" style="list-style: none;" >
+                <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
+                <div>
+                  <vextab ng-model="stab.code" notation="false"></vextab>
+             
+                  <p><em>{{stab.description}}</em></p>
+                  <a class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
+                  <a class="button" ng-click="">EDIT</a>
+                  <a class="button" zf-open="deleteModal">DELETE</a> 
+                </div>
+
+                <div zf-modal="" id="deleteModal">
                   <div>
-                    <vextab ng-model="stab.code" notation="false"></vextab>
-               
-                    <p><em>{{stab.description}}</em></p>
-                    <a class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
-                    <a class="button" ng-click="">EDIT</a>
-                    <a class="button" zf-open="deleteModal">DELETE</a> 
+                    <h4>Are You Sure That You Want To Delete This Entry?</h4>
+                    <a class="alert button" ng-click="delete(stab.id)">YES, REALLY DELETE</a>
+
+                    <a zf-close="" class="button">NO, GO BACK TO LIST</a>
                   </div>
+                </div>
 
-                  <div zf-modal="" id="deleteModal">
-                    <div>
-                      <h4>Are You Sure That You Want To Delete This Entry?</h4>
-                      <a class="alert button" ng-click="delete(stab.id)">YES, REALLY DELETE</a>
-
-                      <a zf-close="" class="button">NO, GO BACK TO LIST</a>
-                    </div>
-                  </div>
-
-                </li>
-              </div>
-            </ul>
+              </li>
+            </div>
+          </ul>
         </div>
       </div>
 

@@ -23,6 +23,16 @@ app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', f
     return moment.unix(date).calendar();
   };
 
+  $scope.sortBy = function(field){
+    if ($scope.sortField === field){
+      $scope.sortDirection = !$scope.sortDirection;
+    }
+    else {
+      $scope.sortField = field;
+      $scope.sortDirection = true;  
+    }
+  };
+
   $scope.submit = function(){
     $scope.submitted = true;
   };
