@@ -278,8 +278,9 @@ $autocolor: false // When true, all the above colors will be derived from $backg
        color: #000;
      }
 
-  .vex-canvas {
-    height: 10rem;
+  canvas {
+    width: 300px;
+    height: 232px;
   }
 
   video#intro-video { 

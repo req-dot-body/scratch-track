@@ -1,5 +1,5 @@
 
-<div class="vertical grid-block">
+<div class="grid-block">
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
       
@@ -46,16 +46,18 @@
       </zf-accordion>
       <br> 
       <br>
-      <div class="vertical grid-block">
-        <div class="grid-content">
-          <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
-          <div class="title-bar">
-            <span class="title center">Your Stablature for This Project:</span>
-          </div>
-          <sort></sort>
+
+      <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
+      <div class="title-bar">
+        <span class="title center">Your Stablature for This Project:</span>
+      </div>
+      <sort></sort>
+      <br>
+      <div class="grid-block">
+        <div class="grid-block align-justify">
           <ul ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
-            <div class="grid-block align-justify">
-              <li class="spaced" style="list-style: none;" >
+            <div class="grid-block">
+              <li class="spaced grid-content" style="list-style: none;" >
                 <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
                 <div>
                   <vextab ng-model="stab.code" notation="false"></vextab>
