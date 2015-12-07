@@ -1,8 +1,5 @@
 app.controller('LikeCtrl', ['$scope','$state', 'Like', function($scope, $state, Like) {
 
-
-  $scope.likeCount;
-
   $scope.buttonContent = 'thumb_up'
 
   $scope.buttonToggle = function () {
@@ -13,20 +10,36 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', function($scope, $state, 
     }
   }
 
-  $scope.isLiked = function (id) {
-    Like.likeCount()
-    //call server via factory
-    //if user hasn't liked, do nothing
-    //if user has already liked, replace thumb_up with thumb_down
+
+  $scope.like = function () {
+    //scope.project.liked will not exist if user isn't logged in; then just display likes
+    /*if (!(liked in $scope.project)) {
+      return $scope.buttonContent = 'thumb_up';
+    } */
+
+    if ($scope.project.liked === '1') {
+      $scope.project.liked = '0';
+      $scope.project.likes = parseInt($scope.project.likes) - 1;
+      $scope.project.likes = $scope.project.likes.toString();
+    } else {
+      $scope.project.liked = '1';
+      $scope.project.likes = parseInt($scope.project.likes) + 1;
+      $scope.project.likes = $scope.project.likes.toString();
+    }
+    $scope.buttonToggle();
+
+    //send POST request to API endpoint
+    Like.like($scope.project.id);
   }
 
-  $scope.like = function (id) {
-    //send GET request to API endpoint
-    //retrieve like count
-    //toggle buttons
+  var init = function () {
+    if ($scope.project.liked === '1') {
+      $scope.buttonContent = 'thumb_down';
+    } else {
+      $scope.buttonContent = 'thumb_up';
+    }
   }
 
-
-  $scope.isLiked();
+  init();
 
 }]);
