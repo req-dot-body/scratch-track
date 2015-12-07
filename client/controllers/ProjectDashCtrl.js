@@ -106,6 +106,63 @@ $scope.saveProjectInfo = function(){
   })
 
 
+var newProjectTour = {
+    config: {dark:true}, 
+    steps: [{
+        target: '#tour7',
+        content: 'Awsome you are rocking!',
+    }, {
+        target: '#tour8',
+        content: 'You can make your project Public watchout! other users can edit it! default is Private',
+    }, {
+        target: '#tour9',
+        content: 'Change the name!',
+    },{
+        target: '#tour10',
+        content: 'Add... a description and Save when you Finish!',
+  
+    }]
+};
+
+// var newProjectTour = {
+//     config: {dark:true}, 
+//     steps: [{
+//         target: '#tour7',
+//         content: 'Awsome you are rocking!',
+//     }, {
+//         target: '#tour8',
+//         content: 'You can make your project Public watchout! other users can edit it! default is Private',
+//     }, {
+//         target: '#tour9',
+//         content: 'Change the name!',
+//     },{
+//         target: '#tour10',
+//         content: 'Add... a description and Save when you Finish!',
+//         after: function(){
+//             var d = $q.defer();
+//             alertify.logPosition("bottom right")
+//                     .log("Save Your changes!")           
+//                     .closeLogOnClick(true) 
+//             d.resolve(); // or d.reject()
+//             return d.promise
+//         }
+//     }]
+// };
+
+//Tour is only triggered if the user is just signed in
+  if(!$state.params.signedUp){
+
+    nzTour.start(newProjectTour)
+        .then(function() {
+          nzTour(dashTour)
+            console.log('Tour Finished!');
+        })
+        .catch(function() {
+            console.log('Tour Aborted!')
+        });
+  }
+
+
 }]);
 
 

@@ -123,6 +123,25 @@ router.delete('/:projectId', helper.requireAuth, function (req, res) {
   });
 });
 
+router.get('/:projectId/like', function(req, res){
+  var projectId = req.params.projectId
+  var userId;
+
+  if (req.session.passpost.user){
+    userId = req.session.passport.user.id;
+  }
+
+  Like.countByProject(projectId, userId)
+  .then(function(likeInfo){
+    res.status(200).send(likeInfo);
+  })
+  .catch(function(err){
+    console.log('failed to get like info for your project')
+    res.sendStatus(400);
+  })
+
+})
+
 router.post('/:projectId/like', helper.requireAuth, function (req, res){
   var ids = {
     project: req.params.projectId,
