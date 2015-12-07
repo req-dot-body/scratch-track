@@ -1,5 +1,7 @@
 app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q', function($scope,$state,Project,nzTour,$q) {
 
+  console.log('Current state:', $state.current);
+
 //Get projects from Projects factory
   $scope.getProjects = function () {
     Project.getAllProjects()
@@ -37,7 +39,7 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q', funct
 
 //Tour
 
-var tour = {
+var projectTour = {
     config: {dark:true}, 
     steps: [{
         target: '#tour1',
@@ -50,32 +52,28 @@ var tour = {
         content: 'And here you can see your projects at any time',
     },{
         target: '#tour4',
-        content: 'This is your Project Search Bar',
-    }, {
+        content: 'Here you can search thru all your projects',
+    },{
         target: '#tour5',
-        content: 'Here You Create a new Project!, I am going to create one for you! Enjoy!',
-        before: function() {
-                    var d = $q.defer();
-                    d.resolve();
-                    return d.promise;
-                },
-        after: function() {
-            var d = $q.defer();
-            $scope.createProject();
-            d.resolve();
-            return d.promise;
-        }
+        content: 'Your recent projects will be displayed here',
+    }, {
+        target: '#tour6',
+        content: 'Here You Create a new Project!, Go ahead a create a project!',
+        
     }]
 };
 
+if($state.params.signedUp){
 
-// nzTour.start(tour)
-//     .then(function() {
-//         console.log('Tour Finished!');
-//     })
-//     .catch(function() {
-//         console.log('Tour Aborted!')
-//     });
+  nzTour.start(projectTour)
+      .then(function() {
+          console.log('Tour Finished!');
+      })
+      .catch(function() {
+          console.log('Tour Aborted!')
+      });
+  
+}
 
 
 }]);

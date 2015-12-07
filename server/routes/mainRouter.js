@@ -81,6 +81,9 @@ router.get('/js/vex.js', function (req, res) {
 router.get('/js/nztour.js', (req, res) => res.sendFile(Path.resolve('./node_modules/nz-tour/dist/nz-tour.min.js')));
 router.get('/css/nztour.css', (req, res) => res.sendFile(Path.resolve('./node_modules/nz-tour/dist/nz-tour.min.css')));
 
+// Alertify
+router.get('/js/alertify.js', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify/lib/alertify.min.js')));
+router.get('/css/alertify.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify/themes/alertify.core.css')));
 
 
 router.get('/css/main.css', sass.serve('./client/style.scss'));

@@ -94,7 +94,7 @@
     <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
   </div>
  
-  <div id='tour7' zf-modal="" id="projectInfo" animation-out="slideOutUp" class="collapse large is-active" ng-show ='projectCreated===true'>
+  <div zf-modal="" id="projectInfo" animation-out="slideOutUp" class="collapse large is-active" ng-show ='projectCreated===true'>
   
     <div class="grid-block vertical">
       
@@ -102,8 +102,8 @@
         <div class="center title">Project Information</div>
       </div>
         
-      <div class="grid-content padding" style="padding-top: 1rem;" id='tour6'>
-        <div class='text-right'>
+      <div class="grid-content padding" style="padding-top: 1rem;">
+        <div class='text-right' id='tour7'>
           <span>Private</span>
           <div class="public-project">
             <input type="checkbox" ng-model="projectData.private" ng-true-value="0" ng-false-value="1" id="public-project">

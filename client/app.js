@@ -101,6 +101,7 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
      .state('main.projects', {
       url:'/projects',
       authenticate: true,
+      params:{signedUp:false},
       templateUrl: 'views/projects.html',
       controller: 'ProjectsCtrl',
       controllerAs:'projects'
