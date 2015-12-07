@@ -19,14 +19,14 @@ Resource.findById = function(tableName, ids){
 }
 
 //finds all resources for a project
-Resource.findByProject = function(tableName, ids){
+Resource.findByProject = function(tableName, ids, isPrivate){
 	//finds the project in question
 	return db('projects').select('*').where({id: ids.project})
 	.then(function(rows){
 		//checks that project exists and belongs to authed user
 		var project = rows[0]
 		if (!project) throw 404;
-		if (project.owner_id !== ids.user) throw 401;
+		if (isPrivate && project.owner_id !== ids.user) throw 401;
 
 		return db(tableName).select('*').where({project_id: ids.project})
 		.then(function(resources){

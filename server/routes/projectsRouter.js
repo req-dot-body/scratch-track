@@ -163,7 +163,6 @@ router.post('/:projectId/like', helper.requireAuth, function (req, res){
 
 })
 
-// TODO : how to handle for public projects
 // Get all resource of a type associated with a specific project
 router.get('/:projectId/:resourceType', function (req, res) {
   var resourceType = req.params.resourceType;
@@ -172,13 +171,22 @@ router.get('/:projectId/:resourceType', function (req, res) {
     user: req.session.passport.user.id
   };
 
-  Resource.findByProject(resourceType, ids)
-  .then(function(resources){
-    res.status(200).send(resources);
+  //checks if the project is private
+  Project.isPrivate(ids.project)
+  .then(function(isPrivate){
+    //requests resource
+    Resource.findByProject(resourceType, ids, isPrivate)
+    .then(function(resources){
+      res.status(200).send(resources);
+    })
+    .catch(function(err){
+      res.sendStatus(400);
+    });
   })
   .catch(function(err){
     res.sendStatus(400);
-  });
+  })
+  
 });
 
 module.exports = router;
