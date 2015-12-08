@@ -65,8 +65,14 @@ router.post('/', helper.requireAuth, function (req, res) {
 // Get a project by id
 router.get('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
+  var userId;
+
+  if (req.session.passport.user){
+    userId = req.session.passport.user.id;
+  }
+
   //grab the project from db
-  Project.findById(projectId, req.session.passport.user.id)
+  Project.findById(projectId, userId)
   .then(function(project){
     res.status(200).send(project);
   })
@@ -163,22 +169,36 @@ router.post('/:projectId/like', helper.requireAuth, function (req, res){
 
 })
 
-// TODO : how to handle for public projects
 // Get all resource of a type associated with a specific project
 router.get('/:projectId/:resourceType', function (req, res) {
   var resourceType = req.params.resourceType;
+  var userId;
+
+  if (req.session.passport.user){
+    userId = req.session.passport.user.id;
+  }
+
   var ids = {
     project: req.params.projectId,
-    user: req.session.passport.user.id
+    user: userId
   };
 
-  Resource.findByProject(resourceType, ids)
-  .then(function(resources){
-    res.status(200).send(resources);
+  //checks if the project is private
+  Project.isPrivate(ids.project)
+  .then(function(isPrivate){
+    //requests resource
+    Resource.findByProject(resourceType, ids, isPrivate)
+    .then(function(resources){
+      res.status(200).send(resources);
+    })
+    .catch(function(err){
+      res.sendStatus(400);
+    });
   })
   .catch(function(err){
     res.sendStatus(400);
-  });
+  })
+  
 });
 
 module.exports = router;

@@ -1,3 +1,4 @@
+
 app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project', 'Resource',
 	function($scope, $state, Stablature, Project, Resource) {
 
