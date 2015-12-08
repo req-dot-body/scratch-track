@@ -23,8 +23,7 @@ window.app = angular.module('myApp', [
 app.value('signedUp',{value:false});
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
-$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
+  // $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
   
@@ -102,13 +101,13 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     .state('main.public_view.notes', {
       url: '/notes',
       authenticate: false,
-      templateUrl: 'view/notesView.html',
+      templateUrl: 'views/notesView.html',
       controller: 'NoteCtrl'
     })
 
     .state('main.public_view.recordings', {
       url: '/recordings',
-      authetnicate: false,
+      authenticate: false,
       templateUrl: 'views/recordingsView.html',
       controller: 'RecordingCtrl',
     })
@@ -159,7 +158,7 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
     .state('main.project_edit.recordings', {
       url: '/recordings',
-      authetnicate: true,
+      authenticate: true,
       templateUrl: 'views/recordingsView.html',
       controller: 'RecordingCtrl',
     })
