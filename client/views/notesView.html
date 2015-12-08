@@ -23,12 +23,13 @@
             <label>
               Note Title:
             </label>
-            <input type="text" placeholder="Enter note title here" ng-model="newNote.name" required>
+            <input type="text" placeholder="Enter note title here" ng-model="newNote.name" ng-maxlength="1000" required>
             <br>
 
             <div class="form-group"> 
               <div class="validation-error" ng-messages="newNoteForm.$error" ng-if="submitted && !hasBeenReset">
                 <div ng-message="required">{{ hasBeenReset }} Oops! You have some unfilled fields. Please complete and try again.</div>
+                <div ng-message="maxlength">Oops! Your note is longer than can be accepted. Please split it into more than one note.</div>
               </div>
             </div>
 
