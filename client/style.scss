@@ -366,7 +366,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .contrast {
-    color: $quaternary-color;
+    color: $secondary-color;
   }
   
   .button.hollow.alert {
@@ -460,5 +460,8 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   h1 {
     color: $light-color;
     margin-top: 0px;
+    &#landing-title {
+      color: $dark-color;
+    }
   }
 
