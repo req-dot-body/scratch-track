@@ -13,9 +13,10 @@
   <br>
   <br>
     <h3>Project Name: {{projectData.name}}</h3>
-    <h3 ng-if = 'projectData.description!==null'>Description: {{projectData.description}}</h3>
+    <h3 ng-if = 'projectData.description'><i>{{projectData.description}}</i></h3>
     <br>
-    <br>
+<!--     <likebutton ng-if="public" project="projectData"></likebutton>
+ -->    <br>
   </div>
 
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">

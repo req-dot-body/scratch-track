@@ -58,9 +58,9 @@
           </div>
         </div></a>
         <div>
-        <p>Description:{{project.description}}</p>
-        <p>Created at: {{project.created_at*1000|date}}</p>
-        <p>Updated at: {{project.updated_at*1000|date}}</p>
+        <p ng-if="project.description"><i>{{project.description}}</i></p>
+        <p>Created on {{project.created_at*1000|date}}</p>
+        <p>Last edited on {{project.updated_at*1000|date}}</p>
         <p ng-if="!(public || project.private)">Likes: {{project.likes}}</p>
         <likebutton ng-if="public" project="project"></likebutton>
         <a ng-if="!public" zf-open='deleteModal' class="alert expand hollow text-center button">Delete Project</a> 
