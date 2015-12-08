@@ -344,6 +344,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     min-height: 50px !important;
   }
 
+  textarea.dashboard {
+    resize: vertical;
+    height: 100px;
+  }
+
   /* Lyric Styles */
   .all-projects-title {
     background-color: gray;

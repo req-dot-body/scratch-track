@@ -1,9 +1,5 @@
 <div class="resource-entry">
 	<h5>{{ formatDate(resource.created_at) }} - {{resource.name}}</h5>
   <p ng-if="resource.description"><i>{{resource.description}}</i></p>
-  <textarea class="dashboard" ng-hide="displayAll">{{truncated}}</textarea>
-  <textarea class="dashboard" ng-show="displayAll">{{resource.text}}</textarea>
-  <a class="button" ng-if="tooDamnLong()" ng-click="toggleDisplay()">
-    {{moreOrLess()}}
-  </a>
+  <textarea class="dashboard">{{resource.text}}</textarea> 
 </div>
