@@ -1,18 +1,18 @@
-<div class="menu-group dark" id='tour1'>
+<div class="menu-group dark" id = 'tour3'>
 <!-- <div class="menu-group-left"> -->
   <ul class="icon-left primary menu-bar">
-    <li><a ui-sref='main.projects'>&#9733; ScratchTrack 1.2</a></li>
-    <li><a ng-if = 'signedUp.value!==true' class="left alert" ng-click= 'runTour()'>APP TOUR</a></li>
+    <li id = 'tour0'><a ui-sref='main.projects'>&#9733; ScratchTrack 1.2</a></li>
+    <li id='tour1'><a ng-if = 'signedUp.value!==true' class="left alert" ng-click= 'runTour()'>APP TOUR</a></li>
   </ul>
 <!-- </div> -->
 
   <!-- <div class="menu-group-right"> -->
     <ul class="menu-bar primary">
-      <li id='tour2'><a ui-sref="main.pubprojects">Public</a></li> 
-      <li ng-if="signedIn" id='tour3'><a ui-sref="main.projects">Projects</a></li>
+      <li id ='tour4'><a ui-sref="main.pubprojects">Public</a></li> 
+      <li ng-if="signedIn" id ='tour5'><a ui-sref="main.projects">Projects</a></li>
       <li><a ui-sref="main.team">About</a></li>
       <li ng-if="signedIn"><a ng-click="logOut()">Log Out</a></li>
     </ul>
   <!-- </div> -->
 </div>
-<div ui-view></div>
+<div ui-view id='tour6'></div>

@@ -1,6 +1,6 @@
 var moment = require('moment/moment');
 
-app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp', function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp) {
+app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp','Tour', function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp,Tour) {
 
 // Used to determine whether or not to display certain elements
 $scope.public = true;

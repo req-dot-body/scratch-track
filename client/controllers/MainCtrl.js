@@ -14,11 +14,38 @@ app.controller('MainCtrl', ['$scope', '$state', 'User','nzTour', 'Auth','Tour','
   };
 
   $scope.runTour = function (){
-    console.log ('Runing the Tour')
+  
+    var state = $state.current.name;
+
+    switch(state) {
+    case 'main.projects':
+        Tour.startProjectTour();
+        break;
+    case 'main.pubprojects':
+        Tour.startPublicProjectTour();
+        break;
+    case 'main.project_edit.dash':
+        Tour.startDashTour();
+        break;
+    case 'main.project_edit.recordings':
+        Tour.startEditProjectTour();
+        break;
+    case 'main.project_edit.notes':
+        Tour.startEditProjectTour();
+        break;
+    case 'main.project_edit.lyrics':
+        Tour.startEditProjectTour();
+        break;
+    case 'main.project_edit.stablature':
+        Tour.startEditProjectTour();
+    break;
+
+    }
   }
 
-  if(!signedUp.value){
+  if(signedUp.value){
     Tour.startMainTour();
+  
   }
 
 }]);
