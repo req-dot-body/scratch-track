@@ -90,6 +90,10 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   };
 
   // -------------Timer Functions-------------:
+
+  $scope.minutes = 0;
+  $scope.seconds = 0;
+  $scope.secondsPlace = "00";
   $scope.clock = 0;
   $scope.interval;
   $scope.offset;
@@ -112,11 +116,27 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
 
   $scope.resetTimer = function () {
     $scope.clock = 0;
+    $scope.seconds = 0;
+    $scope.minutes = 0;
+    $scope.secondsPlace = "00";
   }
 
   $scope.updateTimer = function () {
     $scope.clock += ($scope.tick() / 100);
-    console.log($scope.clock);
+    $scope.seconds += ($scope.tick() / 100);
+
+    console.log("clocktime is", $scope.clock);
+    console.log("seconds are", $scope.seconds);
+
+    if ($scope.seconds < 10) {
+      $scope.secondsPlace = "0" + $scope.seconds;
+    } else if ($scope.seconds.floor() % 60 === 0){
+      $scope.seconds = 0;
+      $scope.minutes++;
+    } else {
+      $scope.secondsPlace = $scope.seconds;
+    }
+    $scope.$apply();
   }
 
   $scope.tick = function () {
