@@ -107,25 +107,25 @@
         <div class='text-right' id='tour8'>
           <span>Private</span>
           <div class="public-project">
-            <input type="checkbox" ng-model="projectData.private" ng-true-value="0" ng-false-value="1" id="public-project">
+            <input type="checkbox" ng-model="updatedInfo.private" ng-true-value="0" ng-false-value="1" id="public-project">
             <label for="public-project"></label>
           </div>
           <span>Public</span><br>
         </div>  
         
-        <form class = 'text-left'>
+        <form class = 'text-left' ng-submit="saveProjectInfo()">
           <label>
             <h5>Project Name</h5>
-            <input ng-model='editData.name' type="text" placeholder="Name" id='tour9'>
+            <input ng-model='updatedInfo.name' type="text" placeholder="Name" id='tour9'>
           </label>
           <label>
             <h5>Project Description</h5>
-            <input ng-model='editData.description' type="text" placeholder="Description" id='tour10'>
+            <input ng-model='updatedInfo.description' type="text" placeholder="Description" id='tour10'>
           </label>
+          <div class = 'text-center'>
+            <button ng-click='saveProjectInfo()' type="submit" zf-close="" class="success expand button">Save</button>
+          </div>
         </form>
-        <div class = 'text-center'>
-          <a ng-click='saveProjectInfo()' zf-close="" class="success expand button">Save</a>
-        </div>
       </div>
     </div>
   </div>
