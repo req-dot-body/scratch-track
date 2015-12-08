@@ -1,27 +1,29 @@
 <div class="vertical grid-block">
+  <section class="spaced text-center">
+    <h1>Recordings</h1>
+
+    <p ng-if="!public">
+      Here you can create and play-back your recordings.
+    </p>
+  </section>
+
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
-
-
-      <section class="spaced">
-        <h1>Recordings</h1>
-
-        <p ng-if="!public">
-          Here you can create and play-back your recordings.
-        </p>
-      </section>
+      <br>
+      <br>
+      <input type="text" placeholder="Search Recordings..." ng-model="recordingSearch">
+    
 
       <!--Recording Panel-->
       <zf-accordion id="create-resource" auto-open="false">
         <zf-accordion-item ng-if="!public" class="title" title="Create New Recording">
->>>>>>> Add public/private to Recordings
           <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
           <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
           <br>
           <audio controls="true" id="audio-player">
             <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
           </audio>
-
+          
           <br> 
           <br>
           <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
@@ -62,16 +64,15 @@
 
       <br>
       <br>
-      <input type="text" placeholder="Search Recordings..." ng-model="recordingSearch">
-      <div class="title-bar">
+      <div class="title-bar dark">
         <span ng-if="!public" class="title center">Your Recordings for this Project:</span>
         <span ng-if="public" class="title center">Recordings for this Project:</span>
       </div> 
 
       <sort></sort>
 
-      <zf-accordion auto-open="false" collapsible="true" multi-open="true" id="recordingslist">
-        <zf-accordion-item ng-repeat="recording in recordings | orderBy: sort.sortField: sort.sortDirection | filter: recordingSearch" ng-model="recordings" title="{{ formatDate(recording.created_at) }} - {{recording.name}}" watch>
+      <zf-accordion auto-open="false" ng-repeat="recording in recordings | orderBy: sort.sortField: sort.sortDirection | filter: recordingSearch" ng-model="recordings" collapsible="true" multi-open="true" id="recordingslist">
+        <zf-accordion-item title="{{ formatDate(recording.created_at) }} - {{recording.name}}" watch>
           <audio controls="true">
             <source ng-src="{{recording.url | trusted}}" type="audio/wav"/>
           </audio>
