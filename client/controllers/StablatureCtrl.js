@@ -46,15 +46,9 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project', '
     Resource.sortBy(field);
   };
 
-  //provides sort functionality
-  $scope.sortBy = function(field){
-    if ($scope.sortField === field){
-      $scope.sortDirection = !$scope.sortDirection;
-    }
-    else {
-      $scope.sortField = field;
-      $scope.sortDirection = true;  
-    }
+  // Makes textareas expand as you type
+  $scope.autoExpand = function(e) {
+    Resource.autoExpand(e);    
   };
 
   //opens editor, optional info can be passed in

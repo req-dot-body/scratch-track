@@ -36,7 +36,7 @@
             <label>
               Note Body:
             </label>
-              <textarea class="body-entry" placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
+              <textarea  ng-keyup="autoExpand($event)" class="body-entry" placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
             <button class="button" type="submit">ADD NOTE</button>
           </form>
         </zf-accordion-item>
