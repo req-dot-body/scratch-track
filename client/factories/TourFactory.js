@@ -1,6 +1,5 @@
 app.factory('Tour', ['$state','nzTour','$q', function($state,nzTour,$q) {
-  
-  
+    
   //MAIN TOUR
   var mainTour = {
       config: {dark:false}, 
@@ -44,8 +43,6 @@ app.factory('Tour', ['$state','nzTour','$q', function($state,nzTour,$q) {
               console.log('Tour Aborted!')
           });
   };
-
-
 
   // PROJECT VIEW TOUR
   var projectTour = {

@@ -7,3 +7,5 @@ require('./NoteFactory');
 require('./StablatureFactory');
 require('./LikeFactory');
 require('./ResourceFactory');
+require('./ResourceFactory');
+require('./TourFactory');

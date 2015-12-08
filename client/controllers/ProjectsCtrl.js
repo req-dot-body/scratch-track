@@ -1,4 +1,4 @@
-app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q','signedUp', function($scope,$state,Project,nzTour,$q,signedUp) {
+app.controller('ProjectsCtrl', ['$scope','$state','Project','signedUp','Tour', function($scope,$state,Project,signedUp,Tour) {
 
 
   // If we're in a public state or not
@@ -47,6 +47,8 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q','signe
   };
 
 // Get projects on controller loading
-  $scope.getProjects();
+
+  $scope.getProjects()
+
 
 }]);

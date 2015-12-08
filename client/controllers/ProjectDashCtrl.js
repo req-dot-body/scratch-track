@@ -1,4 +1,3 @@
-
 var moment = require('moment/moment');
 
 app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp', function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp) {
@@ -14,6 +13,7 @@ projectId = $state.params.id;
 
 $scope.showEdit = function(){
   $scope.projectCreated = true; 
+<<<<<<< 01e815cf632a27da39eee110c85c2307542c7032
 }
 
 //THIS IS MOCK DATA AND SHOULD BE DELETED
@@ -55,6 +55,10 @@ $scope.testLyrics = {
   description: 'a little something I came up with'    
 };
 
+=======
+}
+
+>>>>>>> refactored to tour factory 2
 $scope.getProject = function(projectId) {
   Project.getProject(projectId)
   .then(function(response){
@@ -80,27 +84,6 @@ $scope.getProject = function(projectId) {
 };
 
 $scope.getProject(projectId);
-
-//gets information of project and saves it for the controller
-Project.getProject(projectId)
-.then(function(response){
-  $scope.projectData = response.data;
-  //declares data for editing window in dash view
-  $scope.editData = {
-        name:$scope.projectData.name,
-        description:$scope.projectData.description
-  };
-  //if project does not have a name it will add a nave to it
-  if ($scope.projectData.name === null){
-    $scope.projectData.name = 'MyProject: '+ projectId;
-    $scope.saveProjectInfo($scope.projectData);
-  }
-  //this variable allows to know if the project was just created, if this happen the view will open a model to allow user to put information about it
-  $scope.projectCreated = false;
-  if($state.params.created){
-    $scope.projectCreated = true;
-  }
-})
 
 $scope.formatDate = function(date) {
   return moment.unix(date).calendar();
@@ -151,6 +134,26 @@ $scope.saveProjectInfo = function(){
     $scope.projectStablature = response.data;
       // console.log('stablature: ', response.data)
   })
+
+
+
+var newProjectTour = {
+    config: {dark:true}, 
+    steps: [{
+        target: '#tour7',
+        content: 'Awsome you are rocking!',
+    }, {
+        target: '#tour8',
+        content: 'You can make your project Public watchout! other users can edit it! default is Private',
+    }, {
+        target: '#tour9',
+        content: 'Change the name!',
+    },{
+        target: '#tour10',
+        content: 'Add... a description and Save when you Finish!',
+  
+    }]
+};
 
 
 }]);
