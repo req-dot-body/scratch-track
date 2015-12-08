@@ -32,7 +32,7 @@
             </div>     
 
             <label>Lyric Body:</label>
-            <textarea class="lyric-textarea body-entry" type="text" name="lyric-body" ng-model="newLyric.text" placeholder="Enter lyrics here." style="min-height: 100px;" required></textarea>
+            <textarea ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" type="text" name="lyric-body" ng-model="newLyric.text" placeholder="Enter lyrics here." required></textarea>
             <br>
 
             <button class="button" type="submit" href="#">SAVE</button>
@@ -48,7 +48,7 @@
             <textarea class="lyric-textarea title-box" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
 
             <label>Revision Body:</label>
-            <textarea class="lyric-textarea body-entry" type="text" ng-model="newLyric.text" placeholder="Enter lyrics here."></textarea>
+            <textarea  ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" type="text" ng-model="newLyric.text" placeholder="Enter lyrics here."></textarea>
 
             <button class="button" type="submit" href="#" >SAVE</button>
 
@@ -76,7 +76,7 @@
               </div>
               
               <label>Lyric Body:</label>
-              <textarea class="lyric-textarea  body-entry" id="lyrictext" ng-model="lyric.text" readonly="readonly"></textarea>
+              <textarea  ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" id="lyrictext" ng-model="lyric.text" readonly="readonly"></textarea>
 
               <a ng-if="!public" class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-resource'); update(lyric.name, lyric.text);">CREATE REVISION</a>
 

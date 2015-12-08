@@ -6,7 +6,7 @@
     <p ng-if="!public">
       Here you can create guitar tabs and sheet music for your project.
     </p>
-    <p>
+    <p ng-if="public">
       Guitar tabs and sheet music for the project
     </p>
   </section>
@@ -32,7 +32,7 @@
           <br>
           <a class="button" zf-open="learnHowModal">How To Write Tabs</a>
           <br>
-          <textarea ng-model="stabInfo.code"></textarea>
+          <textarea ng-keyup="autoExpand($event)" class="body-entry" ng-model="stabInfo.code"></textarea>
         </div>
 
         <a class="button" ng-click="submit()">SUBMIT</a>
