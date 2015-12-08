@@ -1,17 +1,20 @@
 <div class="vertical grid-block">
+  <section class="spaced text-center">
+    <h1>Lyrics</h1>
+
+    <p ng-if="!public">
+      Here you can create lyrics for your project.
+    </p>
+    <p ng-if="public">
+      Lyrics for this project
+    </p>
+  </section>
+      
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
-      
-      <section class="spaced">
-        <h1>Lyrics</h1>
-
-        <p ng-if="!public">
-          Here you can create lyrics for your project.
-        </p>
-        <p ng-if="public">
-          Lyrics for this project
-        </p>
-      </section>
+      <br>
+      <br>
+      <input type="text" placeholder="Search Lyrics..." ng-model="lyricSearch">
       
       <zf-accordion ng-if="!public" id="create-resource" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
@@ -57,9 +60,7 @@
       <br>
       <div class="grid-block">
         <div class="grid-content">
-
-          <input type="text" placeholder="Search Lyrics..." ng-model="lyricSearch">
-          <div class="title-bar">
+          <div class="title-bar dark">
             <span ng-if="!public" class="title center">Your Lyrics for This Project:</span>
             <span ng-if="public" class="title center">Lyrics for This Project:</span>
           </div>
