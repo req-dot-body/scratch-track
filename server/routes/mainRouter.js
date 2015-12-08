@@ -11,6 +11,7 @@ var resourcesRouter = require('./resourcesRouter');
 var sass = require('node-sass-endpoint');
 var browserify  = require('browserify-middleware');
 var ngAnnotate  = require('browserify-ngannotate');
+var es6ArrowFunction = require('es6-arrow-function');
 
 var assetFolder = Path.resolve(__dirname, '../../client/');
 router.use(express.static(assetFolder));
@@ -63,7 +64,7 @@ browserify.settings({
 });
 
 // Serve application js files
-router.get('/js/app.js', browserify('./client/app.js', { transform: ngAnnotate }));
+router.get('/js/app.js', browserify('./client/app.js', { transform: [ngAnnotate, es6ArrowFunction] }));
 // Serve Angular and Angular modules
 router.get('/js/angular.js', browserify(sharedAngular));
 // Serve Foundation
@@ -83,7 +84,7 @@ router.get('/css/nztour.css', (req, res) => res.sendFile(Path.resolve('./node_mo
 
 // Alertify
 router.get('/js/alertify.js', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify.js/dist/js/alertify.js')));
-router.get('/css/alertify.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify.js/dist//css/alertify.css')));
+router.get('/css/alertify.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify.js/dist/css/alertify.css')));
 // router.get('/css/alertify.default.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify/themes/alertify.default.css')));
 
 

@@ -26,7 +26,7 @@ router.get('/public', (req, res) => {
   var userId; 
 
   //checks if a user is authed
-  if (req.session.passport.user){
+  if (typeof req.session.passport !== 'undefined'){
     userId = req.session.passport.user.id;
   } 
 
@@ -65,9 +65,10 @@ router.post('/', helper.requireAuth, function (req, res) {
 // Get a project by id
 router.get('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
-  var userId;
 
-  if (req.session.passport.user){
+  var userId = null;
+
+  if (typeof req.session.passport !== 'undefined') {
     userId = req.session.passport.user.id;
   }
 
@@ -172,9 +173,10 @@ router.post('/:projectId/like', helper.requireAuth, function (req, res){
 // Get all resource of a type associated with a specific project
 router.get('/:projectId/:resourceType', function (req, res) {
   var resourceType = req.params.resourceType;
-  var userId;
 
-  if (req.session.passport.user){
+  var userId = null;
+
+  if (typeof req.session.passport !== 'undefined') {
     userId = req.session.passport.user.id;
   }
 
@@ -196,6 +198,7 @@ router.get('/:projectId/:resourceType', function (req, res) {
     });
   })
   .catch(function(err){
+    console.log('Error getting resource (' + resourceType + ') for project (' + req.params.projectId + ')', err);
     res.sendStatus(400);
   })
   

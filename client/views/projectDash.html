@@ -1,13 +1,17 @@
-<ul class="dash-menu-bar" id ='tour12'>
-  <li><a href="#" ng-click = 'projectCreated=true' zf-open='projectInfo'>Edit</a></li>
-  <li><a href="#" zf-open="deleteModal2">Delete</a></li>
+<ul ng-if="!public" class="dash-menu-bar" id ='tour12'>
+  <li><a href="#" ng-click = 'projectCreated=true' zf-open='projectInfo'>&#9835; Edit</a></li>
+  <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
   <!-- <li><a ui-sref="main.projects">Back</a></li> -->
 </ul>
 <div id='tour11'>
-<h1 class="text-center spaced">Project Dash</h1>
+<div class="spaced text-center">
+  <h1>Project Dash</h1>
+  <p>Here you can find all the resources for this project in one place.</p>
+</div>
 <div class="grid-block wrap dash-row-top text-center">
-
   <div class="grid-content small-12">
+  <br>
+  <br>
     <h3>Project Name: {{projectData.name}}</h3>
     <h3 ng-if = 'projectData.description!==null'>Description: {{projectData.description}}</h3>
     <br>
@@ -17,7 +21,7 @@
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
     
     <div class=".card-wrapper card-recordings">
-      <a ui-sref="main.project_edit.recordings">
+      <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">
         <!-- <img src="./resources/guitar_banner.jpg"> -->
         <div class="recordings-card-divider text-center">
           Recordings
@@ -33,7 +37,7 @@
     </div>
 
     <div class=".card-wrapper card-notes">
-      <a ui-sref="main.project_edit.notes">
+      <a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">
         <!-- <img src="./resources/notes_banner.jpg"> -->
         <div class="notes-card-divider text-center">
           Notes
@@ -53,7 +57,7 @@
 
   <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
     <div class=".card-wrapper card-lyrics">
-      <a ui-sref="main.project_edit.lyrics">
+      <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">
         <!-- <img src="./resources/lyrics_banner.jpg"> -->
         <div class="lyrics-card-divider text-center">
          Lyrics
@@ -74,7 +78,7 @@
   <div class="grid-content small-12 medium-order-3">
     
     <div class=".card-wrapper card-stablature">
-      <a ui-sref="main.project_edit.stablature">
+      <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">
         <!-- <img src="./resources/stablature_banner.jpg"> -->
         <div class="stablature-card-divider text-center">
           The 'Stablature'

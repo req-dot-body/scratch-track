@@ -41,6 +41,7 @@
     "connect-session-knex": "^1.0.17",
     "cookie-parser": "^1.4.0",
     "dotenv": "^1.2.0",
+    "es6-arrow-function": "^0.6.6",
     "express": "^4.13.3",
     "express-livereload": "0.0.24",
     "express-session": "^1.12.1",

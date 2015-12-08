@@ -4,6 +4,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
   var projectId = $state.params.id;
 
   $scope.sort = Resource.sort;
+  $scope.public = true;
+  
+  if ($state.current.authenticate) {
+    $scope.public = false;
+  }
 
   $scope.newLyric = {
     name: '',
@@ -134,7 +139,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
 
 
   // Makes textareas expand as you type
-
+  $("textarea").keyup(function(e) {
+    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+      $(this).height($(this).height()+1);
+    };
+  });
 
   // Initial Setup
   $scope.getAll(projectId);

@@ -5,20 +5,17 @@
 
 // THEME COLORS
 
-/* jungle mist */
-$primary-color: #c2d4d8;
+$primary-color: #01465d;
 $primary-color-darken: darken( $primary-color, 5% );
 $primary-color-lighten: lighten( $primary-color, 5% );
 
-/* paradiso */
-$secondary-color: #3c948b;
+
+$secondary-color: #3fc380;
 $secondary-color-darken: darken( $secondary-color, 5% ); 
 
-/* willow brook */
-$tertiary-color: #dbe9d8;
+$tertiary-color: #fefefe;
 $tertiary-color-darken: darken( $tertiary-color, 5% );
 
-/* chatelle */
 $quaternary-color: #b0aac2;
 $quaternary-color-darken: darken( $quaternary-color, 5% );
 
@@ -334,8 +331,13 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     margin: 5px;
   }
 
-  .lyric-textarea:read-only {
-    color: gray;
+
+  textarea {
+    min-height: 250px;
+  }
+
+  textarea.title-box {
+    min-height: 50px !important;
   }
 
   /* Lyric Styles */
@@ -348,8 +350,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .spaced {
-    margin-top: 20px;
-    margin-bottom: 40px;
+    width: 100%;
+    background-color: $primary-color;
+    color: $light-color;
+    padding-top: 20px;
+    padding-bottom: 40px;
   }
 
   .button {
@@ -366,7 +371,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .contrast {
-    color: $quaternary-color;
+    color: $secondary-color;
   }
   
   .button.hollow.alert {
@@ -397,22 +402,37 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .title-bar {
-    background-color: $dark-color;
     color: $light-color;
     
   }
 
   .menu-bar {
-    background-color: $primary-color-darken;
+    background-color: $primary-color;
+    &.sort {
+      background-color: $primary-color;
+      color: $light-color;
+    }
+    > li > a {
+      color: $light-color;
+    }
+  }
+
+  .menu-bar.right > li > a {
+    margin-top: 10px;
+    color: $light-color;
   }
 
   .dash-menu-bar {
-    background-color: $primary-color-darken;
+    background-color: $primary-color;
     border: none;
+    > li > a {
+      color: $light-color;
+    }
   }
   
   .accordion-title {
     background-color: $primary-color;
+    color: $light-color;
   }
 
   .accordion-content {
@@ -440,5 +460,13 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   li {
     list-style: none;
+  }
+
+  h1 {
+    color: $light-color;
+    margin-top: 0px;
+    &#landing-title {
+      color: $dark-color;
+    }
   }
 

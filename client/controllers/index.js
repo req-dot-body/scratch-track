@@ -13,5 +13,6 @@ require('./TourCtrl');
 require('./ProjectDashCtrl');
 require('./ResourceEntryCtrl');
 require('./LikeCtrl');
+require('./TeamCtrl');
 
 

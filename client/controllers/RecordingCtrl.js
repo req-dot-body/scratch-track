@@ -3,6 +3,12 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
 
   var projectId = $state.params.id;
 
+  $scope.public = true;
+
+  if ($state.current.authenticate) {
+    $scope.public = false;
+  }
+
   $scope.recordings = [];
   $scope.newRecordingSrc = '';
   $scope.newRecordingBlob;
@@ -87,6 +93,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
 
   $scope.audio_context = null;
   $scope.recorder = null;
+  $scope.stream = null;
   
   $scope.__log = function (e, data) {
     
@@ -95,7 +102,8 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   }
 
   $scope.startUserMedia = function (stream) {
-    var input = audio_context.createMediaStreamSource(stream);
+    $scope.stream = stream;
+    var input = $scope.audio_context.createMediaStreamSource($scope.stream);
     //__log('Media stream created.');
     $scope.recorder = new Recorder(input);
     //__log('Recorder initialised.');
@@ -233,17 +241,14 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     }); 
   }
 
-
-  function init() {
-    $scope.getAll();
-
+  function getAudio () {
     try {
       // webkit shim
       window.AudioContext = window.AudioContext || window.webkitAudioContext;
       navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
       window.URL = window.URL || window.webkitURL;
       
-      audio_context = new AudioContext;
+      $scope.audio_context = new AudioContext;
       //__log('Audio context set up.');
       //__log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
     } catch (e) {
@@ -253,7 +258,14 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     navigator.getUserMedia({audio: true}, $scope.startUserMedia, function(e) {
       __log('No live audio input: ' + e);
     });
-  };
+  }
+
+
+  function init() {
+    $scope.getAll();
+
+    getAudio();
+  }
 
   init();
 

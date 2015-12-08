@@ -1,17 +1,23 @@
 
-<div class="grid-block">
+<div class="vertical grid-block">
+  <section class="spaced text-center"> 
+    <h1>Stablature</h1>
+
+    <p ng-if="!public">
+      Here you can create guitar tabs and sheet music for your project.
+    </p>
+    <p>
+      Guitar tabs and sheet music for the project
+    </p>
+  </section>
+
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
-      
-      <section class="spaced"> 
-        <h1>Stablature</h1>
-
-        <p>
-          Here you can create guitar tabs and sheet music for your project.
-        </p>
-      </section>
+    <br>
+    <br>
+    <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
  
-      <zf-accordion class="create-resource" auto-open="false" >
+      <zf-accordion ng-if="!public" id="create-resource" auto-open="false" >
         <zf-accordion-item class="title" title="Create New Tab">
           <div id="create-stab-content">
           <label>Title:</label>
@@ -47,9 +53,9 @@
       <br> 
       <br>
 
-      <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
-      <div class="title-bar">
-        <span class="title center">Your Stablature for This Project:</span>
+      <div class="title-bar dark">
+        <span ng-if="!public" class="title center">Your Stablature for This Project:</span>
+        <span ng-if="public" class="title center">Stablature for This Project:</span>
       </div>
       <sort></sort>
       <br>
@@ -57,19 +63,19 @@
         <div class="grid-block align-justify">
           <ul ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
             <div class="grid-block">
-              <li class="spaced grid-content" style="list-style: none;" >
+              <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
                 <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
                 <div>
                   <vextab ng-model="stab.code" notation="false"></vextab>
              
                   <p><em>{{stab.description}}</em></p>
 
-                  <a class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
-                  <a class="button" ng-click="">EDIT</a>
-                  <a class="button" zf-open="deleteModal">DELETE</a> 
+                  <a ng-if="!public" class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
+                  <a ng-if="!public" class="button" ng-click="">EDIT</a>
+                  <a ng-if="!public" class="button" zf-open="deleteModal">DELETE</a> 
                 </div>
 
-                <div zf-modal="" id="deleteModal">
+                <div ng-if="!public" zf-modal="" id="deleteModal">
                   <div>
                     <h4>Are You Sure That You Want To Delete This Entry?</h4>
                     <a class="alert button" ng-click="delete(stab.id)">YES, REALLY DELETE</a>

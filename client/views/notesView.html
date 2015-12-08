@@ -1,16 +1,22 @@
 <div class="vertical grid-block">
-  <div class="grid-block text-center">
-    <div class="grid-content noscroll small-8 small-offset-2">
-
-      <section class="spaced">
-        <h1>Notes</h1>
-
-        <p>
+  <section class="spaced text-center">
+    <h1>Notes</h1>
+        <p ng-if="!public">
           Here you can create notes for your project.
+        </p>
+
+        <p ng-if="public">
+          Notes for the project
         </p>
       </section>
 
-      <zf-accordion class="create-resource" auto-open="false">
+  <div class="grid-block text-center">
+    <div class="grid-content noscroll small-8 small-offset-2">
+      <br>
+      <br>
+      <input type="text" placeholder="Search Notes..." ng-model="noteSearch">
+
+      <zf-accordion ng-if="!public" id="create-resource" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Note">
           <br>
           <form name="newNoteForm" class="form-group" ng-submit="addNote(newNote); submit(); closeAccordion();" novalidate>
@@ -37,9 +43,10 @@
       
       <br>
       <br>
-      <input type="text" placeholder="Search Notes..." ng-model="noteSearch">
-      <div class="title-bar">
-        <span class="title center">Your Notes for This Project:</span>
+
+      <div class="title-bar dark">
+        <span ng-if="!public" class="title center">Your Notes for This Project:</span>
+        <span ng-if="public" class="title center">Notes for This Project:</span>
       </div>
 
       <sort></sort>
@@ -50,10 +57,10 @@
           <textarea readonly="true" ng-model="note.text" id="note-text{{note.id}}">
             {{note.text}}
           </textarea>
-          <a class="medium button" id="edit-btn" ng-click="editNote(note.id)" ng-if="!editToggle">EDIT</a>
-          <a class="medium success button" id="confirm-edit-btn" ng-click="confirmEdit(note.id, note.text, note.name)" ng-if="editToggle">CONFIRM EDIT</a>
-          <a class="medium alert button" zf-open="delModal">DELETE</a>
-          <div zf-modal="" id="delModal">
+          <a ng-if="!public" class="medium button" id="edit-btn" ng-click="editNote(note.id)" ng-if="!editToggle">EDIT</a>
+          <a ng-if="!public" class="medium success button" id="confirm-edit-btn" ng-click="confirmEdit(note.id, note.text, note.name)" ng-if="editToggle">CONFIRM EDIT</a>
+          <a ng-if="!public" class="medium alert button" zf-open="delModal">DELETE</a>
+          <div ng-if="!public" zf-modal="" id="delModal">
             <a zf-close="" class="close-button">×</a>
             <h3>Are you sure you want to delete this note?</h3>
             <a class="medium alert button" zf-close="" ng-click="deleteNote(note.id)">CONFIRM DELETE</a>
@@ -65,5 +72,3 @@
     </div>
   </div>
 </div>
-
-
