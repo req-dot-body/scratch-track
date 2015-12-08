@@ -91,19 +91,19 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
 
   // -------------Timer Functions-------------:
 
+  $scope.interval;
+  $scope.offset;
+  $scope.clock = 0;
   $scope.minutes = 0;
   $scope.seconds = 0;
   $scope.secondsPlace = "00";
-  $scope.clock = 0;
-  $scope.interval;
-  $scope.offset;
 
   $scope.startTimer = function () {
     $scope.resetTimer();
 
     if (!$scope.interval) {
-      $scope.offset = Date.now();
-      $scope.interval = setInterval($scope.updateTimer, 100)
+      $scope.offset = Date.now() / 1000;
+      $scope.interval = setInterval($scope.updateTimer, 1000)
     }
   };
 
@@ -122,25 +122,33 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   }
 
   $scope.updateTimer = function () {
-    $scope.clock += ($scope.tick() / 100);
-    $scope.seconds += ($scope.tick() / 100);
+
+    var updated = ($scope.tick()/1000);
+
+    $scope.clock += updated;
+    $scope.seconds += updated;
+
+    $scope.clock = Math.ceil($scope.clock);
+    $scope.seconds = Math.ceil($scope.seconds);
 
     console.log("clocktime is", $scope.clock);
     console.log("seconds are", $scope.seconds);
 
     if ($scope.seconds < 10) {
       $scope.secondsPlace = "0" + $scope.seconds;
-    } else if ($scope.seconds.floor() % 60 === 0){
+    } else if ($scope.seconds % 60 == 0){
       $scope.seconds = 0;
+      $scope.secondsPlace = "00";
       $scope.minutes++;
     } else {
-      $scope.secondsPlace = $scope.seconds;
+      $scope.secondsPlace = $scope.seconds
     }
+
     $scope.$apply();
   }
 
   $scope.tick = function () {
-    var now = Date.now();
+    var now = Date.now() / 1000;
     var diff = now - $scope.offset;
     $scope.offset = now;
     return diff;
