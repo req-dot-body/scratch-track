@@ -2,6 +2,13 @@
 var moment = require('moment/moment');
 
 app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp', function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp) {
+
+// Used to determine whether or not to display certain elements
+$scope.public = true;
+if ($state.current.authenticate) {
+  $scope.public = false;
+}
+
 //gets the current project ID
 projectId = $state.params.id; 
 
@@ -168,8 +175,7 @@ var dashTour = {
 };
 
 //Tour is only triggered if the user is just signed in
-  if(signedUp.value){
-
+  if(signedUp.value && !$scope.public){
     nzTour.start(newProjectTour)
         .then(function() {
             console.log('Tour Finished!');

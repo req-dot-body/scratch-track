@@ -7,53 +7,23 @@ var ngSanitize = require('angular-sanitize');
 var ngTouch = require('angular-touch');
 var uiRouter = require('angular-ui-router');
 
-angular.module('angular-toArrayFilter', []).filter('toArray', function () {
-  return function (obj, addKey) {
-    if (!angular.isObject(obj)) return obj;
-    if ( addKey === false ) {
-      return Object.keys(obj).map(function(key) {
-        return obj[key];
-      });
-    } else {
-      return Object.keys(obj).map(function (key) {
-        var value = obj[key];
-        return angular.isObject(value) ?
-          Object.defineProperty(value, '$key', { enumerable: false, value: key}) :
-          { $key: key, $value: value };
-      });
-    }
-  };
-});
-
 window.app = angular.module('myApp', [
   'ngAnimate',
   'ngCookies',
   'ui.router',
   'ngMessages',
-  // 'anim-in-out',
   'ngTouch',
   'ngSanitize',
   'ngResource',
   'foundation',
   'angular-toArrayFilter',
   'nzTour'
-  // 'foundation.dynamicRouting',
-  // 'foundation.dynamicRouting.animations'
-  // ngAnimate,
-  // ngAnimate_inOut,
-  // ngCookies,
-  // ngMessages,
-  // ngResource,
-  // ngSanitize,
-  // ngTouch,
-  // uiRouter,
 ]);
 
 app.value('signedUp',{value:false});
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
-$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
+  // $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
   
@@ -99,7 +69,57 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       controller: 'MainCtrl'
     })
 
-     .state('main.projects', {
+    .state('main.pubprojects', {
+      url: '/public',
+      authenticate: false,
+      templateUrl: 'views/projects.html',
+      controller: 'ProjectsCtrl',
+      // controller: 'PublicProjectsCtrl',
+    })
+
+    .state('main.public_view', {
+      url: '/public/{id:int}',
+      authenticate: false,
+      templateUrl: 'views/projectEdit.html',
+      controller: 'ProjectEditCtrl'
+    })
+
+    .state('main.public_view.dash', {
+      url: '/dash',
+      authenticate: false,
+      templateUrl: 'views/projectDash.html',
+      controller: 'ProjectDashCtrl'
+    })
+
+    .state('main.public_view.lyrics', {
+      url: '/lyrics',
+      authenticate: false,
+      templateUrl: 'views/lyricsView.html',
+      controller: 'LyricCtrl'
+    })
+
+    .state('main.public_view.notes', {
+      url: '/notes',
+      authenticate: false,
+      templateUrl: 'views/notesView.html',
+      controller: 'NoteCtrl'
+    })
+
+    .state('main.public_view.recordings', {
+      url: '/recordings',
+      authenticate: false,
+      templateUrl: 'views/recordingsView.html',
+      controller: 'RecordingCtrl',
+    })
+
+    .state('main.public_view.stablature', {
+      url: '/stablature',
+      authenticate: false,
+      templateUrl: 'views/stablatureView.html',
+      controller: 'StablatureCtrl'
+    })
+
+    .state('main.projects', {
       url:'/projects',
       authenticate: true,
       templateUrl: 'views/projects.html',
@@ -138,7 +158,7 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
     .state('main.project_edit.recordings', {
       url: '/recordings',
-      authetnicate: true,
+      authenticate: true,
       templateUrl: 'views/recordingsView.html',
       controller: 'RecordingCtrl',
     })
@@ -189,6 +209,24 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       $state.go('home');
     }
   });
+});
+
+angular.module('angular-toArrayFilter', []).filter('toArray', function () {
+  return function (obj, addKey) {
+    if (!angular.isObject(obj)) return obj;
+    if ( addKey === false ) {
+      return Object.keys(obj).map(function(key) {
+        return obj[key];
+      });
+    } else {
+      return Object.keys(obj).map(function (key) {
+        var value = obj[key];
+        return angular.isObject(value) ?
+          Object.defineProperty(value, '$key', { enumerable: false, value: key}) :
+          { $key: key, $value: value };
+      });
+    }
+  };
 });
 
 require('./factories');
