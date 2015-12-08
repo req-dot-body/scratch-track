@@ -1,5 +1,5 @@
 <ul ng-if="!public" class="dash-menu-bar" id ='tour12'>
-  <li><a href="#" ng-click = 'projectCreated=true' zf-open='projectInfo'>&#9835; Edit</a></li>
+  <li><a href="#" ng-click = 'showEdit()' zf-open='projectInfo'>&#9835; Edit</a></li>
   <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
   <!-- <li><a ui-sref="main.projects">Back</a></li> -->
 </ul>
@@ -28,11 +28,45 @@
         </div></a>
       <div class="recordings-card-section">
         <ul>
-          <li ng-repeat = 'recording in projectRecordings|limitTo:-3|orderBy:"updated_at"'>
-            <recordingentry resource="testRecording"></recordingentry> 
+          <li ng-repeat = 'recording in projectRecordings|limitTo:-3|orderBy:"updated_at" : true '>
+            <recordingentry resource="recording"></recordingentry> 
            <!--  {{recording.name}} -->
           </li>
         </ul>
+      </div>
+    </div>
+
+    <div class=".card-wrapper card-lyrics">
+      <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">
+        <!-- <img src="./resources/lyrics_banner.jpg"> -->
+        <div class="lyrics-card-divider text-center">
+         Lyrics
+        </div></a>
+      <div class="lyrics-card-section">
+         <ul>
+          <li class="collection-item" ng-repeat = 'lyric in projectLyrics|limitTo:-3|orderBy:"updated_at" : true'>
+            <lyricsentry resource="lyric"></lyricsentry>
+        <!--     <h5>{{lyric.name}}</h5>
+            <p class ='panel-lyric'>{{lyric.text}}</P> -->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
+     <div class=".card-wrapper card-stablature">
+      <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">
+        <!-- <img src="./resources/stablature_banner.jpg"> -->
+        <div class="stablature-card-divider text-center">
+          The 'Stablature'
+        </div></a>
+      <div class="stablature-card-section">
+        <div ng-repeat = 'stab in projectStablature|limitTo:-3|orderBy:"updated_at" : true' class = 'text-center'>
+          <stabentry resource="stab"></stabentry>
+          <!-- <vextab ng-model="stab.code"></vextab> -->
+        </div>
       </div>
     </div>
 
@@ -44,52 +78,13 @@
         </div></a>
       <div class="notes-card-section">
         <ul>
-          <li ng-repeat = 'note in projectNotes|limitTo:-3|orderBy:"updated_at"'>
+          <li ng-repeat = 'note in projectNotes|limitTo:-3|orderBy:"updated_at" : true'>
             <noteentry resource="note"></noteentry>
-            <!-- {{note.name}} -->
           </li>
         </ul>
       </div>
     </div>
 
-  </div>
-
-
-  <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
-    <div class=".card-wrapper card-lyrics">
-      <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">
-        <!-- <img src="./resources/lyrics_banner.jpg"> -->
-        <div class="lyrics-card-divider text-center">
-         Lyrics
-        </div></a>
-      <div class="lyrics-card-section">
-         <ul>
-          <li class="collection-item" ng-repeat = 'lyric in projectLyrics|limitTo:-3|orderBy:"updated_at"'>
-            <lyricsentry resource="testLyrics"></lyricsentry>
-        <!--     <h5>{{lyric.name}}</h5>
-            <p class ='panel-lyric'>{{lyric.text}}</P> -->
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</div>
-  <div class="grid-content small-12 medium-order-3">
-    
-    <div class=".card-wrapper card-stablature">
-      <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">
-        <!-- <img src="./resources/stablature_banner.jpg"> -->
-        <div class="stablature-card-divider text-center">
-          The 'Stablature'
-        </div></a>
-      <div class="stablature-card-section">
-        <div ng-repeat = 'stab in projectStablature|limitTo:-3|orderBy:"updated_at"' class = 'text-center'>
-          <stabentry resource="stab"></stabentry>
-          <!-- <vextab ng-model="stab.code"></vextab> -->
-        </div>
-      </div>
-    </div>
   </div>
 
   <div zf-modal="" animation-out="slideOutUp" id="deleteModal2">
@@ -99,7 +94,7 @@
     <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
   </div>
  
-  <div zf-modal="" id="projectInfo" animation-out="slideOutUp" class="collapse large is-active" ng-show ='projectCreated===true' id='tour7'>
+  <div zf-modal="" id="projectInfo" ng-show="projectCreated" animation-out="slideOutUp" class="collapse large is-active" id='tour7'>
   
     <div class="grid-block vertical">
       
@@ -127,7 +122,8 @@
             <input ng-model='updatedInfo.description' type="text" placeholder="Description" id='tour10'>
           </label>
           <div class = 'text-center'>
-            <button ng-click='saveProjectInfo()' type="submit" zf-close="" class="success expand button">Save</button>
+            <button ng-click='saveProjectInfo()' type="submit" zf-close="" class="success button">Save</button>
+            <button zf-close"" class="button">Cancel</button>
           </div>
         </form>
       </div>

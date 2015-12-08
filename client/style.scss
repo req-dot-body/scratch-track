@@ -275,10 +275,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
        color: #000;
      }
 
-  canvas {
-    width: 300px;
-    height: 232px;
-  }
 
   video#intro-video { 
       position: fixed;
@@ -334,10 +330,19 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   .body-entry {
     min-height: 250px;
+    &.dashboard{
+      max-height: 250px;
+      height: auto;
+    }
   }
 
   textarea.title-box {
     min-height: 50px !important;
+  }
+
+  textarea.dashboard {
+    resize: vertical;
+    height: 100px;
   }
 
   /* Lyric Styles */

@@ -1,13 +1,19 @@
  <div class="text-center" id='tour6'>
-    <section class="spaced">
+    <section ng-if="!public" class="spaced">
       <h1>Projects</h1>
-
       <p>
         Here you can view all of your projects or create a new project.
       </p>
     </section>
+
+    <section ng-if="public" class="spaced">
+      <h1>Public Projects</h1>
+      <p>
+        Here you can view all public projects.
+      </p>
+    </section>
+
     <br>
-    
     <div ng-if="!public" class="grid-block">
       <div class="grid-block small-12 medium-4 medium-offset-4">
         <a id = 'tour5' ng-click='createProject()' class="success expand button">Create New Project</a>
