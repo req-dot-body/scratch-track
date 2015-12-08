@@ -31,9 +31,10 @@
           <br>
           <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
           <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
-          <div class="snall-8">
-            <img src="http://v2.preloaders.net/preloaders/2/Broken%20circle.gif" ng-if="isSaving">
+          <div id="recording-status" class="grid-block-shrink">
+            <p id="timer">{{minutes}}:{{secondsPlace}}</p>
             <em id="log" class="recordingStatus"></em>
+            <img src="/resources/loading.gif" ng-if="isSaving">
           </div>
             
 
@@ -41,9 +42,9 @@
           <zf-accordion id="create-note" auto-open="false">
             <zf-accordion-item class="title" title="Load Lyrics &amp; Tabs">
               <div class="grid-block">
-                <div class="small-12 card">
-                  <div class="card-section" ng-controller="LyricCtrl">
-                    <h3>Lyrics:</h3>
+                <div class="small-12">
+                  <div ng-controller="LyricCtrl">
+                    <h5>Lyrics:</h5>
                     <select ng-model="selectedLyric" ng-options="lyric.name for lyric in lyrics.data">
                     </select>
                     <textarea id="lyric-field">
@@ -51,9 +52,9 @@
                     </textarea>
                   </div>
                 </div>
-                <div class="small-12 card">
-                  <div class="card-section" ng-controller="StablatureCtrl">
-                    <h3>Tabs:</h3>
+                <div class="small-12">
+                  <div ng-controller="StablatureCtrl">
+                    <h5>Tabs:</h5>
                     <select ng-model="selectedTab" ng-options="stab.name for stab in stabList" ng-init="selectedTab = selectedTab || stab[0]">
                     </select>
                     <vextab ng-model="selectedTab.code"></vextab>
