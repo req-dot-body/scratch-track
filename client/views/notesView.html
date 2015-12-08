@@ -1,10 +1,6 @@
 <div class="vertical grid-block">
-  <div class="grid-block text-center">
-    <div class="grid-content noscroll small-8 small-offset-2">
-
-      <section class="spaced">
-        <h1>Notes</h1>
-
+  <section class="spaced text-center">
+    <h1>Notes</h1>
         <p ng-if="!public">
           Here you can create notes for your project.
         </p>
@@ -13,6 +9,12 @@
           Notes for the project
         </p>
       </section>
+
+  <div class="grid-block text-center">
+    <div class="grid-content noscroll small-8 small-offset-2">
+      <br>
+      <br>
+      <input type="text" placeholder="Search Notes..." ng-model="noteSearch">
 
       <zf-accordion ng-if="!public" id="create-resource" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Note">
@@ -41,8 +43,8 @@
       
       <br>
       <br>
-      <input type="text" placeholder="Search Notes..." ng-model="noteSearch">
-      <div class="title-bar">
+
+      <div class="title-bar dark">
         <span ng-if="!public" class="title center">Your Notes for This Project:</span>
         <span ng-if="public" class="title center">Notes for This Project:</span>
       </div>

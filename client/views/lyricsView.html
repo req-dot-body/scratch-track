@@ -1,24 +1,27 @@
 <div class="vertical grid-block">
+  <section class="spaced text-center">
+    <h1>Lyrics</h1>
+
+    <p ng-if="!public">
+      Here you can create lyrics for your project.
+    </p>
+    <p ng-if="public">
+      Lyrics for this project
+    </p>
+  </section>
+      
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
-      
-      <section class="spaced">
-        <h1>Lyrics</h1>
-
-        <p ng-if="!public">
-          Here you can create lyrics for your project.
-        </p>
-        <p ng-if="public">
-          Lyrics for this project
-        </p>
-      </section>
+      <br>
+      <br>
+      <input type="text" placeholder="Search Lyrics..." ng-model="lyricSearch">
       
       <zf-accordion ng-if="!public" id="create-resource" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Lyric Sheet">
           <br>
           <form name="newLyricForm" class="form-group" ng-submit="add(newLyric); submit();" novalidate>
             <label>Lyric Title:</label>
-            <textarea class="lyric-textarea" type="text" name="lyric-title" ng-model="newLyric.name" placeholder="Enter title here." required></textarea>
+            <textarea class="lyric-textarea title-box" type="text" name="lyric-title" ng-model="newLyric.name" placeholder="Enter title here." required></textarea>
             <br>
 
             <div class="form-group"> 
@@ -41,7 +44,7 @@
         <zf-accordion-item class="title" title="Create New Revision">
           <form name="lyricRevisionForm" class="form-group" ng-submit="toggleElement('lyric-revision'); toggleElement('create-resource'); add(newLyric);" novalidate>
             <label>Revision Title:</label>
-            <textarea class="lyric-textarea" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
+            <textarea class="lyric-textarea title-box" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
 
             <label>Revision Body:</label>
             <textarea class="lyric-textarea" type="text" ng-model="newLyric.text" placeholder="Enter lyrics here."></textarea>
@@ -57,9 +60,7 @@
       <br>
       <div class="grid-block">
         <div class="grid-content">
-
-          <input type="text" placeholder="Search Lyrics..." ng-model="lyricSearch">
-          <div class="title-bar">
+          <div class="title-bar dark">
             <span ng-if="!public" class="title center">Your Lyrics for This Project:</span>
             <span ng-if="public" class="title center">Lyrics for This Project:</span>
           </div>
@@ -68,9 +69,9 @@
 
           <zf-accordion auto-open="false" ng-repeat="lyric in lyrics.data | orderBy: sort.sortField: sort.sortDirection | filter: lyricSearch" ng-model="lyrics">
             <zf-accordion-item title="{{ formatDate(lyric.created_at) }} - {{ lyric.name}}">
-              <div class="lyric-textarea" id="lyrictitle" style="display: none;">
+              <div class="lyric-textarea title-box" id="lyrictitle" style="display: none;">
                 <label>Lyric Title:</label>
-                <textarea id="lyrictitle" ng-model="lyric.name"></textarea>
+                <textarea class="title-box" id="lyrictitle" ng-model="lyric.name"></textarea>
               </div>
               
               <label>Lyric Body:</label>

@@ -192,9 +192,11 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $location
       controller: 'ProjectEditCtrl'
     })
 
-    .state('test', {
-      url: '/test',
-      templateUrl: 'views/testView.html',
+    .state('main.team', {
+      url: '/team',
+      authenticate: false,
+      templateUrl: 'views/team.html',
+      controller: 'TeamCtrl'
     })
 })
 .run(function ($timeout, $rootScope, $location, $state, Auth) {
