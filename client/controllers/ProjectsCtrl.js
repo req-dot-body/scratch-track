@@ -47,7 +47,6 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','signedUp','Tour', f
   };
 
 // Get projects on controller loading
-
   $scope.getProjects()
 
 

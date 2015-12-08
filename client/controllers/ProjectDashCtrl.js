@@ -13,7 +13,6 @@ projectId = $state.params.id;
 
 $scope.showEdit = function(){
   $scope.projectCreated = true; 
-<<<<<<< 01e815cf632a27da39eee110c85c2307542c7032
 }
 
 //THIS IS MOCK DATA AND SHOULD BE DELETED
@@ -55,10 +54,6 @@ $scope.testLyrics = {
   description: 'a little something I came up with'    
 };
 
-=======
-}
-
->>>>>>> refactored to tour factory 2
 $scope.getProject = function(projectId) {
   Project.getProject(projectId)
   .then(function(response){
@@ -134,26 +129,6 @@ $scope.saveProjectInfo = function(){
     $scope.projectStablature = response.data;
       // console.log('stablature: ', response.data)
   })
-
-
-
-var newProjectTour = {
-    config: {dark:true}, 
-    steps: [{
-        target: '#tour7',
-        content: 'Awsome you are rocking!',
-    }, {
-        target: '#tour8',
-        content: 'You can make your project Public watchout! other users can edit it! default is Private',
-    }, {
-        target: '#tour9',
-        content: 'Change the name!',
-    },{
-        target: '#tour10',
-        content: 'Add... a description and Save when you Finish!',
-  
-    }]
-};
 
 
 }]);

@@ -1,5 +1,5 @@
 app.factory('Tour', ['$state','nzTour','$q', function($state,nzTour,$q) {
-    
+
   //MAIN TOUR
   var mainTour = {
       config: {dark:false}, 
