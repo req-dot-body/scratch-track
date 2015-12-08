@@ -1,17 +1,11 @@
-app.factory('User', ['$http','$state', function($http,$state) {
+app.factory('User', ['$http','$state', function($http,$state,signedUp) {
   
 
-  var logIn = function (userData,signedUp){
+  var logIn = function (userData){
 
     return $http.post('/api/users/signin', userData)
     .then(function(response){ 
-      //if user is signed up sends a parameter true to load the tour
-      if(signedUp === true){
-        $state.go('main.projects',{signedUp:true})
-      }else {
-        console.log('login Sending signedUp not sending Param')
         $state.go('main.projects');
-      }
     })
     .catch(function(err) {
       //display error message
@@ -21,6 +15,8 @@ app.factory('User', ['$http','$state', function($http,$state) {
   };
 
   var signUp = function (newUser){
+    //if user is signed up sends a parameter true to load the tour
+    signedUp = true;
     return $http.post('/api/users/signup', newUser)
     .catch(function(err){
       $state.go('public.signup');

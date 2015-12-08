@@ -54,7 +54,6 @@ $scope.testLyrics = {
 Project.getProject(projectId)
 .then(function(response){
   $scope.projectData = response.data;
-  console.log($scope.projectData)
   //if project does not have a name it will add a nave to it
   if ($scope.projectData.name === null){
     $scope.projectData.name = 'MyProject: '+ projectId;
@@ -82,15 +81,12 @@ $scope.deleteProject = function(id){
 //saves the project
 $scope.saveProjectInfo = function(){
   //if user changes the name or description will be saved in a temp variable and only be modified in the database if user clicks 'save'
-    console.log('before edited: ', $scope.projectData);
-
   if($scope.editData.name !== $scope.projectData.name){
     $scope.projectData.name = $scope.editData.name;
   }
    if($scope.editData.description !== $scope.projectData.description){
     $scope.projectData.description = $scope.editData.description;
   }
-  console.log('after edited: ', $scope.projectData);
   Project.editProject($scope.projectData)
 };
 
@@ -142,37 +138,33 @@ var newProjectTour = {
     }]
 };
 
-// var newProjectTour = {
-//     config: {dark:true}, 
-//     steps: [{
-//         target: '#tour7',
-//         content: 'Awsome you are rocking!',
-//     }, {
-//         target: '#tour8',
-//         content: 'You can make your project Public watchout! other users can edit it! default is Private',
-//     }, {
-//         target: '#tour9',
-//         content: 'Change the name!',
-//     },{
-//         target: '#tour10',
-//         content: 'Add... a description and Save when you Finish!',
-//         after: function(){
-//             var d = $q.defer();
-//             alertify.logPosition("bottom right")
-//                     .log("Save Your changes!")           
-//                     .closeLogOnClick(true) 
-//             d.resolve(); // or d.reject()
-//             return d.promise
-//         }
-//     }]
-// };
+var dashTour = {
+    config: {dark:false}, 
+    steps: [{
+        target: '#tour11',
+        content: 'This is your Project Dash'
+    }, {
+        target: '#tour12',
+        content: 'New Controls you can edit your project at any time or delete it',
+    }, {
+        content: 'Navigate thru the components, Recordings, Lyrics, Notes and of course the "Stablature"',
+        after: function(){
+            var d = $q.defer();
+            alertify.logPosition("bottom right")
+                    .success("Go ahead and explore...")           
+                    .closeLogOnClick(true) 
+            d.resolve(); // or d.reject()
+            return d.promise
+        }
+    }]
+};
 
 //Tour is only triggered if the user is just signed in
-  if(!$state.params.signedUp){
+  if(false){
 
     nzTour.start(newProjectTour)
         .then(function() {
-          nzTour(dashTour)
+          nzTour.start(dashTour)
             console.log('Tour Finished!');
         })
         .catch(function() {

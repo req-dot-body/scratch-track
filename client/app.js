@@ -25,7 +25,6 @@ angular.module('angular-toArrayFilter', []).filter('toArray', function () {
   };
 });
 
-
 window.app = angular.module('myApp', [
   'ngAnimate',
   'ngCookies',
@@ -49,6 +48,8 @@ window.app = angular.module('myApp', [
   // ngTouch,
   // uiRouter,
 ]);
+
+app.value('sigedUp',false);
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
