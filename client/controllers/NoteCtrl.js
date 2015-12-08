@@ -19,6 +19,14 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
     project_id: projectId
   }
 
+  console.log('HIT NOTES', $state.current.name);
+
+  $scope.public = true;
+  if ($state.current.authenticate) {
+    console.log('hereerere')
+    $scope.public = false;
+  }
+
   //Note Methods:
   $scope.formatDate = function(date) {
     return Resource.formatDate(date);
@@ -49,7 +57,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
   $scope.getAll = function (projectId) {
     Project.getProjectNotes(projectId)
     .then(function(notes){
-      console.log(notes.data)
+      console.log(notes.data);
       $scope.notes = notes.data;
     });
   }
@@ -101,7 +109,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
   }
 
   var init = function () {
-    console.log('Getting notes for project', projectId);
+    console.log('here we go');
     $scope.getAll(projectId);
   }
   init();
