@@ -139,7 +139,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
 
 
   // Makes textareas expand as you type
-
+  $("textarea").keyup(function(e) {
+    while($(this).outerHeight() < this.scrollHeight + parseFloat($(this).css("borderTopWidth")) + parseFloat($(this).css("borderBottomWidth"))) {
+      $(this).height($(this).height()+1);
+    };
+  });
 
   // Initial Setup
   $scope.getAll(projectId);
