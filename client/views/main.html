@@ -7,9 +7,9 @@
 
   <!-- <div class="menu-group-right"> -->
     <ul class="menu-bar primary">
-      <li id='tour2'><a ui-sref="main.projects">Public</a></li> 
-      <li id='tour3'><a ui-sref="main.projects">Projects</a></li>
-      <li><a ng-click="logOut()">Log Out</a></li>
+      <li id='tour2'><a ui-sref="main.pubprojects">Public</a></li> 
+      <li ng-if="signedIn" id='tour3'><a ui-sref="main.projects">Projects</a></li>
+      <li ng-if="signedIn"><a ng-click="logOut()">Log Out</a></li>
     </ul>
   <!-- </div> -->
 </div>

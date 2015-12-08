@@ -1,6 +1,5 @@
-app.controller('PublicCtrl', ['$scope','$state', function($scope,$state) {
-  console.log('Public Controller hitted')
+app.controller('PublicCtrl', ['$scope', '$state', function($scope, $state) {
   //On Load go to Projects View
   $state.go('public.landing');
 
-}])
+}]);

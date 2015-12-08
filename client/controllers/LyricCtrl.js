@@ -4,6 +4,11 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
   var projectId = $state.params.id;
 
   $scope.sort = Resource.sort;
+  $scope.public = true;
+  
+  if ($state.current.authenticate) {
+    $scope.public = false;
+  }
 
   $scope.newLyric = {
     name: '',

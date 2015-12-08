@@ -1,5 +1,22 @@
 app.factory('Project', ['$http','$state', function($http,$state) {
   
+  var endpoint = '/api/projects/';
+
+  var getPublicProjects = function () {
+    return $http.get(endpoint + 'public')
+    .then((res) => res.data.projects)
+    .catch((err) => console.log('Error getting public projects:', err));
+  };
+
+    // return $http.get(endpoint + 'projects')
+    // .then(function (response) {
+    //   console.log('Response:', response);
+    //   return response.data;
+    // })
+    // .catch(function (err) {
+    //   console.log('Error getting public projects:', err);
+    // })
+
 // api/projects/ - requires authentication, with exception of GET - :/
  
 // GET - :/ - Retrieves all project files that can be accessed. If user is lacking authentication, will retrieve only public projects.
@@ -44,7 +61,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
     
     return $http.post('/api/projects')
     .then(function(response){
-      console.log('Project Created')
+      console.log('Project Created');
       return response;   
     })
     .catch(function(err){
@@ -131,7 +148,10 @@ app.factory('Project', ['$http','$state', function($http,$state) {
     });
   };
 
+
+
   return {
+    getPublicProjects: getPublicProjects,
     getAllProjects:getAllProjects,
     createProject:createProject,
     getProject:getProject,
@@ -141,6 +161,6 @@ app.factory('Project', ['$http','$state', function($http,$state) {
     getProjectLyrics:getProjectLyrics,
     getProjectStablature:getProjectStablature,
     getProjectNotes:getProjectNotes
-  }
+  };
 
 }]);

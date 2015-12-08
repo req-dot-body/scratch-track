@@ -22,9 +22,14 @@ Resource.findByProject = function(tableName, ids, isPrivate){
 	return db('projects').select('*').where({id: ids.project})
 	.then(function(rows){
 		//checks that project exists and belongs to authed user
-		var project = rows[0]
+		var project = rows[0];
 		if (!project) throw 404;
 		if (isPrivate && project.owner_id !== ids.user) throw 401;
+// <<<<<<< db300beaffdcd4b5bb26d25b4bb4c6fa8827d389
+// 		if (isPrivate && project.owner_id !== ids.user) throw 401;
+// =======
+// 		if (project.owner_id !== ids.user && project.private) throw 401;
+// >>>>>>> Giant fox hole. Commit ALL the fixes
 
 		return db(tableName).select('*').where({project_id: ids.project})
 		.then(function(resources){
