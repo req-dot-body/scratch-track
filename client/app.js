@@ -192,7 +192,7 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $location
       controller: 'ProjectEditCtrl'
     })
 
-    .state('team', {
+    .state('main.team', {
       url: '/team',
       authenticate: false,
       templateUrl: 'views/team.html',
