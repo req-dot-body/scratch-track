@@ -208,6 +208,10 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     font-size: 12px;
   }
 
+  audio {
+    width: 75%;
+  }
+
   body form .form-group {
     height: 20px;
   }
@@ -274,8 +278,9 @@ $autocolor: false // When true, all the above colors will be derived from $backg
        color: #000;
      }
 
-  .vex-canvas {
-    height: 10rem;
+  canvas {
+    width: 300px;
+    height: 232px;
   }
 
   video#intro-video { 
@@ -299,6 +304,20 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     -moz-filter:blur(5px);
     -webkit-filter:blur(5px);
      
+  }
+
+  /*LIKE BUTTON DIRECTIVE*/
+
+  #like-count {
+    padding: 0 0.5em 0 0;
+  }
+
+  #like-btn {
+    padding: 0 0.5em 0 0;
+  }
+
+  #like-text {
+    padding: 0 0.5em 0 0;
   }
 
   /*DASH VIEW*/

@@ -10,7 +10,7 @@
         </p>
       </section>
 
-      <zf-accordion id="create-note" auto-open="false">
+      <zf-accordion class="create-resource" auto-open="false">
         <zf-accordion-item class="title" title="Click To Create New Note">
           <br>
           <form name="newNoteForm" class="form-group" ng-submit="addNote(newNote); submit(); closeAccordion();" novalidate>
@@ -44,7 +44,8 @@
 
       <sort></sort>
 
-      <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy: sortField: sortDirection | filter: noteSearch" ng-model="notes">
+
+      <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy: sort.sortField: sort.sortDirection | filter: noteSearch" ng-model="notes">
         <zf-accordion-item title="{{ formatDate(note.created_at) }} - {{ note.name}}">
           <textarea readonly="true" ng-model="note.text" id="note-text{{note.id}}">
             {{note.text}}

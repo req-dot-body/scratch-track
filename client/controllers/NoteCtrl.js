@@ -1,8 +1,9 @@
-var moment = require('moment/moment');
-
-app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', function($scope, $state,$timeout, Note, Project) {
+app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
+ function($scope, $state, Note, Project, Resource) {
 
   var projectId = $state.params.id;
+
+  $scope.sort = Resource.sort;
 
   $scope.notes = $scope.notes || [];
 
@@ -20,7 +21,11 @@ app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', f
 
   //Note Methods:
   $scope.formatDate = function(date) {
-    return moment.unix(date).calendar();
+    return Resource.formatDate(date);
+  };
+
+  $scope.sortBy = function(field){
+    Resource.sortBy(field);
   };
 
   $scope.sortBy = function(field){
@@ -38,9 +43,7 @@ app.controller('NoteCtrl', ['$scope', '$state', '$timeout', 'Note', 'Project', f
   };
 
   $scope.closeAccordion = function(){
-    $timeout(function() {
-      $('#create-note .accordion-title').trigger('click');
-    }, 500);
+    Resource.closeAccordion();
   };
   
   $scope.getAll = function (projectId) {
