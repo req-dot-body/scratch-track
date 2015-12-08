@@ -1,5 +1,5 @@
 <ul ng-if="!public" class="dash-menu-bar" id ='tour12'>
-  <li><a href="#" ng-click = 'projectCreated=true' zf-open='projectInfo'>&#9835; Edit</a></li>
+  <li><a href="#" ng-click = 'showEdit()' zf-open='projectInfo'>&#9835; Edit</a></li>
   <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
   <!-- <li><a ui-sref="main.projects">Back</a></li> -->
 </ul>
@@ -99,7 +99,7 @@
     <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
   </div>
  
-  <div zf-modal="" id="projectInfo" animation-out="slideOutUp" class="collapse large is-active" ng-show ='projectCreated===true' id='tour7'>
+  <div zf-modal="" id="projectInfo" ng-show="projectCreated" animation-out="slideOutUp" class="collapse large is-active" id='tour7'>
   
     <div class="grid-block vertical">
       

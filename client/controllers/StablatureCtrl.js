@@ -7,8 +7,9 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project', '
 	$scope.sort = Resource.sort;
 
   $scope.public = true;
+  
   if ($state.current.authenticate) {
-    $state.public = false;
+    $scope.public = false;
   }
 
 	var projectId = $state.params.id;

@@ -12,6 +12,9 @@ if ($state.current.authenticate) {
 //gets the current project ID
 projectId = $state.params.id; 
 
+$scope.showEdit = function(){
+  $scope.projectCreated = true; 
+}
 
 $scope.getProject = function(projectId) {
   Project.getProject(projectId)
