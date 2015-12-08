@@ -334,6 +334,10 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   textarea {
     min-height: 250px;
+    &.dashboard{
+      max-height: 250px;
+      height: auto;
+    }
   }
 
   textarea.title-box {
