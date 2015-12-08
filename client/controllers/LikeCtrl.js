@@ -9,10 +9,10 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', '$http',
   $scope.contentToggle = function () {
     if ($scope.buttonContent === 'thumb_up') {
       $scope.buttonContent = 'thumb_down';
-      $scope.textContent = "Un-like this project"
+      $scope.textContent = "Like this project"
     } else {
       $scope.buttonContent = 'thumb_up';
-      $scope.textContent = "Like this project"
+      $scope.textContent = "Unlike this project"
     }
   }
 
@@ -48,9 +48,11 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', '$http',
     }
 
     if ($scope.project.liked === '1') {
-      $scope.buttonContent = 'thumb_down';
-    } else {
       $scope.buttonContent = 'thumb_up';
+      $scope.textContent = "Unlike this project"
+    } else {
+      $scope.buttonContent = 'thumb_down';
+      $scope.textContent = "Like this project"
     }
   }
 
