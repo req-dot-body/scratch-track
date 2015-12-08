@@ -11,7 +11,7 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q','signe
     var getProjectsFn = Project.getPublicProjects;
 
     if (!$scope.public) {
-      getProejctsFn = Project.getAllProjects;
+      getProjectsFn = Project.getAllProjects;
     }
 
     getProjectsFn()

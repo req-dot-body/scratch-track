@@ -5,7 +5,8 @@ app.factory('Like', ['$http', function ($http) {
   };
 
   var like = function (projectId) {
-    return $http.post('/api/projects/', + projectId + '/like');
+    console.log('Liking project:', projectId);
+    return $http.post('/api/projects/' + projectId + '/like');
   };
 
   return {
