@@ -28,7 +28,7 @@ app.controller('UserCtrl', ['$scope','User', function($scope, User) {
       userData.email = $scope.email;
       userData.password = $scope.password;
       //sends true to identify that user just signedup
-      User.logIn(userData,true);
+      User.logIn(userData);
     })
   } 
 

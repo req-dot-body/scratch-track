@@ -1,10 +1,17 @@
 
 var moment = require('moment/moment');
 
-app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q', function($scope,$state,Project, FoundationApi, nzTour, $q) {
-
+app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp', function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp) {
+//gets the current project ID
 projectId = $state.params.id; 
 
+//declares data for editing window in dash view
+$scope.editData = {
+      name:'',
+      description:''
+};
+
+//THIS IS MOCK DATA AND SHOULD BE DELETED
 $scope.testRecording = {
   name: "a recording",
   description: "that's pretty much all there is to it",
@@ -43,36 +50,44 @@ $scope.testLyrics = {
   description: 'a little something I came up with'    
 };
 
-
+//gets information of project and saves it for the controller
 Project.getProject(projectId)
 .then(function(response){
   $scope.projectData = response.data;
-  
+  //if project does not have a name it will add a nave to it
   if ($scope.projectData.name === null){
     $scope.projectData.name = 'MyProject: '+ projectId;
     $scope.saveProjectInfo($scope.projectData);
   }
-
+  //this variable allows to know if the project was just created, if this happen the view will open a model to allow user to put information about it
   $scope.projectCreated = false;
   if($state.params.created){
     $scope.projectCreated = true;
   }
 })
 
-
+//changes the date format
 $scope.formatDate = function(date) {
   return moment.unix(date).calendar();
 };
 
+//delets a project and redirects to main view
 $scope.deleteProject = function(id){
   Project.deleteProject(id)
   .then(function(){
     $state.go('main.projects')
   })
 };
-
-
+//saves the project
 $scope.saveProjectInfo = function(){
+  //if user changes the name or description will be saved in a temp variable and only be modified in the database if user clicks 'save'
+  if($scope.editData.name !== $scope.projectData.name){
+    $scope.projectData.name = $scope.editData.name;
+  }
+   if($scope.editData.description !== $scope.projectData.description){
+    $scope.projectData.description = $scope.editData.description;
+  }
+  if (signedUp.value) {nzTour.start(dashTour)};
   Project.editProject($scope.projectData)
 };
 
@@ -124,37 +139,32 @@ var newProjectTour = {
     }]
 };
 
-// var newProjectTour = {
-//     config: {dark:true}, 
-//     steps: [{
-//         target: '#tour7',
-//         content: 'Awsome you are rocking!',
-//     }, {
-//         target: '#tour8',
-//         content: 'You can make your project Public watchout! other users can edit it! default is Private',
-//     }, {
-//         target: '#tour9',
-//         content: 'Change the name!',
-//     },{
-//         target: '#tour10',
-//         content: 'Add... a description and Save when you Finish!',
-//         after: function(){
-//             var d = $q.defer();
-//             alertify.logPosition("bottom right")
-//                     .log("Save Your changes!")           
-//                     .closeLogOnClick(true) 
-//             d.resolve(); // or d.reject()
-//             return d.promise
-//         }
-//     }]
-// };
+var dashTour = {
+    config: {dark:false}, 
+    steps: [{
+        target: '#tour11',
+        content: 'This is your Project Dash'
+    }, {
+        target: '#tour12',
+        content: 'New Controls you can edit your project at any time or delete it',
+    }, {
+        content: 'Navigate thru the components, Recordings, Lyrics, Notes and of course the "Stablature"',
+        after: function(){
+            var d = $q.defer();
+            alertify.logPosition("bottom right")
+                    .success("Go ahead and explore...")           
+                    .closeLogOnClick(true) 
+            d.resolve(); // or d.reject()
+            return d.promise
+        }
+    }]
+};
 
 //Tour is only triggered if the user is just signed in
-  if(!$state.params.signedUp){
+  if(signedUp.value){
 
     nzTour.start(newProjectTour)
         .then(function() {
-          nzTour(dashTour)
             console.log('Tour Finished!');
         })
         .catch(function() {

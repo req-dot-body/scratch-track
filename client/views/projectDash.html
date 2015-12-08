@@ -1,9 +1,9 @@
-<div id='tour'>
-<ul class="dash-menu-bar">
+<ul class="dash-menu-bar" id ='tour12'>
   <li><a href="#" ng-click = 'projectCreated=true' zf-open='projectInfo'>Edit</a></li>
   <li><a href="#" zf-open="deleteModal2">Delete</a></li>
   <!-- <li><a ui-sref="main.projects">Back</a></li> -->
 </ul>
+<div id='tour11'>
 <h1 class="text-center spaced">Project Dash</h1>
 <div class="grid-block wrap dash-row-top text-center">
 
@@ -116,11 +116,11 @@
         <form class = 'text-left'>
           <label>
             <h5>Project Name</h5>
-            <input ng-model='projectData.name' type="text" placeholder="Name" id='tour9'>
+            <input ng-model='editData.name' type="text" placeholder="Name" id='tour9'>
           </label>
           <label>
             <h5>Project Description</h5>
-            <input ng-model='projectData.description' type="text" placeholder="Description" id='tour10'>
+            <input ng-model='editData.description' type="text" placeholder="Description" id='tour10'>
           </label>
         </form>
         <div class = 'text-center'>
