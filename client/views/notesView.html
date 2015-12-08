@@ -36,7 +36,7 @@
             <label>
               Note Body:
             </label>
-              <textarea placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
+              <textarea class="body-entry" placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
             <button class="button" type="submit">ADD NOTE</button>
           </form>
         </zf-accordion-item>
@@ -55,7 +55,7 @@
 
       <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy: sort.sortField: sort.sortDirection | filter: noteSearch" ng-model="notes">
         <zf-accordion-item title="{{ formatDate(note.created_at) }} - {{ note.name}}">
-          <textarea readonly="true" ng-model="note.text" id="note-text{{note.id}}">
+          <textarea class="body-entry" readonly="true" ng-model="note.text" id="note-text{{note.id}}">
             {{note.text}}
           </textarea>
           <a ng-if="!public" class="medium button" id="edit-btn" ng-click="editNote(note.id)" ng-if="!editToggle">EDIT</a>
