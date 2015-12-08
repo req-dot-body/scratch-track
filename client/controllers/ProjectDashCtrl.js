@@ -4,9 +4,9 @@ var moment = require('moment/moment');
 app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp', function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp) {
 
 // Used to determine whether or not to display certain elements
-$scope.public = false;
-if ($state.current.name === 'main.public_view.dash') {
-  $scope.public = true;
+$scope.public = true;
+if ($state.current.authenticate) {
+  $scope.public = false;
 }
 
 //gets the current project ID

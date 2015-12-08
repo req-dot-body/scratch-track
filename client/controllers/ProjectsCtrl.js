@@ -1,9 +1,9 @@
 app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q','signedUp', function($scope,$state,Project,nzTour,$q,signedUp) {
 
   // If we're in a public state or not
-  $scope.public = false;
-  if ($state.current.name === 'main.pubprojects') {
-    $scope.public = true;
+  $scope.public = true;
+  if ($state.current.authenticate) {
+    $scope.public = false;
   }
 
 //Get projects from Projects factory
