@@ -26,7 +26,7 @@ var sortBy = function(field){
 
 var closeAccordion = function(){
   $timeout(function() {
-    $('.create-resource .accordion-title').trigger('click');
+    $('#create-resource .accordion-title').trigger('click');
   }, 500);
 };
 
