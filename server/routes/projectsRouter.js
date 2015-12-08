@@ -127,19 +127,11 @@ router.get('/:projectId/like', function(req, res){
   var projectId = req.params.projectId
   var userId;
 
-<<<<<<< HEAD
-  if (req.session.passpost.user){
-    userId = req.session.passport.user.id;
-  }
-
-  Like.countByProject(projectId, userId)
-=======
   if (req.session.passport.user){
     userId = req.session.passport.user.id;
   }
 
   Like.findByProject(projectId, userId)
->>>>>>> 713d871244058536c246da3bff057b425b46f493
   .then(function(likeInfo){
     res.status(200).send(likeInfo);
   })
