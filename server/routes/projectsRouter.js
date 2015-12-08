@@ -148,8 +148,6 @@ router.post('/:projectId/like', helper.requireAuth, function (req, res){
     user: req.session.passport.user.id
   };
 
-  console.log('liking awh yeah', ids)
-
   Like.toggleLike(ids.user, ids.project)
   .then(function(like){
     if (like) {

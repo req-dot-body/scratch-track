@@ -32,8 +32,7 @@
   <div class="grid-block">
     <div class="grid-block small-10 medium-8 small-offset-1 medium-offset-2">
       <div class = 'grid-content'>
-        <form id='tour4' class='project-search'>  
-
+        <form id='tour4' class='project-search'>
           <label>
             <input class = 'projects-seach' ng-model="searchText" type="search" placeholder="Search Projects">
           </label>
@@ -55,8 +54,7 @@
         <p>Description:{{project.description}}</p>
         <p>Created at: {{project.created_at*1000|date}}</p>
         <p>Updated at: {{project.updated_at*1000|date}}</p>
-        {{project}}
-        <likebutton project='project'></likebutton>
+        <likebutton project="project"></likebutton>
         <a  zf-open='deleteModal' class="alert expand hollow text-center button">Delete Project</a> 
         </div>
 

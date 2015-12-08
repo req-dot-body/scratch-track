@@ -73,6 +73,16 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     Resource.sortBy(field);
   };
 
+  $scope.sortBy = function(field){
+    if ($scope.sortField === field){
+      $scope.sortDirection = !$scope.sortDirection;
+    }
+    else {
+      $scope.sortField = field;
+      $scope.sortDirection = true;  
+    }
+  };
+
   //RecorderJS:
 
   $scope.audio_context = null;
