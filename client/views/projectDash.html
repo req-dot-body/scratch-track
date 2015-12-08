@@ -1,9 +1,9 @@
-<div id='tour'>
-<ul class="dash-menu-bar">
+<ul class="dash-menu-bar" id ='tour12'>
   <li><a href="#" ng-click = 'projectCreated=true' zf-open='projectInfo'>Edit</a></li>
   <li><a href="#" zf-open="deleteModal2">Delete</a></li>
   <!-- <li><a ui-sref="main.projects">Back</a></li> -->
 </ul>
+<div id='tour11'>
 <h1 class="text-center spaced">Project Dash</h1>
 <div class="grid-block wrap dash-row-top text-center">
 
@@ -107,25 +107,25 @@
         <div class='text-right' id='tour8'>
           <span>Private</span>
           <div class="public-project">
-            <input type="checkbox" ng-model="projectData.private" ng-true-value="0" ng-false-value="1" id="public-project">
+            <input type="checkbox" ng-model="updatedInfo.private" ng-true-value="0" ng-false-value="1" id="public-project">
             <label for="public-project"></label>
           </div>
           <span>Public</span><br>
         </div>  
         
-        <form class = 'text-left'>
+        <form class = 'text-left' ng-submit="saveProjectInfo()">
           <label>
             <h5>Project Name</h5>
-            <input ng-model='projectData.name' type="text" placeholder="Name" id='tour9'>
+            <input ng-model='updatedInfo.name' type="text" placeholder="Name" id='tour9'>
           </label>
           <label>
             <h5>Project Description</h5>
-            <input ng-model='projectData.description' type="text" placeholder="Description" id='tour10'>
+            <input ng-model='updatedInfo.description' type="text" placeholder="Description" id='tour10'>
           </label>
+          <div class = 'text-center'>
+            <button ng-click='saveProjectInfo()' type="submit" zf-close="" class="success expand button">Save</button>
+          </div>
         </form>
-        <div class = 'text-center'>
-          <a ng-click='saveProjectInfo()' zf-close="" class="success expand button">Save</a>
-        </div>
       </div>
     </div>
   </div>

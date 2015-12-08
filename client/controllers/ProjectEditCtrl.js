@@ -14,7 +14,7 @@ Project.getProject(id)
   console.log('there was an error loading the project, id: ', id);
 })
 
-
+//go to dash on default
 if($state.is('main.project_edit')){
   $state.go('main.project_edit.dash');
 }

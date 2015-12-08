@@ -1,13 +1,13 @@
-app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q', function($scope,$state,Project,nzTour,$q) {
+app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q','signedUp', function($scope,$state,Project,nzTour,$q,signedUp) {
 
   console.log('Current state:', $state.current);
+  console.log('this is signedUp status', signedUp)
 
 //Get projects from Projects factory
   $scope.getProjects = function () {
     Project.getAllProjects()
     .then(function(data){
       $scope.projects = data;
-      console.log('this are the projects: ', data)
     }).catch(function(error){
         //case of server error getting projects 
     })
@@ -17,12 +17,8 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q', funct
   $scope.createProject = function () {
     Project.createProject()
     .then(function(response){
-      var id = response.data.id;
-      if($state.current.signedUp){
-        $state.go('main.project_edit.dash', { id: id, created:true, signedUp:true});
-      }else{
-        $state.go('main.project_edit.dash', { id: id, created:true });
-      }
+      var id = response.data.id; 
+      $state.go('main.project_edit.dash', { id: id, created:true });
     }).catch(function(error){
       //if not created stay in same state
       $state.go('main.projects');
@@ -75,8 +71,7 @@ var projectTour = {
 };
 
 //Tour is only triggered if the user is just signed in
-  if(!$state.params.signedUp){
-
+  if(signedUp.value){
     nzTour.start(projectTour)
         .then(function() {
             console.log('Tour Finished!');
