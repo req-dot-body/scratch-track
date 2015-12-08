@@ -23,19 +23,20 @@
             <label>
               Note Title:
             </label>
-            <input type="text" placeholder="Enter note title here" ng-model="newNote.name" required>
+            <input type="text" placeholder="Enter note title here" ng-model="newNote.name" ng-maxlength="1000" required>
             <br>
 
             <div class="form-group"> 
               <div class="validation-error" ng-messages="newNoteForm.$error" ng-if="submitted && !hasBeenReset">
                 <div ng-message="required">{{ hasBeenReset }} Oops! You have some unfilled fields. Please complete and try again.</div>
+                <div ng-message="maxlength">Oops! Your note is longer than can be accepted. Please split it into more than one note.</div>
               </div>
             </div>
 
             <label>
               Note Body:
             </label>
-              <textarea placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
+              <textarea class="body-entry" placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
             <button class="button" type="submit">ADD NOTE</button>
           </form>
         </zf-accordion-item>
@@ -54,7 +55,7 @@
 
       <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy: sort.sortField: sort.sortDirection | filter: noteSearch" ng-model="notes">
         <zf-accordion-item title="{{ formatDate(note.created_at) }} - {{ note.name}}">
-          <textarea readonly="true" ng-model="note.text" id="note-text{{note.id}}">
+          <textarea class="body-entry" readonly="true" ng-model="note.text" id="note-text{{note.id}}">
             {{note.text}}
           </textarea>
           <a ng-if="!public" class="medium button" id="edit-btn" ng-click="editNote(note.id)" ng-if="!editToggle">EDIT</a>
