@@ -1,6 +1,8 @@
-app.controller('ProjectEditCtrl', ['$scope', '$state', 'Project', function($scope, $state, Project) {
+// var vextab = require('vextab');
+app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', function($scope,$state,Project,signedUp) {
 
-  $scope.state = $state;
+console.log('project edit controller hitted')
+$scope.state = $state;
 
   $scope.public = false;
 
