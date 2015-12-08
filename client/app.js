@@ -172,9 +172,11 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       controller: 'ProjectEditCtrl'
     })
 
-    .state('test', {
-      url: '/test',
-      templateUrl: 'views/testView.html',
+    .state('team', {
+      url: '/team',
+      authenticate: false,
+      templateUrl: 'views/team.html',
+      controller: 'TeamCtrl'
     })
 })
 .run(function ($timeout, $rootScope, $location, $state, Auth) {
