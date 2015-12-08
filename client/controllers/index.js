@@ -9,7 +9,6 @@ require('./NoteCtrl');
 require('./ProjectEditCtrl');
 require('./PublicCtrl');
 require('./LandingCtrl');
-require('./TourCtrl');
 require('./ProjectDashCtrl');
 require('./ResourceEntryCtrl');
 require('./LikeCtrl');

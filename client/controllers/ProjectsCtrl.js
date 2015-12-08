@@ -49,6 +49,4 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q','signe
 // Get projects on controller loading
   $scope.getProjects();
 
-
-
 }]);
