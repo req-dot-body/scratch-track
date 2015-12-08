@@ -60,8 +60,8 @@
       <sort></sort>
       <br>
       <div class="grid-block">
-        <div class="grid-block align-justify">
-          <ul ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
+        <div class="grid-block">
+          <ul class="grid-content align-spaced" ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
             <div class="grid-block">
               <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
                 <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
