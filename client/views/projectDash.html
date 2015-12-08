@@ -25,7 +25,7 @@
       <div class="recordings-card-section">
         <ul>
           <li ng-repeat = 'recording in projectRecordings|limitTo:-3|orderBy:"updated_at"'>
-            <recordingentry resource="testRecording"></recordingentry> 
+            <recordingentry resource="recording"></recordingentry> 
            <!--  {{recording.name}} -->
           </li>
         </ul>
@@ -61,7 +61,7 @@
       <div class="lyrics-card-section">
          <ul>
           <li class="collection-item" ng-repeat = 'lyric in projectLyrics|limitTo:-3|orderBy:"updated_at"'>
-            <lyricsentry resource="testLyrics"></lyricsentry>
+            <lyricsentry resource="lyric"></lyricsentry>
         <!--     <h5>{{lyric.name}}</h5>
             <p class ='panel-lyric'>{{lyric.text}}</P> -->
           </li>
