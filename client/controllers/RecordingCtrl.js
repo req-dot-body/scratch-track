@@ -26,7 +26,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   $scope.getAll = function(){
     return Project.getProjectRecordings(projectId)
     .then(function(response){
-      console.log("recording data is", response);
       $scope.recordings = response.data;
     })
   };
@@ -58,10 +57,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     .then(function(){
       $scope.getAll();
     })
-
-    console.log("edit called", editedRecording);
-
-
   };
 
   $scope.delete = function(id) {
@@ -127,12 +122,8 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
 
     $scope.clock += updated;
     $scope.seconds += updated;
-
     $scope.clock = Math.ceil($scope.clock);
     $scope.seconds = Math.ceil($scope.seconds);
-
-    console.log("clocktime is", $scope.clock);
-    console.log("seconds are", $scope.seconds);
 
     if ($scope.seconds < 10) {
       $scope.secondsPlace = "0" + $scope.seconds;
@@ -143,7 +134,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     } else {
       $scope.secondsPlace = $scope.seconds
     }
-
     $scope.$apply();
   }
 
