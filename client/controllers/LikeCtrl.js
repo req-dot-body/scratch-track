@@ -1,7 +1,6 @@
 app.controller('LikeCtrl', ['$scope','$state', 'Like', '$http', 
   function($scope, $state, Like, $http) {
 
-  $http.put('api/projects/' + $scope.project.id, {private: 0})
 
   $scope.buttonContent = 'thumb_up'
   $scope.textContent = "Like this project"
