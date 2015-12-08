@@ -15,7 +15,7 @@
           <br>
           <form name="newLyricForm" class="form-group" ng-submit="add(newLyric); submit();" novalidate>
             <label>Lyric Title:</label>
-            <textarea class="lyric-textarea" type="text" name="lyric-title" ng-model="newLyric.name" placeholder="Enter title here." required></textarea>
+            <textarea class="lyric-textarea title-box" type="text" name="lyric-title" ng-model="newLyric.name" placeholder="Enter title here." required></textarea>
             <br>
 
             <div class="form-group"> 
@@ -38,7 +38,7 @@
         <zf-accordion-item class="title" title="Create New Revision">
           <form name="lyricRevisionForm" class="form-group" ng-submit="toggleElement('lyric-revision'); toggleElement('create-resource'); add(newLyric);" novalidate>
             <label>Revision Title:</label>
-            <textarea class="lyric-textarea" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
+            <textarea class="lyric-textarea title-box" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
 
             <label>Revision Body:</label>
             <textarea class="lyric-textarea" type="text" ng-model="newLyric.text" placeholder="Enter lyrics here."></textarea>
@@ -64,9 +64,9 @@
 
           <zf-accordion auto-open="false" ng-repeat="lyric in lyrics.data | orderBy: sort.sortField: sort.sortDirection | filter: lyricSearch" ng-model="lyrics">
             <zf-accordion-item title="{{ formatDate(lyric.created_at) }} - {{ lyric.name}}">
-              <div class="lyric-textarea" id="lyrictitle" style="display: none;">
+              <div class="lyric-textarea title-box" id="lyrictitle" style="display: none;">
                 <label>Lyric Title:</label>
-                <textarea id="lyrictitle" ng-model="lyric.name"></textarea>
+                <textarea class="title-box" id="lyrictitle" ng-model="lyric.name"></textarea>
               </div>
               
               <label>Lyric Body:</label>

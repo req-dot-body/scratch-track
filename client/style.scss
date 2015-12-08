@@ -334,8 +334,13 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     margin: 5px;
   }
 
-  .lyric-textarea:read-only {
-    color: gray;
+
+  textarea {
+    min-height: 250px;
+  }
+
+  textarea.title-box {
+    min-height: 50px !important;
   }
 
   /* Lyric Styles */
