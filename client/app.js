@@ -49,7 +49,7 @@ window.app = angular.module('myApp', [
   // uiRouter,
 ]);
 
-app.value('sigedUp',false);
+app.value('signedUp',{value:false});
 
 app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
 $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -102,7 +102,6 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
      .state('main.projects', {
       url:'/projects',
       authenticate: true,
-      params:{signedUp:false},
       templateUrl: 'views/projects.html',
       controller: 'ProjectsCtrl',
       controllerAs:'projects'
@@ -118,7 +117,7 @@ $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     .state('main.project_edit.dash', {
       url:'/dash',
       authenticate: true,
-      params:{created:false, signedUp:false},
+      params:{created:false},
       templateUrl: 'views/projectDash.html',
       controller: 'ProjectDashCtrl' 
     })

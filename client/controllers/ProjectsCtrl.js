@@ -1,6 +1,7 @@
-app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q', function($scope,$state,Project,nzTour,$q) {
+app.controller('ProjectsCtrl', ['$scope','$state','Project','nzTour','$q','signedUp', function($scope,$state,Project,nzTour,$q,signedUp) {
 
   console.log('Current state:', $state.current);
+  console.log('this is signedUp status', signedUp)
 
 //Get projects from Projects factory
   $scope.getProjects = function () {
@@ -70,7 +71,7 @@ var projectTour = {
 };
 
 //Tour is only triggered if the user is just signed in
-  if(false){
+  if(signedUp.value){
     nzTour.start(projectTour)
         .then(function() {
             console.log('Tour Finished!');

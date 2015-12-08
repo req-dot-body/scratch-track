@@ -1,7 +1,7 @@
 
 var moment = require('moment/moment');
 
-app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q', function($scope,$state,Project, FoundationApi, nzTour, $q) {
+app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp', function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp) {
 //gets the current project ID
 projectId = $state.params.id; 
 
@@ -87,6 +87,7 @@ $scope.saveProjectInfo = function(){
    if($scope.editData.description !== $scope.projectData.description){
     $scope.projectData.description = $scope.editData.description;
   }
+  if (signedUp.value) {nzTour.start(dashTour)};
   Project.editProject($scope.projectData)
 };
 
@@ -160,11 +161,10 @@ var dashTour = {
 };
 
 //Tour is only triggered if the user is just signed in
-  if(false){
+  if(signedUp.value){
 
     nzTour.start(newProjectTour)
         .then(function() {
-          nzTour.start(dashTour)
             console.log('Tour Finished!');
         })
         .catch(function() {

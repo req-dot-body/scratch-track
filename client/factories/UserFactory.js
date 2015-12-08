@@ -1,6 +1,5 @@
-app.factory('User', ['$http','$state', function($http,$state,signedUp) {
+app.factory('User', ['$http','$state','signedUp', function($http,$state,signedUp) {
   
-
   var logIn = function (userData){
 
     return $http.post('/api/users/signin', userData)
@@ -16,7 +15,8 @@ app.factory('User', ['$http','$state', function($http,$state,signedUp) {
 
   var signUp = function (newUser){
     //if user is signed up sends a parameter true to load the tour
-    signedUp = true;
+    signedUp.value = true;
+    console.log('this is signedUp on signUp User Factory: ', signedUp)
     return $http.post('/api/users/signup', newUser)
     .catch(function(err){
       $state.go('public.signup');
@@ -39,7 +39,7 @@ app.factory('User', ['$http','$state', function($http,$state,signedUp) {
   return {
     logIn:logIn,
     signUp:signUp,
-    logOut:logOut
+    logOut:logOut,
   }
 
 }]);
