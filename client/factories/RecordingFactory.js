@@ -24,5 +24,4 @@ app.factory('Recording', ['$http', function($http) {
 		edit: edit,
 		del: del
 	};
-
 }]);

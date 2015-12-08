@@ -32,6 +32,7 @@
           <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
           <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
           <div id="recording-status" class="grid-block-shrink">
+            <p id="timer" ng-model="currentTime">{{clock}}</p>
             <em id="log" class="recordingStatus"></em>
             <img src="/resources/loading.gif" ng-if="isSaving">
           </div>

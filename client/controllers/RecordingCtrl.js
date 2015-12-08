@@ -89,7 +89,45 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     }
   };
 
-  //RecorderJS:
+  // -------------Timer Functions-------------:
+  $scope.clock = 0;
+  $scope.interval;
+  $scope.offset;
+
+  $scope.startTimer = function () {
+    $scope.resetTimer();
+
+    if (!$scope.interval) {
+      $scope.offset = Date.now();
+      $scope.interval = setInterval($scope.updateTimer, 100)
+    }
+  };
+
+  $scope.stopTimer = function () {
+    if ($scope.interval) {
+      clearInterval($scope.interval);
+      $scope.interval = null;
+    }
+  } 
+
+  $scope.resetTimer = function () {
+    $scope.clock = 0;
+  }
+
+  $scope.updateTimer = function () {
+    $scope.clock += ($scope.tick() / 100);
+    console.log($scope.clock);
+  }
+
+  $scope.tick = function () {
+    var now = Date.now();
+    var diff = now - $scope.offset;
+    $scope.offset = now;
+    return diff;
+  }
+  
+
+  // -------------RecorderJS-------------:
 
   $scope.audio_context = null;
   $scope.recorder = null;
@@ -110,6 +148,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   }
 
   $scope.startRecording = function () {
+    $scope.startTimer();
     $scope.__log('');
     $scope.recorder && $scope.recorder.record();
 
@@ -124,6 +163,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   }
 
    $scope.stopRecording = function () {
+    $scope.stopTimer();
     $scope.recorder && $scope.recorder.stop();
     $scope.buttonToggle();
     $scope.__log('Stopped recording.');
