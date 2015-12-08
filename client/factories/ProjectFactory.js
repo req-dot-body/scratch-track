@@ -61,7 +61,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
     
     return $http.post('/api/projects')
     .then(function(response){
-      console.log('Project Created')
+      console.log('Project Created');
       return response;   
     })
     .catch(function(err){
@@ -161,6 +161,6 @@ app.factory('Project', ['$http','$state', function($http,$state) {
     getProjectLyrics:getProjectLyrics,
     getProjectStablature:getProjectStablature,
     getProjectNotes:getProjectNotes
-  }
+  };
 
 }]);
