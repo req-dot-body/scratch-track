@@ -49,7 +49,6 @@
       </zf-accordion>
       <br> 
       <br>
-<<<<<<< 82b18b418071bb3fb18b1213544087b40bb648bc
 
       <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
       <div class="title-bar">
@@ -62,34 +61,15 @@
           <ul ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
             <div class="grid-block">
               <li class="spaced grid-content" style="list-style: none;" >
-=======
-      <div class="vertical grid-block">
-        <div class="grid-content">
-          <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
-          <div class="title-bar">
-            <span ng-if="!public" class="title center">Your Stablature for This Project:</span>
-            <span ng-if="public" class="title center">Stablature for This Project:</span>
-          </div>
-          <sort></sort>
-          <ul ng-repeat="stab in stabList | orderBy: sortField: sortDirection | filter: stabSearch">
-            <div class="grid-block align-justify">
-              <li class="spaced" style="list-style: none;" >
->>>>>>> Add public/private to Stablature
                 <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
                 <div>
                   <vextab ng-model="stab.code" notation="false"></vextab>
              
                   <p><em>{{stab.description}}</em></p>
-<<<<<<< 82b18b418071bb3fb18b1213544087b40bb648bc
 
-                  <a class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
-                  <a class="button" ng-click="">EDIT</a>
-                  <a class="button" zf-open="deleteModal">DELETE</a> 
-=======
                   <a ng-if="!public" class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
                   <a ng-if="!public" class="button" ng-click="">EDIT</a>
                   <a ng-if="!public" class="button" zf-open="deleteModal">DELETE</a> 
->>>>>>> Add public/private to Stablature
                 </div>
 
                 <div ng-if="!public" zf-modal="" id="deleteModal">
