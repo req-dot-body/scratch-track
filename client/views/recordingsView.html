@@ -20,6 +20,12 @@
       <!--Recording Panel-->
       <zf-accordion id="create-resource" auto-open="false">
         <zf-accordion-item ng-if="!public" class="title" title="Create New Recording">
+          <label>
+            Title This Recording:
+            <input type="text" ng-model="newRecording.name"/>
+            Recording Description:
+            <textarea ng-model="newRecording.description" maxlength="72"></textarea>
+          </label>
           <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
           <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
           <br>
