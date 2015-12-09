@@ -139,7 +139,41 @@ app.factory('Tour', ['$state','nzTour','$q','signedUp', function($state,nzTour,$
 
   }
 
-  //DASH VIEW TOURS
+    //PUBLIC DASH VIEW TOURS
+
+  var publicDashTour = {
+      config: {dark:false}, 
+      steps: [{
+          target: '#tour6',
+          content: 'The Dash Board, the home of each project'
+      }, {
+          target: '#tour8',
+          content: 'Listen to recorded audio files',
+      }, {
+      target: '#tour9',
+          content: 'Lyrics, see the vocals!',
+      }, {
+      target: '#tour10',
+          content: 'Notes, see the thoughts of the musician',
+      }, {
+      target: '#tour11',
+          content: 'The "Stablature" music tabs have never been easier! Check this out! ',  
+      }]
+  };
+
+  var startPublicDashTour = function () {
+
+    nzTour.start(publicDashTour)
+          .then(function() {
+              console.log('Tour Finished!');
+          })
+          .catch(function() {
+              console.log('Tour Aborted!')
+          });
+
+  }
+
+  //EditProject
 
   var editProjectTour = {
       config: {dark:false}, 
@@ -173,7 +207,8 @@ app.factory('Tour', ['$state','nzTour','$q','signedUp', function($state,nzTour,$
     startPublicProjectTour:startPublicProjectTour,
     startDashTour:startDashTour,
     startMainTour:startMainTour,
-    startEditProjectTour:startEditProjectTour    
+    startEditProjectTour:startEditProjectTour,
+    startPublicDashTour:startPublicDashTour    
   }
 
 }]);
