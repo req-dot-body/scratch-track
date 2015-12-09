@@ -1,9 +1,10 @@
-app.controller('LikeCtrl', ['$scope','$state', 'Like', '$http', 
-  function($scope, $state, Like, $http) {
+app.controller('LikeCtrl', ['$scope','$state', 'Like', 'Auth',
+  function($scope, $state, Like, Auth) {
 
   $scope.buttonContent = 'thumb_up'
   $scope.textContent = "Like this project"
   $scope.textContent2 = "likes"
+  $scope.loggedIn = Auth.isLoggedIn();
 
   $scope.project = {};
 
