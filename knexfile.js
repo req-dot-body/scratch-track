@@ -50,7 +50,8 @@ module.exports = {
       host:     process.env.PG_PROD_HOST,
       database: process.env.PG_PROD_DB,
       user:     process.env.PG_PROD_USER,
-      password: process.env.PG_PROD_PASS
+      password: process.env.PG_PROD_PASS,
+      ssl:      process.env.PG_PROD_SSL, 
     },
     pool: {
       min: 2,
