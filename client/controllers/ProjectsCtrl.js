@@ -7,6 +7,23 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','signedUp','Tour', f
     $scope.public = false;
   }
 
+  $scope.sort = {
+    sortField: '',
+    sortDirection: false
+  }
+
+  $scope.sortBy = function(field){
+    console.log('hitting ctrl');
+    if ($scope.sort.sortField === field){
+      console.log($scope.sort.sortField);
+      $scope.sort.sortDirection = !$scope.sort.sortDirection;
+    }
+    else {
+      $scope.sort.sortField = field;
+      $scope.sort.sortDirection = true;
+    }
+  };
+
 //Get projects from Projects factory
   $scope.getProjects = function () {
     var getProjectsFn = Project.getPublicProjects;
