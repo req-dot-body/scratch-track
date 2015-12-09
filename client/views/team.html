@@ -19,10 +19,10 @@
 <div class="text-center">
   <h1 class="team-header">Our Team:</h1>
 </div>
-
-<div class="align-center grid-block" id="team-entry">
-  <div class="dark card" ng-repeat="person in team" ng-model="team">
-    <img src="{{person.img_src}}">
+<div class="grid-block small-10">
+  <div class="dark card" id="team-entry" ng-repeat="person in team" ng-model="team">
+<!--     <img src="{{person.img_src}}">
+ -->    <img src = '../resources/about.jpg'>
     <div class="card-divider">
       {{person.title}}
     </div>
