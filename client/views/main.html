@@ -12,6 +12,8 @@
       <li ng-if="signedIn" id ='tour5'><a ui-sref="main.projects">Projects</a></li>
       <li><a ui-sref="main.team">About</a></li>
       <li ng-if="signedIn"><a ng-click="logOut()">Log Out</a></li>
+      <li ng-if="!signedIn"><a ui-sref="public.signup">Sign Up</a></li>
+      <li ng-if="!signedIn"><a ui-sref="public.signin">Sign In</a></li>
     </ul>
   <!-- </div> -->
 </div>
