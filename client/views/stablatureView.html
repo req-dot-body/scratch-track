@@ -20,6 +20,7 @@
       <zf-accordion ng-if="!public" id="create-resource" auto-open="false" >
         <zf-accordion-item class="title" title="Create New Tab">
           <div id="create-stab-content">
+          <input type="checkbox" ng-model="stabInfo.notation" ng-true-value="1" ng-false-value="0" id="st-notation">
           <label>Title:</label>
           <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
 
@@ -28,7 +29,7 @@
           </input>
 
 
-          <vextab ng-model="stabInfo.code"></vextab>
+          <vextab ng-model="stabInfo.code" notation="stabInfo.notation"></vextab>
           <br>
           <a class="button" zf-open="learnHowModal">How To Write Tabs</a>
           <br>
