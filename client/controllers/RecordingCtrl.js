@@ -153,7 +153,6 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   $scope.stream = null;
   
   $scope.__log = function (e, data) {
-    
     var htmlString = '\n' + e + ' ' + (data || '');
     $('#log').html(htmlString);
   }
@@ -278,13 +277,8 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
       xhr.open('PUT', response.signedRequest);
       xhr.onload = function (e) {
         var amazonResult = e.response;
-        console.log('Amazon stuff:', e);
-
         if (xhr.status === 200) {
-          console.log('Express response:', response);
-          console.log('XHR status === 200', e);
           var url = response.url
-
           $scope.add(url);
         } else if (xhr.status === 403) {
           // Something was changed in the signed url, its not what the server signed
@@ -311,11 +305,15 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
       //__log('Audio context set up.');
       //__log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
     } catch (e) {
+      if (e === PERMISSION_DENIED) {
+        $scope.__log('You must allow microphone access to use recording features.')
+      }
+
       alert('No web audio support in this browser!');
     }
     
     navigator.getUserMedia({audio: true}, $scope.startUserMedia, function(e) {
-      __log('No live audio input: ' + e);
+      $scope.__log('You must allow microphone access to use recording features:' + e);
     });
   }
 
