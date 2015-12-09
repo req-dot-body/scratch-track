@@ -1,7 +1,7 @@
 app.controller('LikeCtrl', ['$scope','$state', 'Like', 'Auth',
   function($scope, $state, Like, Auth) {
 
-  $scope.buttonContent = 'thumb_up'
+  $scope.buttonStyle = "active"
   $scope.textContent = "Like this project"
   $scope.textContent2 = "likes"
   $scope.loggedIn = Auth.isLoggedIn();
@@ -16,16 +16,15 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', 'Auth',
     }
 
     if ($scope.project.liked === '1') {
-      $scope.buttonContent = 'thumb_up';
-      $scope.textContent = "Unlike this project"
+      $scope.buttonStyle = "inactive"
+      $scope.textContent = "Un-like this project"
     } else {
-      $scope.buttonContent = 'thumb_down';
+      $scope.buttonStyle = "active"
       $scope.textContent = "Like this project"
     }
   }
 
   var getLikeData = function () {
-      console.log('about to get like data')
     return Like.getLikes($scope.projectId)
     .then(function(res){
       var info = res.data[0];

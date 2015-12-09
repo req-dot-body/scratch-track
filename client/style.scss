@@ -313,6 +313,14 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     padding: 0 0.5em 0 0;
   }
 
+  .active {
+
+  }
+
+  .inactive {
+    color: #bbb;
+  }
+
   /*DASH VIEW*/
 
   .panel-lyric {
