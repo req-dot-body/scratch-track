@@ -1,8 +1,7 @@
-<div class="grid-block text-center" id="like-box">
-    <p id="like-count"> {{project.likes}} {{textContent2}}</p>
-    <p ng-if="loggedIn" class="{{buttonStyle}}">
+<div class="text-center" id="like-box">
+    <span id="like-count"> {{project.likes}} {{textContent2}}</span>
+    <span ng-if="loggedIn" class="{{buttonStyle}}">
 	    <i class="material-icons small" id="like-btn" ng-click="like()">thumb_up</i></a>
-	    <p ng-click="like()" id="like-text" class="{{buttonStyle}}">{{textContent}}</p>
-	</p>
-</div>  
+	    <span ng-click="like()" id="like-text" class="{{buttonStyle}}">{{textContent}}</span>
+	</span>
 
