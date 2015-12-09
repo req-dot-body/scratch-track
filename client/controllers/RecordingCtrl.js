@@ -32,6 +32,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
 
   $scope.add = function(url){
     $scope.newRecording.url = url;
+    console.log($scope.newRecording);
     Recording.create($scope.newRecording)
     .then(function(){
       $scope.newRecording = {
