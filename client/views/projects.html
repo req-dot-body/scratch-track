@@ -23,8 +23,10 @@
     <h3 ng-if="!public">Latest Project You've Worked on:</h3>
   </div>
   <br>
+
+
 <div class="grid-block text-center">
-  <div ng-if='projects.length>0' class="grid-container small-11 medium-3" ng-repeat="project in projects|limitTo:-1|orderBy:'updated_at'">
+  <div ng-if='projects.length>0' class="grid-container small-11 medium-3" ng-repeat="project in projects|limitTo:-1">
     <a ui-sref="{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}">
       <div class="dark card">
         <div class="card-divider project-recent">
@@ -48,8 +50,17 @@
     </div>
   </div>
 <hr />
+
+
+  <div class="small-12 medium-10 medium-offset-1 small-up-1 medium-up-2 text-center">
+    <ul class="sort menu-bar">
+      <li><a href="#" ng-click="sortBy('-created_at')">&#9839; Sort By Creation Date</a></li>
+      <li><a href="#" ng-click="sortBy('-udated_at')"> &#9837; Sort By Update Date</a></li>
+    </ul>
+  </div>
+  <br>
   <div class="grid-block small-12 medium-10 medium-offset-1 small-up-1 medium-up-2">
-    <div class="grid-block small-12 medium-6" ng-repeat='project in projects|toArray|filter:searchText'> 
+    <div class="grid-block small-12 medium-6" ng-repeat='project in projects|toArray| orderBy: sort.sortField: sort.sortDirection | filter:searchText'> 
       <div class='grid-content'>  
        <a ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}">
        <div class="dark card text-center">
