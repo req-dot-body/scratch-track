@@ -2,10 +2,10 @@
 	<h5>{{ formatDate(resource.created_at) }} - {{resource.name}}</h5>
   <p ng-if="resource.description"><i>{{resource.description}}</i></p>
   <div ng-hide="displayAll">
-  	<vextab ng-model="truncated"></vextab>
+  	<vextab ng-model="truncated" notation="resource.notation"></vextab>
   </div>
   <div ng-show="displayAll">
-  	<vextab ng-model="resource.code"></vextab>
+  	<vextab ng-model="resource.code" notation="resource.notation"></vextab>
   </div>
   <a class="button small" ng-if="tooDamnLong()" ng-click="toggleDisplay()">
    {{moreOrLess()}}

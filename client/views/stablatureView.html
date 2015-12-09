@@ -1,13 +1,13 @@
 
 <div class="vertical grid-block">
   <section class="spaced text-center"> 
-    <h1>Stablature</h1>
+    <h1>Tablature</h1>
 
     <p ng-if="!public">
-      Here you can create guitar tabs and sheet music for your project.
+      Create guitar tabs for your project.
     </p>
     <p ng-if="public">
-      Guitar tabs and sheet music for the project
+      Guitar tabs for the project
     </p>
   </section>
 
@@ -15,7 +15,7 @@
     <div class="grid-content noscroll small-8 small-offset-2">
     <br>
     <br>
-    <input type="text" placeholder="Search Stablature..." ng-model="stabSearch">
+    <input type="text" placeholder="Search Tablature..." ng-model="stabSearch">
  
       <zf-accordion ng-if="!public" id="create-resource" auto-open="false" >
         <zf-accordion-item class="title" title="Create New Tab">
@@ -24,13 +24,21 @@
           <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
 
           <label>Description:</label>
-          <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here.">
-          </input>
+          <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here."></input>
+         <!--  <p>
+            Standard Notation: 
+            <input type="checkbox" ng-model="stabInfo.notation" ng-true-value="1" ng-false-value="0" id="st-notation">
+          </p> -->
 
-
-          <vextab ng-model="stabInfo.code"></vextab>
+          <div ng-if="!stabInfo.notation">
+            <vextab ng-model="stabInfo.code" notation="false"></vextab>
+          </div>
+          <div ng-if="stabInfo.notation">
+            <vextab ng-model="stabInfo.code" notation="true"></vextab>
+          </div>
           <br>
           <a class="button" zf-open="learnHowModal">How To Write Tabs</a>
+
           <br>
           <textarea ng-keyup="autoExpand($event)" class="body-entry" ng-model="stabInfo.code"></textarea>
         </div>
@@ -54,8 +62,8 @@
       <br>
 
       <div class="title-bar dark">
-        <span ng-if="!public" class="title center">Your Stablature for This Project:</span>
-        <span ng-if="public" class="title center">Stablature for This Project:</span>
+        <span ng-if="!public" class="title center">Your Tablature:</span>
+        <span ng-if="public" class="title center">Tablature:</span>
       </div>
       <sort></sort>
       <br>
@@ -66,7 +74,7 @@
               <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
                 <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
                 <div>
-                  <vextab ng-model="stab.code" notation="false"></vextab>
+                  <vextab ng-model="stab.code" notation="stab.notation"></vextab>
              
                   <p><em>{{stab.description}}</em></p>
 

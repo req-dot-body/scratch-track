@@ -17,13 +17,14 @@ router.post('/:resourceType/', helper.requireAuth, function (req, res) {
   var resourceInfo = req.body;
   resourceInfo.created_at = Math.round(Date.now()/1000);
 
-  var singularType = resourceType;
-  
-  if (resourceType.endsWith('s')) {
-    singularType = resourceType.slice(0, -1);
+  var singularType = {
+    lyrics: 'Lyrics',
+    notes: 'Note',
+    recordings: 'Recording',
+    stablature: 'Tab'
   }
 
-  resourceInfo.name = resourceInfo.name || 'Untitled ' + singularType;
+  resourceInfo.name = resourceInfo.name || 'Untitled ' + singularType[resourceType];
 
   //passes in the type of resource, attributes, and user id to the model
   Resource.create(resourceType, ids, resourceInfo)

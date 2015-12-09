@@ -497,3 +497,13 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   border-width: 3px;
   border-color: white;
 }
+
+.st-notation {
+  
+  // $switch-background-active: black;
+  @include switch;
+  @include switch-style(
+    $background-active: #000
+    );
+}
+  // $switch-background-active: #000;
