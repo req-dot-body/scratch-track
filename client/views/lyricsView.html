@@ -35,7 +35,7 @@
             <textarea ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" type="text" name="lyric-body" ng-model="newLyric.text" placeholder="Enter lyrics here." required></textarea>
             <br>
 
-            <button class="button" type="submit" href="#">SAVE</button>
+            <button class="button" type="submit" href="#">Save</button>
           </form>
         </zf-accordion-item>
       </zf-accordion>
@@ -50,9 +50,9 @@
             <label>Revision Body:</label>
             <textarea  ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" type="text" ng-model="newLyric.text" placeholder="Enter lyrics here."></textarea>
 
-            <button class="button" type="submit" href="#" >SAVE</button>
+            <button class="button" type="submit" href="#" >Save</button>
 
-            <a ng-click="toggleElement('lyric-revision'); toggleElement('create-resource');" class="button">CANCEL</a>   
+            <a ng-click="toggleElement('lyric-revision'); toggleElement('create-resource');" class="button">Cancel</a>   
           </form>      
         </zf-accordion-item>
       </zf-accordion>
@@ -78,17 +78,17 @@
               <label>Lyric Body:</label>
               <textarea  ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" id="lyrictext" ng-model="lyric.text" readonly="readonly"></textarea>
 
-              <a ng-if="!public" class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-resource'); update(lyric.name, lyric.text);">CREATE REVISION</a>
+              <a ng-if="!public" class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-resource'); update(lyric.name, lyric.text);">Create Revision</a>
 
-              <a ng-if="!public" class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); toggleElement('lyrictitle'); edit(lyric.id, lyric)">EDIT</a>
+              <a ng-if="!public" class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); toggleElement('lyrictitle'); edit(lyric.id, lyric)">Edit</a>
 
-              <a ng-if="!public" zf-open="deleteLyricModal" class="alert button">DELETE</a>
+              <a ng-if="!public" zf-open="deleteLyricModal" class="alert button">Delete</a>
               <div zf-modal="" id="deleteLyricModal">
                 <div>
                     <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>
-                  <a class="alert button" ng-click="delete(lyric.id)">YES, REALLY DELETE</a>
+                  <a class="alert button" ng-click="delete(lyric.id)">Confirm Delete</a>
 
-                  <a zf-close="" class="button">NO, GO BACK TO LYRICS</a>
+                  <a zf-close="" class="button">Go Back</a>
                 </div>
               </div>
             </zf-accordion-item>
