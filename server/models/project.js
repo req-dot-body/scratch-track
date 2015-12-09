@@ -18,19 +18,50 @@ Project.countLikesWhere = function(condition){
   })
 }
 
+Project.countLikesWhereAuthed = function(condition, userId){
+  return db.raw('SELECT p.* , ' +
+    '(SELECT COUNT(*) FROM likes ' +
+    'WHERE p.id = project_id) ' +
+    'AS "likes", ' +
+    '(SELECT COUNT(*) FROM likes ' +
+    'WHERE p.id = project_id AND user_id = '+ userId +') '+
+    'AS "liked" ' +
+    'FROM projects p ' +
+    'WHERE ' + condition)
+
+    .then(function(query){
+      return query.rows;
+    })
+}
+
 // finds a project by id
 Project.findById = function(projectId, userId) {
-  return Project.countLikesWhere('p.id = '+projectId)
-  .then(function(rows) {
-    var project = rows[0];
+  if (userId){
+    return Project.countLikesWhereAuthed('p.id = '+projectId, userId)
+    .then(function(rows){
+       var project = rows[0];
 
-    if (!project) { throw 404; }
-    //checks that user owns that project
-    //if project is private 
-    if (project.private && project.owner_id !== userId) { throw 401; }
-    //projects exists and belongs to the expected user
-    return project;
-  });
+      if (!project) { throw 404; }
+      //checks that user owns that project
+      //if project is private 
+      if (project.private && project.owner_id !== userId) { throw 401; }
+      //projects exists and belongs to the expected user
+      return project;
+    })
+  }
+  else{
+    return Project.countLikesWhere('p.id = '+projectId)
+    .then(function(rows) {
+      var project = rows[0];
+
+      if (!project) { throw 404; }
+      //checks if project is private
+      if (project.private) { throw 401; }
+      //projects exists and belongs to the expected user
+      return project;
+    });
+  }
+  
 };
 
 // returns all projects for a user 
@@ -43,19 +74,7 @@ Project.findByPublic = function (userId) {
   //object will contained 'liked' field 
 
   if (userId){
-    return db.raw('SELECT p.* , ' +
-    '(SELECT COUNT(*) FROM likes ' +
-    'WHERE p.id = project_id) ' +
-    'AS "likes", ' +
-    '(SELECT COUNT(*) FROM likes ' +
-    'WHERE p.id = project_id AND user_id = '+ userId +') '+
-    'AS "liked" ' +
-    'FROM projects p ' +
-    'WHERE private = 0')
-
-    .then(function(query){
-      return query.rows;
-    })
+    return Project.countLikesWhereAuthed('private = '+0, userId);
   } else{
     return Project.countLikesWhere('private = '+0);
   }

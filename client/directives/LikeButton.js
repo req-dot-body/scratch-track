@@ -4,7 +4,7 @@ app.directive('likebutton', function() {
     templateUrl: '../views/likeButton.html',
     replace: true,
     scope: {
-      project: '=project'
+      projectId: '=projectid'
     },
     controller: 'LikeCtrl'
   };
