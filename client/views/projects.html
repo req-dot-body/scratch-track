@@ -70,9 +70,9 @@
         </div>  
         <div ng-if="!public" zf-modal="" id="deleteModal" animation-out="slideOutUp">
           <a zf-close="deleteModal" class="close-button">×</a>
-          <h3>Delete Project: {{project.name}}</h3>
-          <p>Warning this operation can't be undone</p>
-          <a ng-click='deleteProject(project.id)' class="alert hollow button">Delete</a>
+          <h4>Are You Sure That You Want To Delete This Entry?</h4>
+          <a class="alert button" ng-click="deleteProject(project.id)">Confirm Delete</a>
+          <a zf-close="" class="button">Go Back</a>
         </div>
     </div>
   </div>

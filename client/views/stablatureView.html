@@ -35,8 +35,8 @@
           <textarea ng-keyup="autoExpand($event)" class="body-entry" ng-model="stabInfo.code"></textarea>
         </div>
 
-        <a class="button" ng-click="submit()">SUBMIT</a>
-        <a class="button" ng-click="closeEditor()">CANCEL</a>
+        <a class="button" ng-click="submit()">Submit</a>
+        <a class="button" ng-click="closeEditor()">Cancel</a>
         <div ng-show="submitError">Oops. Looks like there's a problem with your vex code.</div>
 
         <div zf-modal="" id="learnHowModal">
@@ -70,17 +70,17 @@
              
                   <p><em>{{stab.description}}</em></p>
 
-                  <a ng-if="!public" class="button" ng-click="openEditor(stab)">CREATE REVISION</a>
-                  <a ng-if="!public" class="button" ng-click="">EDIT</a>
-                  <a ng-if="!public" class="button" zf-open="deleteModal">DELETE</a> 
+                  <a ng-if="!public" class="button" ng-click="openEditor(stab)">Create Revision</a>
+                  <a ng-if="!public" class="button" ng-click="">Edit</a>
+                  <a ng-if="!public" class="button" zf-open="deleteModal">Delete</a> 
                 </div>
 
                 <div ng-if="!public" zf-modal="" id="deleteModal">
                   <div>
                     <h4>Are You Sure That You Want To Delete This Entry?</h4>
-                    <a class="alert button" ng-click="delete(stab.id)">YES, REALLY DELETE</a>
+                    <a class="alert button" ng-click="delete(stab.id)">Confirm Delete</a>
 
-                    <a zf-close="" class="button">NO, GO BACK TO LIST</a>
+                    <a zf-close="" class="button">Go Back</a>
                   </div>
                 </div>
 
