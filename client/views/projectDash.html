@@ -1,9 +1,9 @@
-<ul ng-if="!public" class="dash-menu-bar" id ='tour12'>
+<ul ng-if="!public" class="dash-menu-bar" id='tour7'>
   <li><a href="#" ng-click = 'showEdit()' zf-open='projectInfo'>&#9835; Edit</a></li>
   <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
   <!-- <li><a ui-sref="main.projects">Back</a></li> -->
 </ul>
-<div id='tour11'>
+<div>
 <div class="spaced text-center">
   <h1>Project Dash</h1>
   <p>Here you can find all the resources for this project in one place.</p>
@@ -20,7 +20,7 @@
 
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
     
-    <div class=".card-wrapper card-recordings">
+    <div class=".card-wrapper card-recordings" id='tour8'>
       <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">
         <!-- <img src="./resources/guitar_banner.jpg"> -->
         <div class="recordings-card-divider text-center">
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class=".card-wrapper card-lyrics">
+    <div class=".card-wrapper card-lyrics" id='tour9'>
       <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">
         <!-- <img src="./resources/lyrics_banner.jpg"> -->
         <div class="lyrics-card-divider text-center">
@@ -56,7 +56,7 @@
 
 
   <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
-     <div class=".card-wrapper card-stablature">
+     <div class=".card-wrapper card-stablature" id='tour11'>
       <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">
         <!-- <img src="./resources/stablature_banner.jpg"> -->
         <div class="stablature-card-divider text-center">
@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class=".card-wrapper card-notes">
+    <div class=".card-wrapper card-notes" id='tour10'>
       <a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">
         <!-- <img src="./resources/notes_banner.jpg"> -->
         <div class="notes-card-divider text-center">
@@ -94,7 +94,7 @@
     <a ng-click='deleteProject(projectData.id)' class="alert hollow button">Delete</a>
   </div>
  
-  <div zf-modal="" id="projectInfo" ng-show="projectCreated" animation-out="slideOutUp" class="collapse large is-active" id='tour7'>
+  <div zf-modal="" id="projectInfo" ng-show="projectCreated" animation-out="slideOutUp" class="collapse large is-active">
   
     <div class="grid-block vertical">
       
@@ -103,7 +103,7 @@
       </div>
         
       <div class="grid-content padding" style="padding-top: 1rem;">
-        <div class='text-right' id='tour8'>
+        <div class='text-right'>
           <span>Private</span>
           <div class="public-project">
             <input type="checkbox" ng-model="updatedInfo.private" ng-true-value="0" ng-false-value="1" id="public-project">
@@ -115,11 +115,11 @@
         <form class = 'text-left' ng-submit="saveProjectInfo()">
           <label>
             <h5>Project Name</h5>
-            <input ng-model='updatedInfo.name' type="text" placeholder="Name" id='tour9'>
+            <input ng-model='updatedInfo.name' type="text" placeholder="Name">
           </label>
           <label>
             <h5>Project Description</h5>
-            <input ng-model='updatedInfo.description' type="text" placeholder="Description" id='tour10'>
+            <input ng-model='updatedInfo.description' type="text" placeholder="Description">
           </label>
           <div class = 'text-center'>
             <button ng-click='saveProjectInfo()' type="submit" zf-close="" class="success button">Save</button>
