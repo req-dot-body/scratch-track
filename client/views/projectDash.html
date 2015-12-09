@@ -15,8 +15,9 @@
     <h3>Project Name: {{projectData.name}}</h3>
     <h3 ng-if = 'projectData.description'><i>{{projectData.description}}</i></h3>
     <br>
-      <div class="text-center"><likebutton ng-if="public" projectid="projectId"></likebutton></div>
-     <br>
+    <likebutton ng-if="public" projectid="projectId"></likebutton>
+    <br>
+    <br>
   </div>
 
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
