@@ -1,5 +1,5 @@
 <div class="resource-entry">
 	<h5>{{ formatDate(resource.created_at) }} - {{resource.name}}</h5>
   <p ng-if="resource.description"><i>{{resource.description}}</i></p>
-  <textarea class="dashboard">{{resource.text}}</textarea> 
+  <textarea readonly="readonly" class="dashboard">{{resource.text}}</textarea> 
 </div>
