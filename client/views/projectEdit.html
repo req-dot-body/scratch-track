@@ -1,9 +1,9 @@
 <ul class="menu-bar right condensed" ng-if ='state.current.name !== "main.project_edit.dash"' id = 'tour12'>
   <li><a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">&#9835; Recordings</a></li>
-  <li><a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">&#9835; Notes</a></li>
   <li><a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">&#9835; Lyrics</a></li>
-  <li><a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">&#9835; Stablature</a></li>
-  <li id='tour13'><a ui-sref="{{ public ? 'main.public_view.dash' : 'main.project_edit.dash' }}">&#9835; Dash</a></li>
+  <li id='tour13'><a ui-sref="{{ public ? 'main.public_view.dash' : 'main.project_edit.dash' }}">&#9835; Dashboard</a></li>
+  <li><a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">&#9835; Tablature</a></li>
+  <li><a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">&#9835; Notes</a></li>
 
 </ul>
 <section ui-view id='tour14'></section>
