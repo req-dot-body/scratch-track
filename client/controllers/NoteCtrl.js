@@ -36,16 +36,10 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
     Resource.sortBy(field);
   };
 
-  $scope.sortBy = function(field){
-    if ($scope.sortField === field){
-      $scope.sortDirection = !$scope.sortDirection;
-    }
-    else {
-      $scope.sortField = field;
-      $scope.sortDirection = true;  
-    }
+  $scope.autoExpand = function(e) {
+    Resource.autoExpand(e);    
   };
-
+  
   $scope.submit = function(){
     $scope.submitted = true;
   };
