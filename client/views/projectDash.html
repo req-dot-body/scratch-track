@@ -15,8 +15,8 @@
     <h3>Project Name: {{projectData.name}}</h3>
     <h3 ng-if = 'projectData.description'><i>{{projectData.description}}</i></h3>
     <br>
-<!--     <likebutton ng-if="public" project="projectData"></likebutton>
- -->    <br>
+      <div class="text-center"><likebutton ng-if="public" projectid="projectId"></likebutton></div>
+     <br>
   </div>
 
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
@@ -31,7 +31,6 @@
         <ul>
           <li ng-repeat = 'recording in projectRecordings|limitTo:-3|orderBy:"updated_at" : true '>
             <recordingentry resource="recording"></recordingentry> 
-           <!--  {{recording.name}} -->
           </li>
         </ul>
       </div>

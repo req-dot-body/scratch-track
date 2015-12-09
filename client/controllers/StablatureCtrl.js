@@ -66,7 +66,6 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project', '
 	//closes editor and resets default tabs
 	$scope.closeEditor = function(){
 		$scope.stabInfo = $.extend({}, defaultStab);
-		// $('.accordion div').removeClass('is-active');
 		Resource.closeAccordion();
 	};
 

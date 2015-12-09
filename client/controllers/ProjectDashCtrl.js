@@ -10,24 +10,25 @@ if ($state.current.authenticate) {
 }
 
 //gets the current project ID
-projectId = $state.params.id; 
+$scope.projectId = $state.params.id; 
+console.log('projectId', $scope.projectId, 'params', $state.params);
 
 $scope.showEdit = function(){
   $scope.projectCreated = true; 
 }
 
 $scope.getProject = function(projectId) {
-  Project.getProject(projectId)
+  Project.getProject($scope.projectId)
   .then(function(response){
     $scope.projectData = response.data;
     
     if ($scope.projectData.name === null){
-      $scope.projectData.name = 'MyProject: '+ projectId;
+      $scope.projectData.name = 'MyProject: '+ $scope.projectId;
       $scope.saveProjectInfo($scope.projectData);
     }
     
     $scope.updatedInfo = {
-      id: projectId,
+      id: $scope.projectId,
       name: $scope.projectData.name,
       private: $scope.projectData.private,
       description: $scope.projectData.description
@@ -40,7 +41,7 @@ $scope.getProject = function(projectId) {
   })
 };
 
-$scope.getProject(projectId);
+$scope.getProject($scope.projectId);
 
 $scope.formatDate = function(date) {
   return moment.unix(date).calendar();
@@ -64,13 +65,13 @@ $scope.saveProjectInfo = function(){
 }
 
 //gets all recordings 
-  Project.getProjectRecordings(projectId)
+  Project.getProjectRecordings($scope.projectId)
   .then(function(response){
     $scope.projectRecordings = response.data;
     // console.log('recordings: ', response.data)
   })
 //gets all notes 
-  Project.getProjectNotes(projectId)
+  Project.getProjectNotes($scope.projectId)
   .then(function(response){
     $scope.projectNotes = response.data;
       // console.log('notes: ', response.data)
@@ -78,7 +79,7 @@ $scope.saveProjectInfo = function(){
   })
 
 //gets all lyrics 
-  Project.getProjectLyrics(projectId)
+  Project.getProjectLyrics($scope.projectId)
   .then(function(response){
     $scope.projectLyrics = response.data;
       // console.log('lyrics: ', response.data)
@@ -86,7 +87,7 @@ $scope.saveProjectInfo = function(){
   })
 
 //gets all stablatures 
-  Project.getProjectStablature(projectId)
+  Project.getProjectStablature($scope.projectId)
   .then(function(response){
     $scope.projectStablature = response.data;
       // console.log('stablature: ', response.data)
