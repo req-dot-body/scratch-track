@@ -13,7 +13,6 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','signedUp','Tour', f
   }
 
   $scope.sortBy = function(field){
-    console.log('hitting ctrl');
     if ($scope.sort.sortField === field){
       console.log($scope.sort.sortField);
       $scope.sort.sortDirection = !$scope.sort.sortDirection;

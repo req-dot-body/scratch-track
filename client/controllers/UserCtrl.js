@@ -1,11 +1,11 @@
 app.controller('UserCtrl', ['$scope','User', function($scope, User) {
+  
   $scope.email = '',
   $scope.password = '',
   $scope.first ='',
   $scope.last ='',
 
   $scope.signinUser = function () {
-    //logic goes here
     var userData = {};
     userData.email = $scope.email;
     userData.password = $scope.password;
@@ -15,7 +15,6 @@ app.controller('UserCtrl', ['$scope','User', function($scope, User) {
   }
   
   $scope.signupUser = function () {
-    //logic goes here
     var newUser = {};
     newUser.email = $scope.email;
     newUser.password = $scope.password;

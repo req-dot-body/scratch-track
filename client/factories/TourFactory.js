@@ -1,6 +1,6 @@
 app.factory('Tour', ['$state','nzTour','$q','signedUp', function($state,nzTour,$q,signedUp) {
 
-  //MAIN TOUR
+//MAIN TOUR
   var mainTour = {
       config: {dark:false}, 
       steps: [{
@@ -32,7 +32,7 @@ app.factory('Tour', ['$state','nzTour','$q','signedUp', function($state,nzTour,$
           });
   };
 
-  // PROJECT VIEW TOUR
+// PROJECT VIEW TOUR
   var projectTour = {
       config: {dark:false}, 
       steps: [{
@@ -102,8 +102,7 @@ app.factory('Tour', ['$state','nzTour','$q','signedUp', function($state,nzTour,$
           });
   };
 
-  //DASH VIEW TOURS
-
+//DASH VIEW TOURS
   var dashTour = {
       config: {dark:false}, 
       steps: [{
@@ -139,8 +138,7 @@ app.factory('Tour', ['$state','nzTour','$q','signedUp', function($state,nzTour,$
 
   }
 
-    //PUBLIC DASH VIEW TOURS
-
+//PUBLIC DASH VIEW TOURS
   var publicDashTour = {
       config: {dark:false}, 
       steps: [{
@@ -173,8 +171,7 @@ app.factory('Tour', ['$state','nzTour','$q','signedUp', function($state,nzTour,$
 
   }
 
-  //EditProject
-
+//EDIT PROJECT VIEW TOUR
   var editProjectTour = {
       config: {dark:false}, 
       steps: [{
