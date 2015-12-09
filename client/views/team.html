@@ -1,21 +1,32 @@
-<br>
-<div class="grid-block small-10">
-  <h1>About ScratchTrack:</h1>
-  <p class="card">Lucas ipsum dolor sit amet amidala naboo skywalker grievous dantooine darth ponda obi-wan jango skywalker. Binks calrissian wampa ben skywalker skywalker ackbar calrissian c-3p0. Moff skywalker calrissian jinn jinn. Dooku mothma organa naboo binks boba amidala coruscant. Organa solo baba mace coruscant luke han hutt maul. Mon twi'lek vader luuke darth. Coruscant dantooine anakin jango moff yoda jawa c-3p0 leia. Solo calamari skywalker fisto bothan. Secura padmé chewbacca lando. Hutt boba skywalker skywalker ahsoka leia grievous.<br><br>
 
-K-3po anakin wedge mace ben vader sebulba. Mothma chewbacca moff solo. Hutt kenobi ben solo antilles windu owen yoda. Chewbacca boba darth lobot watto hutt antilles gamorrean dantooine. Mace wampa bespin sidious moff wedge wicket. Solo wedge darth organa lars mustafar grievous droid. Hutt jinn twi'lek grievous. Ventress darth darth calamari. Ewok jinn skywalker mara. Obi-wan biggs organa skywalker aayla darth tatooine yavin kenobi. Kessel mandalorians darth obi-wan hoth moff fisto. Windu darth windu leia jinn mandalorians skywalker darth.<br></p>
-</div>
-<div class="grid-block">
-  <h1>Our Team:</h1>
+<div class="text-center">
+  <section ng-if="!public" class="spaced">
+    <h1>About ScratchTrack</h1>
+  </section>
 </div>
 
-<div class="grid-block small-10">
-  <div class="dark card" id="team-entry" ng-repeat="person in team" ng-model="team">
+<div class="align-center grid-block"><h3>Manage Your Song-Writing Workflow on the Go</h2></div>
+<div class="align-center grid-block">
+  <div class="grid-block small-6">
+    <br>
+    <p>Lucas ipsum dolor sit amet kaleesh bothan tusken raider borvo geonosis firrerreo jerjerrod caamasi yoda shaddaa. Kessel ventress moff iego bren dash r5-d4. Hutt oppo woostoid firrerreo zhell darth. Fett plagueis squib yuvernian. Daala aqualish trandoshan mantell raymus ablajeck. Besalisk t88 cody panaka allana durron orus hallotan. Vagaari dengar mon terrik sneevel. </p>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="text-center">
+  <h1 class="team-header">Our Team:</h1>
+</div>
+
+<div class="align-center grid-block" id="team-entry">
+  <div class="dark card" ng-repeat="person in team" ng-model="team">
     <img src="{{person.img_src}}">
     <div class="card-divider">
       {{person.title}}
     </div>
-    <div class="card-section">
+    <div class="card-section" id="team-field">
       <h4>{{person.name}}</h4>
       <h5>Special Power: {{person.special}}</h5>
       <p>{{person.bio}}</p>
