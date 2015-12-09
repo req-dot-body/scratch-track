@@ -57,7 +57,8 @@
                     <h5>Tabs:</h5>
                     <select ng-model="selectedTab" ng-options="stab.name for stab in stabList" ng-init="selectedTab = selectedTab || stab[0]">
                     </select>
-                    <vextab ng-model="selectedTab.code"></vextab>
+                    {{selectedTab}}
+                    <vextab ng-model="selectedTab.code" notation="selectedTab.notation"></vextab>
                   </div>
                 </div>
               </div>

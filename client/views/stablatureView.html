@@ -25,10 +25,10 @@
 
           <label>Description:</label>
           <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here."></input>
-          <p>
+         <!--  <p>
             Standard Notation: 
             <input type="checkbox" ng-model="stabInfo.notation" ng-true-value="1" ng-false-value="0" id="st-notation">
-          </p>
+          </p> -->
 
           <div ng-if="!stabInfo.notation">
             <vextab ng-model="stabInfo.code" notation="false"></vextab>
@@ -74,7 +74,7 @@
               <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
                 <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
                 <div>
-                  <vextab ng-model="stab.code" notation="false"></vextab>
+                  <vextab ng-model="stab.code" notation="stab.notation"></vextab>
              
                   <p><em>{{stab.description}}</em></p>
 

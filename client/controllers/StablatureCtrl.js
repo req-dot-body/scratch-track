@@ -87,6 +87,7 @@ app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project', '
 			code: stabInfo.code,
 			name: stabInfo.name,
 			description: stabInfo.description,
+			notation: stabInfo.notation,
 			project_id: $state.params.id
 		};
 
