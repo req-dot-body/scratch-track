@@ -201,6 +201,22 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     padding: 5px;
   }
 
+  .blink {
+  animation: blink 1s steps(5, start) infinite;
+  -webkit-animation: blink 1s steps(5, start) infinite;
+  color: #FF0000
+  }
+  @keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink {
+    to {
+      visibility: hidden;
+    }
+  }
+
   /*SIGN-IN/UP VIEWS*/
 
   .validation-error {
