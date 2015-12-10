@@ -1,14 +1,10 @@
- 
   <div class="align-center grid-block">
-    <div id="landing-box" class="medium-6">
+    <div id="landing-box" class="medium-6 text-center">
       <h1 id="landing-title">ScratchTrack</h1>
-      <p class="grid-block">{{ message }}</p>
-      <a class="button large" ui-sref="main.pubprojects">Get Started</a>
+      <p>{{ message }}</p>
+      <ul class="menu-bar primary dark btn-check">
+        <li><a ui-sref='main.pubprojects'>Check it Out!</a></li>
+      </ul>
     </div>
   </div>
   
-  <div class="align-center grid-block">
-      <a ui-sref="public.signin" class="button large contrast" style="white-space: nowrap;">Sign In</a>
-      <a ui-sref="public.signup" class="button large contrast" style="white-space: nowrap;">Sign Up</a>
-
-  </div>

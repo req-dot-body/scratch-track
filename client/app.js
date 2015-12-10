@@ -16,6 +16,8 @@ window.app = angular.module('myApp', [
   'ngSanitize',
   'ngResource',
   'foundation',
+  'foundation.dynamicRouting',
+  'foundation.dynamicRouting.animations',
   'angular-toArrayFilter',
   'nzTour'
 ]);
@@ -44,7 +46,11 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $location
     .state('public.landing', {
       authenticate: false,
       templateUrl: 'views/landing.html',
-      controller: 'LandingCtrl'
+      controller: 'LandingCtrl',
+      // animation: {
+      // enter: 'fadeIn',
+      // leave: 'fadeOut'
+      // }
     })
   
     .state('public.signup', {  
@@ -52,7 +58,11 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $location
       authenticate: false,
       templateUrl: 'views/signupForm.html',
       controller: 'UserCtrl',
-      controllerAs: 'user'
+      controllerAs: 'user',
+      // animation: {
+      // enter: 'fadeIn',
+      // leave: 'fadeOut'
+      // }
     })
 
     .state('public.signin', {
@@ -60,7 +70,11 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $location
       authenticate: false,
       templateUrl: 'views/signinForm.html',
       controller: 'UserCtrl',
-      controllerAs: 'user'
+      controllerAs: 'user',
+      // animation: {
+      // enter: 'fadeIn',
+      // leave: 'fadeOut'
+      // }
     })
 
     .state('main', {
