@@ -5,6 +5,6 @@ app.directive('stabentry', function() {
       resource: '=resource'
     },
     templateUrl: '../views/stabEntry.html',
-    controller: 'ResourceEntryCtrl'
+    controller: 'ResourceCtrl'
   };
 });

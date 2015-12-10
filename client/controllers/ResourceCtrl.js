@@ -12,4 +12,8 @@ app.controller('ResourceCtrl', ['$scope', '$state', '$timeout', 'Project', funct
     }
   };
   
+	$scope.formatDate = function(date) {
+	  return moment.unix(date).calendar();
+	};
+  
 }]);

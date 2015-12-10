@@ -5,6 +5,6 @@ app.directive('recordingentry', function() {
       resource: '=resource'
     },
     templateUrl: '../views/recordingEntry.html',
-    controller: 'ResourceEntryCtrl'
+    controller: 'ResourceCtrl'
   };
 });
