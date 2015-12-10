@@ -1,3 +1,5 @@
+<landingbar></landingbar>
+
  <div class="anim-fade landing-form align-center grid-block">
   <div class="medium-3">
     <form name="signupForm" ng-submit="signupUser()" class="form-group" novalidate>
@@ -22,7 +24,6 @@
 
       <label class="form-header">E-Mail:</label>
       <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field"/>
-      <br>
 
       <div class="form-group"> 
         <div class="validation-error" ng-messages="signupForm.emailField.$error" ng-if="signupForm.emailField.$touched">
@@ -50,15 +51,12 @@
         Passwords do not match</div>  
       </div>
 
-    
-      <br>
       <div class="align-center grid-block">
-        <button class="large button" id="submit-btn">Submit</button>
+        <button class="large button expand form-btn" id="submit-btn">Sign Up</button>
       </div>
 
       <br>
       <div class="align-center grid-block">
-        <p>Already a Member? <a class="contrast" ui-sref='public.signin'>Sign in!</a></p>
       </div>
     </form>
   </div>
