@@ -183,12 +183,13 @@ describe('Projects', function() {
       .post('/projects/'+id+'/like')
       .expect(201)
     })
-    .then(function(){
+    .then(function(res){
+      var id = res.body.project_id;
       return request(app)
-      .get('/projects/public')
+      .get('/projects/'+id+'/like')
     })
     .then(function(res){
-      var project = res.body.projects[0];
+      var project = res.body;
       expect(project.likes).to.equal('1');
       expect(project.liked).to.equal('1');
     })
