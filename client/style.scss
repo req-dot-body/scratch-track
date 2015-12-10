@@ -444,6 +444,14 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     }
   }
 
+  .pad-left {
+    padding-left: 10px;
+  }
+
+  .pad-right {
+    padding-right: 10px;
+  }
+
   .menu-bar.right > li > a {
     margin-top: 10px;
     color: $light-color;
@@ -456,7 +464,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
       color: $light-color;
     }
   }
-  
+
   .accordion-title {
     background-color: $primary-color;
     color: $light-color;
