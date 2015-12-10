@@ -13,7 +13,8 @@
   <br>
   <br>
     <h3>{{projectData.name}}</h3>
-    <h3 ng-if = 'projectData.description'><i>{{projectData.description}}</i></h3>
+    <h4 ng-if = 'public'>By {{projectData.first}} {{projectData.last}}<h4>
+    <h4 ng-if = 'projectData.description'><i>{{projectData.description}}</i></h4>
     <br>
     <likebutton ng-if="public" projectid="projectId"></likebutton>
     <br>
