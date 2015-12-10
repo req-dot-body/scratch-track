@@ -5,7 +5,6 @@
 
       <label class="form-header">E-Mail:</label>
       <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field" placeholder="Enter your e-mail"/>
-      <br>
 
       <div class="form-group"> 
         <div class="validation-error" ng-messages="signinForm.emailField.$error" ng-if="signinForm.emailField.$touched">
@@ -25,15 +24,14 @@
         </div>
       </div>  
 
-      <br>
       <div class="align-center grid-block">
-        <button class="large button" type="submit" href="#" id="submit-btn">Submit</button>
+        <button class="large button expand form-btn" type="submit" href="#">Log In</button>
       </div>
       <br>
       <div class="align-center grid-block">
-        <p>Don't have an account? <a class="contrast" ui-sref='public.signup'>Sign Up!</a></p>
       </div>
     </form>
   </div>
+
 </div>
 

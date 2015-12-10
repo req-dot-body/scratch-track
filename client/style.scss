@@ -229,21 +229,42 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     padding: 5%;
   }
 
+  .btn-check {
+    border-style: solid;
+    border-color: white;
+  }
+
   .landing-form {
     position: relative;
     top: 100px;
-    transform: translateY(10%);
-    color: white;
+    transform: translateY(-1%);
+    color: grey;
+  }
+  
+  .form-btn {
+  background-color: #232323 !important;
+  border:solid;
+  border-color:grey;
+  border-width:1px;
+  opacity: 0.9;
+  
+    &:hover {
+      background-color:smartscale(#232323, 7%) !important;
+    }
+  }
+
+  .landing-form label {
+    color:grey;
   }
 
   #landing-box {
-    border: 2px solid black;
     padding: 5%;
-    background-color: white;
-    opacity: .5;
+    background-color: #232323;
+    color: white;
+    opacity: .9;
     text-align: center;
     position: relative;
-    margin: 10%;
+    margin-top: 20%;
   }
 
   #landing-title {
@@ -383,7 +404,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .button {
-    background-color: $secondary-color !important;
+    background-color: $secondary-color;
     color: $light-color;
   }
 
@@ -508,9 +529,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   h1 {
     color: $light-color;
     margin-top: 0px;
-    &#landing-title {
-      color: $dark-color;
-    }
   }
 
 #tour1 {
