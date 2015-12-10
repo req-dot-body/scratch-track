@@ -480,6 +480,10 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     color: $light-color;
   }
 
+  .team-card {
+    width: 200px;
+  }
+
   .menu-group {
     background-color: $dark-color;
     color: $light-color;
