@@ -60,41 +60,42 @@
       </zf-accordion>
       <br> 
       <br>
-
-      <div class="title-bar dark">
-        <span ng-if="!public" class="title center">Your Tablature:</span>
-        <span ng-if="public" class="title center">Tablature:</span>
-      </div>
-      <sort></sort>
-      <br>
-      <div class="grid-block">
+      <div  ng-if="stabList.length > 1">
+        <div class="title-bar dark">
+          <span ng-if="!public" class="title center">Your Tablature:</span>
+          <span ng-if="public" class="title center">Tablature:</span>
+        </div>
+        <sort></sort>
+        <br>
         <div class="grid-block">
-          <ul class="grid-content align-spaced" ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
-            <div class="grid-block">
-              <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
-                <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
-                <div>
-                  <vextab ng-model="stab.code" notation="stab.notation"></vextab>
-             
-                  <p><em>{{stab.description}}</em></p>
-
-                  <a ng-if="!public" class="button" ng-click="openEditor(stab)">Create Revision</a>
-                  <a ng-if="!public" class="button" ng-click="">Edit</a>
-                  <a ng-if="!public" class="button" zf-open="deleteModal">Delete</a> 
-                </div>
-
-                <div ng-if="!public" zf-modal="" id="deleteModal">
+          <div class="grid-block">
+            <ul class="grid-content align-spaced" ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
+              <div class="grid-block">
+                <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
+                  <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
                   <div>
-                    <h4>Are You Sure That You Want To Delete This Entry?</h4>
-                    <a class="alert button" ng-click="delete(stab.id)">Confirm Delete</a>
+                    <vextab ng-model="stab.code" notation="stab.notation"></vextab>
+               
+                    <p><em>{{stab.description}}</em></p>
 
-                    <a zf-close="" class="button">Go Back</a>
+                    <a ng-if="!public" class="button" ng-click="openEditor(stab)">Create Revision</a>
+                    <a ng-if="!public" class="button" ng-click="">Edit</a>
+                    <a ng-if="!public" class="button" zf-open="deleteModal">Delete</a> 
                   </div>
-                </div>
 
-              </li>
-            </div>
-          </ul>
+                  <div ng-if="!public" zf-modal="" id="deleteModal">
+                    <div>
+                      <h4>Are You Sure That You Want To Delete This Entry?</h4>
+                      <a class="alert button" ng-click="delete(stab.id)">Confirm Delete</a>
+
+                      <a zf-close="" class="button">Go Back</a>
+                    </div>
+                  </div>
+
+                </li>
+              </div>
+            </ul>
+          </div>
         </div>
       </div>
 
