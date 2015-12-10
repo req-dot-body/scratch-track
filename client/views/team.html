@@ -1,50 +1,56 @@
-
-<div class="text-center">
-  <section ng-if="!public" class="spaced">
-    <h1>About ScratchTrack</h1>
+<div class="vertical grid-block">
+  <section class="spaced text-center">
+    <h1 class="justify-center">About ScratchTrack</h1>
   </section>
-</div>
+ 
+ <br>
+  <section class="text-center">
+    <div class="align-center grid-block">
+      <h2>Manage your songwriting workflow on the go</h2>
+    </div>
 
-<div class="align-center grid-block"><h3>Manage your songwriting workflow on the go</h2></div>
-<div class="align-center grid-block">
-  <div class="grid-block small-6">
-    <br>
-    <p>ScratchTrack is an application designed both for easily capturing song ideas on the go and for managing on-going, multifaceted projects as they develop. Our interface allows a user create audio recordings at the click of a button, to write and revise lyrics, and to transcribe attractive guitar tablature. With ScratchTrack you can generate ideas, revisit past songs, or jump to the public page to explore our other user's projects. </p>
-  </div>
-</div>
-
-<div class="align-center grid-block">
-  <div class="grid-block small-6">
-    <br>
-    <p>Never let a song idea idea slip through your fingers again. </p>
-  </div>
-</div>
-
-
-<hr>
-
-<div class="text-center">
-  <h2 class="team-header">Engineering Team</h2>
-</div>
-<div class="grid-block small-10">
-  <div class="card team-card" id="team-entry" ng-repeat="person in team" ng-model="team">
-    <a href="https://github.com/{{person.github}}" >
-      <img class="team" src="{{person.img_src}}">
-   
-      <div class="card-section team-field">
-        <h4>{{person.name}}</h4>
-        <h5><{{person.special}}></h5>
-        <!-- <p>{{person.bio}}</p> -->
+    <div class="align-center grid-block">
+      <div class="grid-block small-6 align-center">
+        <br>
+        <p>ScratchTrack is an application designed both for easily capturing song ideas on the go and for managing on-going, multifaceted projects as they develop. Our interface allows a user create audio recordings at the click of a button, to write and revise lyrics, and to transcribe attractive guitar tablature. With ScratchTrack you can generate ideas, revisit past songs, or jump to the public page to explore our other user's projects. </p>
       </div>
-    </a>
-  </div>
-</div>
+    </div>
+
+    <div class="align-center grid-block">
+      <div class="grid-block small-6 align-center">
+        <br>
+        <p>Never let a song idea idea slip through your fingers again.</p>
+      </div>
+    </div>
+  </section>
 
 
-<div class="grid-block small-10">
-  <div class="card stack-card" ng-repeat="logo in stack" ng-model="stack">
-    <a href="https://github.com/req-dot-body/scratch-track">
-      <img class="stack-logo" src="{{logo}}">
-    </a>
-  </div>
+  <hr>
+    <div class="align-center grid-block">
+      <h2 class="team-header align-center">Engineering Team</h2>
+    </div>
+
+  <section class="grid-block medium-10 medium-offset-2">
+    <div class="card team-card" id="team-entry" ng-repeat="person in team" ng-model="team">
+      <a href="https://github.com/{{person.github}}" >
+        <img class="team" src="{{person.img_src}}">
+     
+        <div class="card-section team-field">
+          <h4>{{person.name}}</h4>
+          <h5><{{person.special}}></h5>
+          <!-- <p>{{person.bio}}</p> -->
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+  <section class="grid-block medium-9 medium-offset-3">
+    <div class="card stack-card" ng-repeat="logo in stack" ng-model="stack">
+      <a href="https://github.com/req-dot-body/scratch-track">
+        <img class="stack-logo" src="{{logo}}">
+      </a>
+    </div>
+  </section>
+
 </div>
