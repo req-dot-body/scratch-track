@@ -37,6 +37,8 @@ router.use(function(req, res, next) {
     res.cookie('isLoggedIn', true);
   } else {
     res.cookie('isLoggedIn', false);
+    req.logout();
+    // req.session.destroy();
   }
   next();
 });
