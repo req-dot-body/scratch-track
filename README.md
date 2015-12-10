@@ -73,6 +73,11 @@ note: 'id' always refers to whatever directly follows 'api' in the url
           updated_at:
           name:
           description:
+          likes:
+          recordingCount:
+          noteCount:
+          lyricCount:
+          stabCount:
         },
         ...
       ]
@@ -89,6 +94,11 @@ note: 'id' always refers to whatever directly follows 'api' in the url
           updated_at:
           name:
           description:
+          likes:
+          recordingCount:
+          noteCount:
+          lyricCount:
+          stabCount:
         },
         ...
       ]
@@ -126,6 +136,11 @@ note: 'id' always refers to whatever directly follows 'api' in the url
         updated_at:
         name:
         description:
+        likes:
+        recordingCount:
+        noteCount:
+        lyricCount:
+        stabCount:
       }
 
    PUT - /:id - Updates project info for a specific project. You may send just a name or just a description is the other is unchanged 

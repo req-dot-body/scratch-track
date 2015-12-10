@@ -9,7 +9,6 @@ var helper = require('../helper');
 
 // Get all projects for a user
 router.get('/', helper.requireAuth, function (req, res) {
-    console.log('session stuff:', req.session);
     Project.findByUser(req.session.passport.user.id)
     .then(function(projects){
       //sends all projects
