@@ -1,12 +1,12 @@
 app.controller('MainCtrl', ['$scope', '$state', 'User','nzTour', 'Auth','Tour','signedUp', function($scope, $state, User, nzTour, Auth,Tour,signedUp) {
 
+//user is signed in 
   $scope.signedIn = Auth.isLoggedIn();
 
-  console.log('signedUp.value',signedUp.value);
+//user just signedUp, a value shared across the app
   $scope.signedUp = signedUp.value;
-  console.log('$scope.signedUp',$scope.signedUp);
 
-
+// default state is main projects
   if ($state.is('main')) {
     $state.go('main.projects');
   } else {
@@ -17,10 +17,12 @@ app.controller('MainCtrl', ['$scope', '$state', 'User','nzTour', 'Auth','Tour','
     User.logOut();
   };
 
+
+//function that runs the tour on each tour when available
   $scope.runTour = function (){
   
     var state = $state.current.name;
-
+//switch state determines which tour to load on which view
     switch(state) {
     case 'main.projects':
         Tour.startProjectTour();
@@ -61,6 +63,7 @@ app.controller('MainCtrl', ['$scope', '$state', 'User','nzTour', 'Auth','Tour','
     }
   }
 
+//runs the first tour by default, lets the user know that tours are available
   if(signedUp.value){
     Tour.startMainTour();
   }

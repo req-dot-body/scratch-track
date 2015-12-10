@@ -16,7 +16,6 @@ app.factory('User', ['$http', '$state', 'signedUp', function($http, $state, sign
   var signUp = function (newUser){
     //if user is signed up sends a parameter true to load the tour
     signedUp.value = true;
-    console.log('this is signedUp on signUp User Factory: ', signedUp);
     return $http.post('/api/users/signup', newUser)
     .catch(function(err){
       $state.go('public.signup');
@@ -28,7 +27,6 @@ app.factory('User', ['$http', '$state', 'signedUp', function($http, $state, sign
   var logOut = function(){
     return $http.post('/api/users/signout')
     .then(function(response){
-      //the idea is to make a tour in this case
         $state.go('home');
     })
     .catch(function(err){  

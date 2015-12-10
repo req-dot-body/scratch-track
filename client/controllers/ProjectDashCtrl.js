@@ -55,23 +55,24 @@ $scope.testLyrics = {
   description: 'a little something I came up with'    
 };
 
+//gets project information to be loaded on different components on the view
 $scope.getProject = function(projectId) {
   Project.getProject($scope.projectId)
   .then(function(response){
     $scope.projectData = response.data;
-    
+  //if project does not have a name value, assings a default   
     if ($scope.projectData.name === null){
       $scope.projectData.name = 'MyProject: '+ $scope.projectId;
       $scope.saveProjectInfo($scope.projectData);
     }
-    
+  //updates project information   
     $scope.updatedInfo = {
       id: $scope.projectId,
       name: $scope.projectData.name,
       private: $scope.projectData.private,
       description: $scope.projectData.description
     }
-
+  //if project was just created sets this vairiable to true to be able to load the project edit modal
     $scope.projectCreated = false;
     if($state.params.created){
       $scope.projectCreated = true;
@@ -80,7 +81,7 @@ $scope.getProject = function(projectId) {
 };
 
 $scope.getProject($scope.projectId);
-
+//formats the date info
 $scope.formatDate = function(date) {
   return moment.unix(date).calendar();
 };
@@ -94,8 +95,6 @@ $scope.deleteProject = function(id){
 };
 //saves the project
 $scope.saveProjectInfo = function(){
-  if (signedUp.value) {nzTour.start(dashTour)};
-
   return Project.editProject($scope.updatedInfo)
   .then(function(){
     $scope.getProject($scope.projectData.id);
@@ -106,13 +105,11 @@ $scope.saveProjectInfo = function(){
   Project.getProjectRecordings($scope.projectId)
   .then(function(response){
     $scope.projectRecordings = response.data;
-    // console.log('recordings: ', response.data)
   })
 //gets all notes 
   Project.getProjectNotes($scope.projectId)
   .then(function(response){
     $scope.projectNotes = response.data;
-      // console.log('notes: ', response.data)
 
   })
 
@@ -120,15 +117,12 @@ $scope.saveProjectInfo = function(){
   Project.getProjectLyrics($scope.projectId)
   .then(function(response){
     $scope.projectLyrics = response.data;
-      // console.log('lyrics: ', response.data)
-
   })
 
 //gets all stablatures 
   Project.getProjectStablature($scope.projectId)
   .then(function(response){
     $scope.projectStablature = response.data;
-      // console.log('stablature: ', response.data)
   })
 
 

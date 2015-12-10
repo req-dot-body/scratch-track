@@ -1,3 +1,4 @@
+//load all the controllers nedeed for the app 
 require('./HomeCtrl');
 require('./MainCtrl');
 require('./ProjectsCtrl');
