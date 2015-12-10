@@ -1,6 +1,7 @@
 <div class="vertical grid-block">
   <section class="spaced text-center">
     <h1>{{ projectData.name }}</h1>
+    <p ng-if = 'public'>By {{projectData.first}} {{projectData.last}}<p>
   </section>
   <br>
   <br>
@@ -8,10 +9,10 @@
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
 
-      <section class="resource-creation-section">
+      <section ng-if="!public" class="resource-creation-section">
 
         <zf-accordion id="create-resource" auto-open="false">
-          <zf-accordion-item ng-if="!public" class="title" title="Create New Recording">
+          <zf-accordion-item class="title" title="Create New Recording">
           <br>
 
           <form class="form-group">
@@ -70,7 +71,7 @@
         </zf-accordion>
       </section>
 
-      <hr>
+      <hr ng-if="!public">
       <section class="resource-display-section">
 
         <div class="grid-block"> 
