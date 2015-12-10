@@ -3,39 +3,48 @@ app.controller('TeamCtrl', ['$scope', function($scope) {
   $scope.team = [
     {
       name: "Diana Lee",
-      title: "Boss of All Bosses",
-      special: "ng-death-error",
-      img_src: "./resources/team/diana.jpg",
+      special: "ng-death-metal",
+      img_src: "./images/team/diana.jpg",
+      github: "dianafaye17", 
       bio: "Pretty much one of the realest in the game right now"
     },
     {
       name: "Sergio Martin",
-      title: "Boss of All Bosses",
-      special: "ng-death-error",
-      img_src: "./resources/team/sergio.jpg",
+      special: "ng-mate-gourd",
+      img_src: "./images/team/sergio.jpg",
+      github: "smartinsantos",
       bio: "Pretty much one of the realest in the game right now"
     },
     {
       name: "Nick Poling",
-      title: "Boss of All Bosses",
-      special: "ng-death-error",
-      img_src: "./resources/team/nick.jpg",
+      special: "ng-nunchaku",
+      img_src: "./images/team/nick.jpg",
+      github: "npoling", 
       bio: "Pretty much one of the realest in the game right now"
     },
     {
       name: "Diandra Ryan-Mas",
-      title: "Boss of All Bosses",
-      special: "ng-death-error",
-      img_src: "./resources/team/diandra.jpg",
+      special: "ng-street-musician",
+      img_src: "./images/team/diandra.jpg",
+      github: "dryanmas",
       bio: "Pretty much one of the realest in the game right now"
     },
     {
       name: "Adam Ziehl",
-      title: "Boss of All Bosses",
-      special: "ng-death-error",
-      img_src: "./resources/horse.jpg",
+      special: "ng-deer-skinner",
+      img_src: "./images/team/horse.jpg",
+      github: 'ajziehl',
       bio: "Pretty much one of the realest in the game right now"
     },
   ];
+
+$scope.stack = [
+  "./images/stack/foundation.png",
+  "./images/stack/nodejs.png",
+  "./images/stack/knex.svg",
+  "./images/stack/angular.png",
+  "./images/stack/postgres.png"
+];
   
 }]);
+

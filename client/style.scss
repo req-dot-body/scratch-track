@@ -503,13 +503,30 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   border-color: white;
 }
 
-.st-notation {
-  
-  // $switch-background-active: black;
-  @include switch;
-  @include switch-style(
-    $background-active: #000
-    );
+img.team {
+  max-height: 200px;
+  max-width: 175px;
 }
-  // $switch-background-active: #000;
+
+.team-card{
+  margin: 10px;
+}
+
+.stack-logo {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.stack-card{
+  padding: 30px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 50px;
+}
+
+.team-field{
+  color: black;
+  align: center;
+}
 
