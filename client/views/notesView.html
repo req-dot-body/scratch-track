@@ -1,57 +1,57 @@
 <div class="vertical grid-block">
   <section class="spaced text-center">
-    <h1>Notes</h1>
-        <p ng-if="!public">
-          Here you can create notes for your project.
-        </p>
-
-        <p ng-if="public">
-          Notes for the project
-        </p>
-      </section>
+    <h1>{{ projectData.name }}</h1>
+  </section>
+  <br>
+  <br>
 
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
-      <br>
-      <br>
-      <input type="text" placeholder="Search Notes..." ng-model="noteSearch">
 
-      <zf-accordion ng-if="!public" id="create-resource" auto-open="false">
-        <zf-accordion-item class="title" title="Click To Create New Note">
-          <br>
-          <form name="newNoteForm" class="form-group" ng-submit="addNote(newNote); submit(); closeAccordion();" novalidate>
-            <label>
-              Note Title:
-            </label>
-            <input type="text" placeholder="Enter note title here" ng-model="newNote.name" ng-maxlength="1000" required>
+      <section class="resource-creation-section">
+
+        <zf-accordion ng-if="!public" id="create-resource" auto-open="false">
+          <zf-accordion-item class="title" title="Click To Create New Note">
             <br>
 
-            <div class="form-group"> 
-              <div class="validation-error" ng-messages="newNoteForm.$error" ng-if="submitted && !hasBeenReset">
-                <div ng-message="required">{{ hasBeenReset }} Oops! You have some unfilled fields. Please complete and try again.</div>
-                <div ng-message="maxlength">Oops! Your note is longer than can be accepted. Please split it into more than one note.</div>
-              </div>
-            </div>
+            <form name="newNoteForm" class="form-group" ng-submit="addNote(newNote); submit(); closeAccordion();" novalidate>
 
-            <label>
-              Note Body:
-            </label>
-              <textarea  ng-keyup="autoExpand($event)" class="body-entry" placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
-            <button class="button" type="submit">Add Note</button>
-          </form>
-        </zf-accordion-item>
-      </zf-accordion>
+              <label>
+                Note Title:
+              </label>
+              <input type="text" placeholder="Enter note title here" ng-model="newNote.name" ng-maxlength="1000" required>
+              <br>
+
+              <div class="form-group"> 
+                <div class="validation-error" ng-messages="newNoteForm.$error" ng-if="submitted && !hasBeenReset">
+                  <div ng-message="required">{{ hasBeenReset }} Oops! You have some unfilled fields. Please complete and try again.</div>
+                  <div ng-message="maxlength">Oops! Your note is longer than can be accepted. Please split it into more than one note.</div>
+                </div>
+              </div>
+
+              <label>
+                Note Body:
+              </label>
+                <textarea  ng-keyup="autoExpand($event)" class="body-entry" placeholder="Enter note text here" ng-model="newNote.text" rows="5" cols="25" required> </textarea>
+              <button class="button" type="submit">Add Note</button>
+            </form>
+          </zf-accordion-item>
+        </zf-accordion>
+      </section>
       
-      <br>
-      <br>
-      
-      <div ng-if="notes.length > 1">
+      <hr>
+      <section class="resource-display-section">
+
+        <div class="grid-block"> 
+          <input class="resource-search grid-content" placeholder="Search Notes..." ng-model="noteSearch">
+          <sort class="grid-content shrink"></sort>
+        </div>
+        <br>
+
         <div class="title-bar dark">
           <span ng-if="!public" class="title center">Your Notes for This Project:</span>
           <span ng-if="public" class="title center">Notes for This Project:</span>
         </div>
-
-        <sort></sort>
 
 
         <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy: sort.sortField: sort.sortDirection | filter: noteSearch" ng-model="notes">
@@ -70,8 +70,8 @@
             </div>
           </zf-accordion-item>
         </zf-accordion>
-      </div>
+      </section>
 
     </div>
-  </div>
+  </div> 
 </div>

@@ -1,106 +1,105 @@
-
 <div class="vertical grid-block">
   <section class="spaced text-center"> 
-    <h1>Tablature</h1>
-
-    <p ng-if="!public">
-      Create guitar tabs for your project.
-    </p>
-    <p ng-if="public">
-      Guitar tabs for the project
-    </p>
+    <h1>{{ projectData.name }}</h1>
   </section>
+  <br>
+  <br>
 
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
-    <br>
-    <br>
-    <input type="text" placeholder="Search Tablature..." ng-model="stabSearch">
- 
-      <zf-accordion ng-if="!public" id="create-resource" auto-open="false" >
-        <zf-accordion-item class="title" title="Create New Tab">
-          <div id="create-stab-content">
-          <label>Title:</label>
-          <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
 
-          <label>Description:</label>
-          <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here."></input>
-         <!--  <p>
-            Standard Notation: 
-            <input type="checkbox" ng-model="stabInfo.notation" ng-true-value="1" ng-false-value="0" id="st-notation">
-          </p> -->
+      <section class="resource-creation-section">
 
-          <div ng-if="!stabInfo.notation">
-            <vextab ng-model="stabInfo.code" notation="false"></vextab>
-          </div>
-          <div ng-if="stabInfo.notation">
-            <vextab ng-model="stabInfo.code" notation="true"></vextab>
-          </div>
-          <br>
-          <a class="button" zf-open="learnHowModal">How To Write Tabs</a>
-
-          <br>
-          <textarea ng-keyup="autoExpand($event)" class="body-entry" ng-model="stabInfo.code"></textarea>
-        </div>
-
-        <a class="button" ng-click="submit()">Submit</a>
-        <a class="button" ng-click="closeEditor()">Cancel</a>
-        <div ng-show="submitError">Oops. Looks like there's a problem with your vex code.</div>
-
-        <div zf-modal="" id="learnHowModal">
-          <div>
-            <p>{{tabExplanation}}</p>
+        <zf-accordion ng-if="!public" id="create-resource" auto-open="false" >
+          <zf-accordion-item class="title" title="Create New Tab">
             <br>
-            <a class="button" href="http://www.vexflow.com/vextab/tutorial.html" target="_blank">Tutorial</a>
-            <a zf-close="" class="button">Close</a>
-          </div>
-        </div>
 
-        </zf-accordion-item>
-      </zf-accordion>
-      <br> 
-      <br>
-      <div  ng-if="stabList.length > 1">
-        <div class="title-bar dark">
-          <span ng-if="!public" class="title center">Your Tablature:</span>
-          <span ng-if="public" class="title center">Tablature:</span>
-        </div>
-        <sort></sort>
-        <br>
-        <div class="grid-block">
-          <div class="grid-block">
-            <ul class="grid-content align-spaced" ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
-              <div class="grid-block">
-                <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
-                  <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
-                  <div>
-                    <vextab ng-model="stab.code" notation="stab.notation"></vextab>
-               
-                    <p><em>{{stab.description}}</em></p>
+            <form class="form-group">
 
-                    <a ng-if="!public" class="button" ng-click="openEditor(stab)">Create Revision</a>
-                    <a ng-if="!public" class="button" ng-click="">Edit</a>
-                    <a ng-if="!public" class="button" zf-open="deleteModal">Delete</a> 
-                  </div>
+              <div id="create-stab-content">
+                <label>Title:</label>
+                <input type="text" ng-model="stabInfo.name" placeholder="Enter Title Here."></input>
 
-                  <div ng-if="!public" zf-modal="" id="deleteModal">
-                    <div>
-                      <h4>Are You Sure That You Want To Delete This Entry?</h4>
-                      <a class="alert button" ng-click="delete(stab.id)">Confirm Delete</a>
+                <label>Description:</label>
+                <input type="text" ng-model="stabInfo.description" placeholder="Enter Description Here."></input>
+               <!--  <p>
+                  Standard Notation: 
+                  <input type="checkbox" ng-model="stabInfo.notation" ng-true-value="1" ng-false-value="0" id="st-notation">
+                </p> -->
 
-                      <a zf-close="" class="button">Go Back</a>
-                    </div>
-                  </div>
+                <div ng-if="!stabInfo.notation">
+                  <vextab ng-model="stabInfo.code" notation="false"></vextab>
+                </div>
+                <div ng-if="stabInfo.notation">
+                  <vextab ng-model="stabInfo.code" notation="true"></vextab>
+                </div>
+                <br>
+                <a class="button" zf-open="learnHowModal">How To Write Tabs</a>
 
-                </li>
+                <br>
+                <textarea ng-keyup="autoExpand($event)" class="body-entry" ng-model="stabInfo.code"></textarea>
               </div>
-            </ul>
+              <a class="button" ng-click="submit()">Submit</a>
+              <a class="button" ng-click="closeEditor()">Cancel</a>
+              <div ng-show="submitError">Oops. Looks like there's a problem with your vex code.</div>
+              <div zf-modal="" id="learnHowModal">
+                <div>
+                  <p>{{tabExplanation}}</p>
+                  <br>
+                  <a class="button" href="http://www.vexflow.com/vextab/tutorial.html" target="_blank">Tutorial</a>
+                  <a zf-close="" class="button">Close</a>
+                </div>
+              </div>
+            </form>
+          </zf-accordion-item>
+        </zf-accordion>
+      </section>
+
+      <hr>
+      <section class="resource-display-section">
+
+    <div class="grid-block">
+      <input class="resource-search grid-content" placeholder="Search Tablature..." ng-model="stabSearch">
+      <sort class="grid-content shrink"></sort>
+    </div>
+    <br>
+
+    <div class="title-bar dark">
+      <span ng-if="!public" class="title center">Your Tablature:</span>
+      <span ng-if="public" class="title center">Tablature:</span>
+    </div>
+
+
+    <br>
+    <div class="grid-block">
+      <div class="grid-block">
+        <ul class="grid-content align-spaced" ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
+          <div class="grid-block">
+            <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
+              <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
+              <div>
+                <vextab ng-model="stab.code" notation="stab.notation"></vextab>
+           
+                <p><em>{{stab.description}}</em></p>
+
+                <a ng-if="!public" class="button" ng-click="openEditor(stab)">Create Revision</a>
+                <a ng-if="!public" class="button" ng-click="">Edit</a>
+                <a ng-if="!public" class="button" zf-open="deleteModal">Delete</a> 
+              </div>
+
+              <div ng-if="!public" zf-modal="" id="deleteModal">
+                <div>
+                  <h4>Are You Sure That You Want To Delete This Entry?</h4>
+                  <a class="alert button" ng-click="delete(stab.id)">Confirm Delete</a>
+
+                  <a zf-close="" class="button">Go Back</a>
+                </div>
+              </div>
+            </li>
           </div>
-        </div>
-      </div>
+        </ul>
+      </section>
 
     </div>
   </div>
 </div>
-
-
