@@ -1,10 +1,16 @@
-<ul class="menu-bar right condensed" ng-if ='state.current.name !== "main.project_edit.dash"' id = 'tour12'>
-  <li><a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">&#9835; Recordings</a></li>
-  <li><a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">&#9835; Lyrics</a></li>
-  <li id='tour13'><a ui-sref="{{ public ? 'main.public_view.dash' : 'main.project_edit.dash' }}">&#9835; Dashboard</a></li>
-  <li><a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">&#9835; Tablature</a></li>
-  <li><a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">&#9835; Notes</a></li>
+<div class="menu-group dark" id = 'tour3'>
+  <!-- <div class="menu-group-right"> -->
+    <ul class="menu-bar left" ng-if ='state.current.name !== "main.project_edit.dash"' id = 'tour12'>
+      <li><a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">&#9835; Recordings</a></li>
+	  <li><a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">&#9835; Lyrics</a></li>
+	  <li><a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">&#9835; Tablature</a></li>
+	  <li><a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">&#9835; Notes</a></li>
+    </ul>
 
-</ul>
+    <ul class="icon-right primary menu-bar" ng-if ='state.current.name !== "main.project_edit.dash"'>
+    	<li id='tour13'><a ui-sref="{{ public ? 'main.public_view.dash' : 'main.project_edit.dash' }}">&#9835; Dashboard</a></li>
+  	</ul>
+</div>
+
 <section ui-view id='tour14'></section>
 
