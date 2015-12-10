@@ -53,17 +53,17 @@
           <div class="align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
             <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}">
               <i class="medium material-icons" id="resource-icon">mic_none</i>
-              <br>6 Recs</p>
+              <br>{{project.recordingCount}} Recs</p>
             <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.stablature({id:project.id})' }}">
               <i class="medium material-icons" id="resource-icon">library_music</i>
-              <br>3 Tabs</p>
+              <br>{{project.stabCount}} Tabs</p>
             </p>
             <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.lyrics({id:project.id})' }}">
               <i class="medium material-icons" id="resource-icon">assignment</i>
-              <br>4 Lyrics</p>
+              <br>{{project.lyricCount}} Lyrics</p>
             <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.notes({id:project.id})' }}">
               <i class="medium material-icons" id="resource-icon">library_books</i>
-              <br>1 Note</p>
+              <br>{{project.noteCount}} Notes</p>
           </div>
         </div>
         <br>
