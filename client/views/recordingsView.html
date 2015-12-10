@@ -1,48 +1,47 @@
 <div class="vertical grid-block">
   <section class="spaced text-center">
-    <h1>Recordings</h1>
-
-    <p ng-if="!public">
-      Here you can create recordings for your project.
-    </p>
-    <p ng-if="public">
-      Recordings for this project
-    </p>
+    <h1>{{ projectData.name }}</h1>
   </section>
+  <br>
+  <br>
 
   <div class="grid-block text-center">
     <div class="grid-content noscroll small-8 small-offset-2">
-      <br>
-      <br>
-      <input type="text" placeholder="Search Recordings..." ng-model="recordingSearch">
-    
 
-      <!--Recording Panel-->
-      <zf-accordion id="create-resource" auto-open="false">
-        <zf-accordion-item ng-if="!public" class="title" title="Create New Recording">
-          <label>
-            Title This Recording:
-            <input type="text" ng-model="newRecording.name"/>
-            Recording Description:
-            <textarea ng-model="newRecording.description" maxlength="72"></textarea>
-          </label>
-          <a class="large button" id="record-btn" ng-click="startRecording();"> <i class="material-icons left">mic_none</i>Record</a>
-          <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
+      <section class="resource-creation-section">
+
+        <zf-accordion id="create-resource" auto-open="false">
+          <zf-accordion-item ng-if="!public" class="title" title="Create New Recording">
           <br>
-          <audio controls="true" id="audio-player">
-            <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
-          </audio>
-          
-          <br> 
-          <br>
-          <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
-          <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
-          <div id="recording-status" class="grid-block-shrink">
-            <p id="timer">{{minutes}}:{{secondsPlace}}</p>
-            <em id="log" class="recordingStatus"></em>
-            <img src="/resources/loading.gif" ng-if="isSaving">
-          </div>
-            
+
+          <form class="form-group">
+
+            <label>
+              Title This Recording:
+              <input type="text" ng-model="newRecording.name"/>
+              Recording Description:
+              <textarea ng-model="newRecording.description" maxlength="72"></textarea>
+            </label>
+              <a class="large button" id="record-btn" ng-click="startRecording();"><i class="material-icons left">mic_none</i>Record</a>
+              <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
+              <br>
+              <audio controls="true" id="audio-player">
+                <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
+              </audio>
+              
+              <br> 
+              <br>
+              <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
+              <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
+              <div id="recording-status" class="grid-block-shrink">
+                <p id="timer">{{minutes}}:{{secondsPlace}}</p>
+                <em id="log" class="recordingStatus"></em>
+                <img src="/resources/loading.gif" ng-if="isSaving">
+              </div>
+            </form>
+          </zf-accordion-item>
+        </zf-accordion>
+              
 
         <!--Select Lyrics & Tabs-->
           <zf-accordion id="create-note" auto-open="false">
@@ -69,18 +68,23 @@
               </div>
             </zf-accordion-item>
           </zf-accordion>
-        </zf-accordion-item>
-      </zf-accordion> <br>
+          </zf-accordion-item>
+        </zf-accordion>
+      </section>
 
-      <br>
-      <br>
-      <div ng-if="recordings.length > 1">
+      <hr>
+      <section class="resource-display-section">
+
+        <div class="grid-block"> 
+          <input class="resource-search grid-content" placeholder="Search Recordings..." ng-model="recordingSearch">
+          <sort class="grid-content shrink"></sort>
+        </div>
+        <br>
+
         <div class="title-bar dark">
           <span ng-if="!public" class="title center">Your Recordings for this Project:</span>
           <span ng-if="public" class="title center">Recordings for this Project:</span>
-        </div> 
-
-        <sort></sort>
+        </div>
 
         <zf-accordion auto-open="false" ng-repeat="recording in recordings | orderBy: sort.sortField: sort.sortDirection | filter: recordingSearch" ng-model="recordings" collapsible="true" multi-open="true" id="recordingslist">
           <zf-accordion-item title="{{ formatDate(recording.created_at) }} - {{recording.name}}" watch>
@@ -118,7 +122,8 @@
 
           </zf-accordion-item>
         </zf-accordion>
-      </div>
+      </section>
+
     </div>
   </div>
 </div>
