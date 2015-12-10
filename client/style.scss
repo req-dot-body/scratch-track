@@ -437,7 +437,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     &.sort {
       background-color: $primary-color;
       color: $light-color;
+<<<<<<< HEAD
       margin-right: 1px;
+=======
+      margin-right: 16px;
+>>>>>>> Began styling resource pages closes #450 closes #432 closes #412 closes #416 closes #436
     }
     > li > a {
       color: $light-color;
