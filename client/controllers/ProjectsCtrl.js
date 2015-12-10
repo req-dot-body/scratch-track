@@ -8,8 +8,8 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','signedUp','Tour', f
   }
 
   $scope.sort = {
-    sortField: '',
-    sortDirection: false
+    sortField: 'updated_at',
+    sortDirection: true
   }
 
   $scope.sortBy = function(field){
