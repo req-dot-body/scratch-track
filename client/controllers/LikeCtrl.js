@@ -27,7 +27,7 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', 'Auth',
   var getLikeData = function () {
     return Like.getLikes($scope.projectId)
     .then(function(res){
-      var info = res.data[0];
+      var info = res.data;
 
       $scope.project.likes = info.likes;
       $scope.project.liked = info.liked;
