@@ -51,11 +51,19 @@
             <p>Last edited on {{project.updated_at*1000|date}}</p>
           </div>
           <div class="align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
-            <i class="medium material-icons" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}">mic_none</i>
-            <i class="medium material-icons" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.stablature({id:project.id})' }}">library_music
-      </i>
-            <i class="medium material-icons" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.lyrics({id:project.id})' }}">assignment</i>
-            <i class="medium material-icons" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.notes({id:project.id})' }}">library_books</i>
+            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}">
+              <i class="medium material-icons" id="resource-icon">mic_none</i>
+              <br>6 Recs</p>
+            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.stablature({id:project.id})' }}">
+              <i class="medium material-icons" id="resource-icon">library_music</i>
+              <br>3 Tabs</p>
+            </p>
+            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.lyrics({id:project.id})' }}">
+              <i class="medium material-icons" id="resource-icon">assignment</i>
+              <br>4 Lyrics</p>
+            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.notes({id:project.id})' }}">
+              <i class="medium material-icons" id="resource-icon">library_books</i>
+              <br>1 Note</p>
           </div>
         </div>
         <br>
