@@ -44,11 +44,7 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $location
     .state('public.landing', {
       authenticate: false,
       templateUrl: 'views/landing.html',
-      controller: 'LandingCtrl',
-      animation: {
-      enter: 'slideInRight',
-      leave: 'slideOutRight'
-    }
+      controller: 'LandingCtrl'
     })
   
     .state('public.signup', {  
@@ -56,11 +52,7 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $location
       authenticate: false,
       templateUrl: 'views/signupForm.html',
       controller: 'UserCtrl',
-      controllerAs: 'user',
-      animation: {
-      enter: 'slideInRight',
-      leave: 'slideOutRight'
-    }
+      controllerAs: 'user'
     })
 
     .state('public.signin', {
@@ -68,11 +60,7 @@ app.config(function($httpProvider, $stateProvider, $urlRouterProvider, $location
       authenticate: false,
       templateUrl: 'views/signinForm.html',
       controller: 'UserCtrl',
-      controllerAs: 'user',
-      animation: {
-      enter: 'slideInRight',
-      leave: 'slideOutRight'
-    }
+      controllerAs: 'user'
     })
 
     .state('main', {
