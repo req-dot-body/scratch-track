@@ -1,7 +1,6 @@
 require('./Signup');
 require('./Signin');
 require('./Landing');
-require('./LandingBar');
 require('./Tour');
 require('./passwordCompare');
 require('./ResourceTemplate');

@@ -18,5 +18,7 @@ pids
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
-client/resources/resources_local
-
+client/resources
+!client/resources/the_one.webm
+!client/resources/horse.jpg
+!client/resources/team/
