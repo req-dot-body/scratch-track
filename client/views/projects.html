@@ -1,16 +1,11 @@
  <div class="text-center">
     <section ng-if="!public" class="spaced">
       <h1>My Projects</h1>
-      <p>
-        Here you can view all of your projects or create a new project.
-      </p>
+
     </section>
 
     <section ng-if="public" class="spaced">
-      <h1>Public Projects</h1>
-      <p>
-        Here you can view all public projects.
-      </p>
+      <h1>All Projects</h1>
     </section>
 
     <br>
@@ -19,28 +14,9 @@
         <a ng-click='createProject()' class="success expand button">Create New Project</a>
       </div>
     </div>
-
-    <h3 ng-if="!public">Latest Project You've Worked on:</h3>
   </div>
-  <br>
-
-
-<div class="grid-block text-center">
-  <div ng-if='projects.length>0' class="grid-container small-11 medium-3" ng-repeat="project in projects|limitTo:-1">
-    <a ui-sref="{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}">
-      <div class="dark card">
-        <div class="card-divider project-recent">
-          {{project.name}}
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
-<br>
-
 <hr />
 
-  <h3 class="text-center" ng-if="!public">Project Listing:</h3>
   <div class="grid-block">
     <div class="grid-block small-10 medium-8 small-offset-1 medium-offset-2">
       <div class = 'grid-content'>
@@ -59,32 +35,37 @@
     </ul>
   </div>
   <br>
+
   <div class="grid-block small-12 medium-10 medium-offset-1 small-up-1 medium-up-2">
     <div class="grid-block small-12 medium-6" ng-repeat='project in projects|toArray| orderBy: sort.sortField: sort.sortDirection | filter:searchText'> 
       <div class='grid-content'>  
-       <a ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}">
-       <div class="dark card text-center">
+        <div class="dark card text-center">
           <div class="card-divider project-recent">
             {{project.name}}
           </div>
-        </div></a>
-        <div>
-        <p ng-if="project.description"><i>{{project.description}}</i></p>
-        <p>Created on {{project.created_at*1000|date}}</p>
-        <p>Last edited on {{project.updated_at*1000|date}}</p>
-        <p ng-if="!(public || project.private)">Likes: {{project.likes}}</p>
-        <likebutton ng-if="public" projectid="project.id"></likebutton>
-        <a ng-if="!public" zf-open='deleteModal' class="alert expand hollow text-center button">Delete Project</a> 
         </div>
 
-        <hr />
-        </div>  
-        <div ng-if="!public" zf-modal="" id="deleteModal" animation-out="slideOutUp">
-          <a zf-close="deleteModal" class="close-button">×</a>
-          <h4>Are You Sure That You Want To Delete This Entry?</h4>
-          <a class="alert button" ng-click="deleteProject(project.id)">Confirm Delete</a>
-          <a zf-close="" class="button">Go Back</a>
+        <p ng-if="project.description"><i>{{project.description}}</i></p>
+        <div class="grid-content"> 
+          <div class="align-justify grid-block small-12 medium-12 small-offset-2 medium-offset-2">
+            <p>Created on {{project.created_at*1000|date}}</p>
+            <p>Last edited on {{project.updated_at*1000|date}}</p>
+          </div>
+          <div class="align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
+            <i class="medium material-icons" ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}">mic_none</i>
+            <i class="medium material-icons" ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.stablature({id:project.id})' }}">library_music
+      </i>
+            <i class="medium material-icons" ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.lyrics({id:project.id})' }}">assignment</i>
+            <i class="medium material-icons" ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.notes({id:project.id})' }}">library_books</i>
+          </div>
         </div>
+        <br>
+
+        <p ng-if="!(public || project.private)">Likes: {{project.likes}}</p>
+        <likebutton ng-if="public" projectid="project.id"></likebutton>
+        <a ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}" class="alert expand hollow text-center button">View Project</a>
+        <hr />
+      </div>      
     </div>
   </div>
 
