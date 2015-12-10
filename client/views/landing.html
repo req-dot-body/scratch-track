@@ -1,13 +1,11 @@
-  <ul class="menu-bar primary dark">
-    <li><a ui-sref='public.signin'>Log In</a></li>
-    <li><a ui-sref="public.signup">Sign Up</a></li>
-  </ul>
-
+  <landingbar></landingbar>
   <div class="align-center grid-block">
     <div id="landing-box" class="medium-6 text-center">
       <h1 id="landing-title">ScratchTrack</h1>
       <p>{{ message }}</p>
-      <a class="" ui-sref="main.pubprojects">Check it Out!</a>
+      <ul class="menu-bar primary dark btn-check">
+        <li><a ui-sref='main.pubprojects'>Check it Out!</a></li>
+      </ul>
     </div>
   </div>
   

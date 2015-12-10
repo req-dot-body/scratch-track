@@ -1,15 +1,12 @@
-<ul class="menu-bar primary dark">
-  <li><a ui-sref='public.signin'>Log In</a></li>
-  <li><a ui-sref="public.signup">Sign Up</a></li>
-</ul>
+<landingbar></landingbar>
 
 <div class="landing-form align-center grid-block">
+
   <div class="medium-3">
     <form name="signinForm" ng-submit="signinUser()" class="form-group" novalidate>
 
       <label class="form-header">E-Mail:</label>
       <input type="email" required ng-model="email" name="emailField" ng-minlength="7" class="input-field" placeholder="Enter your e-mail"/>
-      <br>
 
       <div class="form-group"> 
         <div class="validation-error" ng-messages="signinForm.emailField.$error" ng-if="signinForm.emailField.$touched">
@@ -29,14 +26,14 @@
         </div>
       </div>  
 
-      <br>
       <div class="align-center grid-block">
-        <button class="large button" type="submit" href="#" id="submit-btn">Submit</button>
+        <button class="large button expand form-btn" type="submit" href="#">Log in!</button>
       </div>
       <br>
       <div class="align-center grid-block">
       </div>
     </form>
   </div>
+
 </div>
 
