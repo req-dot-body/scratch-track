@@ -17,23 +17,23 @@
   </div>
 <hr />
 
-  <div class="grid-block">
-    <div class="grid-block small-10 medium-8 small-offset-1 medium-offset-2">
-      <div class = 'grid-content'>
-        <form class='project-search' id='search-input'>
-          <label>
-            <input class = 'projects-seach' ng-model="searchText" type="search" placeholder="Search Projects">
-          </label>
-        </form>
-      </div>
+  <div class="grid-block small-10 medium-10 small-offset-1 medium-offset-1">
+    <div class = 'grid-content align-spaced'>
+      <form class='project-search' id='search-input'>
+        <label>
+          <input class = 'projects-seach' ng-model="searchText" type="search" placeholder="Search Projects">
+        </label>
+      </form>
+    </div>
+    <div class="grid-content-shrink">
+      <ul class="sort menu-bar ">
+        <li><a href="#" ng-click="sortBy('-created_at')">&#9839; Sort By Creation Date</a></li>
+        <li><a href="#" ng-click="sortBy('-udated_at')"> &#9837; Sort By Update Date</a></li>
+      </ul>
     </div>
   </div>
-  <div class="small-12 medium-10 medium-offset-1 small-up-1 medium-up-2 text-center">
-    <ul class="sort menu-bar">
-      <li><a href="#" ng-click="sortBy('-created_at')">&#9839; Sort By Creation Date</a></li>
-      <li><a href="#" ng-click="sortBy('-udated_at')"> &#9837; Sort By Update Date</a></li>
-    </ul>
-  </div>
+  
+  
   <br>
 
   <div class="grid-block small-12 medium-10 medium-offset-1 small-up-1 medium-up-2">
