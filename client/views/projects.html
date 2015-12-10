@@ -47,20 +47,19 @@
 
         <p ng-if="project.description"><i>{{project.description}}</i></p>
         <div class="grid-content"> 
-          <div class="align-justify grid-block small-12 medium-12">
+          <div class="align-justify grid-block small-12 medium-12 small-offset-2 medium-offset-2">
             <p>Created on {{project.created_at*1000|date}}</p>
             <p>Last edited on {{project.updated_at*1000|date}}</p>
           </div>
-          <div class="align-justify grid-block small-12 medium-12">
+          <div class="align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
             <i class="medium material-icons" ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}">mic_none</i>
             <i class="medium material-icons" ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.stablature({id:project.id})' }}">library_music
       </i>
             <i class="medium material-icons" ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.lyrics({id:project.id})' }}">assignment</i>
             <i class="medium material-icons" ng-if="!public" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.notes({id:project.id})' }}">library_books</i>
-            
           </div>
         </div>
-
+        <br>
 
         <p ng-if="!(public || project.private)">Likes: {{project.likes}}</p>
         <likebutton ng-if="public" projectid="project.id"></likebutton>
