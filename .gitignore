@@ -3,6 +3,7 @@
 .env
 server/.env
 client/docs/
+.DS_Store
 
 # Logs
 logs
