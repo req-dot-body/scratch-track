@@ -4,7 +4,9 @@ app.factory('Project', ['$http','$state', function($http,$state) {
 
   var getPublicProjects = function () {
     return $http.get(endpoint + 'public')
-    .then((res) => res.data.projects)
+    .then((res) => {
+      return res.data.projects;
+    })
     .catch((err) => console.log('Error getting public projects:', err));
   };
 

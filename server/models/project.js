@@ -4,53 +4,53 @@ var Resource = require('./resource');
 
 var Project = {};
 
-//this cluster fuck adds on a like count 
-//to the project with a particular ID
-Project.countLikesWhere = function(condition){
-  return db.raw('SELECT p.* , ' +
-    '(SELECT COUNT(*) FROM likes ' +
-    'WHERE p.id = project_id) ' +
-    'AS "likes" ' +
-    'FROM projects p ' +
-    'WHERE ' + condition)
-  .then(function(query){
-    return query.rows;
-  })
-}
+// Returns an object that represents a single project
+// Contains counts of each resource as well as likes
+Project.getProject = function (whereClause, attrs) {
+  attrs = attrs || {};
+  var likesJoin = {
+    'likes.project_id': 'p.id',
+  };
+  Object.assign(likesJoin, attrs.likesJoin);
 
-Project.countLikesWhereAuthed = function(condition, userId){
-  return db.raw('SELECT p.* , ' +
-    '(SELECT COUNT(*) FROM likes ' +
-    'WHERE p.id = project_id) ' +
-    'AS "likes", ' +
-    '(SELECT COUNT(*) FROM likes ' +
-    'WHERE p.id = project_id AND user_id = '+ userId +') '+
-    'AS "liked" ' +
-    'FROM projects p ' +
-    'WHERE ' + condition)
+  var query = db
+    .select('p.*')
+    .count('r.id AS recordingCount')
+    .count('l.id AS lyricCount')
+    .count('n.id AS noteCount')
+    .count('s.id AS stabCount')
+    .count('likes.id AS likes')
+    .from('projects AS p')
+      .leftJoin('recordings AS r', 'r.project_id', '=', 'p.id')
+      .leftJoin('lyrics AS l', 'l.project_id', '=', 'p.id')
+      .leftJoin('notes AS n', 'n.project_id', '=', 'p.id')
+      .leftJoin('stablature AS s', 's.project_id', '=', 'p.id')
+      .leftJoin('likes AS likes', likesJoin)
+    .where(whereClause)
+    .groupBy('p.id');
 
-    .then(function(query){
-      return query.rows;
-    })
-}
+  return query
+  .then(function(result){
+    return result;
+  });
+};
 
 // finds a project by id
 Project.findById = function(projectId, userId) {
   if (userId){
-    return Project.countLikesWhereAuthed('p.id = '+projectId, userId)
+    return Project.getProject({ 'p.id': projectId }, { likesJoin: {'likes.user_id': userId} })
     .then(function(rows){
        var project = rows[0];
 
       if (!project) { throw 404; }
-      //checks that user owns that project
-      //if project is private 
+      //checks that user owns that project if project is private 
       if (project.private && project.owner_id !== userId) { throw 401; }
       //projects exists and belongs to the expected user
       return project;
-    })
+    });
   }
   else{
-    return Project.countLikesWhere('p.id = '+projectId)
+    return Project.getProject({ 'p.id': projectId })
     .then(function(rows) {
       var project = rows[0];
 
@@ -66,7 +66,7 @@ Project.findById = function(projectId, userId) {
 
 // returns all projects for a user 
 Project.findByUser = function (userId) {
-   return Project.countLikesWhere('owner_id = '+userId);
+  return Project.getProject({ owner_id: userId });
 };
 
 Project.findByPublic = function (userId) {
@@ -74,9 +74,9 @@ Project.findByPublic = function (userId) {
   //object will contained 'liked' field 
 
   if (userId){
-    return Project.countLikesWhereAuthed('private = '+0, userId);
+    return Project.getProject({ 'private': 0 }, { likesJoin: {'likes.user_id': userId } });
   } else{
-    return Project.countLikesWhere('private = '+0);
+    return Project.getProject({ 'private': 0 });
   }
 };
 
@@ -84,7 +84,7 @@ Project.isPrivate = function(projectId){
   return db('projects').where('id', '=', projectId)
   .then(function(rows){
     return rows[0].private;
-  })
+  });
 };
 
 // creates a new project
@@ -96,7 +96,6 @@ Project.create = function (attrs, username) {
         owner_id: attrs.owner_id,
         created_at: attrs.created_at,
         updated_at: attrs.updated_at,
-        // private: 1, // Default projects to be private
       };
       return newProject;
     });
@@ -104,7 +103,12 @@ Project.create = function (attrs, username) {
 
 //updated a project based on id
 Project.update = function (projectId, attrs) {
+  // Remove attributes that don't exist in the projects table
   delete attrs.likes;
+  delete attrs.noteCount;
+  delete attrs.stabCount;
+  delete attrs.lyricCount;
+  delete attrs.recordingCount;
   return db('projects').where('id', '=', projectId).update(attrs)
   .then(function(){
     return db('projects').select('*').where({id: projectId})
