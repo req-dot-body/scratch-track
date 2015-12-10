@@ -228,18 +228,22 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   .landing-form {
     position: relative;
     top: 100px;
-    transform: translateY(10%);
-    color: white;
+    transform: translateY(-1%);
+    color: grey;
+  }
+
+  .landing-form label {
+    color:grey;
   }
 
   #landing-box {
-    border: 2px solid black;
     padding: 5%;
-    background-color: white;
-    opacity: .5;
+    background-color: #232323;
+    color: white;
+    opacity: .9;
     text-align: center;
     position: relative;
-    margin: 10%;
+    margin-top: 20%;
   }
 
   #landing-title {
@@ -496,9 +500,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   h1 {
     color: $light-color;
     margin-top: 0px;
-    &#landing-title {
-      color: $dark-color;
-    }
   }
 
 #tour1 {
