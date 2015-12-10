@@ -16,8 +16,8 @@ window.app = angular.module('myApp', [
   'ngSanitize',
   'ngResource',
   'foundation',
-  'foundation.dynamicRouting',
-  'foundation.dynamicRouting.animations',
+  // 'foundation.dynamicRouting',
+  // 'foundation.dynamicRouting.animations',
   'angular-toArrayFilter',
   'nzTour'
 ]);

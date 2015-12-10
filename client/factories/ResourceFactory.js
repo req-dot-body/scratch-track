@@ -4,8 +4,8 @@ app.factory('Resource', ['$http', '$timeout', function($http, $timeout) {
 var moment = require('moment/moment');
 
 var sort = {
-  sortField: '',
-  sortDirection: false
+  sortField: 'created_at',
+  sortDirection: true
 }
 
 var formatDate = function(date) {
@@ -14,6 +14,7 @@ var formatDate = function(date) {
 
 
 var sortBy = function(field){
+  console.log('field', field)
   if (sort.sortField === field){
     sort.sortDirection = !sort.sortDirection;
   }
