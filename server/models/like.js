@@ -59,7 +59,7 @@ Likes.findByProject = function(projectId, userId){
       'FROM projects p ' +
       'WHERE p.id = '+projectId)
     .then(function(query){
-      return query.rows;
+      return query.rows[0];
     })
   }
   else{
@@ -70,7 +70,7 @@ Likes.findByProject = function(projectId, userId){
       'FROM projects p '+
       'WHERE p.id = '+projectId)
     .then(function(query){
-      return query.rows;
+      return query.rows[0];
     })
   }
 }
