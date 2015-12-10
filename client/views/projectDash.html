@@ -21,31 +21,15 @@
   </div>
 
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
-    
-    <div class=".card-wrapper card-recordings" id='tour8'>
-      <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">
-        <!-- <img src="./resources/guitar_banner.jpg"> -->
-        <div class="recordings-card-divider text-center">
-          Recordings
-        </div></a>
-      <div class="recordings-card-section">
-        <ul>
-          <li ng-repeat = 'recording in projectRecordings|limitTo:-3|orderBy:"updated_at" : true '>
-            <recordingentry resource="recording"></recordingentry> 
-          </li>
-        </ul>
-      </div>
-    </div>
 
     <div class=".card-wrapper card-lyrics" id='tour9'>
       <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">
-        <!-- <img src="./resources/lyrics_banner.jpg"> -->
         <div class="lyrics-card-divider text-center">
          Lyrics
         </div></a>
       <div class="lyrics-card-section">
          <ul>
-          <li class="collection-item" ng-repeat = 'lyric in projectLyrics|limitTo:-3|orderBy:"updated_at" : true'>
+          <li class="collection-item" ng-repeat = 'lyric in projectLyrics|limitTo:-1|orderBy:"updated_at" : true'>
             <lyricsentry resource="lyric"></lyricsentry>
         <!--     <h5>{{lyric.name}}</h5>
             <p class ='panel-lyric'>{{lyric.text}}</P> -->
@@ -53,36 +37,49 @@
         </ul>
       </div>
     </div>
-  </div>
 
-
-  <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
-     <div class=".card-wrapper card-stablature" id='tour11'>
-      <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">
-        <!-- <img src="./resources/stablature_banner.jpg"> -->
-        <div class="stablature-card-divider text-center">
-          Tablature
-        </div></a>
-      <div class="stablature-card-section">
-        <div ng-repeat = 'stab in projectStablature|limitTo:-3|orderBy:"updated_at" : true' class = 'text-center'>
-          <stabentry resource="stab"></stabentry>
-          <!-- <vextab ng-model="stab.code"></vextab> -->
-        </div>
-      </div>
-    </div>
-
+    
     <div class=".card-wrapper card-notes" id='tour10'>
       <a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">
-        <!-- <img src="./resources/notes_banner.jpg"> -->
         <div class="notes-card-divider text-center">
           Notes
         </div></a>
       <div class="notes-card-section">
         <ul>
-          <li ng-repeat = 'note in projectNotes|limitTo:-3|orderBy:"updated_at" : true'>
+          <li ng-repeat = 'note in projectNotes|limitTo:-1|orderBy:"updated_at" : true'>
             <noteentry resource="note"></noteentry>
           </li>
         </ul>
+      </div>
+    </div>
+    
+  </div>
+
+
+  <div class="grid-content small-12 medium-6 medium-order-2 right.panel">
+    <div class=".card-wrapper card-recordings" id='tour8'>
+      <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">
+        <div class="recordings-card-divider text-center">
+          Recordings
+        </div></a>
+      <div class="recordings-card-section">
+        <ul>
+          <li ng-repeat = 'recording in projectRecordings|limitTo:-1|orderBy:"updated_at" : true '>
+            <recordingentry resource="recording"></recordingentry> 
+          </li>
+        </ul>
+      </div>
+    </div>
+
+     <div class=".card-wrapper card-stablature" id='tour11'>
+      <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">
+        <div class="stablature-card-divider text-center">
+          Tablature
+        </div></a>
+      <div class="stablature-card-section">
+        <div ng-repeat = 'stab in projectStablature|limitTo:-1|orderBy:"updated_at" : true' class = 'text-center'>
+          <stabentry resource="stab"></stabentry>
+        </div>
       </div>
     </div>
 

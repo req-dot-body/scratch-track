@@ -5,6 +5,6 @@ app.directive('noteentry', function() {
       resource: '=resource'
     },
     templateUrl: '../views/lyricsOrNoteEntry.html',
-    controller: 'ResourceEntryCtrl'
+    controller: 'ResourceCtrl'
   };
 });

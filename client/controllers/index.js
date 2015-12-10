@@ -11,7 +11,7 @@ require('./ProjectEditCtrl');
 require('./PublicCtrl');
 require('./LandingCtrl');
 require('./ProjectDashCtrl');
-require('./ResourceEntryCtrl');
+require('./ResourceCtrl');
 require('./LikeCtrl');
 require('./TeamCtrl');
 
