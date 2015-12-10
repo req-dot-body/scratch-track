@@ -68,15 +68,14 @@
       <span ng-if="!public" class="title center">Your Tablature:</span>
       <span ng-if="public" class="title center">Tablature:</span>
     </div>
-
-
     <br>
-    <div class="grid-block">
-      <div class="grid-block">
-        <ul class="grid-content align-spaced" ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
-          <div class="grid-block">
+
+    <zf-accordion auto-open="false" ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
+      <zf-accordion-item title="{{ formatDate(stab.created_at) }} - {{ stab.name}}">
+        <div class="grid-block">
             <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
               <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
+              
               <div>
                 <vextab ng-model="stab.code" notation="stab.notation"></vextab>
            
@@ -97,8 +96,9 @@
               </div>
             </li>
           </div>
-        </ul>
-      </section>
+        </zf-accordion-item>
+      </zf-accordion>
+    </section>
 
     </div>
   </div>
