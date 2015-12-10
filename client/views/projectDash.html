@@ -1,27 +1,20 @@
-<ul ng-if="!public" class="dash-menu-bar" id='tour7'>
-  <li><a href="#" ng-click = 'showEdit()' zf-open='projectInfo'>&#9835; Edit</a></li>
-  <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
-  <!-- <li><a ui-sref="main.projects">Back</a></li> -->
-</ul>
-<div>
 <div class="spaced text-center">
-  <h1>Project Dash</h1>
-  <p>Here you can find all the resources for this project in one place.</p>
-</div>
-<div class="grid-block wrap dash-row-top text-center">
-  <div class="grid-content small-12">
-  <br>
-  <br>
-    <h3>{{projectData.name}}</h3>
-    <h3 ng-if = 'projectData.description'><i>{{projectData.description}}</i></h3>
-    <br>
-    <likebutton ng-if="public" projectid="projectId"></likebutton>
-    <br>
-    <br>
+  <h1>{{projectData.name}}</h1>
+  <p ng-if='projectData.description'>{{projectData.description}}</p>
+  <div class="grid-block align-center">
+    <ul ng-if="!public" class="dash-menu-bar" id='tour7'>
+      <li><a href="#" ng-click = 'showEdit()' zf-open='projectInfo'>&#9835; Edit</a></li>
+      <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
+      <!-- <li><a ui-sref="main.projects">Back</a></li> -->
+      <likebutton ng-if="public" projectid="projectId"></likebutton>
+    </ul>
   </div>
+</div>
 
+<br>
+<br>
+<div class="grid-block wrap dash-row-top text-center">
   <div class="grid-content small-12 medium-6 medium-order-0 left-panel">
-
     <div class=".card-wrapper card-lyrics" id='tour9'>
       <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">
         <div class="lyrics-card-divider text-center">
