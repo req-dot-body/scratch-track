@@ -32,7 +32,6 @@ Project.getProject = function (whereClause, attrs) {
 
   return query
   .then(function(result){
-    console.log('seriously?', result)
     return result;
   })
 };
