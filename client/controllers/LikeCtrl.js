@@ -2,7 +2,6 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', 'Auth',
   function($scope, $state, Like, Auth) {
 
   $scope.buttonStyle = "active"
-  $scope.textContent = "Like this project"
   $scope.textContent2 = "likes"
   $scope.loggedIn = Auth.isLoggedIn();
 
@@ -17,10 +16,8 @@ app.controller('LikeCtrl', ['$scope','$state', 'Like', 'Auth',
 
     if ($scope.project.liked === '1') {
       $scope.buttonStyle = "inactive"
-      $scope.textContent = "Un-like this project"
     } else {
       $scope.buttonStyle = "active"
-      $scope.textContent = "Like this project"
     }
   }
 
