@@ -14,25 +14,27 @@ Project.getProject = function (whereClause, attrs) {
   Object.assign(likesJoin, attrs.likesJoin);
 
   var query = db
-    .select('p.*')
+    .select('p.*', 'users.first', 'users.last')
     .count('r.id AS recordingCount')
     .count('l.id AS lyricCount')
     .count('n.id AS noteCount')
     .count('s.id AS stabCount')
     .count('likes.id AS likes')
     .from('projects AS p')
+      .leftJoin('users', 'users.id', '=', 'p.owner_id')
       .leftJoin('recordings AS r', 'r.project_id', '=', 'p.id')
       .leftJoin('lyrics AS l', 'l.project_id', '=', 'p.id')
       .leftJoin('notes AS n', 'n.project_id', '=', 'p.id')
       .leftJoin('stablature AS s', 's.project_id', '=', 'p.id')
-      .leftJoin('likes AS likes', likesJoin)
+      .leftJoin('likes', likesJoin)
     .where(whereClause)
-    .groupBy('p.id');
+    .groupBy('p.id', 'users.first', 'users.last');
 
   return query
   .then(function(result){
+    console.log('seriously?', result)
     return result;
-  });
+  })
 };
 
 // finds a project by id
