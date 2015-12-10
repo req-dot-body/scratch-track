@@ -406,6 +406,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   }
 
+  .resource-search {
+    height: 50px !important;
+    margin-left: 16px;
+    margin-right: 1px;
+  }
 
   body {
     background-color: $tertiary-color;
@@ -432,6 +437,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     &.sort {
       background-color: $primary-color;
       color: $light-color;
+      margin-right: 1px;
     }
     > li > a {
       color: $light-color;
