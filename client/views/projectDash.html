@@ -1,5 +1,6 @@
 <div class="spaced text-center">
   <h1>{{projectData.name}}</h1>
+  <p ng-if = 'public'>By {{projectData.first}} {{projectData.last}}<p>
   <p ng-if='projectData.description'>{{projectData.description}}</p>
   <div class="grid-block align-center">
     <ul ng-if="!public" class="dash-menu-bar" id='tour7'>
