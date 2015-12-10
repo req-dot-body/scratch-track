@@ -19,6 +19,4 @@ pids
 node_modules
 
 client/resources
-!client/resources/the_one.webm
-!client/resources/horse.jpg
-!client/resources/team/
+!client/resources/music_ipad.mp4
