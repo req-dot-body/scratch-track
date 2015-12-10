@@ -167,10 +167,12 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     stopButton.removeClass('large alert button disabled');
     stopButton.addClass('large alert button');
 
+    $('#log').addClass('blink');
     $scope.__log('Recording...');
   }
 
    $scope.stopRecording = function () {
+    $('#log').removeClass('blink');
     $scope.stopTimer();
     $scope.recorder && $scope.recorder.stop();
     $scope.buttonToggle();
