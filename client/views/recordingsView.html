@@ -26,15 +26,15 @@
                 <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
               </audio>
               <br><br>
-              <div class="align-center grid-block">
-                <p id="timer">{{minutes}}:{{secondsPlace}}</p>
-              </div> 
             
               <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save</a>
               <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard</a>
               <div id="recording-status" class="grid-block-shrink">
+                <div class="align-center grid-block">
+                  <p id="timer">{{minutes}}:{{secondsPlace}}</p>
+                </div> 
                 <em id="log" class="recordingStatus"></em>
-                <img src="/resources/loading.gif" ng-if="isSaving">
+                <img src="/resources/spinner.gif" ng-if="isSaving">
               </div>
             </form>
           </zf-accordion-item>
