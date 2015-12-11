@@ -1,6 +1,6 @@
 
-app.controller('StablatureCtrl', ['$scope', '$state', 'Stablature', 'Project', 'Resource',
-	function($scope, $state, Stablature, Project, Resource) {
+app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 'Project', 'Resource',
+	function($scope, $state, $timeout, Stablature, Project, Resource) {
 
 	$scope.stabList = [];
 
