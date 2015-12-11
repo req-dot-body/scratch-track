@@ -15,7 +15,7 @@ router.get('/', helper.requireAuth, function (req, res) {
       res.status(200).send({projects: projects});
     })
     .catch(function(err){
-      console.log('Could not find projects for this user');
+      console.log('Could not find projects for this user:', err);
       res.sendStatus(404);
     });
 });
@@ -25,7 +25,7 @@ router.get('/public', (req, res) => {
   var userId; 
 
   //checks if a user is authed
-  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.userId !== 'undefined'){
+  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.user.id !== 'undefined'){
     userId = req.session.passport.user.id;
   } 
 

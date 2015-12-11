@@ -14,12 +14,15 @@ Project.getProject = function (whereClause, attrs) {
   Object.assign(likesJoin, attrs.likesJoin);
 
   var query = db
-    .select('p.*', 'users.first', 'users.last')
+    .distinct('p.*')
+    .distinct('users.first')
+    .distinct('users.last')
     .count('r.id AS recordingCount')
     .count('l.id AS lyricCount')
     .count('n.id AS noteCount')
     .count('s.id AS stabCount')
     .count('likes.id AS likes')
+    .select()
     .from('projects AS p')
       .leftJoin('users', 'users.id', '=', 'p.owner_id')
       .leftJoin('recordings AS r', 'r.project_id', '=', 'p.id')
@@ -28,12 +31,12 @@ Project.getProject = function (whereClause, attrs) {
       .leftJoin('stablature AS s', 's.project_id', '=', 'p.id')
       .leftJoin('likes', likesJoin)
     .where(whereClause)
-    .groupBy('p.id', 'users.first', 'users.last');
+    .groupBy('p.id', 'r.id', 'l.id', 'n.id', 's.id', 'likes.id', 'users.first', 'users.last');
 
   return query
   .then(function(result){
     return result;
-  })
+  });
 };
 
 // finds a project by id
