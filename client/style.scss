@@ -416,7 +416,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     background-color: $primary-color;
     color: $light-color;
     padding-top: 5px;
-    padding-bottom: 5px;
   }
 
   .button {
@@ -471,6 +470,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   .title-bar {
     color: $light-color;
     
+  }
+
+  #dash-menu-bar-wrapper {
+    background-color: $primary-color;
+    margin-top: 0px;
   }
 
   .menu-bar {

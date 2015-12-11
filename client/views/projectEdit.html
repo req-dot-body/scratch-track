@@ -1,15 +1,24 @@
-<div class="menu-group dark" id = 'tour3'>
-  <!-- <div class="menu-group-right"> -->
+<div id="dash-menu-bar-wrapper" class="align-center" id='tour3'>
+  <div class="spaced grid-block align-center">
+    <h1 id="blah">{{ projectData.name }}</h1>
+    <p ng-if = 'public'>By {{projectData.first}} {{projectData.last}}</p>
+  </div>
+  <div class="grid-block align-center">
     <ul class="menu-bar left pad-left" ng-if ='state.current.name !== "main.project_edit.dash"' id = 'tour12'>
-      <li><a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">&#9835; Recordings</a></li>
-	  <li><a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">&#9835; Lyrics</a></li>
-	  <li><a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">&#9835; Tablature</a></li>
-	  <li><a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">&#9835; Notes</a></li>
+      <li>
+        <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">&#9835; Recordings</a>
+      </li>
+      <li>
+        <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">&#9835; Lyrics</a>
+      </li>
+      <li>
+        <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">&#9835; Tablature</a>
+      </li>
+      <li>
+        <a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">&#9835; Notes</a>
+      </li>
     </ul>
-
-    <ul class="icon-right primary menu-bar pad-right" ng-if ='state.current.name !== "main.project_edit.dash"'>
-    	<li id='tour13'><a ui-sref="{{ public ? 'main.public_view.dash' : 'main.project_edit.dash' }}">&#9835; Dashboard</a></li>
-  	</ul>
+  </div>
 </div>
 
 <section ui-view id='tour14'></section>
