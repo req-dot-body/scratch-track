@@ -65,7 +65,6 @@
       <span ng-if="!public" class="title center">Your Tablature for This Project:</span>
       <span ng-if="public" class="title center">Tablature:</span>
     </div>
-    <br>
 
     <zf-accordion auto-open="false" ng-repeat="stab in stabList | orderBy: sort.sortField: sort.sortDirection | filter: stabSearch">
       <zf-accordion-item title="{{ formatDate(stab.created_at) }} - {{ stab.name}}">
