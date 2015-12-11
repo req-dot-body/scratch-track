@@ -64,10 +64,9 @@ router.post('/', helper.requireAuth, function (req, res) {
 // Get a project by id
 router.get('/:projectId', function (req, res) {
   var projectId = req.params.projectId;
-
   var userId = null;
 
-  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.userId !== 'undefined') {
+  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.user.id !== 'undefined') {
     userId = req.session.passport.user.id;
   }
 
@@ -175,7 +174,7 @@ router.get('/:projectId/:resourceType', function (req, res) {
 
   var userId = null;
 
-  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.userId !== 'undefined') {
+  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.user.id !== 'undefined') {
     userId = req.session.passport.user.id;
   }
 
