@@ -20,6 +20,7 @@ $quaternary-color: #b0aac2;
 $quaternary-color-darken: darken( $quaternary-color, 5% );
 
 $dark-color: #232323;
+$dark-color-lighten: lighten( $dark-color, 5% );
 $light-color: #f2efe8;
 
 
@@ -171,12 +172,20 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   );
 }
 
-//Projects View
+// PROJECTS VIEW:
+
 .project-search {
   input{ 
     border: 1px solid #000;
     // shadow: 0 4px 1-px black;
   }
+}
+
+.project-author {
+  color: $tertiary-color;
+  &:hover {
+      color: $tertiary-color;
+    }
 }
 
 #project-icon {
@@ -187,10 +196,16 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   } 
 }
 
-.project-author {
-  color: $tertiary-color;
+#resource-icon {
   &:hover {
-      color: $tertiary-color;
+    color: $secondary-color;
+  } 
+}
+
+#project-card-header {
+  background-color: $dark-color;
+  &:hover {
+      background-color: $dark-color-lighten;
     }
 }
 

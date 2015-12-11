@@ -1,7 +1,9 @@
 <div id="dash-menu-bar-wrapper" class="align-center" id='tour3'>
-  <div class="spaced grid-block align-center">
-    <h1 id="blah">{{ projectData.name }}</h1>
-    <p ng-if = 'public'>By {{projectData.first}} {{projectData.last}}</p>
+  <div class="spaced grid-block align-center" ui-sref="{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}">
+    <h1>{{ projectData.name }}</h1>
+  </div>
+  <div class="grid-block align-center">
+    <p ng-if='public' class="project-author">By {{projectData.first}} {{projectData.last}}</p>
   </div>
   <div class="grid-block align-center">
     <ul class="menu-bar left pad-left" ng-if ='state.current.name !== "main.project_edit.dash"' id = 'tour12'>
