@@ -1,10 +1,10 @@
 <div id="dash-menu-bar-wrapper" class="align-center" id='tour3'>
   <div class="spaced grid-block align-center">
-    <h1>{{ projectData.name }}</h1>
+    <h1 id="blah">{{ projectData.name }}</h1>
     <p ng-if = 'public'>By {{projectData.first}} {{projectData.last}}</p>
   </div>
   <div class="grid-block align-center">
-    <ul ng-if="!public" class="dash-menu-bar" id='tour7'>
+    <ul class="menu-bar left pad-left" ng-if ='state.current.name !== "main.project_edit.dash"' id = 'tour12'>
       <li>
         <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">&#9835; Recordings</a>
       </li>
