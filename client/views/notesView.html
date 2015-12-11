@@ -84,7 +84,10 @@
           </zf-accordion-item>
         </zf-accordion>
       </section>
-
+      <div ng-if="!notes.length">
+        <br>
+        <h5>There are currently no notes for this project</h5>
+      </div>
     </div>
   </div> 
 </div>
