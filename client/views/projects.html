@@ -53,17 +53,17 @@
           </div>
 
           <div class="align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
-            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}">
+            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}" title="View Recordings for this Project" alt="View Recordings for this Project">
               <i class="medium material-icons" id="resource-icon">mic_none</i>
               <br>{{project.recordingCount}} Recs</p>
-            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.stablature({id:project.id})' }}">
+            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.stablature({id:project.id})' }}" title="View Tabs for this Project" alt="View Tabs for this Project">
               <i class="medium material-icons" id="resource-icon">library_music</i>
               <br>{{project.stabCount}} Tabs</p>
             </p>
-            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.lyrics({id:project.id})' }}">
+            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.lyrics({id:project.id})' }}" title="View Lyrics for this Project" alt="View Lyrics for this Project">
               <i class="medium material-icons" id="resource-icon">assignment</i>
               <br>{{project.lyricCount}} Lyrics</p>
-            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.notes({id:project.id})' }}">
+            <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.notes({id:project.id})' }}" title="View Notes for this Project" alt="View Notes for this Project">
               <i class="medium material-icons" id="resource-icon">library_books</i>
               <br>{{project.noteCount}} Notes</p>
           </div>
