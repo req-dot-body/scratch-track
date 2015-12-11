@@ -199,7 +199,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 #resource-icon {
   &:hover {
     color: $secondary-color;
-  } 
+  }  
 }
 
 #project-card-header {
@@ -504,7 +504,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .menu-bar {
-    background-color: $primary-color;
+   
     &.sort {
       background-color: $primary-color;
       color: $light-color;
@@ -534,6 +534,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     > li > a {
       color: $light-color;
     }
+  }
+
+  .menu-active {
+    color: $secondary-color;
+    background-color: $dark-color-lighten;
   }
 
   .accordion-title {
