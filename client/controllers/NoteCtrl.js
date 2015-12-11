@@ -69,7 +69,6 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
 
   $scope.edit = function(note){
     $scope.editing = true;
-    console.log('edit', $scope.editing);
 
     $scope.editNote = {
       id: note.id,

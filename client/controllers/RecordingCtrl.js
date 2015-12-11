@@ -45,19 +45,34 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     })
   };
 
-  $scope.edit = function(id, name, desc, url){
+  $scope.editing= false;
+  $scope.editRecording = {};
 
-    var editedRecording = {
-      project_id: projectId,
-      url: url,
-      name: name,
-      description: desc
-    }
+  $scope.edit = function(recording){
+    $scope.editing = true;
 
-    Recording.edit(id, editedRecording)
+    $scope.editRecording = {
+      id: recording.id,
+      name: recording.name,
+      description: recording.description
+    };
+  } 
+
+  $scope.closeEdit = function(){
+    $scope.editing = false;
+    $scope.editRecording = {};
+  };
+
+  $scope.update = function(){
+    $scope.editing = false;
+    var id = $scope.editRecording.id;
+
+    Recording.edit(id, $scope.editRecording)
     .then(function(){
+      $scope.editRecording = {};
       $scope.getAll();
     })
+
   };
 
   $scope.delete = function(id) {
