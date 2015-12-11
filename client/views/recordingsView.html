@@ -25,13 +25,14 @@
               <audio controls="true" id="audio-player">
                 <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
               </audio>
-              
-              <br> 
-              <br>
-              <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save Recording</a>
-              <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard Recording</a>
-              <div id="recording-status" class="grid-block-shrink">
+              <br><br>
+              <div class="align-center grid-block">
                 <p id="timer">{{minutes}}:{{secondsPlace}}</p>
+              </div> 
+            
+              <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save</a>
+              <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard</a>
+              <div id="recording-status" class="grid-block-shrink">
                 <em id="log" class="recordingStatus"></em>
                 <img src="/resources/loading.gif" ng-if="isSaving">
               </div>
@@ -103,9 +104,10 @@
 
               <p><em>{{recording.description}}</em></p>
 
-              <a class="button" download href="{{recording.url}}">Download</a>
-              <a ng-hide="public" class="button" ng-click="edit(recording)">Edit</a>
-              <a ng-hide="public" class="alert button" zf-open="delModal">Delete</a>
+              
+              <a class="button" id="save-btn" download href="{{recording.url}}">Download</a>
+              <a ng-hide="public" class="button" id="save-btn" ng-click="edit(recording)">Edit</a>
+              <a ng-hide="public" class="alert button" id="discard-btn" zf-open="delModal">Delete</a>
             </div>
 
             <!--Edit & Delete Modals-->

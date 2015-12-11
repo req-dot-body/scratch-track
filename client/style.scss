@@ -224,6 +224,26 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   /*RECORDING VIEW*/
 
+  #record-btn {
+    background-color: $secondary-color;
+      &:hover {
+        background-color: $secondary-color-darken;
+      }
+  }
+
+  #save-btn {
+    width: 6rem;
+    text-align: center;
+    background-color: $secondary-color;
+      &:hover {
+        background-color: $secondary-color-darken;
+      }
+  }
+
+  #discard-btn {
+    width: 6rem;
+    text-align: center !important;
+  }
 
   .recording-element {
     padding: 5px;
@@ -232,7 +252,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   .blink {
   animation: blink 1s steps(5, start) infinite;
   -webkit-animation: blink 1s steps(5, start) infinite;
-  color: #FF0000
+  color: #DC2C0F
   }
   @keyframes blink {
     to {
@@ -249,7 +269,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   .validation-error {
     height: 20px;
-    color: red;
+    color: #dc2c0f;
     font-size: 12px;
   }
 
@@ -449,6 +469,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   .button {
     background-color: $secondary-color;
     color: $light-color;
+    text-align: center;
   }
 
   .button.contrast {
