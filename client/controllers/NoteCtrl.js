@@ -13,17 +13,11 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
     project_id: projectId
   }
 
-  $scope.noteEdits = {
-    name: '',
-    text: '',
-    project_id: projectId
-  }
-
-  console.log('HIT NOTES', $state.current.name);
+  $scope.editNote = {};
 
   $scope.public = true;
+
   if ($state.current.authenticate) {
-    console.log('hereerere')
     $scope.public = false;
   }
 
@@ -48,7 +42,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
     Resource.closeAccordion();
   };
   
-  $scope.getAll = function (projectId) {
+  $scope.getAll = function () {
     Project.getProjectNotes(projectId)
     .then(function(notes){
       console.log(notes.data);
@@ -60,52 +54,47 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
     return Note.create(newNote)
     .then(function(){
       $scope.resetForm();
-      $scope.getAll(projectId);
+      $scope.getAll();
     });
   }
 
   $scope.deleteNote = function (noteId) {
     return Note.del(noteId)
     .then(function(){
-      $scope.getAll(projectId);
+      $scope.getAll();
     });
   }
 
-  $scope.editToggle = false;
+  $scope.editing= false;
 
-  $scope.editNote = function (noteId) {
-    $scope.editToggle = true;
-    var textId = '#note-text' + noteId;
-    var text = $(textId);
-    text.removeAttr('readonly');
-  }
+  $scope.edit = function(note){
+    $scope.editing = true;
 
-  $scope.confirmEdit = function (noteId, value, name) {
-    $scope.editToggle = false;
-    var textId = '#note-text' + noteId;
-    var text = $(textId);
-    text.attr('readonly', 'true ');
+    $scope.editNote = {
+      id: note.id,
+      name: note.name,
+      text: note.text
+    };
+  } 
 
-    var data = {
-      text: value,
-      name: name
-    }
+  $scope.closeEdit = function(){
+    $scope.editing = false;
+    $scope.editNote = {};
+  };
 
-    return Note.editBody(noteId, data)
+  $scope.update = function(){
+    $scope.editing = false;
+    var id = $scope.editNote.id;
+
+    Note.edit(id, $scope.editNote)
     .then(function(){
-      $scope.getAll(projectId);
-    });
-  }
+      $scope.editNote = {};
+      $scope.getAll();
+    })
 
-  $scope.resetForm = function () {
-    $scope.newNote = {};
-    $scope.hasBeenReset = true;
-  }
+  };
 
-  var init = function () {
-    console.log('here we go');
-    $scope.getAll(projectId);
-  }
-  init();
+  //initializing
+  $scope.getAll();
 
 }]);

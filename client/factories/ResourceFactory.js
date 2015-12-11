@@ -14,7 +14,6 @@ var formatDate = function(date) {
 
 
 var sortBy = function(field){
-  console.log('field', field)
   if (sort.sortField === field){
     sort.sortDirection = !sort.sortDirection;
   }

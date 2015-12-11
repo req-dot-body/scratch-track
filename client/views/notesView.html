@@ -53,13 +53,29 @@
 
         <zf-accordion auto-open="false" collapsible="true" multi-open="true" ng-repeat="note in notes | orderBy: sort.sortField: sort.sortDirection | filter: noteSearch" ng-model="notes">
           <zf-accordion-item title="{{ formatDate(note.created_at) }} - {{ note.name}}">
-            <textarea class="body-entry" readonly="true" ng-model="note.text" id="note-text{{note.id}}">
-              {{note.text}}
-            </textarea>
-            <a ng-if="!public" class="medium button" id="edit-btn" ng-click="editNote(note.id)" ng-if="!editToggle">Edit</a>
-            <a ng-if="!public" class="medium success button" id="confirm-edit-btn" ng-click="confirmEdit(note.id, note.text, note.name)" ng-if="editToggle">Confirm Edit</a>
-            <a ng-if="!public" class="medium alert button" zf-open="delModal">Delete</a>
-            <div ng-if="!public" zf-modal="" id="delModal">
+            
+            <div ng-hide="editing">
+              <textarea class="body-entry" readonly="true" ng-model="note.text" id="note-text{{note.id}}">
+                {{note.text}}
+              </textarea>
+              
+              <div ng-hide="public">
+                <a class="medium button" id="edit-btn" ng-click="edit(note)" ng-if="!editToggle">Edit</a>
+                <a class="medium alert button" zf-open="delModal">Delete</a>
+              </div>
+            </div>
+
+            <div ng-show="editing">
+              <label>Note Title:</label>
+              <textarea class="title-box" ng-model="editNote.name"></textarea>
+          
+              <label>Note Body:</label>
+              <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="editNote.text"></textarea>
+              <a class="button" ng-click="update()">Save</a>
+              <a class="button" ng-click="closeEdit()">Cancel</a>
+            </div>
+
+            <div ng-hide="public" zf-modal="" id="delModal">
               <a zf-close="" class="close-button">×</a>
               <h3>Are you sure you want to delete this note?</h3>
               <a class="medium alert button" zf-close="" ng-click="deleteNote(note.id)">Confirm Delete</a>
