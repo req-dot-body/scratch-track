@@ -183,6 +183,13 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   float: right; 
 }
 
+.project-author {
+  color: $tertiary-color;
+  &:hover {
+      color: $tertiary-color;
+    }
+}
+
 .public-project {
   
   // $switch-background-active: black;

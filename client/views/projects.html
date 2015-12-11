@@ -41,7 +41,7 @@
       <div class='grid-content'>  
         <div class="dark card text-center">
           <div class="card-divider  project-recent" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}">
-            {{project.name}}
+            {{project.name}} - <a class="project-author" ng-if="public">by {{project.first}} {{project.last}}</a>
             <i id="project-icon" class="large material-icons">input</i>
           </div>
         </div>
@@ -51,9 +51,7 @@
             <p>Created on {{project.created_at*1000|date}}</p>
             <p>Last edited on {{project.updated_at*1000|date}}</p>
           </div>
-           <div ng-if="public" class="align-center grid-block small-12 medium-12 small-offset-2 medium-offset-2">
-            <p>By {{project.first}} {{project.last}}</p>
-          </div>
+
           <div class="align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
             <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}">
               <i class="medium material-icons" id="resource-icon">mic_none</i>
