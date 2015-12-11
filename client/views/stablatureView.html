@@ -75,16 +75,28 @@
       <zf-accordion-item title="{{ formatDate(stab.created_at) }} - {{ stab.name}}">
         <div class="grid-block">
             <li class="grid-content" style="list-style: none; margin-top: 20px; margin-bottom: 40px;" >
-              <h5>{{ formatDate(stab.created_at) }} - <strong>{{stab.name}}</strong></h5>
               
               <div>
-                <vextab ng-model="stab.code" notation="stab.notation"></vextab>
-           
-                <p><em>{{stab.description}}</em></p>
+                <div ng-show="editing">
+                  <label>Tab Title:</label>
+                  <textarea class="title-box" ng-model="editStab.name"></textarea>
+                
+                  <label>Tab Description:</label>
+                  <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="editStab.description"></textarea>
+                  <a ng-show="editing" class="button" ng-click="update()">Save</a>
+                  <a ng-show="editing" class="button" ng-click="closeEdit()">Cancel</a>
+                </div>
 
-                <a ng-if="!public" class="button" ng-click="openEditor(stab)">Create Revision</a>
-                <a ng-if="!public" class="button" ng-click="">Edit</a>
-                <a ng-if="!public" class="button" zf-open="deleteModal">Delete</a> 
+                <vextab ng-model="stab.code" notation="stab.notation"></vextab>
+
+                <p ng-hide="editing"><em>{{stab.description}}</em></p>
+                <div ng-if="!public">
+                  <div ng-hide="editing">
+                    <a class="button" ng-click="openEditor(stab)">Create Revision</a>
+                    <a class="button" ng-click="edit(stab)">Edit</a>
+                    <a class="button" zf-open="deleteModal">Delete</a> 
+                  </div>
+                </div>
               </div>
 
               <div ng-if="!public" zf-modal="" id="deleteModal">

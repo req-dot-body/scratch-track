@@ -63,8 +63,40 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 		Resource.closeAccordion();
 	};
 
+	$scope.editing = false;
+	$scope.revising = false; 
+	$scope.submitError = false;
 
-	$scope.submitError = false; 
+	//model for stabs being edited
+	$scope.editStab = {};
+
+
+	$scope.edit = function(stab){
+		$scope.editing = true;
+
+		$scope.editStab = {
+			id: stab.id,
+			name: stab.name,
+			description: stab.description
+		};
+	} 
+
+	$scope.closeEdit = function(){
+		$scope.editing = false;
+		$scope.editStab = {};
+	};
+
+	$scope.update = function(stab){
+		$scope.editing = false;
+		var id = $scope.editStab.id;
+
+		Stablature.edit(id, $scope.editStab)
+		.then(function(){
+			$scope.editStab = {};
+			$scope.getAll();
+		})
+
+	};
 
 	//enters a new project
 	$scope.submit = function(){
