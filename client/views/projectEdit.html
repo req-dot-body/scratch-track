@@ -6,7 +6,10 @@
     <p ng-if='public' class="project-author">By {{projectData.first}} {{projectData.last}}</p>
   </div>
   <div class="grid-block align-center">
-    <ul class="menu-bar left pad-left" ng-if ='state.current.name !== "main.project_edit.dash"' id = 'tour12'>
+    <p ng-if='projectData.description' class="project-author">{{projectData.description}}</p>
+  </div>
+  <div class="grid-block align-center">
+    <ul class="dash-menu-bar left pad-left" ng-if ='state.current.name !== "main.project_edit.dash"' id = 'tour12'>
       <li>
         <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">&#9835; Recordings</a>
       </li>
