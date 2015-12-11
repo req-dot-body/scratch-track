@@ -5,7 +5,7 @@ app.factory('Note', ['$http', function($http) {
     return $http.post('/api/resources/notes', data);
   };
 
-  var editBody = function(noteId, data) {
+  var edit = function(noteId, data) {
     return $http.put('/api/resources/notes/' + noteId, data);
   };
 
@@ -15,7 +15,7 @@ app.factory('Note', ['$http', function($http) {
 
   return {
     create: create,
-    editBody: editBody,
+    edit: edit,
     del: del
   };
 

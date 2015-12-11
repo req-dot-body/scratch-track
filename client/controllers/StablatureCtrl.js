@@ -86,7 +86,7 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 		$scope.editStab = {};
 	};
 
-	$scope.update = function(stab){
+	$scope.update = function(){
 		$scope.editing = false;
 		var id = $scope.editStab.id;
 
