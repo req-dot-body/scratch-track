@@ -41,7 +41,7 @@
       <div class='grid-content'>  
         <div class="dark card text-center">
           <div class="card-divider  project-recent" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}">
-            {{project.name}} - <a class="project-author" ng-if="public">by {{project.first}} {{project.last}}</a>
+            {{project.name}}<a class="project-author" ng-if="public"> - by {{project.first}} {{project.last}}</a>
             <i id="project-icon" class="large material-icons">input</i>
           </div>
         </div>

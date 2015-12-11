@@ -180,7 +180,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 }
 
 #project-icon {
-  float: right; 
+  float: right;
+  color: $tertiary-color;
+  &:hover {
+    color: $secondary-color;
+  } 
 }
 
 .project-author {
