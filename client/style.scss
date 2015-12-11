@@ -20,6 +20,7 @@ $quaternary-color: #b0aac2;
 $quaternary-color-darken: darken( $quaternary-color, 5% );
 
 $dark-color: #232323;
+$dark-color-lighten: lighten( $dark-color, 5% );
 $light-color: #f2efe8;
 
 
@@ -171,7 +172,8 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   );
 }
 
-//Projects View
+// PROJECTS VIEW:
+
 .project-search {
   input{ 
     border: 1px solid #000;
@@ -179,8 +181,32 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 }
 
+.project-author {
+  color: $tertiary-color;
+  &:hover {
+      color: $tertiary-color;
+    }
+}
+
 #project-icon {
-  float: right; 
+  float: right;
+  color: $tertiary-color;
+  &:hover {
+    color: $secondary-color;
+  } 
+}
+
+#resource-icon {
+  &:hover {
+    color: $secondary-color;
+  }  
+}
+
+#project-card-header {
+  background-color: $dark-color;
+  &:hover {
+      background-color: $dark-color-lighten;
+    }
 }
 
 
@@ -418,7 +444,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     background-color: $primary-color;
     color: $light-color;
     padding-top: 5px;
-    padding-bottom: 5px;
   }
 
   .button {
@@ -475,8 +500,13 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     
   }
 
-  .menu-bar {
+  #dash-menu-bar-wrapper {
     background-color: $primary-color;
+    margin-top: 0px;
+  }
+
+  .menu-bar {
+   
     &.sort {
       background-color: $primary-color;
       color: $light-color;
@@ -506,6 +536,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     > li > a {
       color: $light-color;
     }
+  }
+
+  .menu-active {
+    color: $secondary-color;
+    background-color: $dark-color-lighten;
   }
 
   .accordion-title {

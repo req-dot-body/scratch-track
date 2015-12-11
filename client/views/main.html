@@ -9,9 +9,9 @@
 <!-- </div> -->
 
   <!-- <div class="menu-group-right"> -->
-    <ul class="menu-bar primary pad-right">
-      <li ng-if="signedIn" id ='tour5'><a ui-sref="main.projects">My Projects</a></li>
-      <li id ='tour4'><a ui-sref="main.pubprojects">Public Projects</a></li>
+    <ul class="menu-bar pad-right">
+      <li ng-if="signedIn" id ='tour5' ui-sref-active="menu-active"><a ui-sref="main.projects">My Projects</a></li>
+      <li id ='tour4' ui-sref-active="menu-active"><a ui-sref="main.pubprojects">Public Projects</a></li>
       <li><a ui-sref="main.team">About</a></li>
       <li ng-if="signedIn"><a ng-click="logOut()">Log Out</a></li>
       <li ng-if="!signedIn"><a ui-sref="public.signup">Sign Up</a></li>
