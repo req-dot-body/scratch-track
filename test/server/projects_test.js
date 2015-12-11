@@ -18,7 +18,7 @@ describe('Projects', function() {
       });
       
       // end
-      app.use('/api/projects', TestHelper.isLoggedIn, projectsAPI);
+      app.use('/projects', TestHelper.isLoggedIn, projectsAPI);
       app.testReady();
     });
 
@@ -36,7 +36,7 @@ describe('Projects', function() {
 
   it('can create a new project', function(){
     return request(app)
-    .post('/api/projects')
+    .post('/projects')
     .expect(201)
     .expect(function(res){
       expect(res.body.id);
@@ -48,7 +48,7 @@ describe('Projects', function() {
     return helpers.createProject(session.passport.user.id)
     .then(function(){
       return request(app)
-      .get('/api/projects')
+      .get('/projects')
       .expect(200)
       .expect(function(res){
         var projects = res.body.projects;
@@ -62,8 +62,9 @@ describe('Projects', function() {
     return helpers.createProject(session.passport.user.id)
     .then(function(project){
       var id = project.id;
+      
       return request(app)
-      .get('/api/projects/'+id)
+      .get('/projects/'+id)
       .expect(200)
       .expect(function(res){
         expect(res.body.id).to.equal(id)
@@ -76,7 +77,7 @@ describe('Projects', function() {
     .then(function(project){
       var id = project.id;
       return request(app)
-      .put('/api/projects/'+id)
+      .put('/projects/'+id)
       .send({name: 'awesome song idea'})
       .expect(200)
       .expect(function(res){
@@ -90,11 +91,11 @@ describe('Projects', function() {
     .then(function(project){
       var id = project.id;
       return request(app)
-      .del('/api/projects/'+id)
+      .del('/projects/'+id)
       .expect(200)
       .then(function(){
         return request(app)
-        .get('/api/projects/'+id)
+        .get('/projects/'+id)
         .expect(404);
       })
     })
@@ -106,7 +107,7 @@ describe('Projects', function() {
       var id = project.id;
 
       return request(app)
-      .put('/api/projects/'+id)
+      .put('/projects/'+id)
       .send({private: 0})
       .expect(200)
     })
@@ -114,13 +115,13 @@ describe('Projects', function() {
       id = res.body.id;
 
       return request(app)
-      .post('/api/projects/'+id+'/like')
+      .post('/projects/'+id+'/like')
       .expect(201)
     })
     .then(function(res){
       id = res.body.project_id
       return request(app)
-      .post('/api/projects/'+id+'/like')
+      .post('/projects/'+id+'/like')
       .expect(200)
     })
   })
@@ -134,7 +135,7 @@ describe('Projects', function() {
       var id = project.id;
 
       return request(app)
-      .put('/api/projects/'+id)
+      .put('/projects/'+id)
       .send({private: 0})
       .expect(200)
     })
@@ -142,14 +143,14 @@ describe('Projects', function() {
       id = res.body.id;
 
       return request(app)
-      .post('/api/projects/'+id+'/like')
+      .post('/projects/'+id+'/like')
       .expect(201)
     })
     .then(function(res){
       id = res.body.project_id;
 
       return request(app)
-      .get('/api/projects/'+id)
+      .get('/projects/'+id)
       .expect(200)
     })
     .then(function(res){
@@ -162,7 +163,7 @@ describe('Projects', function() {
     .then(function(project){
       var id = project.id;
       return request(app)
-      .post('/api/projects/'+id+'/like')
+      .post('/projects/'+id+'/like')
       .expect(400)
     })
   })
@@ -172,7 +173,7 @@ describe('Projects', function() {
     .then(function(project){
       var id = project.id;
       return request(app)
-      .put('/api/projects/'+id)
+      .put('/projects/'+id)
       .send({private: 0})
       .expect(200)
     })
@@ -180,13 +181,13 @@ describe('Projects', function() {
       id = res.body.id;
 
       return request(app)
-      .post('/api/projects/'+id+'/like')
+      .post('/projects/'+id+'/like')
       .expect(201)
     })
     .then(function(res){
       var id = res.body.project_id;
       return request(app)
-      .get('/api/projects/'+id+'/like')
+      .get('/projects/'+id+'/like')
     })
     .then(function(res){
       var project = res.body;
@@ -205,7 +206,7 @@ describe('Projects', function() {
     .then(function(stablature){
       var projectId = stablature.project_id;
       return request(app)
-      .del('/api/projects/'+projectId)
+      .del('/projects/'+projectId)
       .expect(200)
     })
   })
@@ -222,7 +223,7 @@ describe('Projects', function() {
      })
     .then(function(){
       return request(app)
-      .get('/api/projects/'+projectId+'/lyrics')
+      .get('/projects/'+projectId+'/lyrics')
       .expect(200)
       .expect(function(res){
         expect(res.body.length).to.equal(2);
@@ -242,7 +243,7 @@ describe('Projects', function() {
      })
     .then(function(){
       return request(app)
-      .get('/api/projects/'+projectId+'/stablature')
+      .get('/projects/'+projectId+'/stablature')
       .expect(200)
       .expect(function(res){
         expect(res.body.length).to.equal(2);
@@ -262,7 +263,7 @@ describe('Projects', function() {
      })
     .then(function(){
       return request(app)
-      .get('/api/projects/'+projectId+'/recordings')
+      .get('/projects/'+projectId+'/recordings')
       .expect(200)
       .expect(function(res){
         expect(res.body.length).to.equal(2);
@@ -282,7 +283,7 @@ describe('Projects', function() {
      })
     .then(function(){
       return request(app)
-      .get('/api/projects/'+projectId+'/notes')
+      .get('/projects/'+projectId+'/notes')
       .expect(200)
       .expect(function(res){
         expect(res.body.length).to.equal(2);
