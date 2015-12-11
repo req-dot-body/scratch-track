@@ -25,7 +25,7 @@ router.get('/public', (req, res) => {
   var userId; 
 
   //checks if a user is authed
-  if (typeof req.session.passport !== 'undefined'){
+  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.userId !== 'undefined'){
     userId = req.session.passport.user.id;
   } 
 
@@ -67,7 +67,7 @@ router.get('/:projectId', function (req, res) {
 
   var userId = null;
 
-  if (typeof req.session.passport !== 'undefined') {
+  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.userId !== 'undefined') {
     userId = req.session.passport.user.id;
   }
 
@@ -175,7 +175,7 @@ router.get('/:projectId/:resourceType', function (req, res) {
 
   var userId = null;
 
-  if (typeof req.session.passport !== 'undefined') {
+  if (typeof req.session.passport !== 'undefined' && typeof req.session.passport.userId !== 'undefined') {
     userId = req.session.passport.user.id;
   }
 
