@@ -90,7 +90,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
   };
 
 
-  $scope.getAll = function(projectId){
+  $scope.getAll = function(){
     Project.getProjectLyrics(projectId)
     .then(function(projects) {
       $scope.lyrics = projects;
@@ -114,26 +114,43 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
     Lyric.create(newLyric)
     .then(function() {
       $scope.clearValues();
-      $scope.getAll(projectId);
+      $scope.getAll();
       $scope.closeAccordion();
     });
   };
 
+  $scope.edit = function(lyric){
+    $scope.editing = true;
 
-  $scope.edit = function(id, data){
-    if($scope.toggleMode === "Edit") {
-      Lyric.edit(id, data); 
-    }
-    else {
-      console.log("Cannot post. You are not in edit mode.")
-    }
+    $scope.editLyric = {
+      id: lyric.id,
+      name: lyric.name,
+      text: lyric.text
+    };
+  } 
+
+  $scope.closeEdit = function(){
+    $scope.editing = false;
+    $scope.editLyric = {};
+  };
+
+  $scope.update = function(lyric){
+    $scope.editing = false;
+    var id = $scope.editLyric.id;
+
+    Lyric.edit(id, $scope.editLyric)
+    .then(function(){
+      $scope.editLyric = {};
+      $scope.getAll();
+    })
+
   };
 
 
   $scope.delete = function(noteId) {
     Lyric.del(noteId)
     .then(function() {
-      $scope.getAll(projectId);
+      $scope.getAll();
     });
   };
 
@@ -145,8 +162,10 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
 
 
   // Initial Setup
-  $scope.getAll(projectId);
+  $scope.getAll();
   $scope.lyrics = [];
   $scope.toggleMode = "Edit";
+  $scope.editing = false;
+  $scope.editLyric = {};
   
 }]);

@@ -72,19 +72,31 @@
 
             <zf-accordion auto-open="false" ng-repeat="lyric in lyrics.data | orderBy: sort.sortField: sort.sortDirection | filter: lyricSearch" ng-model="lyrics">
               <zf-accordion-item title="{{ formatDate(lyric.created_at) }} - {{ lyric.name}}">
-                <div class="lyric-textarea title-box" id="lyrictitle" style="display: none;">
-                  <label>Lyric Title:</label>
-                  <textarea class="title-box" id="lyrictitle" ng-model="lyric.name"></textarea>
+                <div class="lyric-textarea title-box" id="lyrictitle">
+                  
+                  <div ng-show="editing">
+                    <label>Lyric Title:</label>
+                    <textarea class="title-box" ng-model="editLyric.name"></textarea>
+                
+                    <label>Lyric Body:</label>
+                    <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="editLyric.text"></textarea>
+                    <a class="button" ng-click="update()">Save</a>
+                    <a class="button" ng-click="closeEdit()">Cancel</a>
+                  </div>
+                
+                <div ng-hide="editing">              
+                  <label>Lyric Body:</label>
+                  <textarea  ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" id="lyrictext" ng-model="lyric.text" readonly="readonly"></textarea>
+
+                  <div ng-hide="public">
+                    <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-resource'); update(lyric.name, lyric.text);">Create Revision</a>
+
+                    <a class="button" id="edit-lyrics-btn" href="#" ng-click="edit(lyric)">Edit</a>
+
+                    <a zf-open="deleteLyricModal" class="alert button">Delete</a>
+                  </div>
                 </div>
                 
-                <label>Lyric Body:</label>
-                <textarea  ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" id="lyrictext" ng-model="lyric.text" readonly="readonly"></textarea>
-
-                <a ng-if="!public" class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-resource'); update(lyric.name, lyric.text);">Create Revision</a>
-
-                <a ng-if="!public" class="button" id="edit-lyrics-btn" href="#" ng-click="toggleEditable(); toggleElement('lyrictitle'); edit(lyric.id, lyric)">Edit</a>
-
-                <a ng-if="!public" zf-open="deleteLyricModal" class="alert button">Delete</a>
                 <div zf-modal="" id="deleteLyricModal">
                   <div>
                       <h4>Are You Sure That You Want To Delete This Lyric Sheet?</h4>

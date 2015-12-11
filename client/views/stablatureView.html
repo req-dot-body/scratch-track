@@ -83,8 +83,8 @@
                 
                   <label>Tab Description:</label>
                   <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="editStab.description"></textarea>
-                  <a ng-show="editing" class="button" ng-click="update()">Save</a>
-                  <a ng-show="editing" class="button" ng-click="closeEdit()">Cancel</a>
+                  <a class="button" ng-click="update()">Save</a>
+                  <a class="button" ng-click="closeEdit()">Cancel</a>
                 </div>
 
                 <vextab ng-model="stab.code" notation="stab.notation"></vextab>
