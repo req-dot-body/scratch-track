@@ -228,10 +228,17 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   /*RECORDING VIEW*/
 
   #record-btn {
+    width: 12rem;
+    vertical-align: medium;
     background-color: $secondary-color;
       &:hover {
         background-color: $secondary-color-darken;
       }
+  }
+
+  #stop-btn {
+    width: 12rem;
+    vertical-align: medium;
   }
 
   #save-btn {
@@ -250,6 +257,15 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   .recording-element {
     padding: 5px;
+  }
+
+  //not working
+  #recording-controls {
+    vertical-align: medium;
+  }
+
+  #timer {
+    padding-right: 1rem;
   }
 
   .blink {
