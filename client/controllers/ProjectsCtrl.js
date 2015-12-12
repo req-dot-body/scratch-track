@@ -14,7 +14,6 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','signedUp','Tour', f
 
   $scope.sortBy = function(field){
     if ($scope.sort.sortField === field){
-      console.log($scope.sort.sortField);
       $scope.sort.sortDirection = !$scope.sort.sortDirection;
     }
     else {
@@ -34,7 +33,6 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','signedUp','Tour', f
     getProjectsFn()
     .then(function(data){
       $scope.projects = data;
-      console.log('this are the projects: ', data);
     }).catch(function(error){
         //case of server error getting projects 
       console.log('Error getting projects from server!');

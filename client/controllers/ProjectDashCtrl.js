@@ -17,12 +17,7 @@ $scope.getProject = function(projectId) {
   Project.getProject($scope.projectId)
   .then(function(response){
     $scope.projectData = response.data;
-    console.log('project data', $scope.projectData)
-  //if project does not have a name value, assings a default   
-    if ($scope.projectData.name === null){
-      $scope.projectData.name = 'MyProject: '+ $scope.projectId;
-      $scope.saveProjectInfo($scope.projectData);
-    }
+
   //updates project information   
     $scope.updatedInfo = {
       id: $scope.projectId,

@@ -39,7 +39,6 @@ app.factory('Project', ['$http','$state', function($http,$state) {
 
 //gets individual project
   var getProject = function(projectId) {
-    console.log('being called?')
     return $http.get('/api/projects/'+projectId)
     .then(function(response){
       return response;
