@@ -19,7 +19,7 @@
               Recording Description:
               <textarea ng-model="newRecording.description" maxlength="72"></textarea>
             </label>
-              <a class="large button" id="record-btn" ng-click="startRecording();"><i class="material-icons left">mic_none</i>Record</a>
+              <a class="large button" ng-class="{true:'', false:'disabled'}[canRecord]" id="record-btn" ng-click="startRecording();"><i class="material-icons left">mic_none</i>Record</a>
               <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
               <br>
               <audio controls="true" id="audio-player">
