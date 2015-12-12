@@ -608,6 +608,10 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   .card-divider {
     color: $light-color;
+    background-color: $dark-color;
+    &:hover {
+      background-color: $dark-color-lighten;
+    }
   }
 
   .team-card {

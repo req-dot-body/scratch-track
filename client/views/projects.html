@@ -46,7 +46,7 @@
     <div class="grid-block small-12 medium-6" ng-repeat='project in projects|toArray| orderBy: sort.sortField: sort.sortDirection | filter:searchText'> 
       <div class='grid-content'>  
         <div class="dark card text-center">
-          <div class="card-divider  project-recent" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
+          <div class="card-divider" id="project-card-header" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
             {{project.name}}
             <i id="project-icon" class="large material-icons">input</i>
           </div>
