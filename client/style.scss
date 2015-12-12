@@ -448,7 +448,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .inactive {
-    color: #00558b;
+    color: $secondary-color;
   }
 
   /*DASH VIEW*/
@@ -486,6 +486,10 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   /* Lyric Styles */
   .all-projects-title {
     background-color: gray;
+  }
+
+  #lyric-field {
+    min-height: 300px;
   }
 
   .editor {
