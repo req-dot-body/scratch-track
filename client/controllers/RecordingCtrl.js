@@ -13,6 +13,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   $scope.newRecordingSrc = '';
   $scope.newRecordingBlob;
   $scope.isSaving = false;
+  $scope.canRecord = false;
 
   $scope.newRecording = {
     project_id: projectId,
@@ -163,6 +164,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   }
 
   $scope.startUserMedia = function (stream) {
+    $scope.canRecord = true;
     $scope.stream = stream;
     var input = $scope.audio_context.createMediaStreamSource($scope.stream);
     //__log('Media stream created.');
@@ -320,7 +322,8 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     }
     
     navigator.getUserMedia({audio: true}, $scope.startUserMedia, function(e) {
-      $scope.__log('You must allow microphone access to use recording features:' + e);
+      $scope.canRecord = false;
+      $scope.__log('You must allow microphone access to use recording features');
     });
   }
 
