@@ -68,13 +68,13 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 	$scope.submitError = false;
 
 	//model for stabs being edited
-	$scope.editStab = {};
+	$scope.tempStab = {};
 
 
-	$scope.edit = function(stab){
+	$scope.editStab = function(stab){
 		$scope.editing = true;
 
-		$scope.editStab = {
+		$scope.tempStab = {
 			id: stab.id,
 			name: stab.name,
 			description: stab.description
@@ -83,16 +83,16 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 
 	$scope.closeEdit = function(){
 		$scope.editing = false;
-		$scope.editStab = {};
+		$scope.tempStab = {};
 	};
 
 	$scope.update = function(){
 		$scope.editing = false;
-		var id = $scope.editStab.id;
+		var id = $scope.tempStab.id;
 
-		Stablature.edit(id, $scope.editStab)
+		Stablature.edit(id, $scope.tempStab)
 		.then(function(){
-			$scope.editStab = {};
+			$scope.tempStab = {};
 			$scope.getAll();
 		})
 

@@ -74,10 +74,10 @@
               <div>
                 <div ng-show="editing">
                   <label>Tab Title:</label>
-                  <textarea class="title-box" ng-model="editStab.name"></textarea>
+                  <textarea class="title-box" ng-model="tempStab.name"></textarea>
                 
                   <label>Tab Description:</label>
-                  <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="editStab.description"></textarea>
+                  <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="tempStab.description"></textarea>
                   <a class="button" ng-click="update()">Save</a>
                   <a class="button" ng-click="closeEdit()">Cancel</a>
                 </div>
@@ -88,7 +88,7 @@
                 <div ng-if="!public">
                   <div ng-hide="editing">
                     <a class="button" ng-click="openEditor(stab)">Create Revision</a>
-                    <a class="button" ng-click="edit(stab)">Edit</a>
+                    <a class="button" ng-click="editStab(stab)">Edit</a>
                     <a class="button" zf-open="deleteModal">Delete</a> 
                   </div>
                 </div>
