@@ -34,7 +34,7 @@
 
         <zf-accordion ng-if="!public" id="lyric-revision" style="display: none;">
           <zf-accordion-item class="title" title="Create New Revision">
-            <form name="lyricRevisionForm" class="form-group" ng-submit="toggleElement('lyric-revision'); toggleElement('create-resource'); add(newLyric);" novalidate>
+            <form name="lyricRevisionForm" class="form-group" ng-submit="toggleElement('lyric-revision'); add(newLyric);" novalidate>
               <label>Revision Title:</label>
               <textarea class="lyric-textarea title-box" type="text" ng-model="newLyric.name" placeholder="Enter title here."></textarea>
 
@@ -43,7 +43,7 @@
 
               <button class="button" type="submit" href="#" >Save</button>
 
-              <a ng-click="toggleElement('lyric-revision'); toggleElement('create-resource');" class="button">Cancel</a>   
+              <a ng-click="toggleElement('lyric-revision');" class="button">Cancel</a>   
             </form>      
           </zf-accordion-item>
         </zf-accordion>
@@ -84,7 +84,7 @@
                   <textarea  ng-keyup="autoExpand($event)" class="lyric-textarea body-entry" id="lyrictext" ng-model="lyric.text" readonly="readonly"></textarea>
 
                   <div ng-hide="public">
-                    <a class="button" href="#" ng-click="toggleElement('lyric-revision'); toggleElement('create-resource'); update(lyric.name, lyric.text);">Create Revision</a>
+                    <a class="button" href="#" ng-click="toggleElement('lyric-revision'); update(lyric.name, lyric.text);">Create Revision</a>
 
                     <a class="button" id="edit-lyrics-btn" href="#" ng-click="edit(lyric)">Edit</a>
 
