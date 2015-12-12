@@ -26,8 +26,8 @@
       </form>
     </div>
 
-    <div class="grid-block small-1 medium-1 show-for-medium">
-      <p id="sort-text">Sort By:</p>
+    <div class="grid-block small-1 medium-1 show-for-medium v-align">
+      <p class="align-center">Sort By:</p>
     </div>
     <div class="grid-content-shrink show-for-medium">
       <ul class="sort menu-bar"> 
@@ -73,11 +73,11 @@
               <i class="medium material-icons" id="resource-icon">library_books</i>
               <br>{{project.noteCount}} Notes</p>
           </div>
+          <likebutton ng-if="public" projectid="project.id"></likebutton>
         </div>
         <!--<div ng-if="project.description"class="align-center grid-block small-12 medium-12 small-offset-2 medium-offset-2">
           <p>{{project.description}}</p>
         </div>-->
-        <likebutton ng-if="public" projectid="project.id"></likebutton>
        <!--  <a ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}" class="alert expand hollow text-center button">View Project</a> -->
         <hr />
       </div>      

@@ -184,11 +184,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 }
 
-#sort-text {
-  padding-top: .5rem;
-  padding-bottom: 0.5rem;
-} 
-
 .project-author {
   color: $tertiary-color;
   &:hover {
@@ -408,6 +403,19 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   #team-entry {
     padding: 1em;
+  }
+
+  #tech-cards {
+    padding: 2em;
+  }
+
+  #tech-cards-mobile {
+    padding: 2em;
+  }
+
+  .team-text-mobile {
+    color: $dark-color;
+    font-size: 14px;
   }
 
   /*LIKE BUTTON DIRECTIVE*/
