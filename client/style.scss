@@ -204,6 +204,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 }
 
 #resource-icon {
+  padding-left: .9rem;
   &:hover {
     color: $secondary-color;
   }  
