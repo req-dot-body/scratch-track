@@ -119,10 +119,10 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
     });
   };
 
-  $scope.edit = function(lyric){
+  $scope.editLyrics = function(lyric){
     $scope.editing = true;
 
-    $scope.editLyric = {
+    $scope.tempLyrics = {
       id: lyric.id,
       name: lyric.name,
       text: lyric.text
@@ -131,7 +131,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
 
   $scope.closeEdit = function(){
     $scope.editing = false;
-    $scope.editLyric = {};
+    $scope.tempLyrics = {};
   };
 
 
@@ -154,6 +154,6 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
   $scope.lyrics = [];
   $scope.toggleMode = "Edit";
   $scope.editing = false;
-  $scope.editLyric = {};
+  $scope.tempLyrics = {};
   
 }]);

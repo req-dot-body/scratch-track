@@ -15,7 +15,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
 
   $scope.hasBeenReset = true;
 
-  $scope.editNote = {};
+  $scope.tempNote = {};
 
   $scope.public = true;
 
@@ -75,10 +75,12 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
 
   $scope.editing= false;
 
-  $scope.edit = function(note){
+  $scope.editNote = function(note){
+
+    console.log('editing?', note);
     $scope.editing = true;
 
-    $scope.editNote = {
+    $scope.tempNote = {
       id: note.id,
       name: note.name,
       text: note.text
@@ -87,16 +89,16 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
 
   $scope.closeEdit = function(){
     $scope.editing = false;
-    $scope.editNote = {};
+    $scope.tempNote = {};
   };
 
   $scope.update = function(){
     $scope.editing = false;
-    var id = $scope.editNote.id;
+    var id = $scope.tempNote.id;
 
-    Note.edit(id, $scope.editNote)
+    Note.edit(id, $scope.tempNote)
     .then(function(){
-      $scope.editNote = {};
+      $scope.tempNote = {};
       $scope.getAll();
     });
 
