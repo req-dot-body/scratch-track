@@ -692,6 +692,7 @@ img.team {
 
 //controls-bar on dash and resources pages
 
+//DASH MENU BAR 
 .dash-menu-bar {}
 
 // .control-bar {
@@ -712,3 +713,10 @@ h1.project-list {
   padding: 15px;
 }
 
+//SORT DIRECTIVE
+.sort-icon {
+    color: grey;
+    &:hover {
+      color:black;
+    }
+}
