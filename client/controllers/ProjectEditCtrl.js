@@ -10,10 +10,12 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
     $scope.public = true;
   }
 
-  //getting current project id
   $scope.id = $state.params.id;
   //get current project info
  $scope.getProject = function(){
+  console.log('id?', $state.params)
+  $scope.id = $state.params.id;
+
     Project.getProject($scope.id)
     .then(function(response){
       $scope.projectData = response.data;
@@ -33,6 +35,8 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
       $state.go('main.public_view.dash');
     }
   };
+
+  $scope.getProject();
 
   $scope.edit = function(){
     $scope.showEdit = true; 
