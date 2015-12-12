@@ -11,7 +11,9 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
     name: '',
     text: '',
     project_id: projectId
-  }
+  };
+
+  $scope.hasBeenReset = true;
 
   $scope.editNote = {};
 
@@ -48,7 +50,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
       console.log(notes.data);
       $scope.notes = notes.data;
     });
-  }
+  };
 
   $scope.addNote = function (newNote) {
     return Note.create(newNote)
@@ -56,14 +58,20 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
       $scope.resetForm();
       $scope.getAll();
     });
-  }
+  };
+
+  $scope.resetForm = function () {
+    $scope.hasBeenReset = true;
+    $scope.newNote.name = '';
+    $scope.newNote.text = '';
+  };
 
   $scope.deleteNote = function (noteId) {
     return Note.del(noteId)
     .then(function(){
       $scope.getAll();
     });
-  }
+  };
 
   $scope.editing= false;
 
@@ -75,7 +83,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
       name: note.name,
       text: note.text
     };
-  } 
+  };
 
   $scope.closeEdit = function(){
     $scope.editing = false;
@@ -90,7 +98,7 @@ app.controller('NoteCtrl', ['$scope', '$state', 'Note', 'Project', 'Resource',
     .then(function(){
       $scope.editNote = {};
       $scope.getAll();
-    })
+    });
 
   };
 
