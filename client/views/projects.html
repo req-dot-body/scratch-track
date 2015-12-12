@@ -10,8 +10,8 @@
 
     <br>
     <div ng-if="!public" class="grid-block">
-      <div class="grid-block small-12 medium-4 medium-offset-4">
-        <a ng-click='createProject()' class="success expand button large">Create New Project</a>
+      <div class="grid-block small-12 medium-4 medium-offset-4 align-center">
+        <a ng-click='createProject()' class="success button large">Create New Project</a>
       </div>
     </div>
   </div>
@@ -26,8 +26,8 @@
       </form>
     </div>
 
-    <div class="grid-block small-1 medium-1 show-for-medium">
-      <p id="sort-text">Sort By:</p>
+    <div class="grid-block small-1 medium-1 show-for-medium v-align">
+      <p class="align-center">Sort By:</p>
     </div>
     <div class="grid-content-shrink show-for-medium">
       <ul class="sort menu-bar"> 
@@ -46,19 +46,19 @@
     <div class="grid-block small-12 medium-6" ng-repeat='project in projects|toArray| orderBy: sort.sortField: sort.sortDirection | filter:searchText'> 
       <div class='grid-content'>  
         <div class="dark card text-center">
-          <div class="card-divider  project-recent" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
+          <div class="v-align card-divider" id="project-card-header" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
             {{project.name}}
             <i id="project-icon" class="large material-icons">input</i>
           </div>
         </div>
 
         <div class="grid-content"> 
-          <div class="align-justify grid-block small-12 medium-12 small-offset-2 medium-offset-2">
+          <div class="no-margin align-justify grid-block small-12 medium-12 small-offset-2 medium-offset-2">
             <p>Created on {{project.created_at*1000|date}}</p>
             <p>Last edited on {{project.updated_at*1000|date}}</p>
           </div>
 
-          <div class="align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
+          <div class=" no-margin align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
             <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}" title="View Recordings for this Project" alt="View Recordings for this Project">
               <i class="medium material-icons" id="resource-icon">mic_none</i>
               <br>{{project.recordingCount}} Recs</p>
@@ -73,11 +73,13 @@
               <i class="medium material-icons" id="resource-icon">library_books</i>
               <br>{{project.noteCount}} Notes</p>
           </div>
+          <div class="align-center grid-block v-align">
+            <likebutton ng-if="public" projectid="project.id" class="align-center v-align"></likebutton>
+          </div>
         </div>
         <!--<div ng-if="project.description"class="align-center grid-block small-12 medium-12 small-offset-2 medium-offset-2">
           <p>{{project.description}}</p>
         </div>-->
-        <likebutton ng-if="public" projectid="project.id"></likebutton>
        <!--  <a ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit({id:project.id})' }}" class="alert expand hollow text-center button">View Project</a> -->
         <hr />
       </div>      

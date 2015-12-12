@@ -27,6 +27,10 @@ $light-color-lighten: lighten( $light-color, 5% );
   color: darken(red, 5%);
 }
 
+.no-margin {
+  margin: 0 !important;
+}
+
 //PROJECT DASH BOARD
 .dash-menu-bar {
   
@@ -184,11 +188,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 }
 
-#sort-text {
-  padding-top: .5rem;
-  padding-bottom: 0.5rem;
-} 
-
 .project-author {
   color: $tertiary-color;
   &:hover {
@@ -233,10 +232,17 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   /*RECORDING VIEW*/
 
   #record-btn {
+    width: 12rem;
+    vertical-align: medium;
     background-color: $secondary-color;
       &:hover {
         background-color: $secondary-color-darken;
       }
+  }
+
+  #stop-btn {
+    width: 12rem;
+    vertical-align: medium;
   }
 
   #save-btn {
@@ -255,6 +261,15 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 
   .recording-element {
     padding: 5px;
+  }
+
+  //not working
+  #recording-controls {
+    vertical-align: medium;
+  }
+
+  #timer {
+    padding-right: 1rem;
   }
 
   .blink {
@@ -340,6 +355,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   #landing-title {
+    font-family: 'Didact Gothic', sans-serif;
     text-align: center;
   }
 
@@ -410,12 +426,29 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     padding: 1em;
   }
 
+  #tech-cards {
+    padding: 2em;
+  }
+
+  #tech-cards-mobile {
+    padding: 2em;
+  }
+
+  .team-text-mobile {
+    color: $dark-color;
+    font-size: 1px;
+  }
+
   /*LIKE BUTTON DIRECTIVE*/
 
   #like-count,
   #like-btn,
   #like-text {
     padding-right: 0.5em;
+  }
+
+  #like-btn {
+    
   }
 
   .active {
@@ -547,6 +580,8 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   #title-header{
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 24px;
     color: $light-color;
       &:hover {
         color: $light-color-lighten;
