@@ -73,7 +73,9 @@
               <i class="medium material-icons" id="resource-icon">library_books</i>
               <br>{{project.noteCount}} Notes</p>
           </div>
-          <likebutton ng-if="public" projectid="project.id"></likebutton>
+          <div class="align-center grid-block v-align">
+            <likebutton ng-if="public" projectid="project.id" class="align-center v-align"></likebutton>
+          </div>
         </div>
         <!--<div ng-if="project.description"class="align-center grid-block small-12 medium-12 small-offset-2 medium-offset-2">
           <p>{{project.description}}</p>
