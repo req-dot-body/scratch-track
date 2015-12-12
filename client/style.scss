@@ -23,7 +23,9 @@ $dark-color: #232323;
 $dark-color-lighten: lighten( $dark-color, 5% );
 $light-color: #f2efe8;
 
-
+.error-signin-form, .error-signup-form {
+  color: darken(red, 5%);
+}
 
 //PROJECT DASH BOARD
 .dash-menu-bar {
