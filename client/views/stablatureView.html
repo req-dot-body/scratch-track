@@ -37,7 +37,7 @@
                 <textarea ng-keyup="autoExpand($event)" class="body-entry" ng-model="stabInfo.code"></textarea>
               </div>
               <a class="button" ng-click="submit()">Submit</a>
-              <a class="button" ng-click="closeEditor()">Cancel</a>
+              <a class="button alert" ng-click="closeEditor()">Cancel</a>
               <div ng-show="submitError">Oops. Looks like there's a problem with your vex code.</div>
               <div zf-modal="" id="learnHowModal">
                 <div>
@@ -79,7 +79,7 @@
                   <label>Tab Description:</label>
                   <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="tempStab.description"></textarea>
                   <a class="button" ng-click="update()">Save</a>
-                  <a class="button" ng-click="closeEdit()">Cancel</a>
+                  <a class="button alert" ng-click="closeEdit()">Cancel</a>
                 </div>
 
                 <vextab ng-model="stab.code" notation="stab.notation"></vextab>

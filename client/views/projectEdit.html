@@ -25,11 +25,11 @@
     </div>
   </div>
 
-   <div zf-modal="" animation-out="slideOutUp" id="deleteModal2">
+   <div zf-modal="" animation-out="slideOutUp" id="deleteModal2" class="text-center">
     <a zf-close="deleteModal2" class="close-button">×</a>
     <h4>Are You Sure That You Want To Delete This Entry?</h4>
-    <a class="alert button" ng-click="deleteProject()">Confirm Delete</a>
-    <a zf-close="" class="button">Go Back</a>
+    <a class="button" ng-click="deleteProject()">Confirm Delete</a>
+    <a zf-close="" class="button alert">Go Back</a>
   </div>
  
   <div zf-modal="" id="projectInfo" ng-show="showEdit" animation-out="slideOutUp" class="collapse large is-active">
@@ -60,8 +60,8 @@
             <input ng-model='tempProject.description' type="text" placeholder="Description">
           </label>
           <div class = 'text-center'>
-            <button ng-click='saveProjectInfo()' type="submit" zf-close="" class="success button">Save</button>
-            <button zf-close="" class="button">Cancel</button>
+            <button ng-click='saveProjectInfo()' type="submit" zf-close="" class="button">Save</button>
+            <button zf-close="" class="button alert">Cancel</button>
           </div>
         </form>
       </div>
