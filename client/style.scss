@@ -355,6 +355,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   #landing-title {
+    font-family: 'Didact Gothic', sans-serif;
     text-align: center;
   }
 
@@ -575,6 +576,8 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   #title-header{
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 24px;
     color: $light-color;
       &:hover {
         color: $light-color-lighten;
