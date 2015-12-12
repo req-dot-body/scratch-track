@@ -101,10 +101,10 @@
 
             <div ng-show="editing">
               <label>Recording Title:</label>
-              <textarea class="title-box" ng-model="editRecording.name"></textarea>
+              <textarea class="title-box" ng-model="tempRecording.name"></textarea>
             
               <label>Description:</label>
-              <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="editRecording.description"></textarea>
+              <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="tempRecording.description"></textarea>
               <a class="button" ng-click="update()">Save</a>
               <a class="button" ng-click="closeEdit()">Cancel</a>
             </div>
@@ -115,7 +115,7 @@
 
               
               <a class="button" id="save-btn" download href="{{recording.url}}">Download</a>
-              <a ng-hide="public" class="button" id="save-btn" ng-click="edit(recording)">Edit</a>
+              <a ng-hide="public" class="button" id="save-btn" ng-click="editRecording(recording)">Edit</a>
               <a ng-hide="public" class="alert button" id="discard-btn" zf-open="delModal">Delete</a>
             </div>
 

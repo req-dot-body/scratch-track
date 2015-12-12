@@ -47,12 +47,12 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
   };
 
   $scope.editing= false;
-  $scope.editRecording = {};
+  $scope.tempRecording = {};
 
-  $scope.edit = function(recording){
+  $scope.editRecording = function(recording){
     $scope.editing = true;
 
-    $scope.editRecording = {
+    $scope.tempRecording = {
       id: recording.id,
       name: recording.name,
       description: recording.description
@@ -61,16 +61,16 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
 
   $scope.closeEdit = function(){
     $scope.editing = false;
-    $scope.editRecording = {};
+    $scope.tempRecording = {};
   };
 
   $scope.update = function(){
     $scope.editing = false;
-    var id = $scope.editRecording.id;
+    var id = $scope.tempRecording.id;
 
-    Recording.edit(id, $scope.editRecording)
+    Recording.edit(id, $scope.tempRecording)
     .then(function(){
-      $scope.editRecording = {};
+      $scope.tempRecording = {};
       $scope.getAll();
     })
 

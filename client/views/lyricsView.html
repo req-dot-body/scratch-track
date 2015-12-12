@@ -71,10 +71,10 @@
                   
                   <div ng-show="editing">
                     <label>Lyric Title:</label>
-                    <textarea class="title-box" ng-model="editLyric.name"></textarea>
+                    <textarea class="title-box" ng-model="tempLyrics.name"></textarea>
                 
                     <label>Lyric Body:</label>
-                    <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="editLyric.text"></textarea>
+                    <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="tempLyrics.text"></textarea>
                     <a class="button" ng-click="update()">Save</a>
                     <a class="button" ng-click="closeEdit()">Cancel</a>
                   </div>
@@ -86,7 +86,7 @@
                   <div ng-hide="public">
                     <a class="button" href="#" ng-click="toggleElement('lyric-revision'); update(lyric.name, lyric.text);">Create Revision</a>
 
-                    <a class="button" id="edit-lyrics-btn" href="#" ng-click="edit(lyric)">Edit</a>
+                    <a class="button" id="edit-lyrics-btn" href="#" ng-click="editLyrics(lyric)">Edit</a>
 
                     <a zf-open="deleteLyricModal" class="alert button">Delete</a>
                   </div>
