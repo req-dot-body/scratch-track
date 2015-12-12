@@ -692,6 +692,7 @@ img.team {
 
 //controls-bar on dash and resources pages
 
+//DASH MENU BAR 
 .dash-menu-bar {}
 
 // .control-bar {
@@ -707,3 +708,10 @@ img.team {
   background-color:smartscale($primary-color, 10%) !important;
 }
 
+//SORT DIRECTIVE
+.sort-icon {
+    color: grey;
+    &:hover {
+      color:black;
+    }
+}
