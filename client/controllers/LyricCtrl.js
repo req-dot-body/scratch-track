@@ -16,7 +16,7 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
     project_id: projectId
   };
 
-  $scope.selectedLyric = 'pickles';
+  $scope.selectedLyric;
 
   $scope.toggleEditable = function() {
     var textbox = document.getElementById('lyrictext');
