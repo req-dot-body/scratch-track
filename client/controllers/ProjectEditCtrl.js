@@ -85,4 +85,5 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
     }
   });
 
+
 }]);
