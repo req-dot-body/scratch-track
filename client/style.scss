@@ -489,6 +489,10 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     background-color: gray;
   }
 
+  #lyric-field {
+    min-height: 300px;
+  }
+
   .editor {
     width: 100% !important;
   }
