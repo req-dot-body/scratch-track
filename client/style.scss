@@ -27,6 +27,10 @@ $light-color-lighten: lighten( $light-color, 5% );
   color: darken(red, 5%);
 }
 
+.no-margin {
+  margin: 0 !important;
+}
+
 //PROJECT DASH BOARD
 .dash-menu-bar {
   
