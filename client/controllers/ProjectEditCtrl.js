@@ -1,5 +1,6 @@
 app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', function($scope,$state,Project,signedUp) {
 
+
   $scope.state = $state;
   $scope.public = false;
   $scope.showEdit = $state.params.created;
@@ -60,5 +61,17 @@ $scope.saveProjectInfo = function(){
     $scope.getProject();
   })
 }
+
+  //starts tooltips
+
+  $('a[title]').qtip({
+    position: {
+        my: 'top center',
+        at: 'bottom center'
+    },
+    style: {
+        classes: 'qtip-dark'
+    }
+  });
 
 }]);

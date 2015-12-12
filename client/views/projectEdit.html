@@ -9,13 +9,18 @@
     <p ng-if='projectData.description' class="project-author">{{projectData.description}}</p>
   </div>
 
-  <div ng-show='state.current.name === "main.project_edit.dash"' class="spaced text-center">
+  <div ng-hide='state.current.name !== "main.project_edit.dash"' class="spaced text-center">
     <div class="grid-block align-center">
-      <ul ng-if="!public" class="dash-menu-bar" id='tour7'>
-        <li><a href="#" ng-click = 'edit()' zf-open='projectInfo'>&#9835; Edit</a></li>
-        <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
+      <ul  class="dash-menu-bar" id='tour7'>
+        <li>
+          <a title="Edit Project" href="#" ng-click = 'edit()' zf-open='projectInfo'><i class="material-icons left control-icon">info_outline</i></a>
+        </li>
+        <li>
+          <a title="Delete Project" href="#" zf-open="deleteModal2">
+          <i class="material-icons left control-icon">delete</i></a>
+        </li>
         <!-- <li><a ui-sref="main.projects">Back</a></li> -->
-        <likebutton ng-if="public" projectid="projectData.id"></likebutton>
+        <li><likebutton ng-if="public" projectid="projectData.id"></likebutton></li>
       </ul>
     </div>
   </div>
@@ -66,16 +71,16 @@
   <div class="grid-block align-center">
     <ul class="dash-menu-bar left pad-left" ng-hide ='state.current.name === "main.project_edit.dash"' id = 'tour12'>
       <li>
-        <a ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}"><i class="material-icons left control-icon">mic_none</i></a>
+        <a title ='Recordings' ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}"><i class="material-icons left control-icon">mic_none</i></a>
       </li>
       <li>
-        <a ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}"><i class="material-icons left control-icon">assignment</i></a>
+        <a title ='Stablature' ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}"><i class="material-icons left control-icon">library_music</i></a>
       </li>
       <li>
-        <a ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}"><i class="material-icons left control-icon">library_music</i></a>
+        <a title ='Lyrics' ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}"><i class="material-icons left control-icon">assignment</i></a>
       </li>
       <li>
-        <a ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}"><i class="material-icons left control-icon">library_books</i></a>
+        <a title ='Notes' ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}"><i class="material-icons left control-icon">library_books</i></a>
       </li>
     </ul>
   </div>
