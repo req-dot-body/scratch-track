@@ -46,19 +46,19 @@
     <div class="grid-block small-12 medium-6" ng-repeat='project in projects|toArray| orderBy: sort.sortField: sort.sortDirection | filter:searchText'> 
       <div class='grid-content'>  
         <div class="dark card text-center">
-          <div class="card-divider" id="project-card-header" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
+          <div class="v-align card-divider" id="project-card-header" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
             {{project.name}}
             <i id="project-icon" class="large material-icons">input</i>
           </div>
         </div>
 
         <div class="grid-content"> 
-          <div class="align-justify grid-block small-12 medium-12 small-offset-2 medium-offset-2">
+          <div class="no-margin align-justify grid-block small-12 medium-12 small-offset-2 medium-offset-2">
             <p>Created on {{project.created_at*1000|date}}</p>
             <p>Last edited on {{project.updated_at*1000|date}}</p>
           </div>
 
-          <div class="align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
+          <div class=" no-margin align-justify grid-block small-12 medium-12 small-offset-1 medium-offset-1">
             <p class="resourceCount" ui-sref = "{{ public ? 'main.public_view({id:project.id})' : 'main.project_edit.recordings({id:project.id})' }}" title="View Recordings for this Project" alt="View Recordings for this Project">
               <i class="medium material-icons" id="resource-icon">mic_none</i>
               <br>{{project.recordingCount}} Recs</p>
