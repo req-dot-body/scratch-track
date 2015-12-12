@@ -1,6 +1,7 @@
 var moment = require('moment/moment');
 
-app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp','Tour', function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp,Tour) {
+app.controller('ProjectDashCtrl', ['$scope','$state','Project', 'FoundationApi', 'nzTour','$q','signedUp','Tour', 
+  function($scope,$state,Project, FoundationApi, nzTour, $q,signedUp,Tour) {
 
 // Used to determine whether or not to display certain elements
 $scope.public = true;
@@ -10,7 +11,6 @@ if ($state.current.authenticate) {
 
 //gets the current project ID
 $scope.projectId = $state.params.id; 
-
 
 //gets project information to be loaded on different components on the view
 $scope.getProject = function(projectId) {
