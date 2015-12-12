@@ -4,7 +4,6 @@
 
 
 // THEME COLORS
-
 $primary-color: #01465d;
 $primary-color-darken: darken( $primary-color, 5% );
 $primary-color-lighten: lighten( $primary-color, 5% );
@@ -30,6 +29,7 @@ $light-color-lighten: lighten( $light-color, 5% );
 
 //PROJECT DASH BOARD
 .dash-menu-bar {
+  
 // This placeholder selector gets you the core structural styles for the menu
 @extend %menu-bar;
 // Set the orientation and sizing of the menu bar
@@ -40,8 +40,8 @@ $stretch: true // Set to false for a condensed menu
 // Add styles for the menu bar items and text
 @include menu-bar-style(
 $background: $primary-color, // Background color of items
-/*$background-hover: #333, // Background color of item on hover
-$background-active: #666, // Background color of an active item */
+$background-hover: smartscale($primary-color,5%), // Background color of item on hover
+// $background-active: #666, // Background color of an active item */
 $color: $dark-color, // Text color of items
 // $color-hover, // Text color of item on hover
 // $color-active, // Text color of item when active
@@ -471,7 +471,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
     width: 100%;
     background-color: $primary-color;
     color: $light-color;
-    padding-top: 5px;
+    // padding-top: 5px;
   }
 
   .button {
@@ -654,4 +654,19 @@ img.team {
   align: center;
 }
 
+//controls-bar on dash and resources pages
 
+.dash-menu-bar {}
+
+// .control-bar {
+//   border-style: solid;
+//   border-color: #232323;
+//   border-width: 0 0 5px 0;
+// }
+.control-icon {
+    color: white;
+}
+
+.controls-active {
+  background-color:smartscale($primary-color, 10%) !important;
+}
