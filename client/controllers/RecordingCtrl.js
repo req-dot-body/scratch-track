@@ -252,6 +252,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     $scope.newRecordingBlob = {};
     $scope.completeRecording();
     $scope.__log('Discarded recording.');
+    $scope.closeAccordion();
   }
 
 
