@@ -1,6 +1,8 @@
 <div id="dash-menu-bar-wrapper" class="align-center" id='tour3'>
   <div class="spaced grid-block align-center" >
-    <h1 ui-sref="main.project_edit.dash" ng-model="projectData">{{projectData.name}}</h1>
+
+    <h1 ui-sref="main.project_edit.dash" class="project-title" ng-model="projectData">{{projectData.name}}</h1>
+
   </div>
   <div class="grid-block align-center">
     <p ng-if='public' class="project-author">{{projectData.first}} {{projectData.last}}</p>
@@ -19,8 +21,6 @@
           <a title="Delete Project" href="#" zf-open="deleteModal2">
           <i class="material-icons left control-icon">delete</i></a>
         </li>
-        <!-- <li><a ui-sref="main.projects">Back</a></li> -->
-        <li><likebutton ng-if="public" projectid="projectData.id"></likebutton></li>
       </ul>
     </div>
   </div>
