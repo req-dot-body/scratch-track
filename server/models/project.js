@@ -14,24 +14,20 @@ Project.getProject = function (whereClause, attrs) {
   Object.assign(likesJoin, attrs.likesJoin);
 
   var query = db
-    .distinct('p.*')
-    .distinct('users.first')
-    .distinct('users.last')
-    .count('r.id AS recordingCount')
-    .count('l.id AS lyricCount')
-    .count('n.id AS noteCount')
-    .count('s.id AS stabCount')
+    .select().distinct()
+    .select('p.*')
+    .select('users.first')
+    .select('users.last')
+    .select(db.select().count('*').from('lyrics AS l').whereRaw('l.project_id = p.id').as('lyricCount'))
+    .select(db.select().count('*').from('notes AS n').whereRaw('n.project_id = p.id').as('noteCount'))
+    .select(db.select().count('*').from('recordings AS r').whereRaw('r.project_id = p.id').as('recordingCount'))
+    .select(db.select().count('*').from('stablature AS s').whereRaw('s.project_id = p.id').as('stabCount'))
     .count('likes.id AS likes')
-    .select()
     .from('projects AS p')
-      .leftJoin('users', 'users.id', '=', 'p.owner_id')
-      .leftJoin('recordings AS r', 'r.project_id', '=', 'p.id')
-      .leftJoin('lyrics AS l', 'l.project_id', '=', 'p.id')
-      .leftJoin('notes AS n', 'n.project_id', '=', 'p.id')
-      .leftJoin('stablature AS s', 's.project_id', '=', 'p.id')
-      .leftJoin('likes', likesJoin)
+    .leftJoin('users', 'users.id', '=', 'p.owner_id')
+    .leftJoin('likes', likesJoin)
     .where(whereClause)
-    .groupBy('p.id', 'r.id', 'l.id', 'n.id', 's.id', 'likes.id', 'users.first', 'users.last');
+    .groupBy('p.id', 'users.first', 'users.last');
 
   return query
   .then(function(result){
