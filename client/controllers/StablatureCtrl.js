@@ -19,7 +19,8 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
 	$scope.getAll = function(){
 		Project.getProjectStablature(projectId)
 		.then(function(stabRes){
-			$scope.stabList = stabRes.data; 
+			$scope.stabList = stabRes.data;
+			$scope.selectedTab = $scope.stabList[0];
 		});
 	}
 
