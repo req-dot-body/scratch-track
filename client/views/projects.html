@@ -36,17 +36,17 @@
   
   <br>
 
-  <div class="grid-block small-12 medium-10 medium-offset-1 small-up-1 medium-up-2">
+  <div class="grid-block small-12 medium-10 medium-offset-1 small-up-1 medium-up-2" >
     <div class="grid-block small-12 medium-6" ng-repeat='project in projects|toArray| orderBy: sort.sortField: sort.sortDirection | filter:searchText'> 
       <div class='grid-content'>  
         <div class="dark card text-center">
-          <div class="v-align card-divider" id="project-card-header" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
+          <div class="v-align card-divider" id="project-card-header project-card" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
             {{project.name}}
             <i id="project-icon" class="large material-icons">input</i>
           </div>
         </div>
 
-        <div class="grid-content"> 
+        <div class="grid-content" id="project-card"> 
           <div class="no-margin align-justify grid-block small-12 medium-12 small-offset-2 medium-offset-2">
             <p>Created on {{project.created_at*1000|date}}</p>
             <p>Last edited on {{project.updated_at*1000|date}}</p>
