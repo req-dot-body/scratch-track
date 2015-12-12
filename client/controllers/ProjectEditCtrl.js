@@ -13,7 +13,6 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
   $scope.id = $state.params.id;
   //get current project info
  $scope.getProject = function(){
-  console.log('id?', $state.params)
   $scope.id = $state.params.id;
 
     Project.getProject($scope.id)
