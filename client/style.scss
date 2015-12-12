@@ -183,6 +183,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 }
 
+#sort-text {
+  padding-top: .5rem;
+  padding-bottom: 0.5rem;
+} 
+
 .project-author {
   color: $tertiary-color;
   &:hover {
