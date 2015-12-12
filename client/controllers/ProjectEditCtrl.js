@@ -26,4 +26,20 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
     $state.go('main.public_view.dash');
   }
 
+
+//delets a project and redirects to main view
+$scope.deleteProject = function(id){
+  Project.deleteProject(id)
+  .then(function(){
+    $state.go('main.projects')
+  })
+};
+//saves the project
+$scope.saveProjectInfo = function(){
+  return Project.editProject($scope.updatedInfo)
+  .then(function(res){
+    $scope.getProject();
+  })
+}
+
 }]);

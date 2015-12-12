@@ -10,7 +10,6 @@ if ($state.current.authenticate) {
 
 //gets the current project ID
 $scope.projectId = $state.params.id; 
-console.log('projectId', $scope.projectId, 'params', $state.params);
 
 $scope.showEdit = function(){
   $scope.projectCreated = true; 
@@ -60,6 +59,7 @@ $scope.getProject = function(projectId) {
   Project.getProject($scope.projectId)
   .then(function(response){
     $scope.projectData = response.data;
+    console.log('project data', $scope.projectData)
   //if project does not have a name value, assings a default   
     if ($scope.projectData.name === null){
       $scope.projectData.name = 'MyProject: '+ $scope.projectId;
@@ -86,20 +86,6 @@ $scope.formatDate = function(date) {
   return moment.unix(date).calendar();
 };
 
-//delets a project and redirects to main view
-$scope.deleteProject = function(id){
-  Project.deleteProject(id)
-  .then(function(){
-    $state.go('main.projects')
-  })
-};
-//saves the project
-$scope.saveProjectInfo = function(){
-  return Project.editProject($scope.updatedInfo)
-  .then(function(){
-    $scope.getProject($scope.projectData.id);
-  })
-}
 
 //gets all recordings 
   Project.getProjectRecordings($scope.projectId)
@@ -124,7 +110,6 @@ $scope.saveProjectInfo = function(){
   .then(function(response){
     $scope.projectStablature = response.data;
   })
-
 
 }]);
 
