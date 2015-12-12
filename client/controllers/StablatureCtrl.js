@@ -54,7 +54,7 @@ app.controller('StablatureCtrl', ['$scope', '$state', '$timeout', 'Stablature', 
   //opens editor, optional info can be passed in
 	$scope.openEditor = function(stabInfo){
 		$scope.stabInfo = stabInfo || $.extend({}, defaultStab);
-		$('.accordion div').addClass('is-active');
+		$('#create-resource > div').addClass('is-active');
 	};
 
 	//closes editor and resets default tabs
