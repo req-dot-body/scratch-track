@@ -1,14 +1,11 @@
 <div class="menu-group dark" id = 'tour3'>
-<!-- <div class="menu-group-left"> -->
   <ul class="icon-left primary menu-bar pad-left">
     <li id = 'tour0'>
-      <div class="grid-block"><a ui-sref='main.projects' id="title-header">&#9733; ScratchTrack &#9733;</a><a ui-sref='main.projects' class="show-for-large-only" id="title-header"> - manage your songwriting workflow on the go</a></div>
+      <div class="grid-block"><a ui-sref='main.projects' id="title-header">&#9733; ScratchTrack</a></div>
     </li> 
     <li id='tour1' ng-if = 'signedUp===true'><a class="left alert" ng-click= 'runTour()'>Tour Available!</a></li>
   </ul>
-<!-- </div> -->
 
-  <!-- <div class="menu-group-right"> -->
     <ul class="menu-bar pad-right">
       <li ng-if="signedIn" id ='tour5' ui-sref-active="menu-active"><a ui-sref="main.projects" class="show-for-medium">My Projects</a></li>
       <li ng-if="signedIn" id ='tour5' ui-sref-active="menu-active"><a ui-sref="main.projects" class="show-for-small-only">Projects</a></li>
@@ -19,6 +16,5 @@
       <li ng-if="!signedIn"><a ui-sref="public.signup">Sign Up</a></li>
       <li ng-if="!signedIn"><a ui-sref="public.signin">Sign In</a></li>
     </ul>
-  <!-- </div> -->
 </div>
 <div ui-view id='tour6'></div>
