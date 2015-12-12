@@ -1,22 +1,20 @@
 <div class="menu-group dark" id = 'tour3'>
-<!-- <div class="menu-group-left"> -->
   <ul class="icon-left primary menu-bar pad-left">
     <li id = 'tour0'>
-      <a ui-sref='main.projects'>&#9733; ScratchTrack &#9733; - manage your songwriting workflow on the go</a>
+      <div class="grid-block"><a ui-sref='main.projects' id="title-header">&#9733; ScratchTrack</a></div>
     </li> 
     <li id='tour1' ng-if = 'signedUp===true'><a class="left alert" ng-click= 'runTour()'>Tour Available!</a></li>
   </ul>
-<!-- </div> -->
 
-  <!-- <div class="menu-group-right"> -->
     <ul class="menu-bar pad-right">
-      <li ng-if="signedIn" id ='tour5' ui-sref-active="menu-active"><a ui-sref="main.projects">My Projects</a></li>
-      <li id ='tour4' ui-sref-active="menu-active"><a ui-sref="main.pubprojects">Public Projects</a></li>
+      <li ng-if="signedIn" id ='tour5' ui-sref-active="menu-active"><a ui-sref="main.projects" class="show-for-medium">My Projects</a></li>
+      <li ng-if="signedIn" id ='tour5' ui-sref-active="menu-active"><a ui-sref="main.projects" class="show-for-small-only">Projects</a></li>
+      <li id ='tour4' ui-sref-active="menu-active"><a ui-sref="main.pubprojects" class="show-for-medium">Public Projects</a></li>
+      <li ui-sref-active="menu-active"><a ui-sref="main.pubprojects" class="show-for-small-only">Pub. Projects</a></li>
       <li><a ui-sref="main.team">About</a></li>
       <li ng-if="signedIn"><a ng-click="logOut()">Log Out</a></li>
       <li ng-if="!signedIn"><a ui-sref="public.signup">Sign Up</a></li>
       <li ng-if="!signedIn"><a ui-sref="public.signin">Sign In</a></li>
     </ul>
-  <!-- </div> -->
 </div>
 <div ui-view id='tour6'></div>

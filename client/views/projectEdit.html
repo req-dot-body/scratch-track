@@ -5,7 +5,7 @@
   <div class="grid-block align-center">
     <p ng-if='public' class="project-author">{{projectData.first}} {{projectData.last}}</p>
   </div>
-  <div class="grid-block align-center">
+  <div class="grid-block align-center control-bar">
     <p ng-if='projectData.description' class="project-author">{{projectData.description}}</p>
   </div>
 
@@ -66,16 +66,16 @@
   <div class="grid-block align-center">
     <ul class="dash-menu-bar left pad-left" ng-hide ='state.current.name === "main.project_edit.dash"' id = 'tour12'>
       <li>
-        <a ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}">&#9835; Recordings</a>
+        <a ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.recordings' : 'main.project_edit.recordings' }}"><i class="material-icons left control-icon">mic_none</i></a>
       </li>
       <li>
-        <a ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}">&#9835; Lyrics</a>
+        <a ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.lyrics' : 'main.project_edit.lyrics' }}"><i class="material-icons left control-icon">assignment</i></a>
       </li>
       <li>
-        <a ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}">&#9835; Tablature</a>
+        <a ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.stablature' : 'main.project_edit.stablature' }}"><i class="material-icons left control-icon">library_music</i></a>
       </li>
       <li>
-        <a ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}">&#9835; Notes</a>
+        <a ui-sref-active="controls-active" ui-sref="{{ public ? 'main.public_view.notes' : 'main.project_edit.notes' }}"><i class="material-icons left control-icon">library_books</i></a>
       </li>
     </ul>
   </div>
