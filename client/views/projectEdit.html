@@ -1,6 +1,6 @@
 <div id="dash-menu-bar-wrapper" class="align-center" id='tour3'>
   <div class="spaced grid-block align-center" >
-    <h1>{{projectData.name}} </h1>
+    <h1 ng-model="projectData">{{projectData.name}} </h1>
   </div>
   <div class="grid-block align-center">
     <p ng-if='public' class="project-author">{{projectData.first}} {{projectData.last}}</p>
@@ -12,10 +12,10 @@
   <div ng-show='state.current.name === "main.project_edit.dash"' class="spaced text-center">
     <div class="grid-block align-center">
       <ul ng-if="!public" class="dash-menu-bar" id='tour7'>
-        <li><a href="#" ng-click = 'showEdit()' zf-open='projectInfo'>&#9835; Edit</a></li>
+        <li><a href="#" ng-click = 'edit()' zf-open='projectInfo'>&#9835; Edit</a></li>
         <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
         <!-- <li><a ui-sref="main.projects">Back</a></li> -->
-        <likebutton ng-if="public" projectid="projectId"></likebutton>
+        <likebutton ng-if="public" projectid="projectData.id"></likebutton>
       </ul>
     </div>
   </div>
@@ -23,11 +23,11 @@
    <div zf-modal="" animation-out="slideOutUp" id="deleteModal2">
     <a zf-close="deleteModal2" class="close-button">×</a>
     <h4>Are You Sure That You Want To Delete This Entry?</h4>
-    <a class="alert button" ng-click="deleteProject(projectData.id)">Confirm Delete</a>
+    <a class="alert button" ng-click="deleteProject()">Confirm Delete</a>
     <a zf-close="" class="button">Go Back</a>
   </div>
  
-  <div zf-modal="" id="projectInfo" ng-show="projectCreated" animation-out="slideOutUp" class="collapse large is-active">
+  <div zf-modal="" id="projectInfo" ng-show="showEdit" animation-out="slideOutUp" class="collapse large is-active">
   
     <div class="grid-block vertical">
       
@@ -39,7 +39,7 @@
         <div class='text-right'>
           <span>Private</span>
           <div class="public-project">
-            <input type="checkbox" ng-model="updatedInfo.private" ng-true-value="0" ng-false-value="1" id="public-project">
+            <input type="checkbox" ng-model="tempProject.private" ng-true-value="0" ng-false-value="1" id="public-project">
             <label for="public-project"></label>
           </div>
           <span>Public</span><br>
@@ -48,11 +48,11 @@
         <form class = 'text-left' ng-submit="saveProjectInfo()">
           <label>
             <h5>Project Name</h5>
-            <input ng-model='updatedInfo.name' type="text" placeholder="Name">
+            <input ng-model='tempProject.name' type="text" placeholder="Name">
           </label>
           <label>
             <h5>Project Description</h5>
-            <input ng-model='updatedInfo.description' type="text" placeholder="Description">
+            <input ng-model='tempProject.description' type="text" placeholder="Description">
           </label>
           <div class = 'text-center'>
             <button ng-click='saveProjectInfo()' type="submit" zf-close="" class="success button">Save</button>

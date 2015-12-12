@@ -51,10 +51,7 @@ app.factory('Project', ['$http','$state', function($http,$state) {
 //edits current project
   var editProject = function(projectData) {
     var id = projectData.id;
-    return $http.put('/api/projects/'+id,projectData)
-    .then(function(response){
-
-    })
+    return $http.put('/api/projects/'+id, projectData)
     .catch(function(err){
       console.log('editProject err: ', err);
     });
