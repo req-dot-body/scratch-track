@@ -19,19 +19,28 @@
               Recording Description:
               <textarea ng-model="newRecording.description" maxlength="72"></textarea>
             </label>
-              <a class="large button" ng-class="{true:'', false:'disabled'}[canRecord]" id="record-btn" ng-click="startRecording();"><i class="material-icons left">mic_none</i>Record</a>
-              <a class="large alert button disabled" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
+            <div class="align-center grid-block v-align" id="recording-controls">
+              <a class="large button align-center" ng-class="{true:'', false:'disabled'}[canRecord]" id="record-btn" ng-click="startRecording();"><i class="material-icons left">mic_none</i>Record</a>
+              <a class="large alert button disabled align-center" id="stop-btn" ng-click="stopRecording();"><i class="material-icons left">mic_off</i>Stop</a> 
+            </div>
               <br>
-              <audio controls="true" id="audio-player">
-                <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
-              </audio>
-              <br><br>
+              <div class="align-center grid-block">
+                <p id="timer" class="hide-for-small-only">{{minutes}}:{{secondsPlace}}</p>
+                <audio controls="true" id="audio-player">
+                  <source ng-src="{{newRecordingSrc | trusted}}" type="audio/wav" id="audio-src"/>
+                </audio>
+              </div>
+              <br class="show-for-small-only">
+              <div class="align-center grid-block show-for-small-only">
+                <p id="timer">{{minutes}}:{{secondsPlace}}</p>
+              </div>
+              <br>
             
               <a class="medium button disabled" id="save-btn" ng-click="saveRecording(newRecordingBlob)">Save</a>
               <a class="medium alert button disabled" id="discard-btn" ng-click="discardRecording()">Discard</a>
               <div id="recording-status" class="grid-block-shrink">
                 <div class="align-center grid-block">
-                  <p id="timer">{{minutes}}:{{secondsPlace}}</p>
+                  
                 </div> 
                 <em id="log" class="recordingStatus"></em>
                 <img src="/resources/spinner.gif" ng-if="isSaving">
