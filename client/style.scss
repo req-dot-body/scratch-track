@@ -449,7 +449,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .inactive {
-    color: #00558b;
+    color: $secondary-color;
   }
 
   /*DASH VIEW*/
