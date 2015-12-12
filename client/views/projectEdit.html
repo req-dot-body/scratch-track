@@ -12,8 +12,8 @@
   <div ng-show='state.current.name === "main.project_edit.dash"' class="spaced text-center">
     <div class="grid-block align-center">
       <ul ng-if="!public" class="dash-menu-bar" id='tour7'>
-        <li><a href="#" ng-click = 'edit()' zf-open='projectInfo'>&#9835; Edit</a></li>
-        <li><a href="#" zf-open="deleteModal2">&#9835; Delete</a></li>
+        <li><a href="#" ng-click = 'edit()' zf-open='projectInfo'><i class="material-icons left control-icon">info_outline</i></a></li>
+        <li><a href="#" zf-open="deleteModal2"><i class="material-icons left control-icon">delete</i></a></li>
         <!-- <li><a ui-sref="main.projects">Back</a></li> -->
         <likebutton ng-if="public" projectid="projectData.id"></likebutton>
       </ul>
