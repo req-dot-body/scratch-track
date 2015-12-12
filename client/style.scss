@@ -210,6 +210,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }  
 }
 
+#project-card {
+  overflow-y: hidden;
+  webkit-overflow-scrolling: hidden;
+}
+
 #project-card-header {
   background-color: $dark-color;
   &:hover {
