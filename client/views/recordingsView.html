@@ -106,7 +106,7 @@
               <label>Description:</label>
               <textarea  ng-keyup="autoExpand($event)" class="body-entry" ng-model="tempRecording.description"></textarea>
               <a class="button" ng-click="update()">Save</a>
-              <a class="button" ng-click="closeEdit()">Cancel</a>
+              <a class="button alert" ng-click="closeEdit()">Cancel</a>
             </div>
 
             <div ng-hide="editing">
