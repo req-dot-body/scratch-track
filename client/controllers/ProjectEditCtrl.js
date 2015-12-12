@@ -1,10 +1,8 @@
 app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', function($scope,$state,Project,signedUp) {
 
   $scope.state = $state;
-
   $scope.public = false;
-
-  $scope.showEdit = false;
+  $scope.showEdit = $state.params.created;
 
   $scope.tempProject = {};
 
@@ -58,8 +56,7 @@ $scope.saveProjectInfo = function(){
   console.log('saving', $scope.tempProject)
 
   return Project.editProject($scope.tempProject)
-  .then(function(res){
-    console.log('getting a response now?', res.data)
+  .then(function(){
     $scope.getProject();
   })
 }
