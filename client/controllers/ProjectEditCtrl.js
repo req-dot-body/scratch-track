@@ -11,10 +11,10 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
   }
 
   //getting current project id
-  var id = $state.params.id;
+  $scope.id = $state.params.id;
   //get current project info
  $scope.getProject = function(){
-    Project.getProject(id)
+    Project.getProject($scope.id)
     .then(function(response){
       $scope.projectData = response.data;
 
@@ -24,7 +24,7 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
       $scope.tempProject.description = $scope.projectData.description;
     }) 
     .catch(function(err){
-      console.log('There was an error loading the project, id:', id);
+      console.log('There was an error loading the project, id:', $scope.id);
     });
 
     if($state.is('main.project_edit')){
@@ -32,34 +32,33 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
     } else if ($state.is('main.public_view')) {
       $state.go('main.public_view.dash');
     }
-  }
+  };
 
-  $scope.getProject();
+  $scope.edit = function(){
+    $scope.showEdit = true; 
+  };
 
-$scope.edit = function(){
-  $scope.showEdit = true; 
-}
+  //delets a project and redirects to main view
+  $scope.deleteProject = function(){
+    var id = $scope.projectData.id;
 
-//delets a project and redirects to main view
-$scope.deleteProject = function(){
-  var id = $scope.projectData.id
+    Project.deleteProject(id)
+    .then(function(){
+      $state.go('main.projects');
+    });
+  };
 
-  Project.deleteProject(id)
-  .then(function(){
-    $state.go('main.projects')
-  })
-};
-//saves the project
-$scope.saveProjectInfo = function(){
-  $scope.showEdit = false;
+  //saves the project
+  $scope.saveProjectInfo = function(){
+    $scope.showEdit = false;
 
-  console.log('saving', $scope.tempProject)
+    console.log('saving', $scope.tempProject);
 
-  return Project.editProject($scope.tempProject)
-  .then(function(){
-    $scope.getProject();
-  })
-}
+    return Project.editProject($scope.tempProject)
+    .then(function(){
+      $scope.getProject();
+    });
+  };
 
   //starts tooltips
 
@@ -73,7 +72,7 @@ $scope.saveProjectInfo = function(){
     }
   });
 
-    $('.sort a[title]').qtip({
+  $('.sort a[title]').qtip({
     position: {
         my: 'left center',
         at: 'right'
