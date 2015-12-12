@@ -4,15 +4,16 @@
 
 
 // THEME COLORS
-$primary-color: #01465d;
+$primary-color: #263238;
 $primary-color-darken: darken( $primary-color, 5% );
 $primary-color-lighten: lighten( $primary-color, 5% );
 
 
-$secondary-color: #3fc380;
-$secondary-color-darken: darken( $secondary-color, 5% ); 
+$secondary-color: #ff5722;
+$secondary-color-darken: darken( $secondary-color, 5% );
+$secondary-color-lighten: lighten( $secondary-color, 5% ); 
 
-$tertiary-color: #fefefe;
+$tertiary-color: #eceff1;
 $tertiary-color-darken: darken( $tertiary-color, 5% );
 
 $quaternary-color: #b0aac2;
@@ -235,9 +236,9 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   #record-btn {
     width: 12rem;
     vertical-align: medium;
-    background-color: $secondary-color;
+    background-color: $primary-color;
       &:hover {
-        background-color: $secondary-color-darken;
+        background-color: $primary-color-lighten;
       }
   }
 
@@ -249,9 +250,9 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   #save-btn {
     width: 6rem;
     text-align: center;
-    background-color: $secondary-color;
+    background-color: $primary-color;
       &:hover {
-        background-color: $secondary-color-darken;
+        background-color: $primary-color-lighten;
       }
   }
 
@@ -401,15 +402,6 @@ $autocolor: false // When true, all the above colors will be derived from $backg
       z-index: -100;
       -webkit-transform: translateX(-50%) translateY(-50%);
       transform: translateX(-50%) translateY(-50%);
-  /*    background: url() no-repeat;
-      background-size: cover; 
-  */
-
-    //   filter:blur(5px);
-    // -o-filter:blur(5px);
-    // -ms-filter:blur(5px);
-    // -moz-filter:blur(5px);
-    // -webkit-filter:blur(5px);
      
   }
 
@@ -509,9 +501,23 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .button {
+    background-color: $primary-color;
+    color: $light-color;
+    text-align: center;
+
+      &:hover {
+        background-color:$primary-color-lighten;
+      }
+  }
+
+    .btn-dash {
     background-color: $secondary-color;
     color: $light-color;
     text-align: center;
+
+      &:hover {
+        background-color:$secondary-color-lighten;
+      }
   }
 
   .button.contrast {
@@ -555,13 +561,24 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .title > .accordion-title:hover {
-    background-color: $secondary-color-darken;
+    background-color: $secondary-color-lighten;
   }
 
   .title-bar {
     color: $light-color;
     
   }
+
+  .title-secondary > .accordion-title-secondary {
+    background-color: $primary-color;
+    color: $light-color;
+    font-weight: bold;
+  }
+
+  .title-secondary > .accordion-title:hover {
+    background-color: $primary-color-lighten;
+  }
+
 
   #dash-menu-bar-wrapper {
     background-color: $primary-color;
@@ -616,8 +633,11 @@ $autocolor: false // When true, all the above colors will be derived from $backg
   }
 
   .accordion-title {
-    background-color: $primary-color;
-    color: $light-color;
+    background-color: lighten($primary-color,20%);
+    color: white;
+    &:hover {
+      background-color: lighten($primary-color,40%);
+    }
   }
 
   .accordion-content {
