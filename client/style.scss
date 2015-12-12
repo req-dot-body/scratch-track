@@ -204,6 +204,7 @@ $autocolor: false // When true, all the above colors will be derived from $backg
 }
 
 #resource-icon {
+  padding-left: .9rem;
   &:hover {
     color: $secondary-color;
   }  
@@ -706,6 +707,8 @@ img.team {
   background-color:smartscale($primary-color, 10%) !important;
 }
 
+
 h1.project-list {
   padding: 15px;
 }
+

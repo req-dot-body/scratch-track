@@ -134,18 +134,6 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
     $scope.editLyric = {};
   };
 
-  $scope.update = function(){
-    $scope.editing = false;
-    var id = $scope.editLyric.id;
-
-    Lyric.edit(id, $scope.editLyric)
-    .then(function(){
-      $scope.editLyric = {};
-      $scope.getAll();
-    })
-
-  };
-
 
   $scope.delete = function(noteId) {
     Lyric.del(noteId)
