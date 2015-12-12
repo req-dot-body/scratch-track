@@ -89,6 +89,10 @@ router.get('/js/alertify.js', (req, res) => res.sendFile(Path.resolve('./node_mo
 router.get('/css/alertify.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify.js/dist/css/alertify.css')));
 // router.get('/css/alertify.default.css', (req, res) => res.sendFile(Path.resolve('./node_modules/alertify/themes/alertify.default.css')));
 
+//qtip2
+router.get('/js/qtip2.js', (req, res) => res.sendFile(Path.resolve('./node_modules/qtip2/dist/jquery.qtip.min.js')));
+router.get('/css/qtip2.css', (req, res) => res.sendFile(Path.resolve('./node_modules/qtip2/dist/jquery.qtip.min.css')));
+
 
 router.get('/css/main.css', sass.serve('./client/style.scss'));
 
