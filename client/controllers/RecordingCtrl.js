@@ -216,6 +216,10 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
     discardButton.addClass('medium alert button');
   }
 
+  $scope.closeAccordion = function () {
+    Resource.closeAccordion();
+  };
+
   $scope.createDownloadLink = function () {
     if (!$scope.recorder) {
       return;
@@ -294,6 +298,7 @@ app.controller('RecordingCtrl', ['$scope', '$state', 'Recording', 'Project', 'Re
           // Amazon rejected the upload
         }
         $scope.__log('Saved!');
+        $scope.closeAccordion();
       };
 
       xhr.onerror = function () {
