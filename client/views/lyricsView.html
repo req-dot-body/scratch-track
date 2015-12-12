@@ -13,7 +13,7 @@
             <form name="newLyricForm" class="form-group" ng-submit="add(newLyric); submit();" novalidate>
 
               <label>Lyric Title:</label>
-              <textarea class="lyric-textarea title-box" type="text" name="lyric-title" ng-model="newLyric.name" placeholder="Enter title here." ng-maxlength="5000"></textarea>
+              <textarea class="lyric-textarea title-box" type="text" name="lyric-title" ng-model="newLyric.name" placeholder="Enter title here." ng-maxlength="5000" required></textarea>
               <br>
 
               <div class="form-group"> 
@@ -102,15 +102,9 @@
                 </div>
               </zf-accordion-item>
             </zf-accordion>
-
           </div>
         </div>
       </section>
-
-      <div ng-if="!lyrics.data.length">
-        <br>
-        <h5>There are currently no lyrics for this project</h5>
-      </div>
       
     </div>
   </div>
