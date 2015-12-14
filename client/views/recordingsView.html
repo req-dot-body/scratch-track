@@ -59,9 +59,7 @@
                     <h5>Lyrics:</h5>
                     <select ng-model="selectedLyric" ng-options="lyric.name for lyric in lyrics.data">
                     </select>
-                    <textarea readonly="readonly" id="lyric-field">
-                      {{selectedLyric.text}}
-                    </textarea>
+                    <textarea readonly="readonly" id="lyric-field">{{selectedLyric.text}}</textarea>
                   </span>
                   <span class="grid-content" ng-controller="StablatureCtrl">
                     <h5>Tabs:</h5>
