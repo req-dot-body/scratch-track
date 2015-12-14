@@ -66,8 +66,13 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
   };
 
 
-  $scope.updateVal = function(newValue) {
-    $scope.val = newValue;
+  $scope.saveUpdate = function(newTitle, newValue, id) {
+    $scope.update(newTitle, newValue);
+    Lyric.edit(id, $scope.newLyric)
+    .then(function() {
+      $scope.clearValues();
+      $scope.getAll();
+    });
   };
 
 
@@ -136,8 +141,8 @@ app.controller('LyricCtrl', ['$scope', '$state', 'Lyric', 'Project', 'Resource',
   };
 
 
-  $scope.delete = function(noteId) {
-    Lyric.del(noteId)
+  $scope.delete = function(lyricId) {
+    Lyric.del(lyricId)
     .then(function() {
       $scope.getAll();
     });
