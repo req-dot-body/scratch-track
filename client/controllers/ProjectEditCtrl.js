@@ -85,4 +85,15 @@ app.controller('ProjectEditCtrl', ['$scope','$state','Project','signedUp', funct
     }
   });
 
+    $('.project-title[title]').qtip({
+    position: {
+        my: 'left center',
+        at: 'right center'
+    },
+    style: {
+        classes: 'qtip-dark'
+    }
+  });
+
+
 }]);

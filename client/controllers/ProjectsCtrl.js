@@ -60,6 +60,16 @@ app.controller('ProjectsCtrl', ['$scope','$state','Project','signedUp','Tour', f
     });
   };
 
+  //   //start tooltips
+  // $('#project-card-header[title]').qtip({
+  //   position: {
+  //       my: 'top center',
+  //       at: 'top center'
+  //   },
+  //   style: {
+  //       classes: 'qtip-dark'
+  //   }
+  // });
 // Get projects on controller loading
   $scope.getProjects()
 
