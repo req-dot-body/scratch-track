@@ -14,5 +14,5 @@ require('./ProjectDashCtrl');
 require('./LikeCtrl');
 require('./TeamCtrl');
 require('./ResourceCtrl');
-
+require('./SortCtrl');
 

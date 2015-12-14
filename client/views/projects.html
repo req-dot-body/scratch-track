@@ -39,7 +39,7 @@
       <div class='grid-content'>  
         <div class="dark card text-center">
           <div title='click to open {{project.name}}' class="v-align card-divider" id="project-card-header" ui-sref = "{{ public ? 'main.public_view.dash({id:project.id})' : 'main.project_edit.dash({id:project.id})' }}">
-            <i id="project-icon" class="large material-icons">input</i>
+            {{project.name}}<i id="project-icon" class="large material-icons">input</i>
           </div>
         </div>
 
