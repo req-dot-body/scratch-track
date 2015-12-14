@@ -16,6 +16,7 @@ var uuid = require('node-uuid');
 var Path = require('path');
 
 var db = require('./lib/db');
+var helper = require('./helper');
 
 var router = require('./routes/mainRouter');
 
@@ -39,6 +40,9 @@ if(process.env.NODE_ENV !== 'test') {
   // Use morgan to log requests to our express server to the console
   app.use(morgan('dev'));
 
+  // Redirect to https site if config is set (needed for browser getUserMedia and Heroku)
+  app.use(helper.forceSSL);
+
   // Parse incoming request bodies as JSON
   app.use(bodyParser.json());
 
@@ -50,6 +54,7 @@ if(process.env.NODE_ENV !== 'test') {
     req.db = db;
     next();
   });
+
 
   // Set up sessions for use within our appliation
   app.use(session({
