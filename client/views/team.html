@@ -10,9 +10,13 @@
     </div>
 
     <div class="align-center grid-block">
-      <div class="grid-block small-6 align-center">
+      <div class="vertical grid-block small-6 align-center">
         <br>
-        <p>ScratchTrack is designed for easily capturing musical ideas on the go and for managing your songwriting workflow. Our interface allows a user to quickly record at the click of a button, to write and revise lyrics, and to transcribe guitar tablature into a clean, organized format legible by other musicians. With ScratchTrack you can generate ideas, revisit past songs, and explore other users' projects to find some inspiration. </p>
+        <p>ScratchTrack is designed for easily capturing musical ideas on the go and for managing your songwriting workflow.</p>
+
+        <p>Our interface allows a user to quickly record at the click of a button, to write and revise lyrics, and to transcribe guitar tablature into a clean, organized format legible by other musicians.</p>
+
+        <p>With ScratchTrack you can generate ideas, revisit past songs, and explore other users' projects to find some inspiration. </p>
       </div>
     </div>
 
@@ -44,8 +48,8 @@
     </div>
   </section>
 
-   <section class="grid-block small-12 show-for-small-only">
-    <div ng-repeat="person in team" ng-model="team" class="grid-content">
+   <section class="vertical grid-block small-offset-5 small-7 show-for-small-only">
+    <div ng-repeat="person in team" ng-model="team" class="grid-content noscroll">
       <a href="https://github.com/{{person.github}}" >
         <img class="team" src="{{person.img_src}}" height="56px" width="55px">
         <div>
