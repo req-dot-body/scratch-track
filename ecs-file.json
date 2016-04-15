@@ -1,0 +1,22 @@
+{
+  "container_definitions": [
+    {
+      "name": "app",
+      "image": "",
+      "environment": [
+        {
+          "name": "NODE_ENV",
+          "value": "production"
+        }
+      ],
+      "port_mappings": [
+        {
+          "protocol": "tcp",
+          "container_port": 3000,
+          "host_port": 0
+        }
+      ]
+    }
+  ],
+  "family": "req-dot-bodyscratch-track"
+}
